@@ -74,7 +74,7 @@ export default function ProductDetailModal({ isOpen, onClose, product }: Props) 
             initial="hidden"
             animate="visible"
             exit="hidden"
-            className="relative w-full max-w-2xl overflow-hidden rounded-3xl border border-white/10 bg-[#12131e] text-white shadow-2xl z-10 flex flex-col max-h-[85vh] md:max-h-[90vh]"
+            className="relative w-full max-w-2xl overflow-hidden rounded-3xl border border-white/10 bg-midnight-void text-white shadow-2xl z-10 flex flex-col max-h-[85vh] md:max-h-[90vh]"
           >
             
             {/* Close Button */}
@@ -92,7 +92,7 @@ export default function ProductDetailModal({ isOpen, onClose, product }: Props) 
                 alt={product.title}
                 className="h-full w-full object-cover brightness-[0.75]"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-[#12131e] to-transparent" />
+              <div className="absolute inset-0 bg-gradient-to-t from-midnight-void to-transparent" />
               <div className="absolute bottom-4 left-6">
                 <span className="font-mono text-[9px] uppercase tracking-widest text-emerald-400 bg-emerald-500/10 border border-emerald-500/20 px-2 py-0.5 rounded">
                   {product.location}
@@ -112,15 +112,15 @@ export default function ProductDetailModal({ isOpen, onClose, product }: Props) 
 
               {/* Financial Metrics Cards */}
               <motion.div variants={itemVariants} className="grid grid-cols-2 sm:grid-cols-3 gap-3">
-                <div className="p-3.5 bg-[#181a29] border border-white/5 rounded-xl text-center">
+                <div className="p-3.5 bg-abyss-panel border border-white/5 rounded-xl text-center">
                   <span className="text-[10px] text-gray-500 uppercase block font-mono">Escrow Buy Price</span>
                   <span className="text-base font-black text-emerald-400 mt-1 block">{buyPrice.replace("Buy Price: ", "")}</span>
                 </div>
-                <div className="p-3.5 bg-[#181a29] border border-white/5 rounded-xl text-center">
+                <div className="p-3.5 bg-abyss-panel border border-white/5 rounded-xl text-center">
                   <span className="text-[10px] text-gray-500 uppercase block font-mono">Monthly Revenue</span>
                   <span className="text-sm font-bold text-white mt-1.5 block">{mrr.replace("MRR: ", "")}</span>
                 </div>
-                <div className="p-3.5 col-span-2 sm:col-span-1 bg-[#181a29] border border-white/5 rounded-xl text-center">
+                <div className="p-3.5 col-span-2 sm:col-span-1 bg-abyss-panel border border-white/5 rounded-xl text-center">
                   <span className="text-[10px] text-gray-500 uppercase block font-mono">Traffic Metrics</span>
                   <span className="text-sm font-bold text-white mt-1.5 block">{traffic.replace("Traffic: ", "")}</span>
                 </div>
@@ -187,7 +187,7 @@ export default function ProductDetailModal({ isOpen, onClose, product }: Props) 
             </div>
 
             {/* Modal Footer / Action Center */}
-            <div className="p-6 bg-[#161725] border-t border-white/5 shrink-0 flex flex-col sm:flex-row gap-3 justify-end">
+            <div className="p-6 bg-abyss-panel border-t border-white/5 shrink-0 flex flex-col sm:flex-row gap-3 justify-end">
               <button
                 onClick={onClose}
                 className="w-full sm:w-auto px-6 py-2.5 bg-white/5 hover:bg-white/10 text-white rounded-full text-xs font-semibold uppercase tracking-wider transition-all border border-white/10"

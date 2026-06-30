@@ -187,7 +187,7 @@ export default function FeaturedProducts() {
               layout
               exit={{ opacity: 0, scale: 0.9, y: 15 }}
               onClick={() => setSelectedProduct(product)}
-              className="group relative bg-[#11121A]/30 border border-white/5 rounded-xl overflow-hidden hover:border-white/15 transition-all duration-500 cursor-pointer flex flex-col justify-between min-h-[360px] shadow-lg"
+              className="group relative bg-abyss-panel/30 border border-white/5 rounded-xl overflow-hidden hover:border-white/15 transition-all duration-500 cursor-pointer flex flex-col justify-between min-h-[360px] shadow-lg"
             >
               
               {/* Image box */}
@@ -197,7 +197,7 @@ export default function FeaturedProducts() {
                   alt={product.title}
                   className="h-full w-full object-cover group-hover:scale-105 transition-transform duration-700 brightness-90"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#0A0C16]/95 via-[#0A0C16]/20 to-transparent" />
+                <div className="absolute inset-0 bg-gradient-to-t from-midnight-void via-midnight-void/20 to-transparent" />
                 
                 {/* Micro verified registry tag */}
                 <div className="absolute top-3 left-3 flex items-center gap-1 bg-black/50 border border-white/10 px-2.5 py-1 rounded text-[8px] tracking-wider text-emerald-400 font-mono">
