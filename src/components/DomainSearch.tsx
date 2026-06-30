@@ -15,6 +15,11 @@ import {
   ChevronDown,
   ChevronUp,
   Lock,
+  Shield,
+  Clock,
+  Eye,
+  Server,
+  UserCheck,
 } from "lucide-react";
 import {
   domainCatalog,
@@ -118,6 +123,44 @@ function DomainCard({ domain, idx }: { domain: DomainListing; idx: number }) {
             : <Lock className="w-4 h-4 text-red-400" />
           }
         </div>
+      </div>
+
+      {/* Domain metadata strip */}
+      <div className="grid grid-cols-2 gap-x-4 gap-y-1.5 bg-black/[0.03] border border-black/5 rounded-xl px-4 py-3">
+        {[
+          {
+            icon: UserCheck,
+            label: "Ownership",
+            value: domain.available ? "Full transfer of rights" : "Currently registered",
+            ok: domain.available,
+          },
+          {
+            icon: Clock,
+            label: "Transfer",
+            value: domain.available ? "Instant transfer" : "N/A",
+            ok: domain.available,
+          },
+          {
+            icon: Eye,
+            label: "WHOIS Privacy",
+            value: "Included free",
+            ok: true,
+          },
+          {
+            icon: Server,
+            label: "Nameservers",
+            value: "Full NS control",
+            ok: true,
+          },
+        ].map(({ icon: Icon, label, value, ok }) => (
+          <div key={label} className="flex items-start gap-1.5">
+            <Icon className={`w-3 h-3 mt-0.5 shrink-0 ${ok ? "text-cosmic-teal" : "text-muted-steel/40"}`} />
+            <div>
+              <span className="text-[8px] font-mono text-muted-steel/70 uppercase tracking-wider block">{label}</span>
+              <span className={`text-[9px] font-mono font-bold ${ok ? "text-star-white" : "text-muted-steel/50"}`}>{value}</span>
+            </div>
+          </div>
+        ))}
       </div>
 
       {/* Stats row (if available) */}
