@@ -7,8 +7,9 @@ import { Sparkles, Shield, Cpu, ArrowRight, CornerDownRight, Compass } from "luc
 import { DomainSearchBar } from "@/components/ui/DomainSearchBar";
 import { CyberButton } from "@/components/ui/CyberButton";
 import { CustomCursor } from "@/components/ui/CustomCursor";
-import { InteractiveOrb } from "@/components/ui/InteractiveOrb";
 import FeaturedProducts from "@/components/FeaturedProducts";
+import AnimatedSlider from "@/components/AnimatedSlider";
+import { InteractiveOrb } from "@/components/ui/InteractiveOrb";
 
 export default function Home() {
   const router = useRouter();
@@ -26,15 +27,19 @@ export default function Home() {
   ];
 
   return (
-    <main className="min-h-screen flex flex-col pt-36 pb-32 px-6 md:px-12 relative overflow-hidden thin-wireframe-grid">
-      {/* Custom Awwwards Cursor */}
-      <CustomCursor />
+    <main className="min-h-screen flex flex-col relative overflow-hidden thin-wireframe-grid">
+      {/* Animated Slider Hero Section */}
+      <AnimatedSlider />
 
-      {/* Background twilight ambient glows - extremely soft restraint purple */}
-      <div className="absolute top-[10%] right-[-5%] w-[600px] h-[600px] rounded-full bg-restraint-purple/20 blur-[140px] -z-20 pointer-events-none animate-[pulse_6s_ease-in-out_infinite_alternate]" />
-      <div className="absolute bottom-[20%] left-[-5%] w-[500px] h-[500px] rounded-full bg-cosmic-teal/5 blur-[150px] -z-20 pointer-events-none" />
+      <div className="pt-24 pb-32 px-6 md:px-12 flex flex-col w-full relative">
+        {/* Custom Awwwards Cursor */}
+        <CustomCursor />
 
-      {/* Hero Section - Asymmetric, Architectural Grid */}
+        {/* Background twilight ambient glows - extremely soft restraint purple */}
+        <div className="absolute top-[10%] right-[-5%] w-[600px] h-[600px] rounded-full bg-restraint-purple/20 blur-[140px] -z-20 pointer-events-none animate-[pulse_6s_ease-in-out_infinite_alternate]" />
+        <div className="absolute bottom-[20%] left-[-5%] w-[500px] h-[500px] rounded-full bg-cosmic-teal/5 blur-[150px] -z-20 pointer-events-none" />
+
+        {/* Hero Section - Asymmetric, Architectural Grid */}
       <section className="max-w-6xl mx-auto w-full relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-12 mb-36 mt-4">
         {/* Left Side: Editorial Typography & Search Bar */}
         <div className="lg:col-span-8 flex flex-col justify-center items-start text-left relative pl-6 md:pl-8 border-l border-white/5">
@@ -224,6 +229,7 @@ export default function Home() {
           Decentralized Namespace routing — Secured Registry Controls
         </p>
       </section>
+      </div>
     </main>
   );
 }
