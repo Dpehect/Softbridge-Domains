@@ -123,6 +123,12 @@ export default function Home() {
       {/* Spacing Divider line */}
       <div className="max-w-6xl mx-auto w-full h-[1px] bg-white/5 mb-32" />
 
+      {/* Featured Products Category Filter Grid */}
+      <FeaturedProducts />
+
+      {/* Spacing Divider line */}
+      <div className="max-w-6xl mx-auto w-full h-[1px] bg-white/5 mb-32" />
+
       {/* Curated Suffix Registry grid */}
       <section className="max-w-6xl mx-auto w-full mb-36">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
@@ -208,9 +214,6 @@ export default function Home() {
           </div>
         </div>
       </section>
-
-      {/* Featured Products Category Filter Grid */}
-      <FeaturedProducts />
 
       {/* Trust & Verification Signals */}
       <section className="max-w-5xl mx-auto w-full border-t border-white/5 pt-16 text-center space-y-6">
