@@ -131,7 +131,7 @@ export default function ProductSection() {
     <section className="max-w-6xl mx-auto w-full mb-36 px-4 md:px-0">
       
       {/* Header section with category filters and search bar */}
-      <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6 border-b border-white/5 pb-8">
+      <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6 border-b border-black/5 pb-8">
         <div>
           <span className="font-mono text-[9px] uppercase tracking-[0.25em] text-cosmic-teal font-bold block mb-2">
             REGISTRY PRODUCTS
@@ -148,9 +148,9 @@ export default function ProductSection() {
             placeholder="Search layout coordinates..."
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            className="w-full bg-abyss-panel/50 border border-white/5 text-white text-xs font-mono py-3 pl-10 pr-4 rounded focus:outline-none focus:border-cosmic-teal/40 transition-colors placeholder:text-gray-600"
+            className="w-full bg-abyss-panel/50 border border-black/5 text-star-white text-xs font-mono py-3 pl-10 pr-4 rounded focus:outline-none focus:border-cosmic-teal/40 transition-colors placeholder:text-gray-400"
           />
-          <Search className="absolute left-3 top-3.5 w-4 h-4 text-gray-600" />
+          <Search className="absolute left-3 top-3.5 w-4 h-4 text-gray-400" />
         </div>
       </div>
 
@@ -162,8 +162,8 @@ export default function ProductSection() {
             onClick={() => setSelectedCategory(cat)}
             className={`px-5 py-2.5 rounded-full border transition-all duration-300 cursor-pointer ${
               selectedCategory === cat
-                ? "bg-cosmic-teal text-black border-cosmic-teal font-bold shadow-lg shadow-cosmic-teal/10"
-                : "bg-transparent text-muted-steel border-white/5 hover:border-white/20 hover:text-white"
+                ? "bg-cosmic-teal text-white border-cosmic-teal font-bold shadow-lg shadow-cosmic-teal/10"
+                : "bg-transparent text-muted-steel border-black/5 hover:border-black/20 hover:text-cosmic-teal"
             }`}
           >
             {cat}
@@ -187,7 +187,7 @@ export default function ProductSection() {
               layout
               exit={{ opacity: 0, scale: 0.9, y: 15 }}
               onClick={() => setSelectedProduct(product)}
-              className="group relative bg-abyss-panel/30 border border-white/5 rounded-xl overflow-hidden hover:border-white/15 transition-all duration-500 cursor-pointer flex flex-col justify-between min-h-[360px] shadow-lg"
+              className="group relative bg-abyss-panel/30 border border-black/5 rounded-xl overflow-hidden hover:border-black/15 transition-all duration-500 cursor-pointer flex flex-col justify-between min-h-[360px] shadow-lg"
             >
               
               {/* Image box */}
@@ -212,7 +212,7 @@ export default function ProductSection() {
                   <span className="font-mono text-[9px] uppercase tracking-widest text-cosmic-teal">
                     {product.location}
                   </span>
-                  <h3 className="font-display text-xl font-black text-white group-hover:text-cosmic-teal transition-colors tracking-tight">
+                  <h3 className="font-display text-xl font-black text-star-white group-hover:text-cosmic-teal transition-colors tracking-tight">
                     {product.title}
                   </h3>
                   <p className="text-[11px] text-muted-steel font-sans leading-relaxed font-light line-clamp-3">
@@ -221,7 +221,7 @@ export default function ProductSection() {
                 </div>
 
                 {/* Card Action Center footer */}
-                <div className="flex items-center justify-between border-t border-white/5 pt-4">
+                <div className="flex items-center justify-between border-t border-black/5 pt-4">
                   <div>
                     <span className="text-[8px] text-gray-500 block uppercase font-mono tracking-wider">Buy Price</span>
                     <span className="font-mono text-sm font-black text-sunset-coral">
@@ -242,7 +242,7 @@ export default function ProductSection() {
 
       {/* Empty State */}
       {filteredProducts.length === 0 && (
-        <div className="text-center py-20 border border-dashed border-white/5 rounded-xl">
+        <div className="text-center py-20 border border-dashed border-black/5 rounded-xl">
           <p className="text-xs text-muted-steel uppercase font-mono tracking-wider">No layout coordinates found</p>
         </div>
       )}

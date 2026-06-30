@@ -26,11 +26,11 @@ export function CyberButton({
   };
 
   const variantStyles = {
-    teal: "bg-creative-teal text-playful-dark hover:bg-white hover:text-creative-teal border border-creative-teal/20",
-    magenta: "bg-creative-magenta text-white hover:bg-white hover:text-creative-magenta border border-creative-magenta/20",
-    orange: "bg-creative-orange text-white hover:bg-white hover:text-creative-orange border border-creative-orange/20",
-    slate: "bg-playful-dark text-white hover:bg-white hover:text-playful-dark border border-playful-dark/20",
-    glass: "bg-white/40 backdrop-blur-md text-playful-dark border border-white/60 hover:bg-white/60",
+    teal: "bg-cosmic-teal text-white border border-cosmic-teal/20 hover:bg-transparent hover:text-cosmic-teal hover:border-cosmic-teal",
+    magenta: "bg-sunset-coral text-white border border-sunset-coral/20 hover:bg-transparent hover:text-sunset-coral hover:border-sunset-coral",
+    orange: "bg-sunset-coral text-white border border-sunset-coral/20 hover:bg-transparent hover:text-sunset-coral hover:border-sunset-coral",
+    slate: "bg-star-white text-midnight-void border border-star-white/20 hover:bg-transparent hover:text-star-white hover:border-star-white",
+    glass: "bg-black/5 backdrop-blur-md text-star-white border border-black/5 hover:bg-black/10",
   };
 
   return (

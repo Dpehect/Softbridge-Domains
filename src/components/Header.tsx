@@ -24,10 +24,11 @@ export function Header() {
       transition={{ duration: 0.6, ease: "easeOut" }}
       className="fixed top-0 left-0 right-0 z-50 p-4"
     >
-      <div className="max-w-6xl mx-auto bg-midnight-void/70 border border-white/5 rounded px-6 py-3.5 flex items-center justify-between backdrop-blur-md">
+      <div className="max-w-6xl mx-auto bg-midnight-void/75 border border-black/5 rounded px-6 py-3.5 flex items-center justify-between backdrop-blur-md">
+        
         {/* Minimalist Premium Brand Logo */}
         <Link href="/" className="flex items-center gap-2 group">
-          <div className="w-5 h-5 rounded border border-white/10 flex items-center justify-center bg-white/[0.02] group-hover:border-cosmic-teal/40 transition-colors">
+          <div className="w-5 h-5 rounded border border-black/10 flex items-center justify-center bg-black/[0.02] group-hover:border-cosmic-teal/40 transition-colors">
             <Layers className="w-3 h-3 text-cosmic-teal" />
           </div>
           <span className="font-display font-black text-sm uppercase tracking-[0.18em] text-star-white">
@@ -44,13 +45,13 @@ export function Header() {
                 key={link.name}
                 href={link.path}
                 className={`relative px-4 py-1.5 rounded text-[10px] font-heading font-extrabold uppercase tracking-widest transition-colors duration-300 ${
-                  isActive ? "text-midnight-void" : "text-muted-steel hover:text-star-white"
+                  isActive ? "text-midnight-void" : "text-muted-steel hover:text-cosmic-teal"
                 }`}
               >
                 {isActive && (
                   <motion.div
                     layoutId="active-nav-indicator"
-                    className="absolute inset-0 bg-star-white rounded -z-10 shadow-[0_4px_12px_rgba(255,255,255,0.05)]"
+                    className="absolute inset-0 bg-star-white rounded -z-10 shadow-[0_4px_12px_rgba(0,0,0,0.05)]"
                     transition={{ type: "spring", stiffness: 450, damping: 28 }}
                   />
                 )}
@@ -65,11 +66,11 @@ export function Header() {
           {/* Cart Icon with count */}
           <Link
             href="/cart"
-            className="p-2.5 bg-white/[0.01] hover:bg-white/[0.04] text-star-white hover:text-cosmic-teal border border-white/5 rounded transition-all relative cursor-pointer"
+            className="p-2.5 bg-black/[0.01] hover:bg-black/[0.04] text-star-white hover:text-cosmic-teal border border-black/5 rounded transition-all relative cursor-pointer"
           >
             <ShoppingCart className="w-4 h-4" />
             {cartItems.length > 0 && (
-              <span className="absolute -top-1 -right-1 w-4 h-4 bg-sunset-coral text-star-white text-[8px] font-black font-mono rounded flex items-center justify-center shadow-[0_0_10px_rgba(255,107,53,0.3)]">
+              <span className="absolute -top-1 -right-1 w-4 h-4 bg-sunset-coral text-midnight-void text-[8px] font-black font-mono rounded flex items-center justify-center shadow-[0_0_10px_rgba(255,107,53,0.3)]">
                 {cartItems.length}
               </span>
             )}
@@ -78,7 +79,7 @@ export function Header() {
           {/* Minimalist outline CTA */}
           <Link
             href="/studio"
-            className="flex items-center gap-1.5 bg-transparent border border-white/10 text-star-white hover:border-cosmic-teal/50 hover:text-star-white px-4 py-2 rounded text-[10px] font-heading font-bold uppercase tracking-widest transition-all"
+            className="flex items-center gap-1.5 bg-transparent border border-black/10 text-star-white hover:border-cosmic-teal/50 hover:text-cosmic-teal px-4 py-2 rounded text-[10px] font-heading font-bold uppercase tracking-widest transition-all"
           >
             <Layout className="w-3 h-3 text-cosmic-teal" />
             Studio
@@ -88,3 +89,4 @@ export function Header() {
     </motion.header>
   );
 }
+export default Header;

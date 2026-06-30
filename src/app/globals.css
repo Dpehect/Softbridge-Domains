@@ -2,13 +2,13 @@
 @import "tailwindcss";
 
 @theme inline {
-  --color-midnight-void: #0A0B10;
-  --color-abyss-panel: #11121A;
-  --color-cosmic-teal: #00F5E6;
-  --color-sunset-coral: #FF6B35;
-  --color-muted-steel: #475569;
-  --color-star-white: #F8FAFC;
-  --color-grid-line: rgba(255, 255, 255, 0.04);
+  --color-midnight-void: #FFF8F0;
+  --color-abyss-panel: #FFF1E6;
+  --color-cosmic-teal: #FF6B35;
+  --color-sunset-coral: #E76F51;
+  --color-muted-steel: #5C5C5C;
+  --color-star-white: #2D2D2D;
+  --color-grid-line: rgba(255, 107, 53, 0.06);
   
   --font-sans: 'Inter', sans-serif;
   --font-heading: 'Outfit', sans-serif;
@@ -59,7 +59,7 @@ body::before {
   left: 0;
   width: 100vw;
   height: 100vh;
-  opacity: 0.02; /* Extremely crisp and subtle */
+  opacity: 0.035; /* Crisp warm paper texture */
   pointer-events: none;
   z-index: 9999;
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
@@ -74,7 +74,7 @@ body::before {
   background: var(--color-midnight-void);
 }
 ::-webkit-scrollbar-thumb {
-  background: rgba(255, 255, 255, 0.08);
+  background: rgba(255, 107, 53, 0.15);
   border-radius: 3px;
 }
 ::-webkit-scrollbar-thumb:hover {
@@ -89,34 +89,34 @@ body::before {
 }
 
 @utility glass-luxury {
-  background: rgba(17, 18, 26, 0.7);
+  background: rgba(255, 248, 240, 0.75);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 107, 53, 0.08);
   box-shadow: 
-    0 8px 32px 0 rgba(0, 0, 0, 0.47),
-    inset 0 1px 1px 0 rgba(255, 255, 255, 0.05);
+    0 8px 32px 0 rgba(255, 107, 53, 0.05),
+    inset 0 1px 1px 0 rgba(255, 255, 255, 0.8);
 }
 
 @utility glass-luxury-hover {
   transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
   &:hover {
-    border-color: rgba(0, 245, 230, 0.2);
-    background: rgba(20, 22, 32, 0.85);
+    border-color: rgba(255, 107, 53, 0.25);
+    background: rgba(255, 241, 230, 0.9);
     transform: translateY(-2px);
     box-shadow: 
-      0 12px 40px rgba(0, 0, 0, 0.65),
-      0 0 25px rgba(0, 245, 230, 0.03),
-      inset 0 1px 1px 0 rgba(255, 255, 255, 0.08);
+      0 12px 40px rgba(255, 107, 53, 0.15),
+      0 0 25px rgba(255, 107, 53, 0.03),
+      inset 0 1px 1px 0 rgba(255, 255, 255, 0.9);
   }
 }
 
 @utility glow-cosmic-teal {
-  box-shadow: 0 0 15px rgba(0, 245, 230, 0.2);
+  box-shadow: 0 0 15px rgba(255, 107, 53, 0.2);
 }
 
 @utility glow-sunset-coral {
-  box-shadow: 0 0 15px rgba(255, 107, 53, 0.2);
+  box-shadow: 0 0 15px rgba(231, 111, 81, 0.2);
 }
 
 @utility text-cosmic-gradient {
@@ -126,7 +126,7 @@ body::before {
 }
 
 @utility radial-vignette {
-  background: radial-gradient(circle at 50% 50%, transparent 60%, rgba(10, 11, 16, 0.95) 100%);
+  background: radial-gradient(circle at 50% 50%, transparent 60%, rgba(255, 248, 240, 0.95) 100%);
 }
 
 .custom-theme-preview {
