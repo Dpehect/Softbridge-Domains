@@ -10,6 +10,7 @@ import { mockDomainsSearch, DomainInfo } from "@/data/mockDomains";
 import { templatesData } from "@/data/templatesData";
 import Link from "next/link";
 import { motion } from "framer-motion";
+import { CustomCursor } from "@/components/ui/CustomCursor";
 
 export default function DomainDetailPage({ params }: { params: Promise<{ name: string }> }) {
   const router = useRouter();
@@ -52,16 +53,19 @@ export default function DomainDetailPage({ params }: { params: Promise<{ name: s
   const recommendedTemplates = templatesData.slice(0, 2);
 
   return (
-    <main className="min-h-screen pt-32 pb-24 px-4 md:px-8 relative overflow-hidden mesh-bg">
+    <main className="min-h-screen pt-32 pb-24 px-4 md:px-8 relative overflow-hidden thin-wireframe-grid">
+      {/* Custom Awwwards Cursor */}
+      <CustomCursor />
+
       {/* Visual background lights */}
-      <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] rounded-full bg-cosmic-purple/10 blur-[130px] -z-10 animate-pulse" />
+      <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] rounded-full bg-restraint-purple/20 blur-[135px] -z-10 animate-pulse" />
 
       <div className="w-full max-w-6xl mx-auto space-y-12 relative z-10">
         {/* Back Link */}
         <div>
           <Link
             href="/"
-            className="inline-flex items-center gap-2 text-xs font-heading font-bold uppercase tracking-wider text-nebula-slate hover:text-white transition-colors"
+            className="inline-flex items-center gap-2 text-xs font-heading font-bold uppercase tracking-wider text-muted-steel hover:text-white transition-colors"
           >
             <ArrowLeft className="w-4 h-4" /> Back to registers
           </Link>
@@ -73,18 +77,18 @@ export default function DomainDetailPage({ params }: { params: Promise<{ name: s
           <div className="w-full lg:w-1/2 flex flex-col items-center justify-center relative min-h-[300px]">
             <div className="relative w-80 h-80 rounded-full border border-white/5 flex items-center justify-center">
               {/* Pulsing glow ring */}
-              <div className="absolute inset-0 border border-dashed border-electric-cyan/15 rounded-full animate-[spin_40s_linear_infinite]" />
-              <div className="absolute inset-8 border border-dashed border-cosmic-purple/20 rounded-full animate-[spin_20s_linear_infinite_reverse]" />
+              <div className="absolute inset-0 border border-dashed border-cosmic-teal/15 rounded-full animate-[spin_40s_linear_infinite]" />
+              <div className="absolute inset-8 border border-dashed border-restraint-purple/20 rounded-full animate-[spin_20s_linear_infinite_reverse]" />
               
               <motion.div
                 animate={{ rotate: 360 }}
                 transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
-                className="w-48 h-48 rounded-full border border-white/10 flex items-center justify-center bg-black/35 shadow-[0_0_40px_rgba(0,242,254,0.1)] relative"
+                className="w-48 h-48 rounded-full border border-white/10 flex items-center justify-center bg-black/35 shadow-[0_0_40px_rgba(0,245,230,0.1)] relative"
               >
-                <Globe className="w-20 h-20 text-electric-cyan opacity-80" />
+                <Globe className="w-20 h-20 text-cosmic-teal opacity-80" />
                 {/* Visual orbital satellites */}
-                <div className="absolute w-3.5 h-3.5 rounded-full bg-cosmic-purple top-2 left-6 shadow-[0_0_10px_rgba(127,0,255,0.8)]" />
-                <div className="absolute w-2.5 h-2.5 rounded-full bg-solar-pink bottom-8 right-4 shadow-[0_0_10px_rgba(255,0,127,0.8)]" />
+                <div className="absolute w-3.5 h-3.5 rounded-full bg-restraint-purple top-2 left-6 shadow-[0_0_10px_rgba(42,14,102,0.8)]" />
+                <div className="absolute w-2.5 h-2.5 rounded-full bg-sunset-coral bottom-8 right-4 shadow-[0_0_10px_rgba(255,107,53,0.8)]" />
               </motion.div>
             </div>
           </div>
@@ -92,12 +96,12 @@ export default function DomainDetailPage({ params }: { params: Promise<{ name: s
           {/* Right Side Pricing & Actions */}
           <div className="flex-1 space-y-6">
             <div>
-              <span className="text-[10px] text-electric-cyan font-heading font-extrabold uppercase tracking-widest bg-electric-cyan/15 px-3.5 py-1 rounded-full border border-electric-cyan/25 mb-4 inline-block">
+              <span className="text-[10px] text-cosmic-teal font-heading font-extrabold uppercase tracking-widest bg-cosmic-teal/15 px-3.5 py-1 rounded-full border border-cosmic-teal/25 mb-4 inline-block">
                 Registry Details
               </span>
               <h1 className="text-4xl md:text-6xl font-heading font-black text-white tracking-tight leading-none">
                 {domainDetail.name}
-                <span className="text-neon-gradient">{domainDetail.tld}</span>
+                <span className="text-cosmic-gradient">{domainDetail.tld}</span>
               </h1>
               <div className="flex items-center gap-2 mt-4">
                 {domainDetail.premium && (
@@ -111,7 +115,7 @@ export default function DomainDetailPage({ params }: { params: Promise<{ name: s
               </div>
             </div>
 
-            <p className="text-sm text-nebula-slate leading-relaxed">
+            <p className="text-sm text-muted-steel leading-relaxed">
               This coordinate name represents an active gateway point. Register now to gain control of name resolution pipelines and deploy siber storefronts.
             </p>
 
@@ -121,7 +125,7 @@ export default function DomainDetailPage({ params }: { params: Promise<{ name: s
                   <span className="text-3xl font-heading font-black text-white">
                     ${domainDetail.price}
                   </span>
-                  <span className="text-xs text-nebula-slate/60">/ year registration fee</span>
+                  <span className="text-xs text-muted-steel/60">/ year registration fee</span>
                 </div>
 
                 <div className="flex flex-col sm:flex-row gap-4">
@@ -145,22 +149,22 @@ export default function DomainDetailPage({ params }: { params: Promise<{ name: s
               </div>
             ) : (
               <div className="glass-panel p-6 rounded-2xl border-white/5 space-y-4">
-                <p className="text-xs text-solar-pink font-bold flex items-center gap-1.5">
+                <p className="text-xs text-sunset-coral font-bold flex items-center gap-1.5">
                   <Award className="w-4 h-4" /> REGISTRY ACQUIRED BY OTHER PARTY
                 </p>
-                <p className="text-xs text-nebula-slate">
+                <p className="text-xs text-muted-steel">
                   This domain name is currently unavailable. Try looking at alternatives below or request broker assistance.
                 </p>
               </div>
             )}
 
-            <div className="grid grid-cols-2 gap-4 text-xs text-nebula-slate pt-4">
+            <div className="grid grid-cols-2 gap-4 text-xs text-muted-steel pt-4">
               <div className="flex items-center gap-2">
-                <Shield className="w-4 h-4 text-electric-cyan shrink-0" />
+                <Shield className="w-4 h-4 text-cosmic-teal shrink-0" />
                 Complete DNSSEC security locks
               </div>
               <div className="flex items-center gap-2">
-                <Shield className="w-4 h-4 text-electric-cyan shrink-0" />
+                <Shield className="w-4 h-4 text-cosmic-teal shrink-0" />
                 WHOIS privacy masking
               </div>
             </div>
@@ -185,7 +189,7 @@ export default function DomainDetailPage({ params }: { params: Promise<{ name: s
                 >
                   <span className="text-sm font-bold font-display text-star-white">
                     {alt.name}
-                    <span className="text-electric-cyan">{alt.tld}</span>
+                    <span className="text-cosmic-teal">{alt.tld}</span>
                   </span>
                   <div className="flex items-center gap-4">
                     <span className="text-xs text-star-white font-bold font-mono">
@@ -220,7 +224,7 @@ export default function DomainDetailPage({ params }: { params: Promise<{ name: s
                     />
                     <div>
                       <span className="text-xs font-bold text-white block">{tpl.name}</span>
-                      <span className="text-[10px] text-nebula-slate/60">{tpl.category}</span>
+                      <span className="text-[10px] text-muted-steel/60">{tpl.category}</span>
                     </div>
                   </div>
                   <CyberButton variant="teal" size="sm" className="text-[9px] px-3.5 py-1.5">

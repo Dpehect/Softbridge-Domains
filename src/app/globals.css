@@ -2,23 +2,36 @@
 @import "tailwindcss";
 
 @theme inline {
-  --color-warm-cream: #FAF9F5;
-  --color-playful-dark: #0F172A;
-  --color-creative-teal: #00D2C4;
-  --color-creative-magenta: #E60067;
-  --color-creative-orange: #FF6B00;
-  --color-muted-slate: #64748B;
-  --color-border-slate: rgba(15, 23, 42, 0.06);
+  --color-midnight-void: #0A0B10;
+  --color-abyss-panel: #11121A;
+  --color-cosmic-teal: #00F5E6;
+  --color-sunset-coral: #FF6B35;
+  --color-muted-steel: #475569;
+  --color-star-white: #F8FAFC;
+  --color-grid-line: rgba(255, 255, 255, 0.04);
   
   --font-sans: 'Inter', sans-serif;
-  --font-heading: 'Plus Jakarta Sans', sans-serif;
+  --font-heading: 'Outfit', sans-serif;
   --font-display: 'Space Grotesk', sans-serif;
   --font-mono: 'JetBrains Mono', monospace;
+  
+  --animate-subtle-spin: subtle-spin 20s linear infinite;
+  --animate-cursor-pulse: cursor-pulse 1.2s ease-in-out infinite alternate;
+}
+
+@keyframes subtle-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes cursor-pulse {
+  from { transform: scale(1) translate(-50%, -50%); opacity: 0.8; }
+  to { transform: scale(1.15) translate(-50%, -50%); opacity: 0.4; }
 }
 
 html, body {
-  background-color: var(--color-warm-cream);
-  color: var(--color-playful-dark);
+  background-color: var(--color-midnight-void);
+  color: var(--color-star-white);
   font-family: var(--font-sans);
   overflow-x: hidden;
   scroll-behavior: smooth;
@@ -26,7 +39,19 @@ html, body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* Light paper micro-grain noise overlay */
+/* Custom cursor default hide on pointer-devices */
+@media (pointer: fine) {
+  .custom-cursor-active a, 
+  .custom-cursor-active button, 
+  .custom-cursor-active input, 
+  .custom-cursor-active select,
+  .custom-cursor-active [role="button"],
+  .custom-cursor-active .interactive {
+    cursor: none !important;
+  }
+}
+
+/* Micro-grain noise overlay for analog texture */
 body::before {
   content: "";
   position: fixed;
@@ -34,83 +59,79 @@ body::before {
   left: 0;
   width: 100vw;
   height: 100vh;
-  opacity: 0.035; /* Crisp, natural paper texture */
+  opacity: 0.02; /* Extremely crisp and subtle */
   pointer-events: none;
   z-index: 9999;
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
 }
 
-/* Custom Slate Scrollbar */
+/* Scrollbar Style */
 ::-webkit-scrollbar {
   width: 6px;
   height: 6px;
 }
 ::-webkit-scrollbar-track {
-  background: var(--color-warm-cream);
+  background: var(--color-midnight-void);
 }
 ::-webkit-scrollbar-thumb {
-  background: rgba(15, 23, 42, 0.15);
+  background: rgba(255, 255, 255, 0.08);
   border-radius: 3px;
-  transition: background 0.3s;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: var(--color-creative-teal);
+  background: var(--color-cosmic-teal);
 }
 
-@utility playful-grid-bg {
-  background-size: 50px 50px;
+@utility thin-wireframe-grid {
+  background-size: 60px 60px;
   background-image: 
-    linear-gradient(to right, rgba(15, 23, 42, 0.015) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(15, 23, 42, 0.015) 1px, transparent 1px);
+    linear-gradient(to right, var(--color-grid-line) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--color-grid-line) 1px, transparent 1px);
 }
 
-@utility playful-panel {
-  background: rgba(255, 255, 255, 0.75);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(15, 23, 42, 0.05);
+@utility glass-luxury {
+  background: rgba(17, 18, 26, 0.7);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.04);
   box-shadow: 
-    0 10px 30px -10px rgba(15, 23, 42, 0.05),
-    inset 0 1px 0 rgba(255, 255, 255, 0.6);
+    0 8px 32px 0 rgba(0, 0, 0, 0.47),
+    inset 0 1px 1px 0 rgba(255, 255, 255, 0.05);
 }
 
-@utility playful-panel-hover {
+@utility glass-luxury-hover {
   transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
   &:hover {
-    border-color: rgba(0, 210, 196, 0.3);
-    background: rgba(255, 255, 255, 0.9);
-    transform: translateY(-4px) scale(1.01);
+    border-color: rgba(0, 245, 230, 0.2);
+    background: rgba(20, 22, 32, 0.85);
+    transform: translateY(-2px);
     box-shadow: 
-      0 20px 40px -15px rgba(15, 23, 42, 0.08),
-      0 0 30px rgba(0, 210, 196, 0.06),
-      inset 0 1px 0 rgba(255, 255, 255, 0.8);
+      0 12px 40px rgba(0, 0, 0, 0.65),
+      0 0 25px rgba(0, 245, 230, 0.03),
+      inset 0 1px 1px 0 rgba(255, 255, 255, 0.08);
   }
 }
 
-@utility text-creative-gradient {
-  background: linear-gradient(135deg, var(--color-creative-magenta) 0%, var(--color-creative-orange) 50%, var(--color-creative-teal) 100%);
+@utility glow-cosmic-teal {
+  box-shadow: 0 0 15px rgba(0, 245, 230, 0.2);
+}
+
+@utility glow-sunset-coral {
+  box-shadow: 0 0 15px rgba(255, 107, 53, 0.2);
+}
+
+@utility text-cosmic-gradient {
+  background: linear-gradient(135deg, var(--color-cosmic-teal) 0%, var(--color-star-white) 70%, var(--color-sunset-coral) 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
-@utility text-teal-orange-gradient {
-  background: linear-gradient(135deg, var(--color-creative-teal) 0%, var(--color-creative-orange) 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+@utility radial-vignette {
+  background: radial-gradient(circle at 50% 50%, transparent 60%, rgba(10, 11, 16, 0.95) 100%);
 }
 
-@utility playful-glow-teal {
-  box-shadow: 0 0 20px rgba(0, 210, 196, 0.15);
-}
-
-@utility playful-glow-magenta {
-  box-shadow: 0 0 20px rgba(230, 0, 103, 0.15);
-}
-
-/* Custom styles for preview window */
 .custom-theme-preview {
-  --primary: var(--theme-primary, var(--color-creative-teal));
-  --secondary: var(--theme-secondary, var(--color-creative-magenta));
-  --bg: var(--theme-bg, #ffffff);
+  --primary: var(--theme-primary, var(--color-cosmic-teal));
+  --secondary: var(--theme-secondary, var(--color-sunset-coral));
+  --bg: var(--theme-bg, var(--color-abyss-panel));
   background: var(--bg);
 }

@@ -9,15 +9,29 @@ interface DomainSearchBarProps {
   onSearch: (query: string) => void;
   initialValue?: string;
   placeholder?: string;
+  value?: string;
+  onChange?: (val: string) => void;
 }
 
 export function DomainSearchBar({
   onSearch,
   initialValue = "",
-  placeholder = "Search for your new digital orbit name..."
+  placeholder = "Search for your next digital coordinates...",
+  value,
+  onChange
 }: DomainSearchBarProps) {
-  const [query, setQuery] = useState(initialValue);
+  const [internalQuery, setInternalQuery] = useState(initialValue);
+  const query = value !== undefined ? value : internalQuery;
   const [isFocused, setIsFocused] = useState(false);
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const val = e.target.value;
+    if (onChange) {
+      onChange(val);
+    } else {
+      setInternalQuery(val);
+    }
+  };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -30,32 +44,32 @@ export function DomainSearchBar({
     <form
       onSubmit={handleSubmit}
       className={cn(
-        "w-full max-w-2xl transition-all duration-500 border rounded-full p-2 flex items-center gap-2",
+        "w-full max-w-2xl transition-all duration-500 border rounded p-1 flex items-center gap-2",
         isFocused 
-          ? "border-creative-teal/30 bg-white shadow-[0_12px_40px_rgba(15,23,42,0.06)] scale-[1.01]" 
-          : "border-playful-dark/5 bg-white/60 backdrop-blur-md shadow-[0_4px_20px_rgba(15,23,42,0.02)]"
+          ? "border-cosmic-teal/30 bg-[#12131F] shadow-[0_0_30px_rgba(0,245,230,0.01)] scale-[1.01]" 
+          : "border-white/5 bg-abyss-panel/60"
       )}
     >
-      <div className="flex-1 flex items-center pl-4">
+      <div className="flex-1 flex items-center pl-3">
         <Search className={cn(
-          "w-5 h-5 mr-3 shrink-0 transition-colors duration-500",
-          isFocused ? "text-creative-teal" : "text-muted-slate/40"
+          "w-4 h-4 mr-2.5 shrink-0 transition-colors duration-500",
+          isFocused ? "text-cosmic-teal" : "text-muted-steel/50"
         )} />
         <input
           type="text"
           value={query}
           onFocus={() => setIsFocused(true)}
           onBlur={() => setIsFocused(false)}
-          onChange={(e) => setQuery(e.target.value)}
+          onChange={handleInputChange}
           placeholder={placeholder}
-          className="w-full bg-transparent border-none outline-none text-playful-dark placeholder:text-muted-slate/40 text-sm md:text-base py-3"
+          className="w-full bg-transparent border-none outline-none text-star-white placeholder:text-muted-steel/45 text-xs md:text-sm py-2.5"
         />
       </div>
       
       <CyberButton
         type="submit"
         variant="teal"
-        size="md"
+        size="sm"
         className="shrink-0"
       >
         Search
