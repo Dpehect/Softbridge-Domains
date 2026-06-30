@@ -97,7 +97,7 @@ const sliderData = [
     location: "WebGL Node Showcase Gallery",
   },
   {
-    img: "https://images.unsplash.com/photo-1542744094-3a31f103e35f?auto=format&fit=crop&w=1920&q=80",
+    img: "https://images.unsplash.com/photo-1581291518633-83b4ebd1d83e?auto=format&fit=crop&w=1200&q=80",
     title: "FIGMA.COM",
     description:
       "Buy Price: $450,000 | MRR: $18,400/mo | Traffic: 250,000 PV/mo. Premier visual editor enabling layout mockups and developer transitions.",
@@ -125,14 +125,14 @@ const sliderData = [
     location: "Financial Payment Gateway API",
   },
   {
-    img: "https://images.unsplash.com/photo-1561070791-26c113006238?auto=format&fit=crop&w=1920&q=80",
+    img: "https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=1200&q=80",
     title: "DRIBBBLE.COM",
     description:
       "Buy Price: $85,000 | MRR: $3,400/mo | Traffic: 65,000 PV/mo. Designer showroom index listing layout presets and visual portfolios.",
     location: "Design Portfolio Registry Niche",
   },
   {
-    img: "https://images.unsplash.com/photo-1618401471353-b98aedd07871?auto=format&fit=crop&w=1920&q=80",
+    img: "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?auto=format&fit=crop&w=1200&q=80",
     title: "GITHUB.COM",
     description:
       "Buy Price: $620,000 | MRR: $28,900/mo | Traffic: 410,000 PV/mo. Collaborative platform holding repositories, issues, and packaging gates.",
