@@ -58,7 +58,7 @@ const SITE_TYPES: SiteType[] = [
 ];
 
 const COLOR_THEMES: ColorTheme[] = [
-  { id: "orange", name: "Sunset Orange", primary: "#FF7A3D", secondary: "#E76F51", bg: "#FFF5EB", text: "#2E2F38" },
+  { id: "orange", name: "Sunset Orange", primary: "#E85D3B", secondary: "#D94F2E", bg: "#F8F1E9", text: "#3F2E2A" },
   { id: "cyan", name: "Electric Cyan", primary: "#00F2FE", secondary: "#7F00FF", bg: "#0B0C16", text: "#FFFFFF" },
   { id: "emerald", name: "Emerald Forest", primary: "#10B981", secondary: "#047857", bg: "#F0FDF4", text: "#065F46" },
   { id: "lavender", name: "Royal Lavender", primary: "#8B5CF6", secondary: "#6D28D9", bg: "#F5F3FF", text: "#1E1B4B" },

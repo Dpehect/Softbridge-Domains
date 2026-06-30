@@ -2,13 +2,13 @@
 @import "tailwindcss";
 
 @theme inline {
-  --color-midnight-void: #FFF5EB;
-  --color-abyss-panel: #FFF1E6;
-  --color-cosmic-teal: #FF7A3D;
-  --color-sunset-coral: #E76F51;
-  --color-muted-steel: #5C5C5C;
-  --color-star-white: #2D2D2D;
-  --color-grid-line: rgba(255, 107, 53, 0.06);
+  --color-midnight-void: #F8F1E9;
+  --color-abyss-panel: #F4E9DF;
+  --color-cosmic-teal: #E85D3B;
+  --color-sunset-coral: #D94F2E;
+  --color-muted-steel: #6B5B54;
+  --color-star-white: #3F2E2A;
+  --color-grid-line: rgba(232, 93, 59, 0.08);
   
   --font-sans: 'Inter', sans-serif;
   --font-heading: 'Outfit', sans-serif;
@@ -74,7 +74,7 @@ body::before {
   background: var(--color-midnight-void);
 }
 ::-webkit-scrollbar-thumb {
-  background: rgba(255, 107, 53, 0.15);
+  background: rgba(232, 93, 59, 0.15);
   border-radius: 3px;
 }
 ::-webkit-scrollbar-thumb:hover {
@@ -89,34 +89,34 @@ body::before {
 }
 
 @utility glass-luxury {
-  background: rgba(255, 248, 240, 0.75);
+  background: rgba(244, 233, 223, 0.75);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 107, 53, 0.08);
+  border: 1px solid rgba(232, 93, 59, 0.1);
   box-shadow: 
-    0 8px 32px 0 rgba(255, 107, 53, 0.05),
+    0 8px 32px 0 rgba(232, 93, 59, 0.05),
     inset 0 1px 1px 0 rgba(255, 255, 255, 0.8);
 }
 
 @utility glass-luxury-hover {
   transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
   &:hover {
-    border-color: rgba(255, 107, 53, 0.25);
-    background: rgba(255, 241, 230, 0.9);
+    border-color: rgba(232, 93, 59, 0.25);
+    background: rgba(244, 233, 223, 0.9);
     transform: translateY(-2px);
     box-shadow: 
-      0 12px 40px rgba(255, 107, 53, 0.15),
-      0 0 25px rgba(255, 107, 53, 0.03),
+      0 12px 40px rgba(232, 93, 59, 0.15),
+      0 0 25px rgba(232, 93, 59, 0.03),
       inset 0 1px 1px 0 rgba(255, 255, 255, 0.9);
   }
 }
 
 @utility glow-cosmic-teal {
-  box-shadow: 0 0 15px rgba(255, 107, 53, 0.2);
+  box-shadow: 0 0 15px rgba(232, 93, 59, 0.2);
 }
 
 @utility glow-sunset-coral {
-  box-shadow: 0 0 15px rgba(231, 111, 81, 0.2);
+  box-shadow: 0 0 15px rgba(217, 79, 46, 0.2);
 }
 
 @utility text-cosmic-gradient {
@@ -126,7 +126,7 @@ body::before {
 }
 
 @utility radial-vignette {
-  background: radial-gradient(circle at 50% 50%, transparent 60%, rgba(255, 248, 240, 0.95) 100%);
+  background: radial-gradient(circle at 50% 50%, transparent 60%, rgba(248, 241, 233, 0.95) 100%);
 }
 
 .custom-theme-preview {
