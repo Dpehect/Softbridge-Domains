@@ -5,7 +5,7 @@ import { motion, HTMLMotionProps } from "framer-motion";
 import { cn } from "@/utils/cn";
 
 interface CyberButtonProps extends HTMLMotionProps<"button"> {
-  variant?: "teal" | "steel" | "dark" | "glass";
+  variant?: "teal" | "magenta" | "orange" | "slate" | "glass";
   size?: "sm" | "md" | "lg";
   children?: React.ReactNode;
 }
@@ -17,31 +17,30 @@ export function CyberButton({
   children,
   ...props
 }: CyberButtonProps) {
-  const baseStyles = "relative inline-flex items-center justify-center font-heading font-bold uppercase tracking-widest transition-all duration-500 active:scale-98 cursor-pointer select-none rounded";
+  const baseStyles = "relative inline-flex items-center justify-center font-heading font-extrabold tracking-wider transition-all duration-300 active:scale-95 cursor-pointer select-none rounded-full shadow-sm hover:shadow-md";
 
   const sizeStyles = {
-    sm: "px-4 py-2 text-[10px]",
-    md: "px-5.5 py-3 text-xs",
-    lg: "px-7 py-4 text-sm",
+    sm: "px-4.5 py-2 text-xs",
+    md: "px-6 py-3 text-xs md:text-sm",
+    lg: "px-8 py-4 text-sm md:text-base",
   };
 
   const variantStyles = {
-    teal: "bg-electric-teal text-deep-void hover:bg-star-white hover:shadow-[0_0_20px_rgba(0,229,216,0.3)] transition-shadow duration-300",
-    steel: "bg-transparent text-star-white border border-white/10 hover:border-electric-teal/40 hover:bg-white/[0.02]",
-    dark: "bg-abyss-black text-star-white border border-white/5 hover:border-white/10 hover:bg-white/[0.01]",
-    glass: "bg-white/[0.02] border border-white/5 text-star-white hover:bg-white/[0.04] hover:border-white/10",
+    teal: "bg-creative-teal text-playful-dark hover:bg-white hover:text-creative-teal border border-creative-teal/20",
+    magenta: "bg-creative-magenta text-white hover:bg-white hover:text-creative-magenta border border-creative-magenta/20",
+    orange: "bg-creative-orange text-white hover:bg-white hover:text-creative-orange border border-creative-orange/20",
+    slate: "bg-playful-dark text-white hover:bg-white hover:text-playful-dark border border-playful-dark/20",
+    glass: "bg-white/40 backdrop-blur-md text-playful-dark border border-white/60 hover:bg-white/60",
   };
 
   return (
     <motion.button
-      whileHover={{ y: -1 }}
-      whileTap={{ y: 0, scale: 0.98 }}
-      transition={{ type: "spring", stiffness: 400, damping: 25 }}
+      whileHover={{ y: -2, scale: 1.02 }}
+      whileTap={{ y: 0, scale: 0.96 }}
+      transition={{ type: "spring", stiffness: 450, damping: 18 }} // Playful spring
       className={cn(baseStyles, sizeStyles[size], variantStyles[variant], className)}
       {...props}
     >
-      {/* Decorative architectural layout line inside the button */}
-      <span className="absolute top-0 left-2 right-2 h-[1px] bg-white/[0.03]" />
       <span className="relative z-10 flex items-center gap-2">{children}</span>
     </motion.button>
   );

@@ -14,25 +14,23 @@ export const GlassInput = React.forwardRef<HTMLInputElement, GlassInputProps>(
       <div className="w-full relative">
         <div className="relative flex items-center">
           {icon && (
-            <div className="absolute left-4 text-muted-text pointer-events-none z-10">
+            <div className="absolute left-4.5 text-muted-slate/60 pointer-events-none z-10">
               {icon}
             </div>
           )}
           <input
             ref={ref}
             className={cn(
-              "w-full bg-abyss-black/45 text-star-white placeholder:text-muted-text/50 text-xs md:text-sm px-4 py-3.5 rounded border border-white/5 focus:border-electric-teal/30 focus:ring-0 outline-none transition-all duration-500",
-              icon && "pl-11",
-              error && "border-red-500/30 focus:border-red-500/50",
+              "w-full bg-white/50 text-playful-dark placeholder:text-muted-slate/50 text-sm px-6 py-4 rounded-full border border-playful-dark/5 focus:border-creative-teal/40 focus:bg-white focus:shadow-[0_8px_30px_rgba(0,210,196,0.06)] outline-none transition-all duration-300 backdrop-blur-md",
+              icon && "pl-12",
+              error && "border-creative-magenta/40 focus:border-creative-magenta/60 focus:shadow-[0_8px_30px_rgba(230,0,103,0.06)]",
               className
             )}
             {...props}
           />
-          {/* Subtle bottom line transition indicator on focus */}
-          <div className="absolute bottom-0 left-0 right-0 h-[1px] bg-electric-teal scale-x-0 origin-left transition-transform duration-500 group-focus-within:scale-x-100" />
         </div>
         {error && (
-          <span className="text-[10px] text-red-400 mt-1.5 block font-mono uppercase tracking-wider">
+          <span className="text-xs text-creative-magenta mt-2 block font-medium pl-6 animate-pulse">
             {error}
           </span>
         )}

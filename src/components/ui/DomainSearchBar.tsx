@@ -14,7 +14,7 @@ interface DomainSearchBarProps {
 export function DomainSearchBar({
   onSearch,
   initialValue = "",
-  placeholder = "Search for your next digital coordinates..."
+  placeholder = "Search for your new digital orbit name..."
 }: DomainSearchBarProps) {
   const [query, setQuery] = useState(initialValue);
   const [isFocused, setIsFocused] = useState(false);
@@ -30,16 +30,16 @@ export function DomainSearchBar({
     <form
       onSubmit={handleSubmit}
       className={cn(
-        "w-full max-w-2xl transition-all duration-500 border rounded p-1 flex items-center gap-2",
+        "w-full max-w-2xl transition-all duration-500 border rounded-full p-2 flex items-center gap-2",
         isFocused 
-          ? "border-electric-teal/30 bg-[#0C0D16] shadow-[0_0_30px_rgba(0,229,216,0.02)]" 
-          : "border-white/5 bg-abyss-black/60"
+          ? "border-creative-teal/30 bg-white shadow-[0_12px_40px_rgba(15,23,42,0.06)] scale-[1.01]" 
+          : "border-playful-dark/5 bg-white/60 backdrop-blur-md shadow-[0_4px_20px_rgba(15,23,42,0.02)]"
       )}
     >
-      <div className="flex-1 flex items-center pl-3">
+      <div className="flex-1 flex items-center pl-4">
         <Search className={cn(
-          "w-4 h-4 mr-2.5 shrink-0 transition-colors duration-500",
-          isFocused ? "text-electric-teal" : "text-muted-text/50"
+          "w-5 h-5 mr-3 shrink-0 transition-colors duration-500",
+          isFocused ? "text-creative-teal" : "text-muted-slate/40"
         )} />
         <input
           type="text"
@@ -48,14 +48,14 @@ export function DomainSearchBar({
           onBlur={() => setIsFocused(false)}
           onChange={(e) => setQuery(e.target.value)}
           placeholder={placeholder}
-          className="w-full bg-transparent border-none outline-none text-star-white placeholder:text-muted-text/45 text-xs md:text-sm py-2.5"
+          className="w-full bg-transparent border-none outline-none text-playful-dark placeholder:text-muted-slate/40 text-sm md:text-base py-3"
         />
       </div>
       
       <CyberButton
         type="submit"
         variant="teal"
-        size="sm"
+        size="md"
         className="shrink-0"
       >
         Search
