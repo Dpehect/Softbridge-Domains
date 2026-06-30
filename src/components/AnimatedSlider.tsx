@@ -94,7 +94,7 @@ export default function AnimatedSlider() {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   return (
-    <div className="relative h-[85vh] lg:h-screen w-full select-none overflow-hidden text-white antialiased border-b border-white/5">
+    <div className="relative h-[85vh] lg:h-screen w-full select-none overflow-hidden text-star-white antialiased border-b border-black/5">
       <AnimatePresence>
         
         {/* Background slide renderer */}
@@ -103,8 +103,11 @@ export default function AnimatedSlider() {
           currentSlideData={currentSlideData}
         />
 
+        {/* Warm and dark overlay katmanı */}
+        <div className="absolute inset-0 z-15 bg-[#2E1810]/65 pointer-events-none" />
+
         {/* Contents grid over background */}
-        <div className="absolute inset-0 z-20 flex flex-col justify-end pb-12 pt-28 px-6 md:px-12 bg-gradient-to-t from-midnight-void via-transparent to-black/30">
+        <div className="absolute inset-0 z-20 flex flex-col justify-end pb-12 pt-28 px-6 md:px-12">
           <div className="max-w-6xl mx-auto w-full grid grid-cols-1 lg:grid-cols-12 gap-8 items-end h-full">
             
             {/* Left Column: Active details label info */}
