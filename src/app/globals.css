@@ -2,12 +2,12 @@
 @import "tailwindcss";
 
 @theme inline {
-  --color-midnight-void: #F8F1E9;
-  --color-abyss-panel: #F4E9DF;
+  --color-midnight-void: #FDF0E6;
+  --color-abyss-panel: #F8E4D3;
   --color-cosmic-teal: #E85D3B;
   --color-sunset-coral: #D94F2E;
-  --color-muted-steel: #6B5B54;
-  --color-star-white: #3F2E2A;
+  --color-muted-steel: #7A4633;
+  --color-star-white: #5C2E1F;
   --color-grid-line: rgba(232, 93, 59, 0.08);
   
   --font-sans: 'Inter', sans-serif;
@@ -89,7 +89,7 @@ body::before {
 }
 
 @utility glass-luxury {
-  background: rgba(244, 233, 223, 0.75);
+  background: rgba(248, 228, 211, 0.75);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   border: 1px solid rgba(232, 93, 59, 0.1);
@@ -101,12 +101,12 @@ body::before {
 @utility glass-luxury-hover {
   transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
   &:hover {
-    border-color: rgba(232, 93, 59, 0.25);
-    background: rgba(244, 233, 223, 0.9);
+    border-color: rgba(196, 69, 42, 0.25);
+    background: rgba(248, 228, 211, 0.9);
     transform: translateY(-2px);
     box-shadow: 
-      0 12px 40px rgba(232, 93, 59, 0.15),
-      0 0 25px rgba(232, 93, 59, 0.03),
+      0 12px 40px rgba(196, 69, 42, 0.15),
+      0 0 25px rgba(196, 69, 42, 0.03),
       inset 0 1px 1px 0 rgba(255, 255, 255, 0.9);
   }
 }
@@ -126,7 +126,7 @@ body::before {
 }
 
 @utility radial-vignette {
-  background: radial-gradient(circle at 50% 50%, transparent 60%, rgba(248, 241, 233, 0.95) 100%);
+  background: radial-gradient(circle at 50% 50%, transparent 60%, rgba(253, 240, 230, 0.95) 100%);
 }
 
 .custom-theme-preview {
