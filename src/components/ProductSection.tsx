@@ -49,7 +49,7 @@ const productsData: Product[] = [
     title: "FIGMA.COM",
     location: "Design Studio Node",
     description: "Buy Price: $450,000 | MRR: $18,400/mo | Traffic: 250,000 PV/mo. Premier design dashboard enabling live team components edits.",
-    img: "https://images.unsplash.com/photo-1581291518633-83b4ebd1d83e?auto=format&fit=crop&w=600&q=80",
+    img: "https://images.unsplash.com/photo-1581291518633-83b4ebd1d83e?auto=format&fit=crop&w=1200&q=80",
     price: "$450,000",
     category: "Portfolio"
   },
@@ -58,7 +58,7 @@ const productsData: Product[] = [
     title: "ESCROWSPACE.NET",
     location: "Transactional Broker",
     description: "Buy Price: $9,500 | MRR: $380/mo | Traffic: 9,000 PV/mo. Secure escrow registry routing system with verification nodes.",
-    img: "https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?auto=format&fit=crop&w=600&q=80",
+    img: "https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?auto=format&fit=crop&w=1920&q=80",
     price: "$9,500",
     category: "Domain"
   },
@@ -91,7 +91,7 @@ const productsData: Product[] = [
   }
 ];
 
-export default function FeaturedProducts() {
+export default function ProductSection() {
   const [selectedCategory, setSelectedCategory] = useState<string>("All");
   const [searchQuery, setSearchQuery] = useState<string>("");
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
@@ -148,7 +148,7 @@ export default function FeaturedProducts() {
             placeholder="Search layout coordinates..."
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            className="w-full bg-[#11121A]/50 border border-white/5 text-white text-xs font-mono py-3 pl-10 pr-4 rounded focus:outline-none focus:border-cosmic-teal/40 transition-colors placeholder:text-gray-600"
+            className="w-full bg-abyss-panel/50 border border-white/5 text-white text-xs font-mono py-3 pl-10 pr-4 rounded focus:outline-none focus:border-cosmic-teal/40 transition-colors placeholder:text-gray-600"
           />
           <Search className="absolute left-3 top-3.5 w-4 h-4 text-gray-600" />
         </div>
