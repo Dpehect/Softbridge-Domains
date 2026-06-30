@@ -9,21 +9,22 @@ type Props = {
 function SliderCard({ data }: Props) {
   return (
     <motion.div
-      className="relative h-48 min-w-[210px] rounded-2xl shadow-xl border border-white/5 overflow-hidden group/card md:h-72 md:min-w-[190px]"
+      className="relative h-48 min-w-[210px] rounded-2xl shadow-md border border-white/5 overflow-hidden group/card md:h-72 md:min-w-[190px]"
       layout
-      initial={{ scale: 0.8, opacity: 0 }}
+      initial={{ scale: 0.85, opacity: 0 }}
       animate={{
         scale: 1,
         opacity: 1,
         transition: {
-          duration: 0.4,
+          duration: 0.5,
+          ease: [0.16, 1, 0.3, 1],
         },
       }}
-      exit={{ scale: 0.8, opacity: 0 }}
+      exit={{ scale: 0.85, opacity: 0, transition: { duration: 0.3 } }}
       transition={{
         type: "spring",
-        damping: 20,
-        stiffness: 100,
+        damping: 24,
+        stiffness: 160,
       }}
     >
       <motion.img

@@ -113,17 +113,17 @@ export default function ProductSection() {
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.08,
+        staggerChildren: 0.1,
       },
     },
   } as const;
 
   const cardVariants = {
-    hidden: { opacity: 0, y: 20 },
+    hidden: { opacity: 0, y: 24 },
     visible: { 
       opacity: 1, 
       y: 0,
-      transition: { type: "spring", stiffness: 260, damping: 25 }
+      transition: { type: "spring", stiffness: 180, damping: 22, mass: 0.8 }
     },
   } as const;
 
@@ -148,9 +148,9 @@ export default function ProductSection() {
             placeholder="Search layout coordinates..."
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            className="w-full bg-abyss-panel/50 border border-black/5 text-star-white text-xs font-mono py-3 pl-10 pr-4 rounded focus:outline-none focus:border-cosmic-teal/40 transition-colors placeholder:text-gray-400"
+            className="w-full bg-abyss-panel/50 border border-black/5 text-star-white text-xs font-mono py-3 pl-10 pr-4 rounded-2xl focus:outline-none focus:border-cosmic-teal/40 transition-colors duration-350 placeholder:text-muted-steel/60"
           />
-          <Search className="absolute left-3 top-3.5 w-4 h-4 text-gray-400" />
+          <Search className="absolute left-3 top-3.5 w-4 h-4 text-muted-steel/60" />
         </div>
       </div>
 
@@ -160,10 +160,10 @@ export default function ProductSection() {
           <button
             key={cat}
             onClick={() => setSelectedCategory(cat)}
-            className={`px-5 py-2.5 rounded-full border transition-all duration-300 cursor-pointer ${
+            className={`px-5 py-2.5 rounded-xl border transition-all duration-350 cursor-pointer ${
               selectedCategory === cat
-                ? "bg-cosmic-teal text-white border-cosmic-teal font-bold shadow-lg shadow-cosmic-teal/10"
-                : "bg-transparent text-muted-steel border-black/5 hover:border-black/20 hover:text-cosmic-teal"
+                ? "bg-cosmic-teal text-white border-cosmic-teal font-bold shadow-md shadow-cosmic-teal/10"
+                : "bg-transparent text-muted-steel border-black/8 hover:border-black/20 hover:text-cosmic-teal"
             }`}
           >
             {cat}
@@ -185,9 +185,9 @@ export default function ProductSection() {
               key={product.id}
               variants={cardVariants}
               layout
-              exit={{ opacity: 0, scale: 0.9, y: 15 }}
+              exit={{ opacity: 0, scale: 0.88, y: 12, transition: { duration: 0.35, ease: [0.4, 0, 1, 1] } }}
               onClick={() => setSelectedProduct(product)}
-              className="group relative bg-abyss-panel/30 border border-black/5 rounded-xl overflow-hidden hover:border-black/15 transition-all duration-500 cursor-pointer flex flex-col justify-between min-h-[360px] shadow-lg"
+              className="group relative bg-abyss-panel/30 border border-black/5 rounded-3xl overflow-hidden hover:border-black/15 transition-all duration-400 cursor-pointer flex flex-col justify-between min-h-[360px] shadow-sm hover:shadow-md"
             >
               
               {/* Image box */}
@@ -200,7 +200,7 @@ export default function ProductSection() {
                 <div className="absolute inset-0 bg-gradient-to-t from-midnight-void via-midnight-void/20 to-transparent" />
                 
                 {/* Micro verified registry tag */}
-                <div className="absolute top-3 left-3 flex items-center gap-1 bg-black/50 border border-white/10 px-2.5 py-1 rounded text-[8px] tracking-wider text-emerald-400 font-mono">
+                <div className="absolute top-3 left-3 flex items-center gap-1 bg-black/50 border border-white/10 px-2.5 py-1 rounded-lg text-[8px] tracking-wider text-emerald-400 font-mono">
                   <ShieldCheck className="w-3 h-3 text-emerald-400" />
                   VERIFIED
                 </div>
@@ -242,7 +242,7 @@ export default function ProductSection() {
 
       {/* Empty State */}
       {filteredProducts.length === 0 && (
-        <div className="text-center py-20 border border-dashed border-black/5 rounded-xl">
+        <div className="text-center py-20 border border-dashed border-black/8 rounded-3xl">
           <p className="text-xs text-muted-steel uppercase font-mono tracking-wider">No layout coordinates found</p>
         </div>
       )}

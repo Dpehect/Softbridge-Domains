@@ -94,8 +94,9 @@ export default function CartPage() {
             /* Cart & Checkout split */
             <motion.div
               key="checkout-split"
-              initial={{ opacity: 0, y: 15 }}
+              initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
               className="flex flex-col lg:flex-row gap-8 items-stretch"
             >
               {/* Left Side Cart list & Upgrades */}
@@ -110,7 +111,7 @@ export default function CartPage() {
                       {items.map((item) => (
                         <div
                           key={item.id}
-                          className="bg-white/5 border border-white/5 p-4 rounded-2xl flex flex-col md:flex-row md:items-center justify-between gap-4 transition-all"
+                          className="bg-white/5 border border-white/5 p-4 rounded-2xl flex flex-col md:flex-row md:items-center justify-between gap-4 transition-all duration-350"
                         >
                           <div>
                             <div className="flex items-center gap-2.5">
@@ -205,7 +206,7 @@ export default function CartPage() {
                       <div
                         key={idx}
                         onClick={upgrade.toggle}
-                        className={`flex gap-4 p-4 rounded-xl border transition-all cursor-pointer select-none ${
+                        className={`flex gap-4 p-4 rounded-2xl border transition-all duration-350 cursor-pointer select-none ${
                           upgrade.checked
                             ? "bg-electric-cyan/5 border-electric-cyan/30"
                             : "bg-white/5 border-transparent hover:border-white/10"
@@ -243,7 +244,7 @@ export default function CartPage() {
                     <div className="my-6 relative w-full h-44 cursor-pointer perspective-1000 group">
                       <motion.div
                         animate={{ rotateY: isFlipped ? 180 : 0 }}
-                        transition={{ duration: 0.6 }}
+                        transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
                         className="w-full h-full relative preserve-3d shadow-xl rounded-xl"
                       >
                         {/* Front of Card */}

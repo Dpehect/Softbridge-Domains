@@ -206,10 +206,10 @@ export default function SoftbridgeStudio() {
             <AnimatePresence mode="wait">
               <motion.div
                 key={currentStep}
-                initial={{ opacity: 0, x: 15 }}
+                initial={{ opacity: 0, x: 18 }}
                 animate={{ opacity: 1, x: 0 }}
-                exit={{ opacity: -15, x: -15 }}
-                transition={{ duration: 0.3 }}
+                exit={{ opacity: 0, x: -18 }}
+                transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
                 className="w-full"
               >
                 
@@ -331,7 +331,7 @@ export default function SoftbridgeStudio() {
                           </div>
                           <div className="flex items-center gap-3">
                             <span className="font-mono text-xs font-black text-sunset-coral">+${extra.price}</span>
-                            <div className={`w-5 h-5 rounded border flex items-center justify-center transition-all ${
+                            <div className={`w-5 h-5 rounded-lg border flex items-center justify-center transition-all duration-350 ${
                               isSelected ? "bg-cosmic-teal border-cosmic-teal text-white" : "border-black/20"
                             }`}>
                               {isSelected && <Check className="w-3.5 h-3.5" />}

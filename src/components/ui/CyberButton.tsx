@@ -35,9 +35,9 @@ export function CyberButton({
 
   return (
     <motion.button
-      whileHover={{ y: -2, scale: 1.02 }}
-      whileTap={{ y: 0, scale: 0.96 }}
-      transition={{ type: "spring", stiffness: 450, damping: 18 }} // Playful spring
+      whileHover={{ y: -1.5, scale: 1.015 }}
+      whileTap={{ y: 0, scale: 0.97 }}
+      transition={{ type: "spring", stiffness: 320, damping: 22 }}
       className={cn(baseStyles, sizeStyles[size], variantStyles[variant], className)}
       {...props}
     >

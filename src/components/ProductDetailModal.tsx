@@ -34,24 +34,25 @@ export default function ProductDetailModal({ isOpen, onClose, product }: Props) 
   } as const;
 
   const modalVariants = {
-    hidden: { opacity: 0, scale: 0.9, y: 15 },
+    hidden: { opacity: 0, scale: 0.92, y: 20 },
     visible: { 
       opacity: 1, 
       scale: 1, 
       y: 0,
       transition: { 
         type: "spring", 
-        damping: 25, 
-        stiffness: 300,
-        staggerChildren: 0.1,
-        delayChildren: 0.1
+        damping: 28, 
+        stiffness: 220,
+        staggerChildren: 0.08,
+        delayChildren: 0.08
       }
     },
+    exit: { opacity: 0, scale: 0.94, y: 12, transition: { duration: 0.3, ease: [0.4, 0, 1, 1] } },
   } as const;
 
   const itemVariants = {
-    hidden: { opacity: 0, y: 10 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.4 } },
+    hidden: { opacity: 0, y: 12 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.45, ease: [0.16, 1, 0.3, 1] } },
   } as const;
 
   return (
@@ -70,18 +71,18 @@ export default function ProductDetailModal({ isOpen, onClose, product }: Props) 
           />
 
           {/* Modal Container */}
-          <motion.div
+        <motion.div
             variants={modalVariants}
             initial="hidden"
             animate="visible"
-            exit="hidden"
+            exit="exit"
             className="relative w-full max-w-2xl overflow-hidden rounded-3xl border border-black/5 bg-midnight-void text-star-white shadow-2xl z-10 flex flex-col max-h-[85vh] md:max-h-[90vh]"
           >
             
             {/* Close Button */}
             <button
               onClick={onClose}
-              className="absolute top-4 right-4 z-20 flex h-8 w-8 items-center justify-center rounded-full bg-black/5 border border-black/5 text-star-white hover:bg-black/10 transition-colors cursor-pointer"
+              className="absolute top-4 right-4 z-20 flex h-8 w-8 items-center justify-center rounded-xl bg-black/5 border border-black/5 text-star-white hover:bg-black/10 transition-colors duration-350 cursor-pointer"
             >
               <X className="text-lg" />
             </button>
@@ -95,7 +96,7 @@ export default function ProductDetailModal({ isOpen, onClose, product }: Props) 
               />
               <div className="absolute inset-0 bg-gradient-to-t from-midnight-void to-transparent" />
               <div className="absolute bottom-4 left-6">
-                <span className="font-mono text-[9px] uppercase tracking-widest text-cosmic-teal bg-cosmic-teal/10 border border-cosmic-teal/20 px-2 py-0.5 rounded font-bold">
+                <span className="font-mono text-[9px] uppercase tracking-widest text-cosmic-teal bg-cosmic-teal/10 border border-cosmic-teal/20 px-2 py-0.5 rounded-lg font-bold">
                   {product.location}
                 </span>
                 <h2 className="text-2xl sm:text-3.5xl font-extrabold mt-1 tracking-tight text-star-white">{product.title}</h2>
@@ -191,12 +192,12 @@ export default function ProductDetailModal({ isOpen, onClose, product }: Props) 
             <div className="p-6 bg-abyss-panel border-t border-black/5 shrink-0 flex flex-col sm:flex-row gap-3 justify-end">
               <button
                 onClick={onClose}
-                className="w-full sm:w-auto px-6 py-2.5 bg-black/5 hover:bg-black/10 text-star-white rounded-full text-xs font-semibold uppercase tracking-wider transition-all border border-black/5 cursor-pointer"
+                className="w-full sm:w-auto px-6 py-2.5 bg-black/5 hover:bg-black/10 text-star-white rounded-xl text-xs font-semibold uppercase tracking-wider transition-all duration-350 border border-black/5 cursor-pointer"
               >
                 Close Preview
               </button>
               <button
-                className="w-full sm:w-auto px-8 py-2.5 bg-cosmic-teal hover:opacity-90 text-white rounded-full text-xs font-extrabold uppercase tracking-wider transition-all shadow-lg shadow-cosmic-teal/10 cursor-pointer"
+                className="w-full sm:w-auto px-8 py-2.5 bg-cosmic-teal hover:opacity-90 text-white rounded-xl text-xs font-extrabold uppercase tracking-wider transition-all duration-350 shadow-md shadow-cosmic-teal/10 cursor-pointer"
               >
                 Acquire coordinates
               </button>

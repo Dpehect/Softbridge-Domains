@@ -7,11 +7,11 @@ type Props = {
 const item = {
   hidden: {
     y: "100%",
-    transition: { ease: [0.455, 0.03, 0.515, 0.955], duration: 0.85 },
+    transition: { ease: [0.455, 0.03, 0.515, 0.955], duration: 0.95 },
   },
   visible: {
     y: 0,
-    transition: { ease: [0.455, 0.03, 0.515, 0.955], duration: 0.75 },
+    transition: { ease: [0.16, 1, 0.3, 1], duration: 0.85 },
   },
 } as const;
 
