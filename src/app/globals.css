@@ -1,0 +1,141 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap');
+@import "tailwindcss";
+
+@theme inline {
+  --color-deep-void: #030307;
+  --color-abyss-black: #090912;
+  --color-glassy-night: rgba(9, 9, 18, 0.45);
+  --color-electric-cyan: #00F2FE;
+  --color-cosmic-purple: #7F00FF;
+  --color-solar-pink: #FF007F;
+  --color-sky-blue: #4FACFE;
+  --color-star-white: #F8F9FA;
+  --color-nebula-slate: #94A3B8;
+  
+  --font-sans: 'Inter', sans-serif;
+  --font-heading: 'Outfit', sans-serif;
+  --font-display: 'Space Grotesk', sans-serif;
+  --font-accent: 'Plus Jakarta Sans', sans-serif;
+  
+  --animate-neon-pulse: neon-pulse 2s infinite alternate;
+  --animate-border-flow: border-flow 4s linear infinite;
+  --animate-orbit-rotate: orbit-rotate 20s linear infinite;
+}
+
+@keyframes neon-pulse {
+  from {
+    box-shadow: 0 0 10px rgba(0, 242, 254, 0.2), 0 0 20px rgba(0, 242, 254, 0.1);
+  }
+  to {
+    box-shadow: 0 0 25px rgba(0, 242, 254, 0.5), 0 0 40px rgba(127, 0, 255, 0.3);
+  }
+}
+
+@keyframes border-flow {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+@keyframes orbit-rotate {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+html, body {
+  background-color: var(--color-deep-void);
+  color: var(--color-star-white);
+  font-family: var(--font-sans);
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: var(--color-deep-void);
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(127, 0, 255, 0.3);
+  border-radius: 10px;
+  border: 2px solid var(--color-deep-void);
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-electric-cyan);
+}
+
+@utility mesh-bg {
+  background-color: var(--color-deep-void);
+  background-image: 
+    radial-gradient(at 0% 0%, rgba(127, 0, 255, 0.15) 0, transparent 55%), 
+    radial-gradient(at 100% 0%, rgba(0, 242, 254, 0.15) 0, transparent 50%), 
+    radial-gradient(at 50% 100%, rgba(255, 0, 127, 0.08) 0, transparent 60%);
+  background-attachment: fixed;
+}
+
+@utility grid-bg {
+  background-size: 50px 50px;
+  background-image: 
+    linear-gradient(to right, rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+}
+
+@utility glass-panel {
+  background: rgba(9, 9, 18, 0.45);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.5);
+}
+
+@utility glass-panel-hover {
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  &:hover {
+    border-color: rgba(0, 242, 254, 0.25);
+    box-shadow: 0 0 30px rgba(0, 242, 254, 0.1), inset 0 0 10px rgba(255, 255, 255, 0.02);
+    transform: translateY(-4px);
+  }
+}
+
+@utility cyber-glow-cyan {
+  box-shadow: 0 0 15px rgba(0, 242, 254, 0.25);
+}
+
+@utility cyber-glow-purple {
+  box-shadow: 0 0 15px rgba(127, 0, 255, 0.25);
+}
+
+@utility cyber-glow-pink {
+  box-shadow: 0 0 15px rgba(255, 0, 127, 0.25);
+}
+
+@utility text-neon-gradient {
+  background: linear-gradient(135deg, var(--color-electric-cyan) 0%, var(--color-sky-blue) 40%, var(--color-cosmic-purple) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+@utility text-pink-purple-gradient {
+  background: linear-gradient(135deg, var(--color-solar-pink) 0%, var(--color-cosmic-purple) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+@utility cyber-clip {
+  clip-path: polygon(10px 0%, 100% 0%, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0% 100%, 0% 10px);
+}
+
+@utility cyber-clip-sm {
+  clip-path: polygon(6px 0%, 100% 0%, 100% calc(100% - 6px), calc(100% - 6px) 100%, 0% 100%, 0% 6px);
+}
+
+/* Custom styles for preview window */
+.custom-theme-preview {
+  --primary: var(--theme-primary, var(--color-electric-cyan));
+  --secondary: var(--theme-secondary, var(--color-cosmic-purple));
+  --bg: var(--theme-bg, var(--color-abyss-black));
+  background: var(--bg);
+}
