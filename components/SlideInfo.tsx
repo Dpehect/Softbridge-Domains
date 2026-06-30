@@ -29,7 +29,7 @@ function SlideInfo({ transitionData, currentSlideData, onAcquireClick }: Props) 
           className=" w-fit rounded-full border-[1px] border-[#ffffff8f] px-6 py-3 text-[10px] font-bold transition duration-300 
             ease-in-out hover:bg-white hover:text-black uppercase tracking-wider cursor-pointer"
         >
-          Acquire Coordinates
+          View Details
         </button>
       </motion.div>
     </>
