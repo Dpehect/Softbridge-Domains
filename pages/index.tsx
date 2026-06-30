@@ -76,39 +76,39 @@ export default function Home() {
 
 const sliderData = [
   {
-    img: "/1.png",
-    location: "Switzrerland Apls",
+    img: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1920&q=80",
+    location: "AI Cognitive Compiler Node",
     description:
-      "The journey to Machu Picchu typically starts in the mountain city of Cusco, which was the capital city of the Inca Empire",
-    title: "SAINT ANTÖNEN",
+      "Buy Price: $12,500 | MRR: $480/mo | Traffic: 15,000 PV/mo. Fully automated visual assembler layout routing coordinates.",
+    title: "QUANTUM.AI",
   },
   {
-    img: "/2.png",
-    title: "The Grand Canyon",
+    img: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1920&q=80",
+    title: "VORTEX.IO",
     description:
-      "The earth's geological history opens before your eyes in a mile-deep chasm",
-    location: "Arizona",
+      "Buy Price: $8,900 | MRR: $310/mo | Traffic: 8,400 PV/mo. High-speed DNS routing pipeline resolving globally under 15 seconds.",
+    location: "Decentralized Nameserver Route",
   },
   {
-    img: "/3.png",
-    title: "Masai Mara",
+    img: "https://images.unsplash.com/photo-1531403009284-440f080d1e12?auto=format&fit=crop&w=1920&q=80",
+    title: "MATRIX.SPACE",
     description:
-      "Wild animals in their natural environment, luxury safari lodges",
-    location: "Kenya",
+      "Buy Price: $5,200 | MRR: $120/mo | Traffic: 4,100 PV/mo. Immersive three-dimensional gallery model linking custom registry maps.",
+    location: "WebGL Node Showcase Gallery",
   },
   {
-    img: "/4.png",
-    title: "Angkor Wat",
+    img: "https://images.unsplash.com/photo-1542744094-3a31f103e35f?auto=format&fit=crop&w=1920&q=80",
+    title: "AETHER.DESIGN",
     description:
-      "A stunning ancient jungle city with hundreds of intricately constructed temples",
-    location: "Cambodia",
+      "Buy Price: $14,000 | MRR: $590/mo | Traffic: 22,000 PV/mo. Custom theme assembler offering vector sitemap export structures.",
+    location: "Interactive Canvas Builder",
   },
   {
-    img: "/7.png",
-    title: "Bali",
+    img: "https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?auto=format&fit=crop&w=1920&q=80",
+    title: "ESCROWSPACE.NET",
     description:
-      "Tropical beaches, volcano hikes, ancient temples, and friendly people",
-    location: "Indonesia",
+      "Buy Price: $9,500 | MRR: $380/mo | Traffic: 9,000 PV/mo. Secure transactional escrow broker resolving names automatically.",
+    location: "Automated DNS Transaction Route",
   },
 ];
 
