@@ -98,10 +98,10 @@ const sliderData = [
   },
   {
     img: "https://images.unsplash.com/photo-1542744094-3a31f103e35f?auto=format&fit=crop&w=1920&q=80",
-    title: "AETHER.DESIGN",
+    title: "FIGMA.COM",
     description:
-      "Buy Price: $14,000 | MRR: $590/mo | Traffic: 22,000 PV/mo. Custom theme assembler offering vector sitemap export structures.",
-    location: "Interactive Canvas Builder",
+      "Buy Price: $450,000 | MRR: $18,400/mo | Traffic: 250,000 PV/mo. Premier visual editor enabling layout mockups and developer transitions.",
+    location: "Visual Design Collaboration Tool",
   },
   {
     img: "https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?auto=format&fit=crop&w=1920&q=80",
@@ -109,6 +109,41 @@ const sliderData = [
     description:
       "Buy Price: $9,500 | MRR: $380/mo | Traffic: 9,000 PV/mo. Secure transactional escrow broker resolving names automatically.",
     location: "Automated DNS Transaction Route",
+  },
+  {
+    img: "https://images.unsplash.com/photo-1504868584819-f8e8b4b6d7e3?auto=format&fit=crop&w=1920&q=80",
+    title: "VERCEL.COM",
+    description:
+      "Buy Price: $380,000 | MRR: $14,200/mo | Traffic: 180,000 PV/mo. Highly optimized hosting platform with serverless functions.",
+    location: "Static App Deployments Platform",
+  },
+  {
+    img: "https://images.unsplash.com/photo-1526304640581-d334cdbbf45e?auto=format&fit=crop&w=1920&q=80",
+    title: "STRIPE.COM",
+    description:
+      "Buy Price: $520,000 | MRR: $24,100/mo | Traffic: 390,000 PV/mo. Universal API integrations managing credit payouts and secure escrows.",
+    location: "Financial Payment Gateway API",
+  },
+  {
+    img: "https://images.unsplash.com/photo-1561070791-26c113006238?auto=format&fit=crop&w=1920&q=80",
+    title: "DRIBBBLE.COM",
+    description:
+      "Buy Price: $85,000 | MRR: $3,400/mo | Traffic: 65,000 PV/mo. Designer showroom index listing layout presets and visual portfolios.",
+    location: "Design Portfolio Registry Niche",
+  },
+  {
+    img: "https://images.unsplash.com/photo-1618401471353-b98aedd07871?auto=format&fit=crop&w=1920&q=80",
+    title: "GITHUB.COM",
+    description:
+      "Buy Price: $620,000 | MRR: $28,900/mo | Traffic: 410,000 PV/mo. Collaborative platform holding repositories, issues, and packaging gates.",
+    location: "Code Version Registry Node",
+  },
+  {
+    img: "https://images.unsplash.com/photo-1626785774573-4b799315345d?auto=format&fit=crop&w=1920&q=80",
+    title: "CANVA.COM",
+    description:
+      "Buy Price: $290,000 | MRR: $9,800/mo | Traffic: 140,000 PV/mo. Visual template builder offering drag-and-drop graphics rendering.",
+    location: "Simplified Layout Assembler",
   },
 ];
 
