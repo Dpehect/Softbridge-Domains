@@ -6,6 +6,7 @@ import BackgroundImage from "@/components/BackgroundImage";
 import Slides from "@/components/Slides";
 import SlideInfo from "@/components/SlideInfo";
 import Controls from "@/components/Controls";
+import ProductDetailModal from "@/components/ProductDetailModal";
 
 const inter = Righteous({
   subsets: ["latin"],
@@ -34,6 +35,8 @@ export default function Home() {
       index: 0,
     });
 
+  const [isModalOpen, setIsModalOpen] = React.useState(false);
+
   return (
     <main
       className={`
@@ -52,6 +55,7 @@ export default function Home() {
               <SlideInfo
                 transitionData={transitionData}
                 currentSlideData={currentSlideData}
+                onAcquireClick={() => setIsModalOpen(true)}
               />
             </div>
             <div className=" col-span-6 flex h-full flex-1 flex-col justify-start p-4 md:justify-center md:p-10">
@@ -70,6 +74,12 @@ export default function Home() {
           </div>
         </div>
       </AnimatePresence>
+
+      <ProductDetailModal
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+        product={currentSlideData.data}
+      />
     </main>
   );
 }

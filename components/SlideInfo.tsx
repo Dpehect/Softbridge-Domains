@@ -7,9 +7,10 @@ import { Data, CurrentSlideData } from "@/pages";
 type Props = {
   transitionData: Data;
   currentSlideData: CurrentSlideData;
+  onAcquireClick?: () => void;
 };
 
-function SlideInfo({ transitionData, currentSlideData }: Props) {
+function SlideInfo({ transitionData, currentSlideData, onAcquireClick }: Props) {
   return (
     <>
       <motion.span layout className=" mb-2 h-1 w-5 rounded-full bg-white" />
@@ -24,8 +25,9 @@ function SlideInfo({ transitionData, currentSlideData }: Props) {
           <IoMdBookmark className=" text-xl" />
         </button>
         <button
+          onClick={onAcquireClick}
           className=" w-fit rounded-full border-[1px] border-[#ffffff8f] px-6 py-3 text-[10px] font-bold transition duration-300 
-            ease-in-out hover:bg-white hover:text-black uppercase tracking-wider"
+            ease-in-out hover:bg-white hover:text-black uppercase tracking-wider cursor-pointer"
         >
           Acquire Coordinates
         </button>
