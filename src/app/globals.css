@@ -2,9 +2,9 @@
 @import "tailwindcss";
 
 @theme inline {
-  --color-midnight-void: #FFF8F0;
+  --color-midnight-void: #FFF5EB;
   --color-abyss-panel: #FFF1E6;
-  --color-cosmic-teal: #FF6B35;
+  --color-cosmic-teal: #FF7A3D;
   --color-sunset-coral: #E76F51;
   --color-muted-steel: #5C5C5C;
   --color-star-white: #2D2D2D;

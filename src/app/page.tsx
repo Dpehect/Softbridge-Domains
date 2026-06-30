@@ -3,6 +3,7 @@
 import React from "react";
 import AnimatedSlider from "@/components/AnimatedSlider";
 import ProductSection from "@/components/ProductSection";
+import SoftbridgeStudio from "@/components/SoftbridgeStudio";
 import { CustomCursor } from "@/components/ui/CustomCursor";
 
 export default function Home() {
@@ -15,8 +16,11 @@ export default function Home() {
       <AnimatedSlider />
 
       {/* Product Section Category Grid directly underneath */}
-      <div className="pt-24 pb-32 px-6 md:px-12 flex flex-col w-full relative z-10 max-w-6xl mx-auto">
+      <div className="pt-24 pb-32 px-6 md:px-12 flex flex-col w-full relative z-10 max-w-6xl mx-auto space-y-24">
         <ProductSection />
+
+        {/* Softbridge Studio: Step-by-Step Custom Site Builder */}
+        <SoftbridgeStudio />
       </div>
     </main>
   );

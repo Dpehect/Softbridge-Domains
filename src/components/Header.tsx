@@ -22,9 +22,9 @@ export function Header() {
       initial={{ y: -10, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.6, ease: "easeOut" }}
-      className="fixed top-0 left-0 right-0 z-50 p-4"
+      className="fixed top-0 left-0 right-0 z-50 p-2.5"
     >
-      <div className="max-w-6xl mx-auto bg-midnight-void/75 border border-black/5 rounded px-6 py-3.5 flex items-center justify-between backdrop-blur-md">
+      <div className="max-w-6xl mx-auto bg-midnight-void/75 border border-black/5 rounded px-4 py-2 flex items-center justify-between backdrop-blur-md">
         
         {/* Minimalist Premium Brand Logo */}
         <Link href="/" className="flex items-center gap-2 group">
@@ -32,7 +32,7 @@ export function Header() {
             <Layers className="w-3 h-3 text-cosmic-teal" />
           </div>
           <span className="font-display font-black text-sm uppercase tracking-[0.18em] text-star-white">
-            AETHER<span className="text-cosmic-teal font-light">//</span>DOMAINS
+            SOFTBRIDGE<span className="text-cosmic-teal font-light">//</span>DOMAINS
           </span>
         </Link>
 

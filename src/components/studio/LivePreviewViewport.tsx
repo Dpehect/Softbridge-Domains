@@ -78,7 +78,7 @@ export function LivePreviewViewport() {
               <span className="w-2.5 h-2.5 rounded-full bg-green-500/50" />
             </div>
             <div className="flex-1 max-w-sm mx-auto bg-white/5 border border-white/5 rounded-md px-3 py-1 text-[10px] text-center text-nebula-slate/85 truncate font-mono">
-              https://{config.brandName.toLowerCase().replace(/[^a-z0-9]/g, "") || "preview"}.aetherdomain.space
+              https://{config.brandName.toLowerCase().replace(/[^a-z0-9]/g, "") || "preview"}.softbridgedomain.space
             </div>
           </div>
 
@@ -118,7 +118,7 @@ export function LivePreviewViewport() {
 
               {/* Preview Footer */}
               <footer className="px-6 py-6 border-t border-white/5 text-center text-[9px] text-nebula-slate/60 bg-black/20">
-                © 2026 {config.brandName}. Designed & Powered via Aether Studio.
+                © 2026 {config.brandName}. Designed & Powered via Softbridge Studio.
               </footer>
             </div>
           ) : (

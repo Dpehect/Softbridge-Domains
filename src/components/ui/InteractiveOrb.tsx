@@ -122,7 +122,7 @@ export function InteractiveOrb({ onSelectDomain, searchQuery = "" }: Interactive
       // Suggest a random premium domain coordinate
       const curatedSuggestions = [
         "quantum.io",
-        "aether.ai",
+        "softbridge.ai",
         "novacore.design",
         "vortex.tech",
         "plasma.store",
