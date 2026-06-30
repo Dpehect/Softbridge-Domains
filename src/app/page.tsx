@@ -3,7 +3,7 @@
 import React from "react";
 import { useRouter } from "next/navigation";
 import { motion } from "framer-motion";
-import { Sparkles, ShieldCheck, Zap, Globe, Cpu, ArrowRight, Star } from "lucide-react";
+import { Sparkles, Shield, Cpu, ArrowRight, CornerDownRight, Compass } from "lucide-react";
 import { DomainSearchBar } from "@/components/ui/DomainSearchBar";
 import { CyberButton } from "@/components/ui/CyberButton";
 import { templatesData } from "@/data/templatesData";
@@ -16,189 +16,215 @@ export default function Home() {
     router.push(`/search?q=${encodeURIComponent(query)}`);
   };
 
-  const trendingTLDs = [
-    { tld: ".ai", price: "$59.99", desc: "Quantum Intelligent Nodes", color: "text-electric-cyan" },
-    { tld: ".io", price: "$39.99", desc: "Data Input/Output Gates", color: "text-sky-blue" },
-    { tld: ".com", price: "$14.99", desc: "Universal Commerce Anchor", color: "text-star-white" },
-    { tld: ".store", price: "$8.99", desc: "E-Commerce Core", color: "text-solar-pink" },
+  const curatedExtensions = [
+    { tld: ".ai", price: "$59.99/yr", class: "Cognitive Nodes", detail: "Active registry load: 12%" },
+    { tld: ".io", price: "$39.99/yr", class: "System IO Gates", detail: "Nameservers propagation: 99.9%" },
+    { tld: ".com", price: "$14.99/yr", class: "Universal Anchor", detail: "Global root replication: Active" },
+    { tld: ".design", price: "$19.99/yr", class: "Aesthetic Hub", detail: "Creative domain weight: High" },
   ];
 
   return (
-    <main className="min-h-screen flex flex-col pt-32 pb-24 px-4 md:px-8 relative overflow-hidden mesh-bg">
-      {/* 3D Orb Simulation background */}
-      <div className="absolute top-[-20%] left-[-10%] w-[500px] h-[500px] rounded-full bg-cosmic-purple/10 blur-[120px] -z-10 animate-pulse" />
-      <div className="absolute bottom-[10%] right-[-10%] w-[600px] h-[600px] rounded-full bg-electric-cyan/10 blur-[130px] -z-10 animate-pulse" />
+    <main className="min-h-screen flex flex-col pt-36 pb-32 px-6 md:px-12 relative overflow-hidden luxury-grid-bg">
+      {/* Muted background twilight glows - very soft restraint purple */}
+      <div className="absolute top-[10%] right-[-5%] w-[600px] h-[600px] rounded-full bg-restraint-purple/20 blur-[130px] -z-20 pointer-events-none animate-subtle-pulse" />
+      <div className="absolute bottom-[20%] left-[-5%] w-[500px] h-[500px] rounded-full bg-electric-teal/5 blur-[150px] -z-20 pointer-events-none" />
 
-      {/* Hero Section */}
-      <section className="max-w-7xl mx-auto w-full text-center relative z-10 mb-28">
-        <motion.div
-          initial={{ opacity: 0, y: 15 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7 }}
-          className="inline-flex items-center gap-2 px-4.5 py-1.5 rounded-full bg-white/5 border border-white/5 backdrop-blur-md mb-8"
-        >
-          <Sparkles className="w-4 h-4 text-electric-cyan" />
-          <span className="text-xs font-heading font-extrabold uppercase tracking-widest text-sky-blue">
-            AWWARDS-LEVEL DIGITAL REALTY
-          </span>
-        </motion.div>
+      {/* Hero Section - Asymmetric, Architectural Grid */}
+      <section className="max-w-6xl mx-auto w-full relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-12 mb-36 mt-4">
+        {/* Left Side: Editorial Typography & Search Bar */}
+        <div className="lg:col-span-8 flex flex-col justify-center items-start text-left relative pl-6 md:pl-8 border-l border-white/5">
+          {/* Subtle Grid Corner Indicator */}
+          <div className="absolute top-0 left-0 w-2.5 h-[1px] bg-electric-teal" />
+          <div className="absolute top-0 left-0 w-[1px] h-2.5 bg-electric-teal" />
 
-        <motion.h1
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.15 }}
-          className="text-5xl md:text-8xl font-heading font-black tracking-tight leading-[1.05] mb-8 text-star-white"
-        >
-          CLAIM YOUR <br />
-          <span className="text-neon-gradient">DIGITAL ORBIT</span>
-        </motion.h1>
+          {/* Monospace Indicator */}
+          <div className="flex items-center gap-2 mb-6 font-mono text-[9px] uppercase tracking-[0.25em] text-electric-teal">
+            <span className="w-1.5 h-1.5 rounded-full bg-electric-teal animate-pulse" />
+            REGISTRY PIPELINE v1.2.9
+          </div>
 
-        <motion.p
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.25 }}
-          className="text-base md:text-xl text-nebula-slate max-w-2xl mx-auto mb-12 leading-relaxed"
-        >
-          Discover elite domains, select an immersive industry template, customize color parameters, and deploy your site in minutes.
-        </motion.p>
+          <h1 className="text-4xl sm:text-6xl md:text-7xl font-display font-bold tracking-tight leading-[0.95] text-star-white mb-8">
+            ACQUIRE YOUR <br />
+            DIGITAL LANDMARK
+          </h1>
 
-        {/* Search Bar Molecule */}
-        <motion.div
-          initial={{ opacity: 0, scale: 0.95 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.6, delay: 0.35 }}
-          className="mb-14"
-        >
-          <DomainSearchBar onSearch={handleSearch} />
-        </motion.div>
+          <p className="text-sm md:text-base text-muted-text max-w-xl mb-12 leading-relaxed font-sans font-light">
+            Secure premium domain coordinates, configure high-fidelity editorial layouts, and publish your identity directly to decentralized nodes. Zero setup overhead, absolute layout precision.
+          </p>
 
-        {/* Trending TLDs list */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.8, delay: 0.45 }}
-          className="max-w-4xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-4"
-        >
-          {trendingTLDs.map((tldObj) => (
-            <div
-              key={tldObj.tld}
-              onClick={() => handleSearch(`orbit${tldObj.tld}`)}
-              className="glass-panel p-4 rounded-xl hover:border-white/20 transition-all duration-300 cursor-pointer text-left hover:scale-[1.03] group relative"
-            >
-              <div className="flex justify-between items-start">
-                <span className={`text-2xl font-display font-black ${tldObj.color}`}>
-                  {tldObj.tld}
-                </span>
-                <span className="text-[10px] bg-white/5 border border-white/5 px-2 py-0.5 rounded text-nebula-slate/80 font-mono">
-                  {tldObj.price}
-                </span>
-              </div>
-              <p className="text-[9px] text-nebula-slate/50 font-bold uppercase tracking-wider mt-2 group-hover:text-star-white transition-colors">
-                {tldObj.desc}
-              </p>
+          {/* Luxury Search Input */}
+          <div className="w-full mb-14">
+            <DomainSearchBar onSearch={handleSearch} />
+          </div>
+
+          {/* Micro details checklist */}
+          <div className="flex flex-wrap gap-x-8 gap-y-3 font-mono text-[9px] uppercase tracking-wider text-muted-text/80">
+            <span className="flex items-center gap-1.5">
+              <CornerDownRight className="w-3.5 h-3.5 text-electric-teal" />
+              Instant nameserver routing
+            </span>
+            <span className="flex items-center gap-1.5">
+              <CornerDownRight className="w-3.5 h-3.5 text-electric-teal" />
+              Complete WHOIS cloaking
+            </span>
+            <span className="flex items-center gap-1.5">
+              <CornerDownRight className="w-3.5 h-3.5 text-electric-teal" />
+              Architectural custom code exports
+            </span>
+          </div>
+        </div>
+
+        {/* Right Side: Curated Technical Readout & Context */}
+        <div className="lg:col-span-4 flex flex-col justify-between p-6 bg-abyss-black/45 border border-white/5 rounded relative">
+          <div className="space-y-6">
+            <div className="flex items-center justify-between border-b border-white/5 pb-4">
+              <span className="font-mono text-[9px] uppercase tracking-wider text-muted-text">SYSTEM INDEX STATUS</span>
+              <span className="text-[10px] font-heading font-extrabold text-emerald-400 flex items-center gap-1">
+                ONLINE
+              </span>
             </div>
-          ))}
-        </motion.div>
+
+            <div className="space-y-4">
+              <div className="flex items-center justify-between text-xs font-mono">
+                <span className="text-muted-text">NAMESERVERS:</span>
+                <span className="text-star-white font-bold">ns1.aetherdns.space</span>
+              </div>
+              <div className="flex items-center justify-between text-xs font-mono">
+                <span className="text-muted-text">PROPAGATION:</span>
+                <span className="text-star-white font-bold">&lt; 15 seconds</span>
+              </div>
+              <div className="flex items-center justify-between text-xs font-mono">
+                <span className="text-muted-text">DEPLOYMENT ENGINES:</span>
+                <span className="text-electric-teal font-bold">Zustand Config Sync</span>
+              </div>
+            </div>
+          </div>
+
+          <div className="border-t border-white/5 pt-6 mt-8 space-y-4 text-xs font-sans text-muted-text leading-relaxed font-light">
+            <p>
+              Aether Domains represents the intersection of luxury digital presence and absolute functional simplicity. For agencies and developers demanding high-contrast typographic grids.
+            </p>
+            <CyberButton
+              onClick={() => router.push("/templates")}
+              variant="dark"
+              size="sm"
+              className="w-full flex items-center justify-between group"
+            >
+              Browse Layout Engines
+              <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
+            </CyberButton>
+          </div>
+        </div>
       </section>
 
-      {/* Trust Elements Section */}
-      <section className="max-w-7xl mx-auto w-full mb-32 border-t border-b border-white/5 py-12">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {[
-            {
-              icon: <ShieldCheck className="w-8 h-8 text-electric-cyan" />,
-              title: "Free Privacy Locks",
-              desc: "Complete WHOIS protection protocols. Hide physical registry credentials on all orbits.",
-            },
-            {
-              icon: <Zap className="w-8 h-8 text-solar-pink" />,
-              title: "Optic-Speed Setup",
-              desc: "Instant nameservers and custom configurator exports synced instantly to live domains.",
-            },
-            {
-              icon: <Globe className="w-8 h-8 text-cosmic-purple" />,
-              title: "Decentralized Registry",
-              desc: "Multi-datacenter distribution secures maximum uptime and secure DNS configurations.",
-            },
-          ].map((item, idx) => (
-            <div key={idx} className="flex gap-4 p-4">
-              <div className="shrink-0">{item.icon}</div>
+      {/* Spacing Divider line */}
+      <div className="max-w-6xl mx-auto w-full h-[1px] bg-white/5 mb-32" />
+
+      {/* Curated Suffix Registry grid */}
+      <section className="max-w-6xl mx-auto w-full mb-36">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
+          {curatedExtensions.map((item, idx) => (
+            <div
+              key={item.tld}
+              onClick={() => handleSearch(`domain${item.tld}`)}
+              className="group relative bg-[#05060A]/40 border border-white/5 p-5 rounded hover:border-white/15 transition-all duration-500 cursor-pointer flex flex-col justify-between min-h-[140px]"
+            >
+              {/* Corner Indicators */}
+              <div className="absolute top-0 right-0 w-2 h-[1px] bg-white/10 group-hover:bg-electric-teal/40 transition-colors" />
+              <div className="absolute top-0 right-0 w-[1px] h-2 bg-white/10 group-hover:bg-electric-teal/40 transition-colors" />
+
               <div>
-                <h4 className="text-base font-heading font-bold text-star-white uppercase tracking-wider mb-2">
-                  {item.title}
-                </h4>
-                <p className="text-xs text-nebula-slate leading-relaxed">{item.desc}</p>
+                <span className="font-display text-3xl font-extrabold text-star-white group-hover:text-electric-teal transition-colors">
+                  {item.tld}
+                </span>
+                <p className="font-mono text-[9px] uppercase tracking-wider text-muted-text mt-1">
+                  {item.class}
+                </p>
+              </div>
+
+              <div className="flex items-center justify-between border-t border-white/5 pt-3.5 mt-4">
+                <span className="font-mono text-[10px] text-star-white/90">{item.price}</span>
+                <span className="font-mono text-[8px] text-muted-text/50">{item.detail}</span>
               </div>
             </div>
           ))}
         </div>
       </section>
 
-      {/* Dynamic Bundle Showcase Section */}
-      <section className="max-w-7xl mx-auto w-full mb-32">
-        <div className="glass-panel p-8 md:p-16 rounded-[40px] relative overflow-hidden flex flex-col lg:flex-row items-center justify-between gap-12">
-          {/* Animated visual element */}
-          <div className="absolute inset-0 grid-bg opacity-15 pointer-events-none" />
-          <div className="absolute -left-20 -bottom-20 w-[400px] h-[400px] rounded-full bg-cosmic-purple/10 blur-[80px] pointer-events-none" />
+      {/* Premium Integration Bundle Showcase Section */}
+      <section className="max-w-6xl mx-auto w-full mb-36">
+        <div className="bg-[#05060B]/60 border border-white/5 p-8 md:p-14 rounded-lg relative overflow-hidden flex flex-col lg:flex-row items-center justify-between gap-12">
+          {/* Subtle backing lines */}
+          <div className="absolute inset-0 luxury-grid-bg opacity-10 pointer-events-none" />
+          <div className="absolute -left-20 -bottom-20 w-80 h-80 rounded-full bg-restraint-purple/5 blur-[80px] pointer-events-none" />
 
           <div className="max-w-xl relative z-10">
-            <span className="text-[10px] bg-cosmic-purple/20 text-cosmic-purple border border-cosmic-purple/30 px-3 py-1 rounded-full uppercase font-black tracking-widest font-mono mb-6 inline-block">
-              Infinite Pipeline
+            <span className="font-mono text-[9px] uppercase tracking-[0.2em] text-electric-teal mb-4 block font-bold">
+              PLATFORM SYNERGY
             </span>
-            <h2 className="text-3xl md:text-5xl font-heading font-black tracking-tight text-star-white mb-6 leading-tight">
-              DOMAIN + WEBSITE <br />
-              <span className="text-pink-purple-gradient">LAUNCH PROTOCOL</span>
+            <h2 className="text-3xl md:text-5xl font-display font-bold text-star-white tracking-tight leading-tight mb-6">
+              THE DOMAIN + SITE <br />
+              INTEGRATION PROTOCOL
             </h2>
-            <p className="text-sm md:text-base text-nebula-slate mb-8 leading-relaxed">
-              Why buy just a domain when you can configure a premium, responsive WebGL-driven storefront or agency page at the same time? Simply draft your assets inside our customization suite, checkout, and our delivery crew will ship your complete site.
+            <p className="text-xs md:text-sm text-muted-text leading-relaxed font-light mb-8">
+              Skip complex DNS routings, boilerplate setups, and standard layout delays. Customize high-fidelity layout parameters, export configuration keys, and register coordinates. We compile your aesthetic definitions directly to live assets.
             </p>
             <div className="flex flex-wrap gap-4">
-              <CyberButton onClick={() => router.push("/templates")} variant="purple">
-                Explore Galleries
+              <CyberButton onClick={() => router.push("/templates")} variant="teal">
+                Verify Templates
               </CyberButton>
-              <CyberButton onClick={() => router.push("/studio")} variant="glass">
-                Launch Studio Aether
+              <CyberButton onClick={() => router.push("/studio")} variant="steel">
+                Initialize Customizer
               </CyberButton>
             </div>
           </div>
 
-          <div className="w-full lg:w-1/2 relative flex items-center justify-center min-h-[300px]">
-            {/* Holographic orbital display */}
-            <div className="relative w-72 h-72 border border-white/5 rounded-full flex items-center justify-center">
-              <div className="absolute inset-0 border border-dashed border-electric-cyan/20 rounded-full animate-[spin_30s_linear_infinite]" />
-              <div className="absolute w-56 h-56 border border-dashed border-cosmic-purple/30 rounded-full animate-[spin_20s_linear_infinite_reverse]" />
-              <div className="w-32 h-32 rounded-full bg-gradient-to-tr from-electric-cyan to-cosmic-purple flex flex-col items-center justify-center shadow-[0_0_50px_rgba(0,242,254,0.3)] animate-pulse">
-                <Cpu className="w-10 h-10 text-deep-void animate-spin [animation-duration:12s]" />
-                <span className="text-[9px] font-heading font-extrabold uppercase text-deep-void mt-2 tracking-widest">
-                  Active core
+          {/* Architectural structural lines graphic */}
+          <div className="w-full lg:w-96 relative flex items-center justify-center min-h-[250px] border border-white/5 rounded p-6 bg-black/20">
+            <div className="absolute inset-4 border border-dashed border-white/5" />
+            <div className="w-full space-y-4 font-mono text-[9px] text-muted-text/80">
+              <div className="flex justify-between items-center border-b border-white/5 pb-2">
+                <span>EXPORT_CONFIG.JSON</span>
+                <span className="text-electric-teal">v1.0.0</span>
+              </div>
+              <div className="space-y-1 text-[8px]">
+                <p className="text-white/60">"brandName": "Aether Inc"</p>
+                <p className="text-white/60">"themeColors": &#123;</p>
+                <p className="pl-4 text-electric-teal">"primary": "#00E5D8"</p>
+                <p className="pl-4 text-white/60">"background": "#020205"</p>
+                <p className="text-white/60">&#125;</p>
+              </div>
+              <div className="pt-2 flex justify-between items-center border-t border-white/5">
+                <span className="flex items-center gap-1">
+                  <Cpu className="w-3.5 h-3.5 text-electric-teal" /> BUILD_SUCCESS
                 </span>
+                <span className="text-star-white">216ms</span>
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Templates Showcase Section */}
-      <section className="max-w-7xl mx-auto w-full mb-32">
-        <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-4">
+      {/* Templates Collection Title & Grid */}
+      <section className="max-w-6xl mx-auto w-full mb-36">
+        <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-4 border-b border-white/5 pb-6">
           <div>
-            <h2 className="text-3xl md:text-5xl font-heading font-black text-star-white tracking-tight">
-              ELITE STYLING SHAPES
+            <span className="font-mono text-[9px] uppercase tracking-wider text-muted-text">LAYOUT DESIGNS</span>
+            <h2 className="text-3xl font-display font-bold text-star-white tracking-tight mt-1">
+              THE SHAPES OF DEPLOYMENT
             </h2>
-            <p className="text-sm text-nebula-slate mt-2 max-w-md">
-              Start from industry-tailored designs, built for conversion, typography and 60fps scrolling.
-            </p>
           </div>
           <button
             onClick={() => router.push("/templates")}
-            className="flex items-center gap-2 text-xs font-heading font-bold uppercase tracking-wider text-electric-cyan hover:text-star-white transition-colors cursor-pointer group"
+            className="flex items-center gap-1.5 text-xs font-heading font-bold uppercase tracking-wider text-electric-teal hover:text-white transition-colors cursor-pointer group"
           >
-            All Templates <ArrowRight className="w-4 h-4 group-hover:translate-x-1.5 transition-transform" />
+            Explore Options
+            <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
           </button>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {templatesData.map((tpl) => (
+          {templatesData.slice(0, 3).map((tpl) => (
             <TemplatePreviewCard
               key={tpl.id}
               template={tpl}
@@ -211,53 +237,14 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Testimonials */}
-      <section className="max-w-6xl mx-auto w-full mb-16">
-        <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-4xl font-heading font-black text-star-white tracking-tight uppercase">
-            SATELLITE TRANSMISSIONS
-          </h2>
-          <p className="text-sm text-nebula-slate mt-2">Feedback verified on blockchain registry networks.</p>
+      {/* Trust & Verification Signals */}
+      <section className="max-w-5xl mx-auto w-full border-t border-white/5 pt-16 text-center space-y-6">
+        <div className="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center mx-auto text-electric-teal">
+          <Compass className="w-5 h-5 animate-spin [animation-duration:15s]" />
         </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          {[
-            {
-              name: "Krypton Labs",
-              quote: "The interface is mind-blowing. We configured our website theme and purchased krypton-net.io inside 4 minutes. The setup was delivered flawlessly.",
-              rating: 5,
-              title: "Chief Tech Architect",
-            },
-            {
-              name: "Nova Fashion",
-              quote: "Our luxury brand required heavy design aesthetics. Studio Aether allowed us to draft colors and navigation paths visually. The layout is beautiful.",
-              rating: 5,
-              title: "Founder & Director",
-            },
-          ].map((testimonial, idx) => (
-            <div key={idx} className="glass-panel p-8 rounded-3xl relative border-white/5">
-              <div className="flex gap-1.5 mb-4 text-solar-pink">
-                {Array.from({ length: testimonial.rating }).map((_, i) => (
-                  <Star key={i} className="w-4 h-4 fill-solar-pink" />
-                ))}
-              </div>
-              <p className="text-sm md:text-base italic text-star-white leading-relaxed mb-6">
-                "{testimonial.quote}"
-              </p>
-              <div className="flex justify-between items-center">
-                <div>
-                  <h4 className="text-sm font-heading font-bold text-white uppercase tracking-wider">
-                    {testimonial.name}
-                  </h4>
-                  <span className="text-[10px] text-nebula-slate/60">{testimonial.title}</span>
-                </div>
-                <div className="w-8 h-8 rounded-full bg-white/5 flex items-center justify-center border border-white/10 font-bold font-mono text-xs text-electric-cyan">
-                  {testimonial.name[0]}
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
+        <p className="text-xs text-muted-text uppercase tracking-widest font-mono">
+          Decentralized Namespace routing — Secured Registry Controls
+        </p>
       </section>
     </main>
   );

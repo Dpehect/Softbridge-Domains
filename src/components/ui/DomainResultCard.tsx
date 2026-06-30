@@ -98,7 +98,7 @@ export function DomainResultCard({ domain, idx = 0 }: DomainResultCardProps) {
               </button>
               <CyberButton
                 onClick={handleBuyBundle}
-                variant="purple"
+                variant="teal"
                 size="sm"
                 className="gap-2"
               >

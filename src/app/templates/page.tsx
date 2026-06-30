@@ -266,7 +266,7 @@ function TemplatesGalleryContent() {
                       handleConfigure(selectedPreviewTemplate);
                       setSelectedPreviewTemplate(null);
                     }}
-                    variant="purple"
+                    variant="teal"
                     className="gap-2"
                   >
                     <Sliders className="w-4 h-4" />

@@ -369,7 +369,7 @@ export default function CartPage() {
                     <CyberButton
                       disabled={checkoutLoading || items.length === 0}
                       onClick={handleCheckoutSubmit}
-                      variant="cyan"
+                      variant="teal"
                       className="w-full gap-2 mt-4"
                     >
                       {checkoutLoading ? (

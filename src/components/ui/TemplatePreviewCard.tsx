@@ -114,7 +114,7 @@ export function TemplatePreviewCard({
 
           <CyberButton
             onClick={() => onConfigure(template)}
-            variant="cyan"
+            variant="teal"
             size="sm"
             className="gap-2"
           >

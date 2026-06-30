@@ -127,7 +127,7 @@ export default function DomainDetailPage({ params }: { params: Promise<{ name: s
                 <div className="flex flex-col sm:flex-row gap-4">
                   <CyberButton
                     onClick={handleBuyBundle}
-                    variant="purple"
+                    variant="teal"
                     className="flex-1 gap-2"
                   >
                     <Sparkles className="w-4 h-4" />
@@ -223,7 +223,7 @@ export default function DomainDetailPage({ params }: { params: Promise<{ name: s
                       <span className="text-[10px] text-nebula-slate/60">{tpl.category}</span>
                     </div>
                   </div>
-                  <CyberButton variant="cyan" size="sm" className="text-[9px] px-3.5 py-1.5">
+                  <CyberButton variant="teal" size="sm" className="text-[9px] px-3.5 py-1.5">
                     Match
                   </CyberButton>
                 </div>

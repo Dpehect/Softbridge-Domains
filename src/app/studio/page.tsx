@@ -87,7 +87,7 @@ function StudioContent() {
           )}
           <CyberButton
             onClick={handleDeployToCart}
-            variant="purple"
+            variant="teal"
             className="gap-2 w-full md:w-auto"
           >
             <ShoppingCart className="w-4 h-4" />
