@@ -14,14 +14,14 @@ export const GlassInput = React.forwardRef<HTMLInputElement, GlassInputProps>(
       <div className="w-full relative">
         <div className="relative flex items-center">
           {icon && (
-            <div className="absolute left-4.5 text-apple-gray/60 pointer-events-none z-10">
+            <div className="absolute left-4.5 text-apple-gray pointer-events-none z-10">
               {icon}
             </div>
           )}
           <input
             ref={ref}
             className={cn(
-              "w-full bg-[#161922] text-apple-text placeholder:text-apple-gray/50 text-sm px-5 py-3.5 rounded-lg border border-white/10 focus:border-white/25 outline-none transition-all duration-300",
+              "w-full bg-apple-card text-apple-text placeholder:text-apple-gray/50 text-sm px-5 py-3.5 rounded-lg border border-apple-border focus:border-apple-blue focus:ring-1 focus:ring-apple-blue outline-none transition-all duration-200",
               icon && "pl-11",
               error && "border-red-500/30 focus:border-red-500/50",
               className
@@ -30,7 +30,7 @@ export const GlassInput = React.forwardRef<HTMLInputElement, GlassInputProps>(
           />
         </div>
         {error && (
-          <span className="text-xs text-red-400 mt-2 block font-medium pl-6 animate-pulse">
+          <span className="text-xs text-red-500 mt-2 block font-normal pl-6">
             {error}
           </span>
         )}

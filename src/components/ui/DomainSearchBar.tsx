@@ -16,7 +16,7 @@ interface DomainSearchBarProps {
 export function DomainSearchBar({
   onSearch,
   initialValue = "",
-  placeholder = "Search for your next digital coordinate name...",
+  placeholder = "Search for your next domain name...",
   value,
   onChange
 }: DomainSearchBarProps) {
@@ -44,10 +44,10 @@ export function DomainSearchBar({
     <form
       onSubmit={handleSubmit}
       className={cn(
-        "w-full max-w-2xl transition-all duration-300 border rounded-full p-1.5 flex items-center gap-2",
+        "w-full max-w-2xl transition-all duration-200 border rounded-full p-1.5 flex items-center gap-2",
         isFocused 
-          ? "border-white/20 bg-[#12141C]" 
-          : "border-white/5 bg-[#161922]/80 backdrop-blur-md"
+          ? "border-apple-blue bg-[#0D0D11] ring-1 ring-apple-blue" 
+          : "border-apple-border bg-apple-card/80 backdrop-blur-md"
       )}
     >
       <div className="flex-1 flex items-center pl-4">
