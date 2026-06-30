@@ -1,7 +1,6 @@
 import React from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { IoMdClose, IoMdCheckmarkCircle, IoMdStats, IoMdLock } from "react-icons/io";
-
+import { X, CheckCircle2, TrendingUp, Lock } from "lucide-react";
 export type ProductData = {
   img: string;
   title: string;
@@ -31,7 +30,7 @@ export default function ProductDetailModal({ isOpen, onClose, product }: Props) 
   const backdropVariants = {
     hidden: { opacity: 0 },
     visible: { opacity: 1 },
-  };
+  } as const;
 
   const modalVariants = {
     hidden: { opacity: 0, scale: 0.9, y: 15 },
@@ -47,12 +46,12 @@ export default function ProductDetailModal({ isOpen, onClose, product }: Props) 
         delayChildren: 0.1
       }
     },
-  };
+  } as const;
 
   const itemVariants = {
     hidden: { opacity: 0, y: 10 },
     visible: { opacity: 1, y: 0, transition: { duration: 0.4 } },
-  };
+  } as const;
 
   return (
     <AnimatePresence>
@@ -83,7 +82,7 @@ export default function ProductDetailModal({ isOpen, onClose, product }: Props) 
               onClick={onClose}
               className="absolute top-4 right-4 z-20 flex h-8 w-8 items-center justify-center rounded-full bg-black/40 border border-white/10 text-white hover:bg-white/10 transition-colors"
             >
-              <IoMdClose className="text-lg" />
+              <X className="text-lg" />
             </button>
 
             {/* Banner/Header Image */}
@@ -160,7 +159,7 @@ export default function ProductDetailModal({ isOpen, onClose, product }: Props) 
                       "Full administrative control access"
                     ].map((feature, idx) => (
                       <div key={idx} className="flex items-start gap-2">
-                        <IoMdCheckmarkCircle className="text-emerald-400 mt-0.5 shrink-0 text-base" />
+                        <CheckCircle2 className="text-emerald-400 mt-0.5 shrink-0 text-base" />
                         <span>{feature}</span>
                       </div>
                     ))}
@@ -168,14 +167,14 @@ export default function ProductDetailModal({ isOpen, onClose, product }: Props) 
                 ) : (
                   <div className="space-y-3 text-sm text-gray-300">
                     <div className="flex items-start gap-3 p-3 bg-white/5 rounded-xl border border-white/5">
-                      <IoMdLock className="text-emerald-400 text-lg shrink-0 mt-0.5" />
+                      <Lock className="text-emerald-400 text-lg shrink-0 mt-0.5" />
                       <div>
                         <h4 className="font-bold text-white text-xs uppercase tracking-wider">Escrow Protected Route</h4>
                         <p className="text-xs text-gray-400 mt-1">Payments are held securely in escrow and only released once the name servers and asset packages are fully verified in your control panel.</p>
                       </div>
                     </div>
                     <div className="flex items-start gap-3 p-3 bg-white/5 rounded-xl border border-white/5">
-                      <IoMdStats className="text-[#00C0B5] text-lg shrink-0 mt-0.5" />
+                      <TrendingUp className="text-[#00C0B5] text-lg shrink-0 mt-0.5" />
                       <div>
                         <h4 className="font-bold text-white text-xs uppercase tracking-wider">DNS Record Propagation</h4>
                         <p className="text-xs text-gray-400 mt-1">Routes propagation resolves globally in less than 2 hours under verified automated registries.</p>

@@ -1,0 +1,42 @@
+"use client";
+
+import React from "react";
+import { cn } from "@/utils/cn";
+
+interface GlassInputProps extends React.InputHTMLAttributes<HTMLInputElement> {
+  error?: string;
+  icon?: React.ReactNode;
+}
+
+export const GlassInput = React.forwardRef<HTMLInputElement, GlassInputProps>(
+  ({ className, error, icon, ...props }, ref) => {
+    return (
+      <div className="w-full relative">
+        <div className="relative flex items-center">
+          {icon && (
+            <div className="absolute left-4.5 text-muted-slate/60 pointer-events-none z-10">
+              {icon}
+            </div>
+          )}
+          <input
+            ref={ref}
+            className={cn(
+              "w-full bg-white/50 text-playful-dark placeholder:text-muted-slate/50 text-sm px-6 py-4 rounded-full border border-playful-dark/5 focus:border-creative-teal/40 focus:bg-white focus:shadow-[0_8px_30px_rgba(0,210,196,0.06)] outline-none transition-all duration-300 backdrop-blur-md",
+              icon && "pl-12",
+              error && "border-creative-magenta/40 focus:border-creative-magenta/60 focus:shadow-[0_8px_30px_rgba(230,0,103,0.06)]",
+              className
+            )}
+            {...props}
+          />
+        </div>
+        {error && (
+          <span className="text-xs text-creative-magenta mt-2 block font-medium pl-6 animate-pulse">
+            {error}
+          </span>
+        )}
+      </div>
+    );
+  }
+);
+
+GlassInput.displayName = "GlassInput";
