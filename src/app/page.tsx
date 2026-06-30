@@ -1,15 +1,13 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useRef, useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
-import { motion, AnimatePresence } from "framer-motion";
-import { Sparkles, Shield, Cpu, ArrowRight, CornerDownRight, Compass } from "lucide-react";
+import { motion } from "framer-motion";
+import { Shield, Cpu, Sparkles, ArrowRight, CornerDownRight } from "lucide-react";
 import { DomainSearchBar } from "@/components/ui/DomainSearchBar";
 import { CyberButton } from "@/components/ui/CyberButton";
 import { templatesData } from "@/data/templatesData";
 import { TemplatePreviewCard } from "@/components/ui/TemplatePreviewCard";
-import { CustomCursor } from "@/components/ui/CustomCursor";
-import { InteractiveOrb } from "@/components/ui/InteractiveOrb";
 
 export default function Home() {
   const router = useRouter();
@@ -19,47 +17,39 @@ export default function Home() {
     router.push(`/search?q=${encodeURIComponent(query)}`);
   };
 
-  const curatedSuffixes = [
-    { tld: ".ai", price: "$59.99/yr", class: "Cognitive Nodes", detail: "Active registry load: 12%", accent: "coral" },
-    { tld: ".io", price: "$39.99/yr", class: "System IO Gates", detail: "Nameservers propagation: 99.9%" },
-    { tld: ".com", price: "$14.99/yr", class: "Universal Anchor", detail: "Global root replication: Active" },
-    { tld: ".design", price: "$19.99/yr", class: "Aesthetic Hub", detail: "Creative domain weight: High" },
+  const curatedTLDs = [
+    { tld: ".ai", price: "$59.99/yr", desc: "Cognitive Nodes" },
+    { tld: ".io", price: "$39.99/yr", desc: "Tech Core" },
+    { tld: ".com", price: "$14.99/yr", desc: "Global Standard" },
+    { tld: ".design", price: "$19.99/yr", desc: "Creative Studio" },
   ];
 
   return (
-    <main className="min-h-screen flex flex-col pt-36 pb-32 px-6 md:px-12 relative overflow-hidden thin-wireframe-grid">
-      {/* Custom Awwwards Cursor */}
-      <CustomCursor />
+    <main className="min-h-screen flex flex-col pt-36 pb-32 px-6 md:px-12 relative overflow-hidden">
+      {/* Subtle mathematical blueprint backdrop grid - Apple minimal style */}
+      <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(255,255,255,0.006)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.006)_1px,transparent_1px)] bg-[size:80px_80px] pointer-events-none" />
 
-      {/* Background twilight ambient glows - extremely soft restraint purple */}
-      <div className="absolute top-[10%] right-[-5%] w-[600px] h-[600px] rounded-full bg-restraint-purple/20 blur-[140px] -z-20 pointer-events-none animate-[pulse_6s_ease-in-out_infinite_alternate]" />
-      <div className="absolute bottom-[20%] left-[-5%] w-[500px] h-[500px] rounded-full bg-cosmic-teal/5 blur-[150px] -z-20 pointer-events-none" />
-
-      {/* Hero Section - Asymmetric, Architectural Grid */}
-      <section className="max-w-6xl mx-auto w-full relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-12 mb-36 mt-4">
-        {/* Left Side: Editorial Typography & Search Bar */}
-        <div className="lg:col-span-8 flex flex-col justify-center items-start text-left relative pl-6 md:pl-8 border-l border-white/5">
-          {/* Subtle Grid Corner Indicator */}
-          <div className="absolute top-0 left-0 w-2.5 h-[1px] bg-cosmic-teal" />
-          <div className="absolute top-0 left-0 w-[1px] h-2.5 bg-cosmic-teal" />
-
-          {/* Monospace Indicator */}
-          <div className="flex items-center gap-2 mb-6 font-mono text-[9px] uppercase tracking-[0.25em] text-cosmic-teal">
-            <span className="w-1.5 h-1.5 rounded-full bg-cosmic-teal animate-pulse" />
-            REGISTRY PIPELINE v2.1.0
+      {/* Hero Section - Clean, Sophisticated Asymmetrical Spacing */}
+      <section className="max-w-5xl mx-auto w-full relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-12 mb-36 mt-8 items-center">
+        {/* Left Side Copy and Search */}
+        <div className="lg:col-span-7 space-y-8 text-left border-l border-white/5 pl-6 md:pl-8">
+          <div className="flex items-center gap-2 font-mono text-[9px] uppercase tracking-[0.2em] text-apple-gray">
+            <span className="w-1.5 h-1.5 rounded-full bg-apple-teal" />
+            Registry Module v3.0
           </div>
 
-          <h1 className="text-4xl sm:text-6xl md:text-7xl font-display font-bold tracking-tight leading-[0.98] text-star-white mb-8">
-            ACQUIRE YOUR <br />
-            DIGITAL LANDMARK
+          <h1 className="text-4xl sm:text-6xl md:text-6.5xl font-display font-bold tracking-tight leading-[1.05] text-apple-text">
+            Aether Domains. <br />
+            Premium digital <br />
+            coordinates.
           </h1>
 
-          <p className="text-sm md:text-base text-muted-steel max-w-xl mb-12 leading-relaxed font-sans font-light">
-            Secure premium domain coordinates, configure high-fidelity editorial layouts, and publish your identity directly to decentralized nodes. Zero setup overhead, absolute layout precision.
+          <p className="text-sm md:text-base text-apple-gray max-w-xl leading-relaxed font-sans font-light">
+            Secure premium domain coordinates, configure clean editorial layouts, and publish your identity directly to decentralized nodes. Simple setup, absolute visual precision.
           </p>
 
-          {/* Luxury Controlled Search Input */}
-          <div className="w-full mb-14">
+          {/* Clean Search Bar */}
+          <div className="w-full pt-4">
             <DomainSearchBar
               value={searchQuery}
               onChange={setSearchQuery}
@@ -67,164 +57,120 @@ export default function Home() {
             />
           </div>
 
-          {/* Micro details checklist */}
-          <div className="flex flex-wrap gap-x-8 gap-y-3 font-mono text-[9px] uppercase tracking-wider text-muted-steel/80">
+          {/* Monospaced metadata parameters */}
+          <div className="flex flex-wrap gap-x-8 gap-y-3 font-mono text-[9px] uppercase tracking-wider text-apple-gray/70 pt-4">
             <span className="flex items-center gap-1.5">
-              <CornerDownRight className="w-3.5 h-3.5 text-cosmic-teal" />
-              Instant nameserver routing
+              <CornerDownRight className="w-3.5 h-3.5 text-apple-teal" />
+              Propagation under 15 seconds
             </span>
             <span className="flex items-center gap-1.5">
-              <CornerDownRight className="w-3.5 h-3.5 text-cosmic-teal" />
-              Complete WHOIS cloaking
-            </span>
-            <span className="flex items-center gap-1.5">
-              <CornerDownRight className="w-3.5 h-3.5 text-cosmic-teal" />
-              Architectural custom code exports
+              <CornerDownRight className="w-3.5 h-3.5 text-apple-teal" />
+              Complete registry cloaking
             </span>
           </div>
         </div>
 
-        {/* Right Side: Interactive 3D Particle Orb (Signature WebGL) */}
-        <div className="lg:col-span-4 flex flex-col justify-stretch min-h-[380px] bg-abyss-panel/45 border border-white/5 rounded relative overflow-hidden p-1 shadow-2xl">
-          {/* WebGL Orb context */}
-          <div className="w-full h-64 relative bg-black/20 border-b border-white/5 rounded-t overflow-hidden">
-            <InteractiveOrb
-              onSelectDomain={(domain) => setSearchQuery(domain)}
-              searchQuery={searchQuery}
-            />
-          </div>
-
-          {/* Monospace details underneath orb */}
-          <div className="p-5 flex-1 flex flex-col justify-between">
-            <div className="space-y-4">
-              <div className="flex items-center justify-between border-b border-white/5 pb-2">
-                <span className="font-mono text-[9px] uppercase tracking-wider text-muted-steel">ORBIT_COORDINATES</span>
-                <span className="text-[10px] font-heading font-extrabold text-emerald-400 flex items-center gap-1">
-                  SECURE
-                </span>
-              </div>
-              <p className="text-[10px] text-muted-steel font-sans leading-relaxed font-light">
-                This particle orb cluster visualizes current registry load. Click on the particle sphere to burst suggestions directly to inputs.
-              </p>
-            </div>
-            
-            <CyberButton
-              onClick={() => router.push("/templates")}
-              variant="slate"
-              size="sm"
-              className="w-full flex items-center justify-between group mt-4 text-[10px] tracking-widest font-heading font-bold"
-            >
-              Browse Layout Engines
-              <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
-            </CyberButton>
-          </div>
+        {/* Right Side: Clean Mathematical Wireframe Sphere Canvas */}
+        <div className="lg:col-span-5 w-full flex justify-center items-center relative min-h-[300px] border border-white/5 bg-[#161922]/30 rounded-2xl p-6">
+          <WireframeSphere searchQuery={searchQuery} />
         </div>
       </section>
 
-      {/* Spacing Divider line */}
-      <div className="max-w-6xl mx-auto w-full h-[1px] bg-white/5 mb-32" />
+      {/* Spacing breathing room line */}
+      <div className="max-w-5xl mx-auto w-full h-[1px] bg-white/5 mb-36" />
 
-      {/* Curated Suffix Registry grid */}
-      <section className="max-w-6xl mx-auto w-full mb-36">
+      {/* Curated Suffix Registry rows */}
+      <section className="max-w-5xl mx-auto w-full mb-36">
+        <h3 className="font-mono text-[9px] uppercase tracking-[0.2em] text-apple-gray mb-8">
+          CURATED EXTENSIONS
+        </h3>
         <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
-          {curatedSuffixes.map((item, idx) => (
+          {curatedTLDs.map((item) => (
             <div
               key={item.tld}
               onClick={() => handleSearch(`domain${item.tld}`)}
-              className="group relative bg-[#11121A]/30 border border-white/5 p-5 rounded hover:border-white/15 transition-all duration-500 cursor-pointer flex flex-col justify-between min-h-[140px]"
+              className="group bg-[#161922]/40 border border-white/5 p-6 rounded-xl hover:bg-[#161922]/60 hover:border-white/10 transition-all duration-300 cursor-pointer flex flex-col justify-between min-h-[140px]"
             >
-              {/* Corner Indicators */}
-              <div className="absolute top-0 right-0 w-2 h-[1px] bg-white/10 group-hover:bg-cosmic-teal/40 transition-colors" />
-              <div className="absolute top-0 right-0 w-[1px] h-2 bg-white/10 group-hover:bg-cosmic-teal/40 transition-colors" />
-
               <div>
-                <span className="font-display text-3.5xl font-extrabold text-star-white group-hover:text-cosmic-teal transition-colors">
+                <span className="font-display text-3xl font-bold text-apple-text">
                   {item.tld}
                 </span>
-                <p className="font-mono text-[9px] uppercase tracking-wider text-muted-steel mt-1">
-                  {item.class}
+                <p className="font-mono text-[9px] uppercase tracking-wider text-apple-gray mt-1">
+                  {item.desc}
                 </p>
               </div>
 
               <div className="flex items-center justify-between border-t border-white/5 pt-3.5 mt-4">
-                <span className={`font-mono text-[10px] font-bold ${item.accent === "coral" ? "text-sunset-coral" : "text-star-white/90"}`}>
-                  {item.price}
+                <span className="font-mono text-[10px] text-apple-text/80">{item.price}</span>
+                <span className="text-[9px] text-apple-teal hover:underline flex items-center gap-1">
+                  Acquire <ArrowRight className="w-3 h-3 group-hover:translate-x-1 transition-transform" />
                 </span>
-                <span className="font-mono text-[8px] text-muted-steel/50">{item.detail}</span>
               </div>
             </div>
           ))}
         </div>
       </section>
 
-      {/* Premium Integration Bundle Showcase Section */}
-      <section className="max-w-6xl mx-auto w-full mb-36">
-        <div className="bg-[#11121A]/40 border border-white/5 p-8 md:p-14 rounded-lg relative overflow-hidden flex flex-col lg:flex-row items-center justify-between gap-12">
-          {/* Subtle backing lines */}
-          <div className="absolute inset-0 thin-wireframe-grid opacity-5 pointer-events-none" />
-          <div className="absolute -left-20 -bottom-20 w-80 h-80 rounded-full bg-restraint-purple/5 blur-[80px] pointer-events-none" />
-
-          <div className="max-w-xl relative z-10">
-            <span className="font-mono text-[9px] uppercase tracking-[0.2em] text-cosmic-teal mb-4 block font-bold">
+      {/* Product Benefits Showcase section */}
+      <section className="max-w-5xl mx-auto w-full mb-36">
+        <div className="bg-[#161922]/35 border border-white/5 p-8 md:p-14 rounded-2xl flex flex-col lg:flex-row items-center justify-between gap-12">
+          <div className="max-w-xl space-y-6">
+            <span className="font-mono text-[9px] uppercase tracking-[0.2em] text-apple-teal font-bold block">
               PLATFORM SYNERGY
             </span>
-            <h2 className="text-3xl md:text-5xl font-display font-bold text-star-white tracking-tight leading-tight mb-6">
-              THE DOMAIN + SITE <br />
-              INTEGRATION PROTOCOL
+            <h2 className="text-3xl md:text-4.5xl font-display font-bold text-apple-text tracking-tight leading-tight">
+              One coordinate. <br />
+              Complete web presence.
             </h2>
-            <p className="text-xs md:text-sm text-muted-steel leading-relaxed font-light mb-8">
-              Skip complex DNS routings, boilerplate setups, and standard layout delays. Customize high-fidelity layout parameters, export configuration keys, and register coordinates. We compile your aesthetic definitions directly to live assets.
+            <p className="text-xs md:text-sm text-apple-gray leading-relaxed font-light">
+              Skip complex DNS records, configuration overlays, and deployment delays. Customize design settings in the editor, export raw code blocks, and register coordinates. We sync your styling keys directly to live domains.
             </p>
-            <div className="flex flex-wrap gap-4">
-              <CyberButton onClick={() => router.push("/templates")} variant="teal">
-                Verify Templates
+            <div className="flex flex-wrap gap-4 pt-2">
+              <CyberButton onClick={() => router.push("/templates")} variant="primary">
+                Verify Layouts
               </CyberButton>
-              <CyberButton onClick={() => router.push("/studio")} variant="slate">
-                Initialize Customizer
+              <CyberButton onClick={() => router.push("/studio")} variant="secondary">
+                Configure Design
               </CyberButton>
             </div>
           </div>
 
-          <div className="w-full lg:w-96 relative flex items-center justify-center min-h-[250px] border border-white/5 rounded p-6 bg-black/25">
-            <div className="absolute inset-4 border border-dashed border-white/5" />
-            <div className="w-full space-y-4 font-mono text-[9px] text-muted-steel/80">
-              <div className="flex justify-between items-center border-b border-white/5 pb-2">
-                <span>EXPORT_CONFIG.JSON</span>
-                <span className="text-cosmic-teal">v2.1.0</span>
-              </div>
-              <div className="space-y-1 text-[8px]">
-                <p className="text-white/60">"brandName": "Aether Inc"</p>
-                <p className="text-white/60">"themeColors": &#123;</p>
-                <p className="pl-4 text-cosmic-teal">"primary": "#00F5E6"</p>
-                <p className="pl-4 text-white/60">"background": "#0A0B10"</p>
-                <p className="text-white/60">&#125;</p>
-              </div>
-              <div className="pt-2 flex justify-between items-center border-t border-white/5">
-                <span className="flex items-center gap-1 font-bold">
-                  <Cpu className="w-3.5 h-3.5 text-cosmic-teal" /> BUILD_SUCCESS
-                </span>
-                <span className="text-star-white">216ms</span>
-              </div>
+          <div className="w-full lg:w-80 border border-white/5 rounded-xl p-6 bg-black/20 font-mono text-[9px] text-apple-gray/80 space-y-4">
+            <div className="flex justify-between items-center border-b border-white/5 pb-2">
+              <span>CONFIG_SYNC.JSON</span>
+              <span className="text-apple-teal">v3.0.0</span>
+            </div>
+            <div className="space-y-1 text-[8px]">
+              <p className="text-apple-text/60">"brandName": "Aether Inc"</p>
+              <p className="text-apple-text/60">"themeColors": &#123;</p>
+              <p className="pl-4 text-apple-teal">"primary": "#00A8A0"</p>
+              <p className="pl-4 text-apple-text/60">"background": "#0A0C12"</p>
+              <p className="text-apple-text/60">&#125;</p>
+            </div>
+            <div className="pt-2 flex justify-between items-center border-t border-white/5">
+              <span className="flex items-center gap-1">
+                BUILD_NOMINAL
+              </span>
+              <span className="text-apple-text font-bold">READY</span>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Templates Collection Title & Grid */}
-      <section className="max-w-6xl mx-auto w-full mb-36">
-        <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-4 border-b border-white/5 pb-6">
+      {/* Templates Row */}
+      <section className="max-w-5xl mx-auto w-full mb-36">
+        <div className="flex justify-between items-end mb-12 border-b border-white/5 pb-6">
           <div>
-            <span className="font-mono text-[9px] uppercase tracking-wider text-muted-steel">LAYOUT DESIGNS</span>
-            <h2 className="text-3xl font-display font-bold text-star-white tracking-tight mt-1">
-              THE SHAPES OF DEPLOYMENT
+            <span className="font-mono text-[9px] uppercase tracking-wider text-apple-gray">TEMPLATES</span>
+            <h2 className="text-2.5xl font-display font-bold text-apple-text tracking-tight mt-1">
+              Curated Layout Configurations
             </h2>
           </div>
           <button
             onClick={() => router.push("/templates")}
-            className="flex items-center gap-1.5 text-xs font-heading font-bold uppercase tracking-wider text-cosmic-teal hover:text-white transition-colors cursor-pointer group"
+            className="flex items-center gap-1 text-xs font-heading font-bold uppercase tracking-wider text-apple-teal hover:text-apple-text transition-colors cursor-pointer group"
           >
-            Explore Options
-            <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
+            Explore <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
           </button>
         </div>
 
@@ -242,15 +188,147 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Trust & Verification Signals */}
-      <section className="max-w-5xl mx-auto w-full border-t border-white/5 pt-16 text-center space-y-6">
-        <div className="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center mx-auto text-cosmic-teal">
-          <Compass className="w-5 h-5 animate-spin [animation-duration:18s]" />
-        </div>
-        <p className="text-xs text-muted-steel uppercase tracking-widest font-mono">
-          Decentralized Namespace routing — Secured Registry Controls
+      {/* Trust & Details indicators */}
+      <section className="max-w-5xl mx-auto w-full border-t border-white/5 pt-16 text-center text-xs text-apple-gray font-light">
+        <p className="uppercase tracking-[0.25em] font-mono text-[8px] mb-2">
+          Secure Registry Resolvers — Protected DNS Routing
         </p>
+        <p>© 2026 Aether Domains. All rights reserved.</p>
       </section>
     </main>
   );
+}
+
+// Clean, slow-rotating mathematical wireframe coordinate sphere (Apple style)
+function WireframeSphere({ searchQuery = "" }: { searchQuery?: string }) {
+  const canvasRef = useRef<HTMLCanvasElement | null>(null);
+
+  useEffect(() => {
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+
+    const ctx = canvas.getContext("2d");
+    if (!ctx) return;
+
+    let animId: number;
+    let width = canvas.width;
+    let height = canvas.height;
+
+    const resize = () => {
+      const rect = canvas.getBoundingClientRect();
+      canvas.width = rect.width * window.devicePixelRatio;
+      canvas.height = rect.height * window.devicePixelRatio;
+      width = canvas.width;
+      height = canvas.height;
+    };
+    resize();
+
+    // Coordinate node rings
+    interface Dot3D {
+      x: number;
+      y: number;
+      z: number;
+    }
+
+    const dots: Dot3D[] = [];
+    const numRings = 8;
+    const dotsPerRing = 16;
+    const radius = 95;
+
+    for (let r = 0; r < numRings; r++) {
+      const phi = (Math.PI / numRings) * (r + 0.5);
+      for (let d = 0; d < dotsPerRing; d++) {
+        const theta = ((2 * Math.PI) / dotsPerRing) * d;
+        dots.push({
+          x: radius * Math.sin(phi) * Math.cos(theta),
+          y: radius * Math.sin(phi) * Math.sin(theta),
+          z: radius * Math.cos(phi),
+        });
+      }
+    }
+
+    let rotX = 0.002;
+    let rotY = 0.002;
+
+    const renderLoop = () => {
+      ctx.clearRect(0, 0, width, height);
+
+      // Typing in input increases spin velocity slightly for feedback sync
+      const speedFactor = searchQuery.length > 0 ? 3.0 : 1.0;
+      const cosX = Math.cos(rotX * speedFactor);
+      const sinX = Math.sin(rotX * speedFactor);
+      const cosY = Math.cos(rotY * speedFactor);
+      const sinY = Math.sin(rotY * speedFactor);
+
+      const cx = width / 2;
+      const cy = height / 2;
+
+      // Project nodes
+      const projected = dots.map((dot) => {
+        // Rotate X
+        const y1 = dot.y * cosX - dot.z * sinX;
+        const z1 = dot.z * cosX + dot.y * sinX;
+        // Rotate Y
+        const x2 = dot.x * cosY - z1 * sinY;
+        const z2 = z1 * cosY + dot.x * sinY;
+
+        dot.x = x2;
+        dot.y = y1;
+        dot.z = z2;
+
+        const fov = 350;
+        const scale = fov / (fov + z2);
+        return {
+          x2d: cx + x2 * scale,
+          y2d: cy + y1 * scale,
+          scale,
+          z3d: z2,
+        };
+      });
+
+      // Draw mathematical latitudinal lines
+      ctx.strokeStyle = "rgba(255, 255, 255, 0.035)";
+      ctx.lineWidth = 0.7;
+
+      for (let r = 0; r < numRings; r++) {
+        ctx.beginPath();
+        for (let d = 0; d < dotsPerRing; d++) {
+          const idx = r * dotsPerRing + d;
+          const nextIdx = r * dotsPerRing + ((d + 1) % dotsPerRing);
+          ctx.moveTo(projected[idx].x2d, projected[idx].y2d);
+          ctx.lineTo(projected[nextIdx].x2d, projected[nextIdx].y2d);
+        }
+        ctx.stroke();
+      }
+
+      // Draw clean node coordinate dots
+      projected.forEach((p) => {
+        const opacity = Math.min(Math.max((200 - p.z3d) / 300, 0.1), 0.75);
+        ctx.beginPath();
+        ctx.arc(p.x2d, p.y2d, 1.2 * p.scale, 0, Math.PI * 2);
+        ctx.fillStyle = "rgba(255, 255, 255, 0.3)";
+        ctx.globalAlpha = opacity;
+        ctx.fill();
+
+        // Highlight nodes in teal
+        if (p.z3d < -40 && Math.random() > 0.98) {
+          ctx.beginPath();
+          ctx.arc(p.x2d, p.y2d, 2.5 * p.scale, 0, Math.PI * 2);
+          ctx.fillStyle = "#00A8A0";
+          ctx.globalAlpha = opacity * 0.9;
+          ctx.fill();
+        }
+      });
+
+      ctx.globalAlpha = 1.0;
+      animId = window.requestAnimationFrame(renderLoop);
+    };
+    renderLoop();
+
+    return () => {
+      window.cancelAnimationFrame(animId);
+    };
+  }, [searchQuery]);
+
+  return <canvas ref={canvasRef} className="w-full h-full" />;
 }

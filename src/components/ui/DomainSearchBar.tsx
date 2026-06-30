@@ -16,7 +16,7 @@ interface DomainSearchBarProps {
 export function DomainSearchBar({
   onSearch,
   initialValue = "",
-  placeholder = "Search for your next digital coordinates...",
+  placeholder = "Search for your next digital coordinate name...",
   value,
   onChange
 }: DomainSearchBarProps) {
@@ -44,17 +44,14 @@ export function DomainSearchBar({
     <form
       onSubmit={handleSubmit}
       className={cn(
-        "w-full max-w-2xl transition-all duration-500 border rounded p-1 flex items-center gap-2",
+        "w-full max-w-2xl transition-all duration-300 border rounded-full p-1.5 flex items-center gap-2",
         isFocused 
-          ? "border-cosmic-teal/30 bg-[#12131F] shadow-[0_0_30px_rgba(0,245,230,0.01)] scale-[1.01]" 
-          : "border-white/5 bg-abyss-panel/60"
+          ? "border-white/20 bg-[#12141C]" 
+          : "border-white/5 bg-[#161922]/80 backdrop-blur-md"
       )}
     >
-      <div className="flex-1 flex items-center pl-3">
-        <Search className={cn(
-          "w-4 h-4 mr-2.5 shrink-0 transition-colors duration-500",
-          isFocused ? "text-cosmic-teal" : "text-muted-steel/50"
-        )} />
+      <div className="flex-1 flex items-center pl-4">
+        <Search className="w-5 h-5 mr-3 shrink-0 text-apple-gray" />
         <input
           type="text"
           value={query}
@@ -62,14 +59,14 @@ export function DomainSearchBar({
           onBlur={() => setIsFocused(false)}
           onChange={handleInputChange}
           placeholder={placeholder}
-          className="w-full bg-transparent border-none outline-none text-star-white placeholder:text-muted-steel/45 text-xs md:text-sm py-2.5"
+          className="w-full bg-transparent border-none outline-none text-apple-text placeholder:text-apple-gray/50 text-sm md:text-base py-3"
         />
       </div>
       
       <CyberButton
         type="submit"
-        variant="teal"
-        size="sm"
+        variant="primary"
+        size="md"
         className="shrink-0"
       >
         Search
