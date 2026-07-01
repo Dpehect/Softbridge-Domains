@@ -54,7 +54,7 @@ export default function AnimatedSlider() {
         <div key="warm-overlay" className="absolute inset-0 z-15 bg-[#2E1810]/65 pointer-events-none" />
 
         {/* Contents grid over background */}
-        <div key="slider-content" className="absolute inset-0 z-20 flex flex-col justify-end pb-8 pt-24 pl-4 pr-0 md:pl-[max(2.5rem,calc((100vw-72rem)/2))] md:pr-0">
+        <div key="slider-content" className="absolute inset-0 z-20 flex flex-col justify-end pb-8 pt-24 pl-4 md:pl-8 lg:pl-12 pr-0">
           <div className="w-full grid grid-cols-1 lg:grid-cols-12 gap-5 items-end h-full">
             
             {/* Left Column: Active details label info */}
