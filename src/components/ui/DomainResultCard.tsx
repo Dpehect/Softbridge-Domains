@@ -4,7 +4,7 @@ import React from "react";
 import { motion } from "framer-motion";
 import { useRouter } from "next/navigation";
 import { Globe, ShoppingCart, Sparkles } from "lucide-react";
-import { DomainInfo } from "@/data/mockDomains";
+import { DomainInfo } from "@/utils/domain";
 import { NeonBadge } from "./NeonBadge";
 import { CyberButton } from "./CyberButton";
 import { useCartStore } from "@/store/useCartStore";

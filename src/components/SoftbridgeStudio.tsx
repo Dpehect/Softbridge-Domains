@@ -7,8 +7,8 @@ import {
 } from "lucide-react";
 import { useCartStore } from "@/store/useCartStore";
 import { FullSitePreview, PreviewConfig } from "./PreviewModal";
-import { TEMPLATES, Template } from "@/data/templates";
-import { CustomPage, CustomSection, CustomSectionType } from "@/types/builder";
+import siteData from "@/data/siteData.json";
+import { CustomPage, CustomSection, CustomSectionType, Template } from "@/types/builder";
 
 // ─── Constants & Types ───────────────────────────────────────────────────────
 
@@ -97,7 +97,7 @@ export default function SoftbridgeStudio() {
 
   // Marketplace Logic
   const filteredTemplates = useMemo(() => {
-    return TEMPLATES.filter((t) => {
+    return (siteData.templates as Template[]).filter((t) => {
       if (filterCategory.length > 0 && !filterCategory.includes(t.category)) return false;
       return true;
     }).sort((a, b) => (a.isPopular === b.isPopular ? 0 : a.isPopular ? -1 : 1));

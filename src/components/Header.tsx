@@ -5,6 +5,7 @@ import { usePathname } from "next/navigation";
 import { ShoppingCart, Layout, Layers } from "lucide-react";
 import { motion } from "framer-motion";
 import { useCartStore } from "@/store/useCartStore";
+import siteData from "@/data/siteData.json";
 
 export function Header() {
   const pathname = usePathname();
@@ -16,6 +17,10 @@ export function Header() {
     { name: "Studio", path: "/studio" },
     { name: "Dashboard", path: "/dashboard" },
   ];
+
+  const brandParts = siteData.settings.companyName.split(" ");
+  const brandFirst = brandParts[0].toUpperCase();
+  const brandSecond = brandParts.slice(1).join(" ").toUpperCase();
 
   return (
     <motion.header
@@ -32,7 +37,7 @@ export function Header() {
             <Layers className="w-3 h-3 text-cosmic-teal" />
           </div>
           <span className="font-display font-bold text-sm uppercase tracking-wider text-star-white">
-            SOFTBRIDGE<span className="text-cosmic-teal font-normal">{"//"}</span>DOMAINS
+            {brandFirst}<span className="text-cosmic-teal font-normal">{"//"}</span>{brandSecond}
           </span>
         </Link>
 

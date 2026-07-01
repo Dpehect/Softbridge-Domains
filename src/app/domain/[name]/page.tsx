@@ -6,7 +6,7 @@ import { Globe, ArrowLeft, ShoppingCart, Sparkles, Shield, Award } from "lucide-
 import { CyberButton } from "@/components/ui/CyberButton";
 import { NeonBadge } from "@/components/ui/NeonBadge";
 import { useCartStore } from "@/store/useCartStore";
-import { mockDomainsSearch } from "@/data/mockDomains";
+import { mockDomainsSearch, DomainInfo } from "@/utils/domain";
 import { templatesData } from "@/data/templatesData";
 import Link from "next/link";
 import { motion } from "framer-motion";

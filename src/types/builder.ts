@@ -22,6 +22,21 @@ export interface CustomSection {
   };
 }
 
+export interface Template {
+  id: string;
+  name: string;
+  category: "SaaS" | "E-Commerce" | "Portfolio" | "Agency" | "Landing Page" | "Blog" | "Dashboard" | "Corporate";
+  type: "Template" | "Custom";
+  description: string;
+  price: number;
+  features: string[];
+  pages: number;
+  previewImage: string;
+  isPopular: boolean;
+  difficultyLevel: "Beginner" | "Intermediate" | "Advanced";
+  defaultPages?: CustomPage[];
+}
+
 export interface CustomPage {
   id: string;
   title: string;

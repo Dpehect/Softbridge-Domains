@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import { Header } from "@/components/Header";
+import { Preloader } from "@/components/Preloader";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -16,7 +17,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Softbridge Orbit - Premium Domains & Websites",
+  title: "Softbridge Solutions - Premium Domains & Websites",
   description: "Get your premium domain and industry-specific website in one click. Experience the antigravity platform.",
 };
 
@@ -28,6 +29,7 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${geistSans.variable} ${geistMono.variable} antialiased h-full`}>
       <body className="min-h-full flex flex-col bg-midnight-void text-star-white font-sans mesh-bg">
+        <Preloader />
         <Header />
         {children}
       </body>

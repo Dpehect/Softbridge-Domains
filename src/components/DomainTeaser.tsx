@@ -4,10 +4,11 @@ import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { Search, ArrowRight, Globe, Zap, Star } from "lucide-react";
 import { useRouter } from "next/navigation";
-import { domainCatalog } from "@/data/mockDomains";
+import { DomainListing } from "@/utils/domain";
+import siteData from "@/data/siteData.json";
 
 // ─── Featured spotlight domains ──────────────────────────────────
-const spotlightDomains = domainCatalog.filter((d) => d.available).slice(0, 6);
+const spotlightDomains = (siteData.domains as DomainListing[]).filter((d) => d.available).slice(0, 6);
 
 export default function DomainTeaser() {
   const router = useRouter();
@@ -119,8 +120,8 @@ export default function DomainTeaser() {
       {/* ── Stats strip ── */}
       <div className="mt-5 flex flex-wrap gap-4 justify-center md:justify-start">
         {[
-          { icon: Globe, label: `${domainCatalog.filter((d) => d.available).length} Available`, color: "text-emerald-500" },
-          { icon: Star,  label: `${domainCatalog.filter((d) => d.category === "Premium").length} Premium Names`, color: "text-[#E85D3B]" },
+          { icon: Globe, label: `${(siteData.domains as DomainListing[]).filter((d) => d.available).length} Available`, color: "text-muted-steel" },
+          { icon: Star,  label: `${(siteData.domains as DomainListing[]).filter((d) => d.category === "Premium").length} Premium`, color: "text-[#E85D3B]" },
           { icon: Zap,   label: "Instant Transfer", color: "text-cosmic-teal" },
         ].map(({ icon: Icon, label, color }) => (
           <div key={label} className={`flex items-center gap-1.5 text-[10px] font-mono uppercase tracking-wider ${color}`}>

@@ -25,8 +25,10 @@ import {
   filterDomains,
   ALL_TLDS,
   ALL_CATEGORIES,
-  DomainListing,
-} from "@/data/mockDomains";
+  mockDomainsSearch,
+  DomainInfo,
+  DomainListing
+} from "@/utils/domain";
 import { useCartStore } from "@/store/useCartStore";
 
 // ─── Price formatter ─────────────────────────────────────────────
@@ -391,7 +393,7 @@ export default function DomainSearch() {
                   <span className="text-[9px] font-mono text-muted-steel uppercase tracking-widest">Category</span>
                   <div className="flex flex-wrap gap-1.5">
                     {ALL_CATEGORIES.map((cat) => (
-                      <FilterPill key={cat} label={cat} active={selectedCats.includes(cat)} onClick={() => toggleCat(cat)} />
+                      <FilterPill key={cat} label={cat} active={selectedCats.includes(cat as any)} onClick={() => toggleCat(cat as any)} />
                     ))}
                   </div>
                 </div>
