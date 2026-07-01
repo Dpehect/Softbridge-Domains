@@ -49,45 +49,6 @@ const categorySections: Record<string, string[]> = {
 
 const slugify = (value: string) => value.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "");
 
-function buildInitialCustomPages(template: Template): CustomPage[] {
-  const pagesCount = template.pages;
-  const pageTitles = ["Home"];
-  if (pagesCount >= 3) pageTitles.push("About", "Contact");
-  if (pagesCount >= 5) pageTitles.push("Services", "Pricing");
-
-  return pageTitles.map((title) => {
-    const isHome = title === "Home";
-    const sections: CustomSection[] = [];
-    
-    if (isHome) {
-      sections.push({
-        id: `sec-${Date.now()}-hero`,
-        type: "Hero",
-        content: { heading: template.name, description: template.description, buttonText: "Get Started" },
-        styles: { alignment: "center", padding: "py-24" }
-      });
-      const tSections = categorySections[template.category] || ["Features", "FAQ"];
-      tSections.forEach((s, i) => {
-        sections.push({
-          id: `sec-${Date.now()}-${i}`,
-          type: s as CustomSectionType,
-          content: { heading: s, description: "Detailed information goes here.", items: ["Item 1", "Item 2", "Item 3"] },
-          styles: { alignment: "center", padding: "py-16", layout: s === "Features" ? "3-col" : "1-col" }
-        });
-      });
-    } else {
-      sections.push({
-        id: `sec-${Date.now()}-generic`,
-        type: "Features",
-        content: { heading: title, description: `Welcome to the ${title} page.` },
-        styles: { alignment: "center", padding: "py-16" }
-      });
-    }
-
-    return { id: slugify(title), title, sections };
-  });
-}
-
 function createEmptySection(type: CustomSectionType): CustomSection {
   return {
     id: `sec-${Date.now()}-${Math.random().toString(36).substr(2, 5)}`,
@@ -147,7 +108,11 @@ export default function SoftbridgeStudio() {
     setSiteName(t.name);
     setSelectedExtras(t.features.map(f => ALL_FEATURES.find(af => af.name === f)?.id).filter(Boolean) as string[]);
     
-    const pages = buildInitialCustomPages(t);
+    // Use predefined pages from the template data, or fallback to an empty Home page
+    const pages = t.defaultPages && t.defaultPages.length > 0 
+      ? t.defaultPages 
+      : [{ id: "home", title: "Home", sections: [] }];
+      
     setCustomPages(pages);
     setActivePageId(pages[0].id);
 
