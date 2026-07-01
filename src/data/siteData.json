@@ -21,7 +21,8 @@
         "diner"
       ],
       "monthlyTraffic": 2600,
-      "mrr": 95
+      "mrr": 95,
+      "image": "https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?auto=format&fit=crop&w=600&q=80"
     },
     {
       "id": "2",
@@ -39,14 +40,15 @@
         "local"
       ],
       "monthlyTraffic": 2200,
-      "mrr": 80
+      "mrr": 80,
+      "image": "https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?auto=format&fit=crop&w=600&q=80"
     },
     {
       "id": "3",
       "name": "maple-grove-bakery",
       "tld": ".com",
       "fullDomain": "maplegrovebakery.com",
-      "price": 560,
+      "price": 500,
       "category": "Premium",
       "length": "Long",
       "available": true,
@@ -57,14 +59,15 @@
         "commerce"
       ],
       "monthlyTraffic": 4200,
-      "mrr": 145
+      "mrr": 145,
+      "image": "https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?auto=format&fit=crop&w=600&q=80"
     },
     {
       "id": "4",
       "name": "willow-creek-market",
       "tld": ".com",
       "fullDomain": "willowcreekmarket.com",
-      "price": 640,
+      "price": 500,
       "category": "Premium",
       "length": "Long",
       "available": true,
@@ -75,7 +78,8 @@
         "local"
       ],
       "monthlyTraffic": 5100,
-      "mrr": 160
+      "mrr": 160,
+      "image": "https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?auto=format&fit=crop&w=600&q=80"
     },
     {
       "id": "5",
@@ -93,14 +97,15 @@
         "commerce"
       ],
       "monthlyTraffic": 3400,
-      "mrr": 115
+      "mrr": 115,
+      "image": "https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?auto=format&fit=crop&w=600&q=80"
     },
     {
       "id": "6",
       "name": "cedar-and-main",
       "tld": ".com",
       "fullDomain": "cedarandmain.com",
-      "price": 680,
+      "price": 500,
       "category": "Premium",
       "length": "Medium",
       "available": true,
@@ -111,7 +116,8 @@
         "premium"
       ],
       "monthlyTraffic": 4200,
-      "mrr": 150
+      "mrr": 150,
+      "image": "https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?auto=format&fit=crop&w=600&q=80"
     },
     {
       "id": "7",
@@ -128,7 +134,8 @@
         "market",
         "short"
       ],
-      "monthlyTraffic": 780
+      "monthlyTraffic": 780,
+      "image": "https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=600&q=80"
     },
     {
       "id": "8",
@@ -146,7 +153,8 @@
         "newsletter"
       ],
       "monthlyTraffic": 980,
-      "mrr": 35
+      "mrr": 35,
+      "image": "https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=600&q=80"
     },
     {
       "id": "9",
@@ -164,7 +172,8 @@
         "local"
       ],
       "monthlyTraffic": 1300,
-      "mrr": 55
+      "mrr": 55,
+      "image": "https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=600&q=80"
     },
     {
       "id": "10",
@@ -182,7 +191,8 @@
         "local"
       ],
       "monthlyTraffic": 1400,
-      "mrr": 50
+      "mrr": 50,
+      "image": "https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=600&q=80"
     },
     {
       "id": "11",
@@ -200,7 +210,8 @@
         "shop"
       ],
       "monthlyTraffic": 1200,
-      "mrr": 40
+      "mrr": 40,
+      "image": "https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=600&q=80"
     },
     {
       "id": "12",
@@ -218,7 +229,8 @@
         "tools"
       ],
       "monthlyTraffic": 1050,
-      "mrr": 45
+      "mrr": 45,
+      "image": "https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=600&q=80"
     },
     {
       "id": "13",
@@ -236,7 +248,8 @@
         "tools"
       ],
       "monthlyTraffic": 2400,
-      "mrr": 120
+      "mrr": 120,
+      "image": "https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=600&q=80"
     },
     {
       "id": "14",
@@ -254,7 +267,8 @@
         "local"
       ],
       "monthlyTraffic": 1600,
-      "mrr": 90
+      "mrr": 90,
+      "image": "https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=600&q=80"
     },
     {
       "id": "15",
@@ -272,14 +286,15 @@
         "saas"
       ],
       "monthlyTraffic": 1900,
-      "mrr": 105
+      "mrr": 105,
+      "image": "https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=600&q=80"
     },
     {
       "id": "16",
       "name": "riverbend-reports",
       "tld": ".com",
       "fullDomain": "riverbendreports.com",
-      "price": 520,
+      "price": 500,
       "category": "Tech",
       "length": "Medium",
       "available": true,
@@ -290,7 +305,8 @@
         "analytics"
       ],
       "monthlyTraffic": 3100,
-      "mrr": 135
+      "mrr": 135,
+      "image": "https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=600&q=80"
     },
     {
       "id": "17",
@@ -308,7 +324,8 @@
         "app"
       ],
       "monthlyTraffic": 1650,
-      "mrr": 80
+      "mrr": 80,
+      "image": "https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=600&q=80"
     },
     {
       "id": "18",
@@ -326,7 +343,8 @@
         "team"
       ],
       "monthlyTraffic": 2050,
-      "mrr": 95
+      "mrr": 95,
+      "image": "https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=600&q=80"
     },
     {
       "id": "19",
@@ -344,7 +362,8 @@
         "market"
       ],
       "monthlyTraffic": 2100,
-      "mrr": 85
+      "mrr": 85,
+      "image": "https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=600&q=80"
     },
     {
       "id": "20",
@@ -362,7 +381,8 @@
         "store"
       ],
       "monthlyTraffic": 1700,
-      "mrr": 70
+      "mrr": 70,
+      "image": "https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=600&q=80"
     },
     {
       "id": "21",
@@ -380,7 +400,8 @@
         "local"
       ],
       "monthlyTraffic": 620,
-      "mrr": 35
+      "mrr": 35,
+      "image": "https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=600&q=80"
     },
     {
       "id": "22",
@@ -398,7 +419,8 @@
         "services"
       ],
       "monthlyTraffic": 1400,
-      "mrr": 65
+      "mrr": 65,
+      "image": "https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=600&q=80"
     },
     {
       "id": "23",
@@ -416,7 +438,8 @@
         "local"
       ],
       "monthlyTraffic": 1250,
-      "mrr": 70
+      "mrr": 70,
+      "image": "https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=600&q=80"
     },
     {
       "id": "24",
@@ -434,7 +457,8 @@
         "local"
       ],
       "monthlyTraffic": 1350,
-      "mrr": 65
+      "mrr": 65,
+      "image": "https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=600&q=80"
     },
     {
       "id": "25",
@@ -452,7 +476,8 @@
         "creative"
       ],
       "monthlyTraffic": 1500,
-      "mrr": 60
+      "mrr": 60,
+      "image": "https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=600&q=80"
     },
     {
       "id": "26",
@@ -470,7 +495,8 @@
         "creative"
       ],
       "monthlyTraffic": 980,
-      "mrr": 45
+      "mrr": 45,
+      "image": "https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=600&q=80"
     },
     {
       "id": "27",
@@ -488,7 +514,8 @@
         "brand"
       ],
       "monthlyTraffic": 860,
-      "mrr": 40
+      "mrr": 40,
+      "image": "https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=600&q=80"
     },
     {
       "id": "28",
@@ -506,7 +533,8 @@
         "studio"
       ],
       "monthlyTraffic": 1500,
-      "mrr": 80
+      "mrr": 80,
+      "image": "https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=600&q=80"
     },
     {
       "id": "29",
@@ -524,7 +552,8 @@
         "brand"
       ],
       "monthlyTraffic": 980,
-      "mrr": 50
+      "mrr": 50,
+      "image": "https://images.unsplash.com/photo-1559136555-9303baea8ebd?auto=format&fit=crop&w=600&q=80"
     },
     {
       "id": "30",
@@ -542,7 +571,8 @@
         "local"
       ],
       "monthlyTraffic": 980,
-      "mrr": 55
+      "mrr": 55,
+      "image": "https://images.unsplash.com/photo-1559136555-9303baea8ebd?auto=format&fit=crop&w=600&q=80"
     },
     {
       "id": "31",
@@ -559,7 +589,8 @@
         "taken",
         "local"
       ],
-      "monthlyTraffic": 3200
+      "monthlyTraffic": 3200,
+      "image": "https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=600&q=80"
     },
     {
       "id": "32",
@@ -576,7 +607,8 @@
         "taken",
         "health"
       ],
-      "monthlyTraffic": 2800
+      "monthlyTraffic": 2800,
+      "image": "https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?auto=format&fit=crop&w=600&q=80"
     },
     {
       "id": "33",
@@ -593,7 +625,8 @@
         "taken",
         "business"
       ],
-      "monthlyTraffic": 1900
+      "monthlyTraffic": 1900,
+      "image": "https://images.unsplash.com/photo-1559136555-9303baea8ebd?auto=format&fit=crop&w=600&q=80"
     },
     {
       "id": "34",
@@ -610,7 +643,8 @@
         "taken",
         "education"
       ],
-      "monthlyTraffic": 2100
+      "monthlyTraffic": 2100,
+      "image": "https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=600&q=80"
     }
   ],
   "templates": [
@@ -629,7 +663,7 @@
         "Testimonial Section"
       ],
       "pages": 1,
-      "previewImage": "/templates/saas.webp",
+      "previewImage": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=600&q=80",
       "isPopular": true,
       "difficultyLevel": "Intermediate",
       "defaultPages": [
@@ -695,7 +729,8 @@
             }
           ]
         }
-      ]
+      ],
+      "image": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=600&q=80"
     },
     {
       "id": "tpl-2",
@@ -712,7 +747,7 @@
         "Testimonial Section"
       ],
       "pages": 1,
-      "previewImage": "/templates/saas.webp",
+      "previewImage": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=600&q=80",
       "isPopular": false,
       "difficultyLevel": "Advanced",
       "defaultPages": [
@@ -778,7 +813,8 @@
             }
           ]
         }
-      ]
+      ],
+      "image": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=600&q=80"
     },
     {
       "id": "tpl-3",
@@ -795,7 +831,7 @@
         "Testimonial Section"
       ],
       "pages": 1,
-      "previewImage": "/templates/saas.webp",
+      "previewImage": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=600&q=80",
       "isPopular": false,
       "difficultyLevel": "Intermediate",
       "defaultPages": [
@@ -861,7 +897,8 @@
             }
           ]
         }
-      ]
+      ],
+      "image": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=600&q=80"
     },
     {
       "id": "tpl-4",
@@ -878,7 +915,7 @@
         "Testimonial Section"
       ],
       "pages": 1,
-      "previewImage": "/templates/saas.webp",
+      "previewImage": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=600&q=80",
       "isPopular": false,
       "difficultyLevel": "Advanced",
       "defaultPages": [
@@ -944,7 +981,8 @@
             }
           ]
         }
-      ]
+      ],
+      "image": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=600&q=80"
     },
     {
       "id": "tpl-5",
@@ -961,7 +999,7 @@
         "Testimonial Section"
       ],
       "pages": 1,
-      "previewImage": "/templates/saas.webp",
+      "previewImage": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=600&q=80",
       "isPopular": false,
       "difficultyLevel": "Intermediate",
       "defaultPages": [
@@ -1027,7 +1065,8 @@
             }
           ]
         }
-      ]
+      ],
+      "image": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=600&q=80"
     },
     {
       "id": "tpl-6",
@@ -1044,7 +1083,7 @@
         "Testimonial Section"
       ],
       "pages": 1,
-      "previewImage": "/templates/saas.webp",
+      "previewImage": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=600&q=80",
       "isPopular": false,
       "difficultyLevel": "Advanced",
       "defaultPages": [
@@ -1110,7 +1149,8 @@
             }
           ]
         }
-      ]
+      ],
+      "image": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=600&q=80"
     },
     {
       "id": "tpl-7",
@@ -1125,7 +1165,7 @@
         "Analytics"
       ],
       "pages": 1,
-      "previewImage": "/templates/e-commerce.webp",
+      "previewImage": "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=600&q=80",
       "isPopular": true,
       "difficultyLevel": "Intermediate",
       "defaultPages": [
@@ -1181,7 +1221,8 @@
             }
           ]
         }
-      ]
+      ],
+      "image": "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=600&q=80"
     },
     {
       "id": "tpl-8",
@@ -1196,7 +1237,7 @@
         "Analytics"
       ],
       "pages": 1,
-      "previewImage": "/templates/e-commerce.webp",
+      "previewImage": "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=600&q=80",
       "isPopular": false,
       "difficultyLevel": "Advanced",
       "defaultPages": [
@@ -1252,7 +1293,8 @@
             }
           ]
         }
-      ]
+      ],
+      "image": "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=600&q=80"
     },
     {
       "id": "tpl-9",
@@ -1267,7 +1309,7 @@
         "Analytics"
       ],
       "pages": 1,
-      "previewImage": "/templates/e-commerce.webp",
+      "previewImage": "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=600&q=80",
       "isPopular": false,
       "difficultyLevel": "Intermediate",
       "defaultPages": [
@@ -1323,7 +1365,8 @@
             }
           ]
         }
-      ]
+      ],
+      "image": "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=600&q=80"
     },
     {
       "id": "tpl-10",
@@ -1338,7 +1381,7 @@
         "Analytics"
       ],
       "pages": 1,
-      "previewImage": "/templates/e-commerce.webp",
+      "previewImage": "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=600&q=80",
       "isPopular": false,
       "difficultyLevel": "Advanced",
       "defaultPages": [
@@ -1394,7 +1437,8 @@
             }
           ]
         }
-      ]
+      ],
+      "image": "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=600&q=80"
     },
     {
       "id": "tpl-11",
@@ -1409,7 +1453,7 @@
         "Analytics"
       ],
       "pages": 1,
-      "previewImage": "/templates/e-commerce.webp",
+      "previewImage": "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=600&q=80",
       "isPopular": false,
       "difficultyLevel": "Intermediate",
       "defaultPages": [
@@ -1465,7 +1509,8 @@
             }
           ]
         }
-      ]
+      ],
+      "image": "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=600&q=80"
     },
     {
       "id": "tpl-12",
@@ -1480,7 +1525,7 @@
         "Analytics"
       ],
       "pages": 1,
-      "previewImage": "/templates/e-commerce.webp",
+      "previewImage": "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=600&q=80",
       "isPopular": false,
       "difficultyLevel": "Advanced",
       "defaultPages": [
@@ -1536,7 +1581,8 @@
             }
           ]
         }
-      ]
+      ],
+      "image": "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=600&q=80"
     },
     {
       "id": "tpl-13",
@@ -1551,7 +1597,7 @@
         "Contact Form"
       ],
       "pages": 1,
-      "previewImage": "/templates/portfolio.webp",
+      "previewImage": "https://images.unsplash.com/photo-1531403009284-440f080d1e12?auto=format&fit=crop&w=600&q=80",
       "isPopular": true,
       "difficultyLevel": "Intermediate",
       "defaultPages": [
@@ -1593,7 +1639,8 @@
             }
           ]
         }
-      ]
+      ],
+      "image": "https://images.unsplash.com/photo-1531403009284-440f080d1e12?auto=format&fit=crop&w=600&q=80"
     },
     {
       "id": "tpl-14",
@@ -1608,7 +1655,7 @@
         "Contact Form"
       ],
       "pages": 1,
-      "previewImage": "/templates/portfolio.webp",
+      "previewImage": "https://images.unsplash.com/photo-1531403009284-440f080d1e12?auto=format&fit=crop&w=600&q=80",
       "isPopular": false,
       "difficultyLevel": "Advanced",
       "defaultPages": [
@@ -1650,7 +1697,8 @@
             }
           ]
         }
-      ]
+      ],
+      "image": "https://images.unsplash.com/photo-1531403009284-440f080d1e12?auto=format&fit=crop&w=600&q=80"
     },
     {
       "id": "tpl-15",
@@ -1665,7 +1713,7 @@
         "Contact Form"
       ],
       "pages": 1,
-      "previewImage": "/templates/portfolio.webp",
+      "previewImage": "https://images.unsplash.com/photo-1531403009284-440f080d1e12?auto=format&fit=crop&w=600&q=80",
       "isPopular": false,
       "difficultyLevel": "Intermediate",
       "defaultPages": [
@@ -1707,7 +1755,8 @@
             }
           ]
         }
-      ]
+      ],
+      "image": "https://images.unsplash.com/photo-1531403009284-440f080d1e12?auto=format&fit=crop&w=600&q=80"
     },
     {
       "id": "tpl-16",
@@ -1722,7 +1771,7 @@
         "Contact Form"
       ],
       "pages": 1,
-      "previewImage": "/templates/portfolio.webp",
+      "previewImage": "https://images.unsplash.com/photo-1531403009284-440f080d1e12?auto=format&fit=crop&w=600&q=80",
       "isPopular": false,
       "difficultyLevel": "Advanced",
       "defaultPages": [
@@ -1764,7 +1813,8 @@
             }
           ]
         }
-      ]
+      ],
+      "image": "https://images.unsplash.com/photo-1531403009284-440f080d1e12?auto=format&fit=crop&w=600&q=80"
     },
     {
       "id": "tpl-17",
@@ -1779,7 +1829,7 @@
         "Contact Form"
       ],
       "pages": 1,
-      "previewImage": "/templates/portfolio.webp",
+      "previewImage": "https://images.unsplash.com/photo-1531403009284-440f080d1e12?auto=format&fit=crop&w=600&q=80",
       "isPopular": false,
       "difficultyLevel": "Intermediate",
       "defaultPages": [
@@ -1821,7 +1871,8 @@
             }
           ]
         }
-      ]
+      ],
+      "image": "https://images.unsplash.com/photo-1531403009284-440f080d1e12?auto=format&fit=crop&w=600&q=80"
     },
     {
       "id": "tpl-18",
@@ -1836,7 +1887,7 @@
         "Contact Form"
       ],
       "pages": 1,
-      "previewImage": "/templates/portfolio.webp",
+      "previewImage": "https://images.unsplash.com/photo-1531403009284-440f080d1e12?auto=format&fit=crop&w=600&q=80",
       "isPopular": false,
       "difficultyLevel": "Advanced",
       "defaultPages": [
@@ -1878,7 +1929,8 @@
             }
           ]
         }
-      ]
+      ],
+      "image": "https://images.unsplash.com/photo-1531403009284-440f080d1e12?auto=format&fit=crop&w=600&q=80"
     },
     {
       "id": "tpl-19",
@@ -1892,7 +1944,7 @@
         "Newsletter"
       ],
       "pages": 1,
-      "previewImage": "/templates/agency.webp",
+      "previewImage": "https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=600&q=80",
       "isPopular": true,
       "difficultyLevel": "Intermediate",
       "defaultPages": [
@@ -1934,7 +1986,8 @@
             }
           ]
         }
-      ]
+      ],
+      "image": "https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=600&q=80"
     },
     {
       "id": "tpl-20",
@@ -1948,7 +2001,7 @@
         "Newsletter"
       ],
       "pages": 1,
-      "previewImage": "/templates/agency.webp",
+      "previewImage": "https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=600&q=80",
       "isPopular": false,
       "difficultyLevel": "Advanced",
       "defaultPages": [
@@ -1990,7 +2043,8 @@
             }
           ]
         }
-      ]
+      ],
+      "image": "https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=600&q=80"
     },
     {
       "id": "tpl-21",
@@ -2004,7 +2058,7 @@
         "Newsletter"
       ],
       "pages": 1,
-      "previewImage": "/templates/agency.webp",
+      "previewImage": "https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=600&q=80",
       "isPopular": false,
       "difficultyLevel": "Intermediate",
       "defaultPages": [
@@ -2046,7 +2100,8 @@
             }
           ]
         }
-      ]
+      ],
+      "image": "https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=600&q=80"
     },
     {
       "id": "tpl-22",
@@ -2060,7 +2115,7 @@
         "Newsletter"
       ],
       "pages": 1,
-      "previewImage": "/templates/agency.webp",
+      "previewImage": "https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=600&q=80",
       "isPopular": false,
       "difficultyLevel": "Advanced",
       "defaultPages": [
@@ -2102,7 +2157,8 @@
             }
           ]
         }
-      ]
+      ],
+      "image": "https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=600&q=80"
     },
     {
       "id": "tpl-23",
@@ -2116,7 +2172,7 @@
         "Newsletter"
       ],
       "pages": 1,
-      "previewImage": "/templates/agency.webp",
+      "previewImage": "https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=600&q=80",
       "isPopular": false,
       "difficultyLevel": "Intermediate",
       "defaultPages": [
@@ -2158,7 +2214,8 @@
             }
           ]
         }
-      ]
+      ],
+      "image": "https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=600&q=80"
     },
     {
       "id": "tpl-24",
@@ -2172,7 +2229,7 @@
         "Newsletter"
       ],
       "pages": 1,
-      "previewImage": "/templates/agency.webp",
+      "previewImage": "https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=600&q=80",
       "isPopular": false,
       "difficultyLevel": "Advanced",
       "defaultPages": [
@@ -2214,7 +2271,8 @@
             }
           ]
         }
-      ]
+      ],
+      "image": "https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=600&q=80"
     },
     {
       "id": "tpl-25",
@@ -2228,7 +2286,7 @@
         "Newsletter"
       ],
       "pages": 1,
-      "previewImage": "/templates/landing-page.webp",
+      "previewImage": "https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=600&q=80",
       "isPopular": true,
       "difficultyLevel": "Intermediate",
       "defaultPages": [
@@ -2270,7 +2328,8 @@
             }
           ]
         }
-      ]
+      ],
+      "image": "https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=600&q=80"
     },
     {
       "id": "tpl-26",
@@ -2284,7 +2343,7 @@
         "Newsletter"
       ],
       "pages": 1,
-      "previewImage": "/templates/landing-page.webp",
+      "previewImage": "https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=600&q=80",
       "isPopular": false,
       "difficultyLevel": "Advanced",
       "defaultPages": [
@@ -2326,7 +2385,8 @@
             }
           ]
         }
-      ]
+      ],
+      "image": "https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=600&q=80"
     },
     {
       "id": "tpl-27",
@@ -2340,7 +2400,7 @@
         "Newsletter"
       ],
       "pages": 1,
-      "previewImage": "/templates/landing-page.webp",
+      "previewImage": "https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=600&q=80",
       "isPopular": false,
       "difficultyLevel": "Intermediate",
       "defaultPages": [
@@ -2382,7 +2442,8 @@
             }
           ]
         }
-      ]
+      ],
+      "image": "https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=600&q=80"
     },
     {
       "id": "tpl-28",
@@ -2396,7 +2457,7 @@
         "Newsletter"
       ],
       "pages": 1,
-      "previewImage": "/templates/landing-page.webp",
+      "previewImage": "https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=600&q=80",
       "isPopular": false,
       "difficultyLevel": "Advanced",
       "defaultPages": [
@@ -2438,7 +2499,8 @@
             }
           ]
         }
-      ]
+      ],
+      "image": "https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=600&q=80"
     },
     {
       "id": "tpl-29",
@@ -2452,7 +2514,7 @@
         "Newsletter"
       ],
       "pages": 1,
-      "previewImage": "/templates/landing-page.webp",
+      "previewImage": "https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=600&q=80",
       "isPopular": false,
       "difficultyLevel": "Intermediate",
       "defaultPages": [
@@ -2494,7 +2556,8 @@
             }
           ]
         }
-      ]
+      ],
+      "image": "https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=600&q=80"
     },
     {
       "id": "tpl-30",
@@ -2508,7 +2571,7 @@
         "Newsletter"
       ],
       "pages": 1,
-      "previewImage": "/templates/landing-page.webp",
+      "previewImage": "https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=600&q=80",
       "isPopular": false,
       "difficultyLevel": "Advanced",
       "defaultPages": [
@@ -2550,7 +2613,8 @@
             }
           ]
         }
-      ]
+      ],
+      "image": "https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=600&q=80"
     },
     {
       "id": "tpl-31",
@@ -2564,7 +2628,7 @@
         "Newsletter"
       ],
       "pages": 1,
-      "previewImage": "/templates/blog.webp",
+      "previewImage": "https://images.unsplash.com/photo-1499750310107-5fef28a66643?auto=format&fit=crop&w=600&q=80",
       "isPopular": true,
       "difficultyLevel": "Intermediate",
       "defaultPages": [
@@ -2606,7 +2670,8 @@
             }
           ]
         }
-      ]
+      ],
+      "image": "https://images.unsplash.com/photo-1499750310107-5fef28a66643?auto=format&fit=crop&w=600&q=80"
     },
     {
       "id": "tpl-32",
@@ -2620,7 +2685,7 @@
         "Newsletter"
       ],
       "pages": 1,
-      "previewImage": "/templates/blog.webp",
+      "previewImage": "https://images.unsplash.com/photo-1499750310107-5fef28a66643?auto=format&fit=crop&w=600&q=80",
       "isPopular": false,
       "difficultyLevel": "Advanced",
       "defaultPages": [
@@ -2662,7 +2727,8 @@
             }
           ]
         }
-      ]
+      ],
+      "image": "https://images.unsplash.com/photo-1499750310107-5fef28a66643?auto=format&fit=crop&w=600&q=80"
     },
     {
       "id": "tpl-33",
@@ -2676,7 +2742,7 @@
         "Newsletter"
       ],
       "pages": 1,
-      "previewImage": "/templates/blog.webp",
+      "previewImage": "https://images.unsplash.com/photo-1499750310107-5fef28a66643?auto=format&fit=crop&w=600&q=80",
       "isPopular": false,
       "difficultyLevel": "Intermediate",
       "defaultPages": [
@@ -2718,7 +2784,8 @@
             }
           ]
         }
-      ]
+      ],
+      "image": "https://images.unsplash.com/photo-1499750310107-5fef28a66643?auto=format&fit=crop&w=600&q=80"
     },
     {
       "id": "tpl-34",
@@ -2732,7 +2799,7 @@
         "Newsletter"
       ],
       "pages": 1,
-      "previewImage": "/templates/blog.webp",
+      "previewImage": "https://images.unsplash.com/photo-1499750310107-5fef28a66643?auto=format&fit=crop&w=600&q=80",
       "isPopular": false,
       "difficultyLevel": "Advanced",
       "defaultPages": [
@@ -2774,7 +2841,8 @@
             }
           ]
         }
-      ]
+      ],
+      "image": "https://images.unsplash.com/photo-1499750310107-5fef28a66643?auto=format&fit=crop&w=600&q=80"
     },
     {
       "id": "tpl-35",
@@ -2788,7 +2856,7 @@
         "Newsletter"
       ],
       "pages": 1,
-      "previewImage": "/templates/blog.webp",
+      "previewImage": "https://images.unsplash.com/photo-1499750310107-5fef28a66643?auto=format&fit=crop&w=600&q=80",
       "isPopular": false,
       "difficultyLevel": "Intermediate",
       "defaultPages": [
@@ -2830,7 +2898,8 @@
             }
           ]
         }
-      ]
+      ],
+      "image": "https://images.unsplash.com/photo-1499750310107-5fef28a66643?auto=format&fit=crop&w=600&q=80"
     },
     {
       "id": "tpl-36",
@@ -2844,7 +2913,7 @@
         "Newsletter"
       ],
       "pages": 1,
-      "previewImage": "/templates/blog.webp",
+      "previewImage": "https://images.unsplash.com/photo-1499750310107-5fef28a66643?auto=format&fit=crop&w=600&q=80",
       "isPopular": false,
       "difficultyLevel": "Advanced",
       "defaultPages": [
@@ -2886,7 +2955,8 @@
             }
           ]
         }
-      ]
+      ],
+      "image": "https://images.unsplash.com/photo-1499750310107-5fef28a66643?auto=format&fit=crop&w=600&q=80"
     },
     {
       "id": "tpl-37",
@@ -2900,7 +2970,7 @@
         "Newsletter"
       ],
       "pages": 1,
-      "previewImage": "/templates/dashboard.webp",
+      "previewImage": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=600&q=80",
       "isPopular": true,
       "difficultyLevel": "Intermediate",
       "defaultPages": [
@@ -2942,7 +3012,8 @@
             }
           ]
         }
-      ]
+      ],
+      "image": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=600&q=80"
     },
     {
       "id": "tpl-38",
@@ -2956,7 +3027,7 @@
         "Newsletter"
       ],
       "pages": 1,
-      "previewImage": "/templates/dashboard.webp",
+      "previewImage": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=600&q=80",
       "isPopular": false,
       "difficultyLevel": "Advanced",
       "defaultPages": [
@@ -2998,7 +3069,8 @@
             }
           ]
         }
-      ]
+      ],
+      "image": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=600&q=80"
     },
     {
       "id": "tpl-39",
@@ -3012,7 +3084,7 @@
         "Newsletter"
       ],
       "pages": 1,
-      "previewImage": "/templates/dashboard.webp",
+      "previewImage": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=600&q=80",
       "isPopular": false,
       "difficultyLevel": "Intermediate",
       "defaultPages": [
@@ -3054,7 +3126,8 @@
             }
           ]
         }
-      ]
+      ],
+      "image": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=600&q=80"
     },
     {
       "id": "tpl-40",
@@ -3068,7 +3141,7 @@
         "Newsletter"
       ],
       "pages": 1,
-      "previewImage": "/templates/dashboard.webp",
+      "previewImage": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=600&q=80",
       "isPopular": false,
       "difficultyLevel": "Advanced",
       "defaultPages": [
@@ -3110,7 +3183,8 @@
             }
           ]
         }
-      ]
+      ],
+      "image": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=600&q=80"
     },
     {
       "id": "tpl-41",
@@ -3124,7 +3198,7 @@
         "Newsletter"
       ],
       "pages": 1,
-      "previewImage": "/templates/dashboard.webp",
+      "previewImage": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=600&q=80",
       "isPopular": false,
       "difficultyLevel": "Intermediate",
       "defaultPages": [
@@ -3166,7 +3240,8 @@
             }
           ]
         }
-      ]
+      ],
+      "image": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=600&q=80"
     },
     {
       "id": "tpl-42",
@@ -3180,7 +3255,7 @@
         "Newsletter"
       ],
       "pages": 1,
-      "previewImage": "/templates/dashboard.webp",
+      "previewImage": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=600&q=80",
       "isPopular": false,
       "difficultyLevel": "Advanced",
       "defaultPages": [
@@ -3222,7 +3297,8 @@
             }
           ]
         }
-      ]
+      ],
+      "image": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=600&q=80"
     },
     {
       "id": "tpl-43",
@@ -3236,7 +3312,7 @@
         "Newsletter"
       ],
       "pages": 1,
-      "previewImage": "/templates/corporate.webp",
+      "previewImage": "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=600&q=80",
       "isPopular": true,
       "difficultyLevel": "Intermediate",
       "defaultPages": [
@@ -3278,7 +3354,8 @@
             }
           ]
         }
-      ]
+      ],
+      "image": "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=600&q=80"
     },
     {
       "id": "tpl-44",
@@ -3292,7 +3369,7 @@
         "Newsletter"
       ],
       "pages": 1,
-      "previewImage": "/templates/corporate.webp",
+      "previewImage": "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=600&q=80",
       "isPopular": false,
       "difficultyLevel": "Advanced",
       "defaultPages": [
@@ -3334,7 +3411,8 @@
             }
           ]
         }
-      ]
+      ],
+      "image": "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=600&q=80"
     },
     {
       "id": "tpl-45",
@@ -3348,7 +3426,7 @@
         "Newsletter"
       ],
       "pages": 1,
-      "previewImage": "/templates/corporate.webp",
+      "previewImage": "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=600&q=80",
       "isPopular": false,
       "difficultyLevel": "Intermediate",
       "defaultPages": [
@@ -3390,7 +3468,8 @@
             }
           ]
         }
-      ]
+      ],
+      "image": "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=600&q=80"
     },
     {
       "id": "tpl-46",
@@ -3404,7 +3483,7 @@
         "Newsletter"
       ],
       "pages": 1,
-      "previewImage": "/templates/corporate.webp",
+      "previewImage": "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=600&q=80",
       "isPopular": false,
       "difficultyLevel": "Advanced",
       "defaultPages": [
@@ -3446,7 +3525,8 @@
             }
           ]
         }
-      ]
+      ],
+      "image": "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=600&q=80"
     },
     {
       "id": "tpl-47",
@@ -3460,7 +3540,7 @@
         "Newsletter"
       ],
       "pages": 1,
-      "previewImage": "/templates/corporate.webp",
+      "previewImage": "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=600&q=80",
       "isPopular": false,
       "difficultyLevel": "Intermediate",
       "defaultPages": [
@@ -3502,7 +3582,8 @@
             }
           ]
         }
-      ]
+      ],
+      "image": "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=600&q=80"
     },
     {
       "id": "tpl-48",
@@ -3516,7 +3597,7 @@
         "Newsletter"
       ],
       "pages": 1,
-      "previewImage": "/templates/corporate.webp",
+      "previewImage": "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=600&q=80",
       "isPopular": false,
       "difficultyLevel": "Advanced",
       "defaultPages": [
@@ -3558,7 +3639,8 @@
             }
           ]
         }
-      ]
+      ],
+      "image": "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=600&q=80"
     }
   ]
 }
