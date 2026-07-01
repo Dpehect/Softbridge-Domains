@@ -43,7 +43,12 @@ interface ConfiguratorState {
   config: WebTemplateConfig;
   previewDevice: "desktop" | "tablet" | "mobile";
   setPreviewDevice: (device: "desktop" | "tablet" | "mobile") => void;
-  loadTemplate: (templateId: string, templateName: string, defaultPages: ConfiguredPage[]) => void;
+  loadTemplate: (
+    templateId: string,
+    templateName: string,
+    defaultPages: ConfiguredPage[],
+    theme?: WebTemplateConfig["theme"]
+  ) => void;
   updateBrandInfo: (brandName: string, slogan: string, logo: string) => void;
   updateThemeColors: (colors: { primary: string; secondary: string; bg: string }) => void;
   updateTypography: (typography: { headings: string; body: string }) => void;
@@ -75,13 +80,14 @@ export const useConfiguratorStore = create<ConfiguratorState>((set) => ({
   config: DEFAULT_CONFIG,
   previewDevice: "desktop",
   setPreviewDevice: (device) => set({ previewDevice: device }),
-  loadTemplate: (templateId, templateName, defaultPages) =>
+  loadTemplate: (templateId, templateName, defaultPages, theme) =>
     set((state) => ({
       config: {
         ...state.config,
         templateId,
         templateName,
         pages: defaultPages,
+        theme: theme || state.config.theme,
       },
     })),
   updateBrandInfo: (brandName, slogan, logo) =>

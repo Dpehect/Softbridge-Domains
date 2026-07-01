@@ -18,188 +18,384 @@ import {
   Moon,
   ShoppingBag,
   Layout,
+  Briefcase,
+  LayoutDashboard,
+  Mail,
+  Table2,
 } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 import { useCartStore } from "@/store/useCartStore";
+import type { ConfiguredPage, PageSection } from "@/store/useConfiguratorStore";
 import { CyberButton } from "./ui/CyberButton";
-import PreviewModal, { PreviewConfig } from "./PreviewModal";
+import PreviewModal, { PreviewConfig, PreviewPage } from "./PreviewModal";
 
-// ─── Types ────────────────────────────────────────────────────────
-type SiteType   = { id: string; name: string; price: number; description: string; icon: LucideIcon; hero: string; sections: string[] };
-type ColorTheme = { id: string; name: string; primary: string; secondary: string; bg: string; text: string; accent: string };
-type LayoutStyle = { id: string; name: string; description: string };
-type ExtraFeature = { id: string; name: string; price: number; description: string; icon: LucideIcon };
+type SiteType = {
+  id: string;
+  name: string;
+  price: number;
+  description: string;
+  icon: LucideIcon;
+  hero: string;
+  sections: string[];
+};
 
-// ─── Data ─────────────────────────────────────────────────────────
+type ColorTheme = {
+  id: string;
+  name: string;
+  primary: string;
+  secondary: string;
+  bg: string;
+  text: string;
+  accent: string;
+};
+
+type LayoutStyle = {
+  id: string;
+  name: string;
+  description: string;
+};
+
+type PagePack = {
+  id: string;
+  name: string;
+  price: number;
+  description: string;
+  pages: string[];
+};
+
+type ExtraFeature = {
+  id: string;
+  name: string;
+  price: number;
+  description: string;
+  icon: LucideIcon;
+};
+
 const SITE_TYPES: SiteType[] = [
   {
-    id: "saas", name: "SaaS Website", price: 149, icon: Cpu,
-    description: "Interactive tech SaaS presentation with analytics layout modules.",
-    hero: "The smarter way to ship software",
-    sections: ["Features", "Pricing", "Testimonials", "CTA"],
+    id: "saas",
+    name: "SaaS Website",
+    price: 199,
+    icon: Cpu,
+    description: "Conversion-focused product site with feature, pricing, and trust modules.",
+    hero: "Launch a SaaS experience that feels ready for scale",
+    sections: ["Features", "Integrations", "Pricing", "Customer Stories"],
   },
   {
-    id: "portfolio", name: "Developer Portfolio", price: 99, icon: Monitor,
-    description: "Minimalist layout for developers to display interactive web cases.",
-    hero: "Hi, I build things for the web",
-    sections: ["Projects", "Skills", "About", "Contact"],
+    id: "portfolio",
+    name: "Portfolio",
+    price: 99,
+    icon: Monitor,
+    description: "Premium personal showcase with case studies, services, and contact flow.",
+    hero: "Show your work with a calm, premium portfolio",
+    sections: ["Selected Work", "Case Studies", "Services", "Contact"],
   },
   {
-    id: "ecommerce", name: "E-Commerce Platform", price: 199, icon: ShoppingBag,
-    description: "Clean store with grid collections and seamless payment flow.",
-    hero: "Discover our latest collection",
-    sections: ["Products", "Categories", "Offers", "Reviews"],
+    id: "ecommerce",
+    name: "E-Commerce",
+    price: 279,
+    icon: ShoppingBag,
+    description: "Catalog, product highlights, reviews, and checkout-ready structure.",
+    hero: "Build a store that makes products easy to trust",
+    sections: ["Collections", "Best Sellers", "Reviews", "Checkout"],
   },
   {
-    id: "blog", name: "Minimalist Blog", price: 79, icon: Bookmark,
-    description: "Bold typography layouts focused on reading experience.",
-    hero: "Thoughts, ideas, and stories",
-    sections: ["Latest Posts", "Categories", "Featured", "Newsletter"],
+    id: "blog",
+    name: "Blog",
+    price: 89,
+    icon: Bookmark,
+    description: "Editorial layout with featured posts, categories, and newsletter capture.",
+    hero: "Publish sharp ideas inside a refined reading system",
+    sections: ["Featured Articles", "Categories", "Author Notes", "Newsletter"],
+  },
+  {
+    id: "agency",
+    name: "Agency",
+    price: 149,
+    icon: Briefcase,
+    description: "Service-led agency site with proof, process, and lead generation.",
+    hero: "Turn your agency offer into a polished sales system",
+    sections: ["Services", "Process", "Results", "Book a Call"],
+  },
+  {
+    id: "landing",
+    name: "Landing Page",
+    price: 69,
+    icon: Layout,
+    description: "Lean campaign page for launches, waitlists, and product validation.",
+    hero: "Validate the offer with a focused landing page",
+    sections: ["Benefits", "Social Proof", "FAQ", "Signup"],
+  },
+  {
+    id: "dashboard",
+    name: "Dashboard",
+    price: 249,
+    icon: LayoutDashboard,
+    description: "Operational UI with metrics, tables, activity, and admin surfaces.",
+    hero: "A clear command center for daily operations",
+    sections: ["Metrics", "Reports", "Activity", "Team Access"],
   },
 ];
 
 const COLOR_THEMES: ColorTheme[] = [
-  { id: "orange",   name: "Sunset Orange",   primary: "#E85D3B", secondary: "#D94F2E", bg: "#FDF0E6", text: "#5C2E1F", accent: "#F4A26190" },
-  { id: "cyan",     name: "Electric Cyan",   primary: "#00D2FE", secondary: "#7F00FF", bg: "#070B14", text: "#E8F4FC", accent: "#00D2FE20" },
-  { id: "emerald",  name: "Emerald Forest",  primary: "#10B981", secondary: "#047857", bg: "#F0FDF4", text: "#064E3B", accent: "#10B98120" },
-  { id: "lavender", name: "Royal Lavender",  primary: "#8B5CF6", secondary: "#6D28D9", bg: "#F5F3FF", text: "#1E1B4B", accent: "#8B5CF620" },
+  { id: "clay", name: "Sunset Clay", primary: "#E85D3B", secondary: "#D94F2E", bg: "#FDF0E6", text: "#5C2E1F", accent: "#F4A26190" },
+  { id: "graphite", name: "Graphite Ivory", primary: "#2F3437", secondary: "#8C6A55", bg: "#F7F3EC", text: "#30251F", accent: "#2F343716" },
+  { id: "emerald", name: "Emerald Mint", primary: "#0F9F6E", secondary: "#0B6B52", bg: "#F0F8F2", text: "#123D31", accent: "#0F9F6E1D" },
+  { id: "navy", name: "Navy Steel", primary: "#315C7C", secondary: "#7096A5", bg: "#F3F7F8", text: "#23333F", accent: "#315C7C1C" },
+  { id: "rose", name: "Rose Sand", primary: "#B84D57", secondary: "#D28A6D", bg: "#FFF1EC", text: "#4B2D2A", accent: "#B84D571C" },
+  { id: "olive", name: "Olive Studio", primary: "#687A3F", secondary: "#A58A55", bg: "#F7F5EA", text: "#3F3A28", accent: "#687A3F1F" },
 ];
 
 const LAYOUT_STYLES: LayoutStyle[] = [
-  { id: "modern",  name: "Modern Grid",       description: "Bento-style layouts, asymmetrical cards, and micro-grid patterns." },
-  { id: "minimal", name: "Minimalist Clean",  description: "Vast white space, thin boundaries, and sleek classic alignments." },
-  { id: "bold",    name: "Bold Editorial",    description: "Large font sizes, heavy boxes, and strong border outlines." },
+  { id: "modern", name: "Modern Grid", description: "Compact cards, clear hierarchy, and balanced landing sections." },
+  { id: "minimal", name: "Minimal Premium", description: "Thin borders, quiet typography, and restrained section rhythm." },
+  { id: "editorial", name: "Editorial Split", description: "Strong headings, narrative blocks, and content-first layouts." },
+  { id: "product", name: "Product Bento", description: "Dense product modules with feature clusters and proof points." },
+  { id: "dashboard", name: "Dashboard Dense", description: "Metric-first screens with tighter panels and table-ready areas." },
+];
+
+const PAGE_PACKS: PagePack[] = [
+  { id: "one", name: "1 Page", price: 0, description: "Home page only for campaigns and quick launches.", pages: ["Home"] },
+  { id: "three", name: "3 Pages", price: 80, description: "Home, About, and Contact for a lean business site.", pages: ["Home", "About", "Contact"] },
+  { id: "five", name: "5 Pages", price: 150, description: "Core marketing sitemap with features and pricing.", pages: ["Home", "About", "Features", "Pricing", "Contact"] },
+  { id: "full", name: "Full Site", price: 220, description: "Complete multi-page build with content, proof, and support pages.", pages: ["Home", "About", "Features", "Pricing", "Blog", "Dashboard", "Contact"] },
 ];
 
 const EXTRA_FEATURES: ExtraFeature[] = [
-  { id: "analytics", name: "Google Analytics",      price: 15, icon: BarChart2, description: "Pre-configured tracking scripts and dynamic dashboards." },
-  { id: "3d",        name: "Interactive 3D Elements", price: 35, icon: Box,      description: "Dynamic rotating orb components and canvas scenes." },
-  { id: "darkmode",  name: "Full Dark Mode Support", price: 20, icon: Moon,     description: "Seamless dark theme variable switching." },
+  { id: "analytics", name: "Analytics", price: 15, icon: BarChart2, description: "Tracking events, conversion goals, and reporting hooks." },
+  { id: "darkmode", name: "Dark Mode", price: 20, icon: Moon, description: "Theme variables and polished dark surfaces." },
+  { id: "3d", name: "3D Elements", price: 35, icon: Box, description: "Interactive 3D hero or product detail scene." },
+  { id: "contact", name: "Contact Form", price: 25, icon: Mail, description: "Validated lead form with success and error states." },
+  { id: "blog", name: "Blog Module", price: 45, icon: Bookmark, description: "Post listing, article detail, and newsletter capture." },
+  { id: "pricing", name: "Pricing Table", price: 30, icon: Table2, description: "Plan cards, comparison rows, and FAQ area." },
+  { id: "cms", name: "CMS Ready", price: 55, icon: Layers, description: "Content model prepared for team publishing." },
+  { id: "seo", name: "SEO Setup", price: 20, icon: Settings, description: "Metadata, Open Graph defaults, and sitemap structure." },
 ];
 
-// ─── Live Preview Component ────────────────────────────────────────
+const slugify = (value: string) =>
+  value.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "");
+
+function buildPageSections(pageTitle: string, typeObj: SiteType, extras: string[]) {
+  const baseSections: Record<string, string[]> = {
+    Home: ["Hero", ...typeObj.sections.slice(0, 3)],
+    About: ["Brand Story", "Values", "Team"],
+    Features: typeObj.sections.slice(0, 4),
+    Pricing: ["Plans", "Comparison", "FAQ"],
+    Blog: ["Featured Articles", "Latest Posts", "Newsletter"],
+    Dashboard: ["Metrics", "Reports", "Activity"],
+    Contact: ["Contact Form", "Support", "Location"],
+  };
+
+  const sections = baseSections[pageTitle] || [pageTitle, "Details", "CTA"];
+  const withExtras = [...sections];
+
+  if (pageTitle === "Home" && extras.includes("analytics")) withExtras.push("Live Metrics");
+  if (pageTitle === "Home" && extras.includes("3d")) withExtras.push("3D Showcase");
+  if (pageTitle !== "Blog" && extras.includes("blog")) withExtras.push("Insights");
+  if (pageTitle !== "Pricing" && extras.includes("pricing")) withExtras.push("Pricing Snapshot");
+
+  return Array.from(new Set(withExtras));
+}
+
+function buildPreviewPages(typeObj: SiteType, pagePack: PagePack, extras: string[]): PreviewPage[] {
+  return pagePack.pages.map((pageTitle) => ({
+    id: slugify(pageTitle),
+    title: pageTitle,
+    description:
+      pageTitle === "Home"
+        ? typeObj.hero
+        : `${pageTitle} page tailored for the ${typeObj.name.toLowerCase()} build.`,
+    sections: buildPageSections(pageTitle, typeObj, extras),
+  }));
+}
+
+function sectionFor(pageSlug: string, sectionName: string, typeObj: SiteType): PageSection {
+  const sectionId = `${pageSlug}-${slugify(sectionName)}`;
+  const lower = sectionName.toLowerCase();
+
+  if (lower.includes("hero")) {
+    return {
+      id: sectionId,
+      type: "hero",
+      title: sectionName,
+      content: {
+        heading: typeObj.hero,
+        subheading: `A polished ${typeObj.name.toLowerCase()} experience generated by Softbridge Studio.`,
+        buttonText: "Start Project",
+      },
+    };
+  }
+
+  if (lower.includes("contact") || lower.includes("support")) {
+    return {
+      id: sectionId,
+      type: "contact",
+      title: sectionName,
+      content: {
+        heading: "Start the conversation",
+        description: "Capture qualified leads with a clean, responsive contact flow.",
+        buttonText: "Send Request",
+      },
+    };
+  }
+
+  if (lower.includes("article") || lower.includes("blog") || lower.includes("post") || lower.includes("work") || lower.includes("collection")) {
+    return {
+      id: sectionId,
+      type: "gallery",
+      title: sectionName,
+      content: {
+        heading: sectionName,
+        items: ["Launch Story", "Customer Proof", "Product Deep Dive"],
+      },
+    };
+  }
+
+  return {
+    id: sectionId,
+    type: "features",
+    title: sectionName,
+    content: {
+      heading: sectionName,
+      subheading: "A compact, production-ready section generated from your configuration.",
+      items: ["Fast setup", "Responsive blocks", "Premium UI polish"],
+    },
+  };
+}
+
+function buildConfiguredPages(typeObj: SiteType, pagePack: PagePack, extras: string[]): ConfiguredPage[] {
+  return buildPreviewPages(typeObj, pagePack, extras).map((page, index) => ({
+    id: page.id,
+    title: page.title,
+    path: index === 0 ? "/" : `/${page.id}`,
+    sections: page.sections.slice(0, 4).map((sectionName) => sectionFor(page.id, sectionName, typeObj)),
+  }));
+}
+
 function LivePreview({
   typeObj,
   themeObj,
   layout,
   extras,
+  pages,
 }: {
   typeObj: SiteType;
   themeObj: ColorTheme;
   layout: string;
   extras: string[];
+  pages: PreviewPage[];
 }) {
-  const hasDark     = extras.includes("darkmode");
+  const [activePageId, setActivePageId] = useState(pages[0]?.id || "home");
+  const activePage = pages.find((page) => page.id === activePageId) || pages[0];
+  const hasDark = extras.includes("darkmode");
   const hasAnalytics = extras.includes("analytics");
-  const has3D       = extras.includes("3d");
+  const has3D = extras.includes("3d");
 
-  const bg      = hasDark && themeObj.id !== "cyan" ? "#0F0F0F" : themeObj.bg;
-  const text     = hasDark && themeObj.id !== "cyan" ? "#F5F5F5" : themeObj.text;
-  const primary  = themeObj.primary;
-  const border   = `${primary}20`;
+  const bg = hasDark ? "#12100F" : themeObj.bg;
+  const text = hasDark ? "#F8EFE7" : themeObj.text;
+  const primary = themeObj.primary;
+  const border = `${primary}22`;
+  const visibleSections = activePage?.sections || typeObj.sections;
 
-  // Font weight / layout style modifiers
-  const headingClass = layout === "bold" ? "font-black text-lg uppercase" :
-                       layout === "minimal" ? "font-normal text-sm uppercase" :
-                       "font-bold text-base";
-  const cardRadius   = layout === "minimal" ? "6px" : layout === "bold" ? "4px" : "10px";
+  const headingClass =
+    layout === "editorial"
+      ? "font-black text-lg uppercase"
+      : layout === "minimal"
+        ? "font-medium text-sm uppercase"
+        : layout === "dashboard"
+          ? "font-bold text-sm"
+          : "font-bold text-base";
+  const cardRadius = layout === "minimal" ? "6px" : layout === "editorial" ? "4px" : "10px";
 
   return (
     <AnimatePresence mode="wait">
       <motion.div
-        key={`${typeObj.id}-${themeObj.id}-${layout}-${extras.join("")}`}
-        initial={{ opacity: 0, scale: 0.97 }}
+        key={`${typeObj.id}-${themeObj.id}-${layout}-${extras.join("-")}-${activePage?.id}`}
+        initial={{ opacity: 0, scale: 0.98 }}
         animate={{ opacity: 1, scale: 1 }}
-        exit={{ opacity: 0, scale: 0.97 }}
-        transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
-        className="w-full h-full flex flex-col"
+        exit={{ opacity: 0, scale: 0.98 }}
+        transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
+        className="flex h-full w-full flex-col"
         style={{ backgroundColor: bg, color: text, fontFamily: "var(--font-sans)" }}
       >
-        {/* Simulated Navbar */}
         <div
-          className="flex items-center justify-between px-4 py-2.5 border-b"
+          className="flex items-center justify-between gap-3 border-b px-3 py-2"
           style={{ borderColor: border, backgroundColor: `${bg}EE` }}
         >
           <div className="flex items-center gap-1.5">
-            <div className="w-3 h-3 rounded-full" style={{ backgroundColor: primary }} />
-            <span className="font-black text-[9px] tracking-widest uppercase" style={{ color: text }}>
-              SOFTBRIDGE
+            <div className="h-3 w-3 rounded-full" style={{ backgroundColor: primary }} />
+            <span className="text-[9px] font-black uppercase tracking-widest" style={{ color: text }}>
+              Softbridge
             </span>
           </div>
-          <div className="hidden sm:flex items-center gap-3 text-[7px] font-mono opacity-70" style={{ color: text }}>
-            {typeObj.sections.slice(0, 3).map((s) => (
-              <span key={s}>{s}</span>
+          <div className="hidden min-w-0 flex-1 items-center justify-center gap-1.5 sm:flex">
+            {pages.slice(0, 5).map((page) => (
+              <button
+                key={page.id}
+                onClick={() => setActivePageId(page.id)}
+                className="rounded px-1.5 py-0.5 text-[7px] font-bold uppercase tracking-wider transition-opacity"
+                style={{
+                  color: activePage?.id === page.id ? primary : text,
+                  backgroundColor: activePage?.id === page.id ? `${primary}14` : "transparent",
+                  opacity: activePage?.id === page.id ? 1 : 0.6,
+                }}
+              >
+                {page.title}
+              </button>
             ))}
           </div>
           <div
-            className="px-2 py-0.5 rounded text-[7px] font-black text-white uppercase tracking-wider"
+            className="rounded px-2 py-0.5 text-[7px] font-black uppercase tracking-wider text-white"
             style={{ backgroundColor: primary, borderRadius: cardRadius }}
           >
-            Get Started
+            Start
           </div>
         </div>
 
-        {/* Simulated Hero */}
         <div
-          className="flex flex-col items-center justify-center px-6 py-5 text-center relative overflow-hidden flex-1"
-          style={{ background: `linear-gradient(160deg, ${primary}10 0%, ${bg} 60%)` }}
+          className="relative flex flex-1 flex-col items-center justify-center overflow-hidden px-5 py-4 text-center"
+          style={{ background: `linear-gradient(160deg, ${primary}12 0%, ${bg} 62%)` }}
         >
-          {/* Ambient glow for 3D effect */}
-          {has3D && (
-            <div
-              className="absolute -top-8 -right-8 w-24 h-24 rounded-full blur-2xl opacity-30"
-              style={{ backgroundColor: primary }}
-            />
-          )}
-
           <motion.div
-            key={`hero-${layout}`}
             initial={{ opacity: 0, y: 8 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.4, delay: 0.05 }}
+            transition={{ duration: 0.35, delay: 0.03 }}
           >
             <div
-              className="text-[7px] font-mono uppercase tracking-widest mb-2 px-2 py-0.5 rounded-full inline-block"
+              className="mb-2 inline-block rounded-full px-2 py-0.5 text-[7px] font-mono uppercase tracking-widest"
               style={{ color: primary, backgroundColor: `${primary}15`, border: `1px solid ${primary}30` }}
             >
-              {typeObj.name}
+              {activePage?.title || "Home"} / {typeObj.name}
             </div>
-
-            <div className={`my-1.5 leading-tight ${headingClass}`} style={{ color: text }}>
-              {typeObj.hero}
+            <div className={`my-1 leading-tight ${headingClass}`} style={{ color: text }}>
+              {activePage?.title === "Home" ? typeObj.hero : `${activePage?.title} built for ${typeObj.name}`}
             </div>
-
-            <p className="text-[7px] max-w-[180px] mx-auto opacity-60 leading-relaxed mt-1" style={{ color: text }}>
-              Built with Softbridge — modular, scalable, and fast.
+            <p className="mx-auto mt-1 max-w-[190px] text-[7px] leading-relaxed opacity-65" style={{ color: text }}>
+              Realistic multi-page structure with navigation, sections, and selected Studio features.
             </p>
-
-            <div className="flex items-center justify-center gap-2 mt-3">
+            <div className="mt-3 flex items-center justify-center gap-2">
               <div
-                className="px-3 py-1 text-[7px] font-black text-white uppercase tracking-wider"
+                className="px-3 py-1 text-[7px] font-black uppercase tracking-wider text-white"
                 style={{ backgroundColor: primary, borderRadius: cardRadius }}
               >
-                Start Free
+                Primary CTA
               </div>
               <div
                 className="px-3 py-1 text-[7px] font-bold uppercase tracking-wider"
                 style={{ color: primary, border: `1px solid ${primary}40`, borderRadius: cardRadius }}
               >
-                Learn More
+                Explore
               </div>
             </div>
           </motion.div>
         </div>
 
-        {/* Simulated Section Cards */}
-        <div
-          className="px-3 py-3 border-t"
-          style={{ borderColor: border, backgroundColor: `${primary}06` }}
-        >
+        <div className="border-t px-3 py-2.5" style={{ borderColor: border, backgroundColor: `${primary}06` }}>
           <div
             className="grid gap-1.5"
-            style={{ gridTemplateColumns: `repeat(${Math.min(typeObj.sections.length, layout === "minimal" ? 2 : 3)}, 1fr)` }}
+            style={{ gridTemplateColumns: `repeat(${Math.min(visibleSections.length, layout === "minimal" ? 2 : 3)}, 1fr)` }}
           >
-            {typeObj.sections.slice(0, layout === "minimal" ? 2 : 3).map((section) => (
+            {visibleSections.slice(0, layout === "minimal" ? 2 : 3).map((section) => (
               <div
                 key={section}
                 className="p-2 text-center"
@@ -216,40 +412,25 @@ function LivePreview({
             ))}
           </div>
 
-          {/* Extras badges */}
           {extras.length > 0 && (
-            <div className="flex gap-1 mt-2 justify-center flex-wrap">
-              {hasAnalytics && (
-                <span className="text-[5px] font-mono uppercase px-1.5 py-0.5 rounded" style={{ color: primary, backgroundColor: `${primary}15`, border: `1px solid ${primary}25` }}>
-                  Analytics
-                </span>
-              )}
-              {has3D && (
-                <span className="text-[5px] font-mono uppercase px-1.5 py-0.5 rounded" style={{ color: primary, backgroundColor: `${primary}15`, border: `1px solid ${primary}25` }}>
-                  3D Elements
-                </span>
-              )}
-              {hasDark && (
-                <span className="text-[5px] font-mono uppercase px-1.5 py-0.5 rounded" style={{ color: primary, backgroundColor: `${primary}15`, border: `1px solid ${primary}25` }}>
-                  Dark Mode
-                </span>
-              )}
-            </div>
-          )}
-        </div>
-
-        {/* Simulated Footer */}
-        <div
-          className="flex items-center justify-between px-4 py-2 border-t"
-          style={{ borderColor: border }}
-        >
-          <span className="text-[6px] font-mono opacity-50" style={{ color: text }}>
-            Powered by Softbridge
-          </span>
-          {hasAnalytics && (
-            <div className="flex items-center gap-1 text-[6px] font-mono opacity-60" style={{ color: primary }}>
-              <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
-              Tracking Active
+            <div className="mt-2 flex flex-wrap justify-center gap-1">
+              {[
+                hasAnalytics && "Analytics",
+                has3D && "3D",
+                hasDark && "Dark Mode",
+                extras.includes("contact") && "Contact",
+                extras.includes("pricing") && "Pricing",
+              ]
+                .filter(Boolean)
+                .map((label) => (
+                  <span
+                    key={label as string}
+                    className="rounded px-1.5 py-0.5 text-[5px] font-mono uppercase"
+                    style={{ color: primary, backgroundColor: `${primary}15`, border: `1px solid ${primary}25` }}
+                  >
+                    {label}
+                  </span>
+                ))}
             </div>
           )}
         </div>
@@ -258,42 +439,49 @@ function LivePreview({
   );
 }
 
-// ─── Main Component ───────────────────────────────────────────────
 export default function SoftbridgeStudio() {
-  const [currentStep, setCurrentStep]     = useState<number>(0);
-  const [selectedType, setSelectedType]   = useState<string>("saas");
-  const [selectedTheme, setSelectedTheme] = useState<string>("orange");
-  const [selectedLayout, setSelectedLayout] = useState<string>("modern");
+  const [currentStep, setCurrentStep] = useState(0);
+  const [selectedType, setSelectedType] = useState("saas");
+  const [selectedTheme, setSelectedTheme] = useState("clay");
+  const [selectedLayout, setSelectedLayout] = useState("modern");
+  const [selectedPagePack, setSelectedPagePack] = useState("five");
   const [selectedExtras, setSelectedExtras] = useState<string[]>([]);
-  const [isAddedToCart, setIsAddedToCart] = useState<boolean>(false);
-  const [showFullPreview, setShowFullPreview] = useState<boolean>(false);
+  const [isAddedToCart, setIsAddedToCart] = useState(false);
+  const [showFullPreview, setShowFullPreview] = useState(false);
 
   const addItem = useCartStore((state) => state.addItem);
 
-  const basePrice   = SITE_TYPES.find((t) => t.id === selectedType)?.price || 0;
-  const extrasPrice = selectedExtras.reduce((sum, id) => sum + (EXTRA_FEATURES.find((f) => f.id === id)?.price || 0), 0);
-  const totalPrice  = basePrice + extrasPrice;
+  const currentThemeObj = COLOR_THEMES.find((theme) => theme.id === selectedTheme) || COLOR_THEMES[0];
+  const currentTypeObj = SITE_TYPES.find((type) => type.id === selectedType) || SITE_TYPES[0];
+  const currentPagePack = PAGE_PACKS.find((pack) => pack.id === selectedPagePack) || PAGE_PACKS[0];
+  const currentLayoutObj = LAYOUT_STYLES.find((style) => style.id === selectedLayout) || LAYOUT_STYLES[0];
+  const previewPages = buildPreviewPages(currentTypeObj, currentPagePack, selectedExtras);
 
-  const currentThemeObj = COLOR_THEMES.find((t) => t.id === selectedTheme) || COLOR_THEMES[0];
-  const currentTypeObj  = SITE_TYPES.find((t) => t.id === selectedType) || SITE_TYPES[0];
+  const basePrice = currentTypeObj.price + currentPagePack.price;
+  const extrasPrice = selectedExtras.reduce(
+    (sum, id) => sum + (EXTRA_FEATURES.find((feature) => feature.id === id)?.price || 0),
+    0
+  );
+  const totalPrice = basePrice + extrasPrice;
 
-  // Build preview config for the modal
   const previewConfig: PreviewConfig = {
-    typeId:         currentTypeObj.id,
-    typeName:       currentTypeObj.name,
-    brandName:      "Softbridge Custom Web",
-    heroText:       currentTypeObj.hero,
-    sections:       currentTypeObj.sections,
-    themePrimary:   currentThemeObj.primary,
+    typeId: currentTypeObj.id,
+    typeName: currentTypeObj.name,
+    brandName: "Softbridge Custom Web",
+    heroText: currentTypeObj.hero,
+    sections: currentTypeObj.sections,
+    pages: previewPages,
+    pageCountLabel: currentPagePack.name,
+    themePrimary: currentThemeObj.primary,
     themeSecondary: currentThemeObj.secondary,
-    themeBg:        currentThemeObj.bg,
-    themeText:      currentThemeObj.text,
-    layout:         selectedLayout,
-    extras:         selectedExtras,
+    themeBg: currentThemeObj.bg,
+    themeText: currentThemeObj.text,
+    layout: selectedLayout,
+    extras: selectedExtras,
   };
 
   const handleToggleExtra = (extraId: string) =>
-    setSelectedExtras((prev) => prev.includes(extraId) ? prev.filter((id) => id !== extraId) : [...prev, extraId]);
+    setSelectedExtras((prev) => (prev.includes(extraId) ? prev.filter((id) => id !== extraId) : [...prev, extraId]));
 
   const handleAddToCart = () => {
     addItem({
@@ -302,17 +490,17 @@ export default function SoftbridgeStudio() {
       domainPrice: 0,
       websitePackage: {
         templateId: `studio-custom-${Date.now()}`,
-        templateName: `Studio Custom: ${currentTypeObj.name}`,
+        templateName: `Studio Custom: ${currentTypeObj.name} (${currentPagePack.name})`,
         setupPrice: totalPrice,
         config: {
           templateId: selectedType,
           templateName: currentTypeObj.name,
           brandName: "Softbridge Custom Web",
-          slogan: "Assembled dynamically inside Softbridge Studio",
+          slogan: `${currentPagePack.name} ${currentTypeObj.name.toLowerCase()} assembled in Softbridge Studio`,
           logo: "",
           theme: { primary: currentThemeObj.primary, secondary: currentThemeObj.secondary, bg: currentThemeObj.bg },
           typography: { headings: "Geist", body: "Geist" },
-          pages: [],
+          pages: buildConfiguredPages(currentTypeObj, currentPagePack, selectedExtras),
           animationProfile: "smooth",
         },
       },
@@ -321,80 +509,73 @@ export default function SoftbridgeStudio() {
     setTimeout(() => setIsAddedToCart(false), 2000);
   };
 
-  const nextStep = () => setCurrentStep((p) => Math.min(p + 1, 3));
-  const prevStep = () => setCurrentStep((p) => Math.max(p - 1, 0));
-
   const stepTitles = [
-    { name: "Site Type",     desc: "Select the architectural layout purpose",    icon: Layout },
-    { name: "Theme Palette", desc: "Choose color variables mapping",             icon: Palette },
-    { name: "Layout Style",  desc: "Select visual spacing and grid details",     icon: Layers },
-    { name: "Extra Features", desc: "Toggle pre-bundled plugins and scripts",    icon: Settings },
+    { name: "Site Type", desc: "Choose the project category and base structure", icon: Layout },
+    { name: "Theme", desc: "Pick a refined color system", icon: Palette },
+    { name: "Layout", desc: "Set spacing, rhythm, and presentation style", icon: Layers },
+    { name: "Pages", desc: "Generate a one-page or full multi-page site", icon: Monitor },
+    { name: "Features", desc: "Add production-ready modules", icon: Settings },
   ];
 
+  const nextStep = () => setCurrentStep((prev) => Math.min(prev + 1, stepTitles.length - 1));
+  const prevStep = () => setCurrentStep((prev) => Math.max(prev - 1, 0));
+
   return (
-    <section className="w-full mb-14 bg-abyss-panel/30 border border-black/5 rounded-2xl p-4 md:p-7 relative overflow-hidden shadow-sm">
-
-      {/* Ambient glow */}
-      <div className="absolute -top-12 -right-12 w-64 h-64 rounded-full bg-cosmic-teal/5 blur-3xl pointer-events-none" />
-
-      {/* Section header */}
-      <div className="mb-7 border-b border-black/5 pb-4">
-        <span className="font-mono text-[9px] uppercase tracking-[0.25em] text-cosmic-teal font-bold block mb-2">
+    <section className="relative mb-10 w-full overflow-hidden rounded-2xl border border-black/5 bg-abyss-panel/30 p-3 shadow-sm md:p-5">
+      <div className="mb-4 border-b border-black/5 pb-3">
+        <span className="mb-1.5 block font-mono text-[9px] font-bold uppercase tracking-[0.22em] text-cosmic-teal">
           SOFTBRIDGE // ENGINE STUDIO
         </span>
-        <h2 className="text-3xl md:text-4xl font-display font-bold text-star-white">
+        <h2 className="font-display text-2xl font-semibold text-star-white md:text-3xl">
           SOFTBRIDGE STUDIO
         </h2>
-        <p className="text-xs text-muted-steel mt-2 font-light max-w-lg">
-          Assemble your custom site architecture step-by-step. The preview updates live as you configure each option.
+        <p className="mt-1.5 max-w-xl text-xs font-normal leading-relaxed text-muted-steel">
+          Configure a compact, premium site system with live multi-page preview and production-ready options.
         </p>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-5 items-stretch">
-
-        {/* ── Left: Step Configurations ── */}
-        <div className="lg:col-span-6 flex flex-col justify-between min-h-[460px]">
-
-          {/* Step progress tabs */}
-          <div className="flex justify-between items-center mb-5 gap-1 font-mono text-[9px] uppercase tracking-wider text-muted-steel overflow-x-auto">
-            {stepTitles.map((step, idx) => (
-              <button
-                key={idx}
-                onClick={() => setCurrentStep(idx)}
-                className={`flex items-center gap-1.5 cursor-pointer pb-2 border-b-2 transition-all duration-350 whitespace-nowrap px-1 ${
-                  currentStep === idx
-                    ? "border-cosmic-teal text-cosmic-teal font-bold"
-                    : "border-transparent text-muted-steel hover:text-star-white"
-                }`}
-              >
-                <span className="opacity-60">0{idx + 1}</span>
-                <span className="hidden sm:inline">{step.name}</span>
-              </button>
-            ))}
+      <div className="grid grid-cols-1 items-stretch gap-4 lg:grid-cols-12">
+        <div className="flex min-h-[430px] flex-col justify-between lg:col-span-6">
+          <div className="mb-3 flex items-center justify-between gap-1 overflow-x-auto font-mono text-[9px] uppercase tracking-wider text-muted-steel">
+            {stepTitles.map((step, idx) => {
+              const Icon = step.icon;
+              return (
+                <button
+                  key={step.name}
+                  onClick={() => setCurrentStep(idx)}
+                  className={`flex cursor-pointer items-center gap-1.5 whitespace-nowrap border-b-2 px-1 pb-2 transition-all duration-300 ${
+                    currentStep === idx
+                      ? "border-cosmic-teal text-cosmic-teal"
+                      : "border-transparent text-muted-steel hover:text-star-white"
+                  }`}
+                >
+                  <Icon className="h-3 w-3" />
+                  <span className="opacity-70">0{idx + 1}</span>
+                  <span className="hidden sm:inline">{step.name}</span>
+                </button>
+              );
+            })}
           </div>
 
-          {/* Step banner */}
-          <div className="mb-4">
-            <span className="text-[10px] uppercase font-mono tracking-widest text-muted-steel">
+          <div className="mb-3">
+            <span className="font-mono text-[10px] uppercase tracking-widest text-muted-steel">
               Step 0{currentStep + 1} / {stepTitles[currentStep].name}
             </span>
-            <p className="text-sm text-star-white mt-0.5 font-bold">{stepTitles[currentStep].desc}</p>
+            <p className="mt-0.5 text-sm font-semibold text-star-white">{stepTitles[currentStep].desc}</p>
           </div>
 
-          {/* Configuration area */}
-          <div className="flex-1 mb-4">
+          <div className="mb-3 flex-1">
             <AnimatePresence mode="wait">
               <motion.div
                 key={currentStep}
-                initial={{ opacity: 0, x: 18 }}
+                initial={{ opacity: 0, x: 14 }}
                 animate={{ opacity: 1, x: 0 }}
-                exit={{ opacity: 0, x: -18 }}
-                transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
+                exit={{ opacity: 0, x: -14 }}
+                transition={{ duration: 0.32, ease: [0.16, 1, 0.3, 1] }}
                 className="w-full"
               >
-                {/* Step 1: Site Type */}
                 {currentStep === 0 && (
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+                  <div className="grid grid-cols-1 gap-2 sm:grid-cols-2">
                     {SITE_TYPES.map((type) => {
                       const Icon = type.icon;
                       const isSelected = selectedType === type.id;
@@ -402,21 +583,21 @@ export default function SoftbridgeStudio() {
                         <button
                           key={type.id}
                           onClick={() => setSelectedType(type.id)}
-                          className={`p-3.5 rounded-2xl border text-left transition-all duration-350 cursor-pointer flex flex-col justify-between h-32 ${
+                          className={`flex h-[118px] cursor-pointer flex-col justify-between rounded-xl border p-3 text-left transition-all duration-300 ${
                             isSelected
-                              ? "bg-cosmic-teal/10 border-cosmic-teal/40"
-                              : "bg-abyss-panel/50 border-black/5 hover:border-black/15"
+                              ? "border-cosmic-teal/45 bg-cosmic-teal/10"
+                              : "border-black/5 bg-abyss-panel/50 hover:border-black/15"
                           }`}
                         >
                           <div className="flex items-start justify-between">
-                            <div className={`p-2 rounded-xl ${isSelected ? "bg-cosmic-teal text-white" : "bg-black/5 text-muted-steel"}`}>
-                              <Icon className="w-5 h-5" />
+                            <div className={`rounded-lg p-2 ${isSelected ? "bg-cosmic-teal text-white" : "bg-black/5 text-muted-steel"}`}>
+                              <Icon className="h-4 w-4" />
                             </div>
                             <span className="font-mono text-xs font-black text-sunset-coral">${type.price}</span>
                           </div>
                           <div>
-                            <h4 className="text-xs font-bold text-star-white">{type.name}</h4>
-                            <p className="text-[10px] text-muted-steel mt-0.5 leading-relaxed font-light">{type.description}</p>
+                            <h4 className="text-xs font-semibold text-star-white">{type.name}</h4>
+                            <p className="mt-0.5 text-[10px] font-normal leading-snug text-muted-steel">{type.description}</p>
                           </div>
                         </button>
                       );
@@ -424,32 +605,31 @@ export default function SoftbridgeStudio() {
                   </div>
                 )}
 
-                {/* Step 2: Theme */}
                 {currentStep === 1 && (
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+                  <div className="grid grid-cols-1 gap-2 sm:grid-cols-2">
                     {COLOR_THEMES.map((theme) => {
                       const isSelected = selectedTheme === theme.id;
                       return (
                         <button
                           key={theme.id}
                           onClick={() => setSelectedTheme(theme.id)}
-                          className={`p-3.5 rounded-2xl border text-left transition-all duration-350 cursor-pointer ${
+                          className={`cursor-pointer rounded-xl border p-3 text-left transition-all duration-300 ${
                             isSelected
-                              ? "bg-cosmic-teal/10 border-cosmic-teal/40"
-                              : "bg-abyss-panel/50 border-black/5 hover:border-black/15"
+                              ? "border-cosmic-teal/45 bg-cosmic-teal/10"
+                              : "border-black/5 bg-abyss-panel/50 hover:border-black/15"
                           }`}
                         >
-                          <div className="flex justify-between items-center mb-2.5">
-                            <span className="text-xs font-bold text-star-white">{theme.name}</span>
+                          <div className="mb-2 flex items-center justify-between gap-3">
+                            <span className="text-xs font-semibold text-star-white">{theme.name}</span>
                             <div className="flex gap-1.5">
-                              {[theme.primary, theme.secondary, theme.bg].map((c) => (
-                                <div key={c} className="w-4 h-4 rounded-full border border-black/10 shadow-sm" style={{ backgroundColor: c }} />
+                              {[theme.primary, theme.secondary, theme.bg].map((color) => (
+                                <span key={color} className="h-4 w-4 rounded-full border border-black/10 shadow-sm" style={{ backgroundColor: color }} />
                               ))}
                             </div>
                           </div>
                           <div
-                            className="p-2.5 rounded-xl border text-center font-mono text-[8px] font-bold uppercase tracking-widest"
-                            style={{ backgroundColor: theme.bg, color: theme.text, borderColor: `${theme.primary}25` }}
+                            className="rounded-lg border p-2 text-center font-mono text-[8px] font-bold uppercase tracking-widest"
+                            style={{ backgroundColor: theme.bg, color: theme.text, borderColor: `${theme.primary}28` }}
                           >
                             {theme.name} preview
                           </div>
@@ -459,28 +639,27 @@ export default function SoftbridgeStudio() {
                   </div>
                 )}
 
-                {/* Step 3: Layout */}
                 {currentStep === 2 && (
-                  <div className="space-y-2.5">
+                  <div className="space-y-2">
                     {LAYOUT_STYLES.map((style) => {
                       const isSelected = selectedLayout === style.id;
                       return (
                         <button
                           key={style.id}
                           onClick={() => setSelectedLayout(style.id)}
-                          className={`w-full p-3.5 rounded-2xl border text-left transition-all duration-350 cursor-pointer flex justify-between items-center ${
+                          className={`flex w-full cursor-pointer items-center justify-between rounded-xl border p-3 text-left transition-all duration-300 ${
                             isSelected
-                              ? "bg-cosmic-teal/10 border-cosmic-teal/40"
-                              : "bg-abyss-panel/50 border-black/5 hover:border-black/15"
+                              ? "border-cosmic-teal/45 bg-cosmic-teal/10"
+                              : "border-black/5 bg-abyss-panel/50 hover:border-black/15"
                           }`}
                         >
                           <div>
-                            <h4 className="text-xs font-bold text-star-white">{style.name}</h4>
-                            <p className="text-[10px] text-muted-steel mt-0.5 font-light leading-relaxed">{style.description}</p>
+                            <h4 className="text-xs font-semibold text-star-white">{style.name}</h4>
+                            <p className="mt-0.5 text-[10px] font-normal leading-relaxed text-muted-steel">{style.description}</p>
                           </div>
                           {isSelected && (
-                            <div className="w-6 h-6 rounded-full bg-cosmic-teal flex items-center justify-center text-white shrink-0 ml-3">
-                              <Check className="w-3.5 h-3.5" />
+                            <div className="ml-3 flex h-6 w-6 shrink-0 items-center justify-center rounded-lg bg-cosmic-teal text-white">
+                              <Check className="h-3.5 w-3.5" />
                             </div>
                           )}
                         </button>
@@ -489,9 +668,42 @@ export default function SoftbridgeStudio() {
                   </div>
                 )}
 
-                {/* Step 4: Extra Features */}
                 {currentStep === 3 && (
-                  <div className="space-y-2.5">
+                  <div className="grid grid-cols-1 gap-2 sm:grid-cols-2">
+                    {PAGE_PACKS.map((pack) => {
+                      const isSelected = selectedPagePack === pack.id;
+                      return (
+                        <button
+                          key={pack.id}
+                          onClick={() => setSelectedPagePack(pack.id)}
+                          className={`flex min-h-[116px] cursor-pointer flex-col justify-between rounded-xl border p-3 text-left transition-all duration-300 ${
+                            isSelected
+                              ? "border-cosmic-teal/45 bg-cosmic-teal/10"
+                              : "border-black/5 bg-abyss-panel/50 hover:border-black/15"
+                          }`}
+                        >
+                          <div className="flex items-start justify-between gap-3">
+                            <div>
+                              <h4 className="text-xs font-semibold text-star-white">{pack.name}</h4>
+                              <p className="mt-0.5 text-[10px] font-normal leading-snug text-muted-steel">{pack.description}</p>
+                            </div>
+                            <span className="font-mono text-xs font-black text-sunset-coral">+${pack.price}</span>
+                          </div>
+                          <div className="mt-2 flex flex-wrap gap-1">
+                            {pack.pages.slice(0, 5).map((page) => (
+                              <span key={page} className="rounded-md bg-black/[0.04] px-1.5 py-0.5 text-[8px] font-bold uppercase tracking-wider text-muted-steel">
+                                {page}
+                              </span>
+                            ))}
+                          </div>
+                        </button>
+                      );
+                    })}
+                  </div>
+                )}
+
+                {currentStep === 4 && (
+                  <div className="grid grid-cols-1 gap-2 sm:grid-cols-2">
                     {EXTRA_FEATURES.map((extra) => {
                       const isSelected = selectedExtras.includes(extra.id);
                       const Icon = extra.icon;
@@ -499,27 +711,27 @@ export default function SoftbridgeStudio() {
                         <button
                           key={extra.id}
                           onClick={() => handleToggleExtra(extra.id)}
-                          className={`w-full p-3.5 rounded-2xl border text-left transition-all duration-350 cursor-pointer flex items-center justify-between ${
+                          className={`flex min-h-[94px] cursor-pointer items-start justify-between gap-3 rounded-xl border p-3 text-left transition-all duration-300 ${
                             isSelected
-                              ? "bg-cosmic-teal/10 border-cosmic-teal/40"
-                              : "bg-abyss-panel/50 border-black/5 hover:border-black/15"
+                              ? "border-cosmic-teal/45 bg-cosmic-teal/10"
+                              : "border-black/5 bg-abyss-panel/50 hover:border-black/15"
                           }`}
                         >
-                          <div className="flex items-center gap-3">
-                            <div className={`p-2 rounded-xl ${isSelected ? "bg-cosmic-teal text-white" : "bg-black/5 text-muted-steel"}`}>
-                              <Icon className="w-4 h-4" />
+                          <div className="flex gap-2.5">
+                            <div className={`rounded-lg p-2 ${isSelected ? "bg-cosmic-teal text-white" : "bg-black/5 text-muted-steel"}`}>
+                              <Icon className="h-4 w-4" />
                             </div>
                             <div>
-                              <h4 className="text-xs font-bold text-star-white">{extra.name}</h4>
-                              <p className="text-[10px] text-muted-steel mt-0.5 font-light">{extra.description}</p>
+                              <h4 className="text-xs font-semibold text-star-white">{extra.name}</h4>
+                              <p className="mt-0.5 text-[10px] font-normal leading-snug text-muted-steel">{extra.description}</p>
                             </div>
                           </div>
-                          <div className="flex items-center gap-3 ml-3 shrink-0">
-                            <span className="font-mono text-xs font-black text-sunset-coral">+${extra.price}</span>
-                            <div className={`w-5 h-5 rounded-lg border flex items-center justify-center transition-all duration-350 ${
-                              isSelected ? "bg-cosmic-teal border-cosmic-teal text-white" : "border-black/20"
+                          <div className="shrink-0 text-right">
+                            <span className="block font-mono text-xs font-black text-sunset-coral">+${extra.price}</span>
+                            <div className={`ml-auto mt-2 flex h-5 w-5 items-center justify-center rounded-md border transition-all duration-300 ${
+                              isSelected ? "border-cosmic-teal bg-cosmic-teal text-white" : "border-black/20"
                             }`}>
-                              {isSelected && <Check className="w-3.5 h-3.5" />}
+                              {isSelected && <Check className="h-3.5 w-3.5" />}
                             </div>
                           </div>
                         </button>
@@ -531,128 +743,123 @@ export default function SoftbridgeStudio() {
             </AnimatePresence>
           </div>
 
-          {/* Navigation */}
-          <div className="flex justify-between items-center border-t border-black/5 pt-4 shrink-0 gap-3">
+          <div className="flex shrink-0 items-center justify-between gap-3 border-t border-black/5 pt-3">
             <button
               onClick={prevStep}
               disabled={currentStep === 0}
-              className="flex items-center gap-1.5 text-xs font-mono font-bold uppercase tracking-wider text-muted-steel disabled:opacity-30 disabled:pointer-events-none hover:text-cosmic-teal transition-colors duration-350 cursor-pointer"
+              className="flex cursor-pointer items-center gap-1.5 font-mono text-xs font-bold uppercase tracking-wider text-muted-steel transition-colors duration-300 hover:text-cosmic-teal disabled:pointer-events-none disabled:opacity-30"
             >
-              <ArrowLeft className="w-4 h-4" />
+              <ArrowLeft className="h-4 w-4" />
               Back
             </button>
-            {currentStep < 3 ? (
+            {currentStep < stepTitles.length - 1 ? (
               <button
                 onClick={nextStep}
-                className="flex items-center gap-1.5 text-xs font-mono font-bold uppercase tracking-wider text-star-white hover:text-cosmic-teal transition-colors duration-350 cursor-pointer"
+                className="flex cursor-pointer items-center gap-1.5 font-mono text-xs font-bold uppercase tracking-wider text-star-white transition-colors duration-300 hover:text-cosmic-teal"
               >
                 Next
-                <ArrowRight className="w-4 h-4" />
+                <ArrowRight className="h-4 w-4" />
               </button>
             ) : (
-              <span className="text-[9px] font-mono text-muted-steel">Configuration complete</span>
+              <span className="font-mono text-[9px] text-muted-steel">Configuration complete</span>
             )}
           </div>
         </div>
 
-        {/* ── Right: Live Preview ── */}
-        <div className="lg:col-span-6 flex flex-col gap-3">
-
-          {/* Preview label */}
-          <div className="flex items-center justify-between">
-            <span className="text-[9px] font-mono text-muted-steel uppercase tracking-widest font-bold">
+        <div className="flex flex-col gap-3 lg:col-span-6">
+          <div className="flex items-center justify-between gap-3">
+            <span className="font-mono text-[9px] font-bold uppercase tracking-widest text-muted-steel">
               Live Preview
             </span>
             <div className="flex items-center gap-2">
-              <div className="flex items-center gap-1.5 text-[8px] font-mono text-emerald-500 uppercase tracking-wider">
-                <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+              <div className="flex items-center gap-1.5 font-mono text-[8px] uppercase tracking-wider text-emerald-600">
+                <span className="h-1.5 w-1.5 rounded-full bg-emerald-500" />
                 Auto-updating
               </div>
               <button
                 onClick={() => setShowFullPreview(true)}
-                className="flex items-center gap-1 px-3 py-1 rounded-lg bg-cosmic-teal/10 border border-cosmic-teal/25 text-cosmic-teal text-[9px] font-mono font-bold uppercase tracking-wider hover:bg-cosmic-teal/20 transition-colors duration-300 cursor-pointer"
+                className="flex cursor-pointer items-center gap-1 rounded-lg border border-cosmic-teal/25 bg-cosmic-teal/10 px-3 py-1 font-mono text-[9px] font-bold uppercase tracking-wider text-cosmic-teal transition-colors duration-300 hover:bg-cosmic-teal/20"
               >
                 Live Preview
               </button>
             </div>
           </div>
 
-          {/* Browser frame */}
-          <div className="flex-1 bg-midnight-void border border-black/8 rounded-2xl overflow-hidden shadow-inner flex flex-col min-h-[360px]">
-            {/* Browser chrome */}
-            <div className="flex items-center justify-between border-b border-black/8 px-4 py-2 shrink-0">
+          <div className="flex min-h-[340px] flex-1 flex-col overflow-hidden rounded-xl border border-black/8 bg-midnight-void shadow-inner">
+            <div className="flex shrink-0 items-center justify-between border-b border-black/8 px-3 py-2">
               <div className="flex gap-1.5">
-                <div className="w-2.5 h-2.5 rounded-full bg-red-400/70" />
-                <div className="w-2.5 h-2.5 rounded-full bg-amber-400/70" />
-                <div className="w-2.5 h-2.5 rounded-full bg-emerald-400/70" />
+                <div className="h-2.5 w-2.5 rounded-full bg-red-400/70" />
+                <div className="h-2.5 w-2.5 rounded-full bg-amber-400/70" />
+                <div className="h-2.5 w-2.5 rounded-full bg-emerald-400/70" />
               </div>
               <div
-                className="flex-1 mx-4 text-[8px] font-mono tracking-wider text-center px-3 py-0.5 rounded bg-black/8"
+                className="mx-3 flex-1 rounded bg-black/8 px-3 py-0.5 text-center font-mono text-[8px] tracking-wider"
                 style={{ color: currentThemeObj.primary }}
               >
-                softbridge.studio/{currentTypeObj.id}
+                softbridge.studio/{currentTypeObj.id}/{currentPagePack.id}
               </div>
-              <div className="w-3 h-3 rounded-full border border-black/15" style={{ backgroundColor: currentThemeObj.primary + "40" }} />
+              <div className="h-3 w-3 rounded-full border border-black/15" style={{ backgroundColor: `${currentThemeObj.primary}40` }} />
             </div>
 
-            {/* Live preview render */}
             <div className="flex-1 overflow-hidden">
               <LivePreview
                 typeObj={currentTypeObj}
                 themeObj={currentThemeObj}
                 layout={selectedLayout}
                 extras={selectedExtras}
+                pages={previewPages}
               />
             </div>
           </div>
 
-          {/* Config summary + cart CTA */}
-          <div className="bg-abyss-panel/40 border border-black/5 rounded-2xl p-3.5 space-y-3">
-            {/* Selected options summary */}
-            <div className="grid grid-cols-2 gap-2 text-[9px] font-mono">
+          <div className="space-y-3 rounded-xl border border-black/5 bg-abyss-panel/40 p-3">
+            <div className="grid grid-cols-2 gap-2 font-mono text-[9px] md:grid-cols-3">
               {[
-                { label: "Type",   value: currentTypeObj.name },
-                { label: "Theme",  value: currentThemeObj.name },
-                { label: "Layout", value: LAYOUT_STYLES.find((l) => l.id === selectedLayout)?.name || "" },
+                { label: "Type", value: currentTypeObj.name },
+                { label: "Theme", value: currentThemeObj.name },
+                { label: "Layout", value: currentLayoutObj.name },
+                { label: "Pages", value: `${currentPagePack.name} (${currentPagePack.pages.length})` },
                 { label: "Extras", value: selectedExtras.length ? `${selectedExtras.length} added` : "None" },
+                { label: "Build", value: currentPagePack.id === "full" ? "Complete site" : "Focused site" },
               ].map(({ label, value }) => (
-                <div key={label} className="flex flex-col">
-                  <span className="text-muted-steel uppercase tracking-wider">{label}</span>
-                  <span className="text-star-white font-bold mt-0.5 truncate">{value}</span>
+                <div key={label} className="flex min-w-0 flex-col">
+                  <span className="uppercase tracking-wider text-muted-steel">{label}</span>
+                  <span className="mt-0.5 truncate font-bold text-star-white">{value}</span>
                 </div>
               ))}
             </div>
 
-            <div className="flex items-center justify-between border-t border-black/5 pt-3">
+            <div className="flex items-center justify-between gap-3 border-t border-black/5 pt-3">
               <div className="font-mono">
-                <span className="text-[8px] text-muted-steel block uppercase">Setup Price</span>
+                <span className="block text-[8px] uppercase text-muted-steel">Setup Price</span>
                 <span className="text-xl font-black text-sunset-coral">${totalPrice}</span>
               </div>
               <CyberButton
                 variant="teal"
                 size="sm"
                 onClick={handleAddToCart}
-                className="flex items-center gap-1.5 font-bold uppercase tracking-wider text-[10px]"
+                className="flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-wider"
               >
                 {isAddedToCart ? (
-                  <><Check className="w-3.5 h-3.5" /> Added to Cart</>
+                  <>
+                    <Check className="h-3.5 w-3.5" /> Added to Cart
+                  </>
                 ) : (
-                  <><Plus className="w-3.5 h-3.5" /> Add to Cart</>
+                  <>
+                    <Plus className="h-3.5 w-3.5" /> Add to Cart
+                  </>
                 )}
               </CyberButton>
             </div>
           </div>
         </div>
-
       </div>
 
-      {/* Full Preview Modal */}
       <PreviewModal
         isOpen={showFullPreview}
         onClose={() => setShowFullPreview(false)}
         config={previewConfig}
       />
-
     </section>
   );
 }

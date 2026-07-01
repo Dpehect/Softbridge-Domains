@@ -3,7 +3,7 @@
 import React, { Suspense, useState } from "react";
 import { useSearchParams, useRouter } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
-import { templatesData, TemplateInfo } from "@/data/templatesData";
+import { templatesData, templateCategories, TemplateInfo } from "@/data/templatesData";
 import { TemplatePreviewCard } from "@/components/ui/TemplatePreviewCard";
 import { CyberButton } from "@/components/ui/CyberButton";
 import { X, Sparkles, AlertCircle, Sliders } from "lucide-react";
@@ -20,7 +20,7 @@ function TemplatesGalleryContent() {
   const [activeStyle, setActiveStyle] = useState<string>("All");
   const [selectedPreviewTemplate, setSelectedPreviewTemplate] = useState<TemplateInfo | null>(null);
 
-  const categories = ["All", "SaaS", "Portfolio", "E-Commerce"];
+  const categories = ["All", ...templateCategories];
   const styles = ["All", "Minimalist", "Bold", "Luxury", "Tech"];
 
   const handleConfigure = (template: TemplateInfo) => {

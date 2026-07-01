@@ -97,7 +97,7 @@ export function ConfigSidebar() {
             className={`flex-1 py-3 flex flex-col items-center gap-1 text-[10px] font-heading font-bold uppercase tracking-wider transition-all border-b-2 cursor-pointer ${
               activeTab === tab.id
                 ? "border-electric-cyan text-electric-cyan bg-white/5"
-                : "border-transparent text-nebula-slate hover:text-white"
+                : "border-transparent text-nebula-slate hover:text-star-white"
             }`}
           >
             {tab.icon}
@@ -117,7 +117,7 @@ export function ConfigSidebar() {
               className="space-y-3"
             >
               <div>
-                <h3 className="text-sm font-heading font-bold text-white mb-1 uppercase tracking-wider">Brand Name</h3>
+                <h3 className="text-sm font-heading font-bold text-star-white mb-1 uppercase tracking-wider">Brand Name</h3>
                 <p className="text-xs text-nebula-slate mb-2">Visible across navigation decks and copyrights.</p>
                 <GlassInput
                   value={config.brandName}
@@ -127,7 +127,7 @@ export function ConfigSidebar() {
               </div>
 
               <div>
-                <h3 className="text-sm font-heading font-bold text-white mb-1 uppercase tracking-wider">Operational Slogan</h3>
+                <h3 className="text-sm font-heading font-bold text-star-white mb-1 uppercase tracking-wider">Operational Slogan</h3>
                 <p className="text-xs text-nebula-slate mb-2">Subheading placed on critical landing interfaces.</p>
                 <GlassInput
                   value={config.slogan}
@@ -137,7 +137,7 @@ export function ConfigSidebar() {
               </div>
 
               <div>
-                <h3 className="text-sm font-heading font-bold text-white mb-1 uppercase tracking-wider">Logo Vector</h3>
+                <h3 className="text-sm font-heading font-bold text-star-white mb-1 uppercase tracking-wider">Logo Vector</h3>
                 <p className="text-xs text-nebula-slate mb-2">Custom image URL (e.g. PNG / SVG) for brand mark.</p>
                 <GlassInput
                   value={config.logo}
@@ -157,7 +157,7 @@ export function ConfigSidebar() {
             >
               {/* Presets */}
               <div>
-                <h3 className="text-sm font-heading font-bold text-white mb-2.5 uppercase tracking-wider flex items-center gap-1.5">
+                <h3 className="text-sm font-heading font-bold text-star-white mb-2.5 uppercase tracking-wider flex items-center gap-1.5">
                   <Sparkles className="w-4 h-4 text-electric-cyan animate-pulse" />
                   Siber Presets
                 </h3>
@@ -170,7 +170,7 @@ export function ConfigSidebar() {
                       }
                       className="glass-panel p-3 rounded-xl text-left hover:border-white/20 transition-all group flex flex-col gap-2 cursor-pointer"
                     >
-                      <span className="text-xs font-bold text-white group-hover:text-electric-cyan transition-colors">
+                      <span className="text-xs font-bold text-star-white group-hover:text-electric-cyan transition-colors">
                         {preset.name}
                       </span>
                       <div className="flex gap-1">
@@ -187,13 +187,13 @@ export function ConfigSidebar() {
 
               {/* Custom Colors */}
               <div>
-                <h3 className="text-sm font-heading font-bold text-white mb-2.5 uppercase tracking-wider">Custom Spectrum</h3>
+                <h3 className="text-sm font-heading font-bold text-star-white mb-2.5 uppercase tracking-wider">Custom Spectrum</h3>
                 <div className="space-y-2.5">
                   {colorControls.map((colorObj) => (
                     <div key={colorObj.key} className="flex items-center justify-between bg-white/5 px-3 py-2 rounded-xl border border-white/5">
                       <span className="text-xs text-nebula-slate font-medium">{colorObj.label}</span>
                       <div className="flex items-center gap-2">
-                        <span className="text-xs font-mono text-white">
+                        <span className="text-xs font-mono text-star-white">
                           {config.theme[colorObj.key]}
                         </span>
                         <input
@@ -217,7 +217,7 @@ export function ConfigSidebar() {
 
               {/* Typography */}
               <div>
-                <h3 className="text-sm font-heading font-bold text-white mb-2.5 uppercase tracking-wider flex items-center gap-1">
+                <h3 className="text-sm font-heading font-bold text-star-white mb-2.5 uppercase tracking-wider flex items-center gap-1">
                   <Type className="w-4 h-4 text-electric-cyan" /> Typography
                 </h3>
                 <div className="space-y-3">
@@ -226,7 +226,7 @@ export function ConfigSidebar() {
                     <select
                       value={config.typography.headings}
                       onChange={(e) => updateTypography({ headings: e.target.value, body: config.typography.body })}
-                      className="w-full bg-glassy-night border border-white/10 rounded-xl px-3 py-2.5 text-sm text-white outline-none focus:border-electric-cyan/50"
+                      className="w-full bg-glassy-night border border-white/10 rounded-xl px-3 py-2.5 text-sm text-star-white outline-none focus:border-electric-cyan/50"
                     >
                       {headingsFonts.map((f) => (
                         <option key={f} value={f}>
@@ -240,7 +240,7 @@ export function ConfigSidebar() {
                     <select
                       value={config.typography.body}
                       onChange={(e) => updateTypography({ headings: config.typography.headings, body: e.target.value })}
-                      className="w-full bg-glassy-night border border-white/10 rounded-xl px-3 py-2.5 text-sm text-white outline-none focus:border-electric-cyan/50"
+                      className="w-full bg-glassy-night border border-white/10 rounded-xl px-3 py-2.5 text-sm text-star-white outline-none focus:border-electric-cyan/50"
                     >
                       {bodyFonts.map((f) => (
                         <option key={f} value={f}>
@@ -262,7 +262,7 @@ export function ConfigSidebar() {
               className="space-y-4"
             >
               <div className="flex items-center justify-between mb-2">
-                <h3 className="text-sm font-heading font-bold text-white uppercase tracking-wider">Site Mapping</h3>
+                <h3 className="text-sm font-heading font-bold text-star-white uppercase tracking-wider">Site Mapping</h3>
                 <button
                   onClick={addNewPage}
                   className="p-2 bg-electric-cyan/15 text-electric-cyan hover:bg-electric-cyan hover:text-deep-void rounded-lg text-xs font-bold transition-all flex items-center gap-1 cursor-pointer"
@@ -280,21 +280,21 @@ export function ConfigSidebar() {
                     className="glass-panel px-3 py-2.5 rounded-xl flex items-center justify-between border-white/5 hover:border-white/10 transition-all"
                   >
                     <div>
-                      <span className="text-xs font-bold text-white block">{page.title}</span>
+                      <span className="text-xs font-bold text-star-white block">{page.title}</span>
                       <span className="text-[10px] text-nebula-slate/60 font-mono">{page.path}</span>
                     </div>
                     <div className="flex items-center gap-1.5">
                       <button
                         onClick={() => movePage(idx, "up")}
                         disabled={idx === 0}
-                        className="p-1.5 bg-white/5 text-nebula-slate hover:text-white disabled:opacity-30 rounded cursor-pointer"
+                        className="p-1.5 bg-white/5 text-nebula-slate hover:text-star-white disabled:opacity-30 rounded cursor-pointer"
                       >
                         <ArrowUp className="w-3.5 h-3.5" />
                       </button>
                       <button
                         onClick={() => movePage(idx, "down")}
                         disabled={idx === config.pages.length - 1}
-                        className="p-1.5 bg-white/5 text-nebula-slate hover:text-white disabled:opacity-30 rounded cursor-pointer"
+                        className="p-1.5 bg-white/5 text-nebula-slate hover:text-star-white disabled:opacity-30 rounded cursor-pointer"
                       >
                         <ArrowDown className="w-3.5 h-3.5" />
                       </button>
@@ -326,7 +326,7 @@ export function ConfigSidebar() {
                   <select
                     value={effectivePageId}
                     onChange={(e) => setSelectedPageId(e.target.value)}
-                    className="w-full bg-glassy-night border border-white/5 rounded-lg p-2 text-xs text-white outline-none"
+                    className="w-full bg-glassy-night border border-white/5 rounded-lg p-2 text-xs text-star-white outline-none"
                   >
                     {config.pages.map((p) => (
                       <option key={p.id} value={p.id}>
@@ -340,7 +340,7 @@ export function ConfigSidebar() {
                   <select
                     value={effectiveSectionId}
                     onChange={(e) => setSelectedSectionId(e.target.value)}
-                    className="w-full bg-glassy-night border border-white/5 rounded-lg p-2 text-xs text-white outline-none"
+                    className="w-full bg-glassy-night border border-white/5 rounded-lg p-2 text-xs text-star-white outline-none"
                   >
                     {activePage?.sections.map((s) => (
                       <option key={s.id} value={s.id}>
@@ -433,7 +433,7 @@ export function ConfigSidebar() {
               key={profile}
               onClick={() => setAnimationProfile(profile)}
               className={`px-3 py-1.5 rounded-md text-[10px] font-heading font-bold uppercase tracking-wider transition-all cursor-pointer ${
-                config.animationProfile === profile ? "bg-electric-cyan text-deep-void" : "text-nebula-slate hover:text-white"
+                config.animationProfile === profile ? "bg-electric-cyan text-white" : "text-nebula-slate hover:text-star-white"
               }`}
             >
               {profile}

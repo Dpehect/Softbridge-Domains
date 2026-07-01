@@ -5,7 +5,22 @@ import { motion, AnimatePresence } from "framer-motion";
 import { ArrowRight, Eye, Search, ShieldCheck } from "lucide-react";
 import { CyberButton } from "./ui/CyberButton";
 import ProductDetailModal from "./ProductDetailModal";
-import PreviewModal, { PreviewConfig } from "./PreviewModal";
+import PreviewModal, { PreviewConfig, PreviewPage } from "./PreviewModal";
+
+type ProductCategory =
+  | "SaaS"
+  | "Portfolio"
+  | "E-Commerce"
+  | "Domain"
+  | "Agency"
+  | "Blog"
+  | "Dashboard"
+  | "Landing Page"
+  | "Startup"
+  | "Corporate"
+  | "Personal Brand"
+  | "Education"
+  | "Healthcare";
 
 type Product = {
   id: string;
@@ -14,7 +29,7 @@ type Product = {
   description: string;
   img: string;
   price: string;
-  category: "SaaS" | "Portfolio" | "E-Commerce" | "Domain";
+  category: ProductCategory;
 };
 
 const productsData: Product[] = [
@@ -89,8 +104,120 @@ const productsData: Product[] = [
     img: "https://images.unsplash.com/photo-1626785774573-4b799315345d?auto=format&fit=crop&w=600&q=80",
     price: "$290,000",
     category: "E-Commerce"
+  },
+  {
+    id: "prism-studio",
+    title: "PRISM.STUDIO",
+    location: "Agency System",
+    description: "Buy Price: $1,800 | Setup: $249 | Traffic: 2,200 PV/mo. Creative agency layout with services, proof, and lead capture.",
+    img: "https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=600&q=80",
+    price: "$1,800",
+    category: "Agency"
+  },
+  {
+    id: "daily-index",
+    title: "DAILY.INDEX",
+    location: "Editorial Blog",
+    description: "Buy Price: $3,200 | Setup: $119 | Traffic: 6,700 PV/mo. Editorial publishing system with categories and newsletter capture.",
+    img: "https://images.unsplash.com/photo-1499750310107-5fef28a66643?auto=format&fit=crop&w=600&q=80",
+    price: "$3,200",
+    category: "Blog"
+  },
+  {
+    id: "metric-app",
+    title: "METRIC.APP",
+    location: "Dashboard Console",
+    description: "Buy Price: $6,400 | Setup: $249 | Traffic: 5,900 PV/mo. Operational dashboard shell with metrics, reports, and team access.",
+    img: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=600&q=80",
+    price: "$6,400",
+    category: "Dashboard"
+  },
+  {
+    id: "launch-page",
+    title: "LAUNCH.PAGE",
+    location: "Campaign Landing",
+    description: "Buy Price: $1,200 | Setup: $69 | Traffic: 3,400 PV/mo. Focused one-page launch system for waitlists, offers, and campaigns.",
+    img: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=600&q=80",
+    price: "$1,200",
+    category: "Landing Page"
+  },
+  {
+    id: "seed-ai",
+    title: "SEED.AI",
+    location: "Startup Launch",
+    description: "Buy Price: $7,900 | Setup: $249 | Traffic: 8,200 PV/mo. Startup website bundle with product story, pricing, and investor proof.",
+    img: "https://images.unsplash.com/photo-1559136555-9303baea8ebd?auto=format&fit=crop&w=600&q=80",
+    price: "$7,900",
+    category: "Startup"
+  },
+  {
+    id: "nexusgroup",
+    title: "NEXUSGROUP.COM",
+    location: "Corporate Presence",
+    description: "Buy Price: $24,000 | Setup: $349 | Traffic: 42,000 PV/mo. Corporate website system with solutions, resources, and contact routing.",
+    img: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=600&q=80",
+    price: "$24,000",
+    category: "Corporate"
+  },
+  {
+    id: "aura-me",
+    title: "AURA.ME",
+    location: "Personal Brand",
+    description: "Buy Price: $2,100 | Setup: $199 | Traffic: 2,900 PV/mo. Personal brand website for founders, consultants, and creators.",
+    img: "https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&w=600&q=80",
+    price: "$2,100",
+    category: "Personal Brand"
+  },
+  {
+    id: "learnhub-io",
+    title: "LEARNHUB.IO",
+    location: "Education Platform",
+    description: "Buy Price: $5,600 | Setup: $199 | Traffic: 7,100 PV/mo. Course and academy website with programs, pricing, and enrollment flows.",
+    img: "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=600&q=80",
+    price: "$5,600",
+    category: "Education"
+  },
+  {
+    id: "caregrid",
+    title: "CAREGRID.COM",
+    location: "Healthcare Practice",
+    description: "Buy Price: $8,800 | Setup: $249 | Traffic: 9,400 PV/mo. Healthcare website with service pages, provider profiles, and request forms.",
+    img: "https://images.unsplash.com/photo-1576091160550-2173dba999ef?auto=format&fit=crop&w=600&q=80",
+    price: "$8,800",
+    category: "Healthcare"
   }
 ];
+
+const categoryPreviewSections: Record<ProductCategory, string[]> = {
+  SaaS: ["Features", "Analytics", "Pricing", "Integrations"],
+  Portfolio: ["Work", "Services", "Case Studies", "Contact"],
+  "E-Commerce": ["Collections", "Featured Products", "Reviews", "Checkout"],
+  Domain: ["Brand Story", "Traffic Signals", "Transfer Flow", "Escrow"],
+  Agency: ["Services", "Process", "Results", "Book a Call"],
+  Blog: ["Featured Articles", "Categories", "Author", "Newsletter"],
+  Dashboard: ["Metrics", "Reports", "Activity", "Team Access"],
+  "Landing Page": ["Benefits", "Social Proof", "FAQ", "Signup"],
+  Startup: ["Product", "Traction", "Pricing", "Team"],
+  Corporate: ["Company", "Solutions", "Resources", "Contact"],
+  "Personal Brand": ["About", "Speaking", "Writing", "Contact"],
+  Education: ["Courses", "Curriculum", "Student Stories", "Enroll"],
+  Healthcare: ["Services", "Providers", "Patient FAQ", "Appointments"],
+};
+
+function createProductPreviewPages(product: Product): PreviewPage[] {
+  const sections = categoryPreviewSections[product.category];
+  const pageTitles = product.category === "Landing Page" ? ["Home"] : ["Home", "About", "Features", "Pricing", "Contact"];
+
+  return pageTitles.map((title) => ({
+    id: title.toLowerCase().replace(/[^a-z0-9]+/g, "-"),
+    title,
+    description:
+      title === "Home"
+        ? product.description.split(". ")[1] || product.description
+        : `${title} page generated for the ${product.category.toLowerCase()} preview.`,
+    sections: title === "Home" ? sections : title === "Pricing" ? ["Plans", "Comparison", "FAQ"] : title === "Contact" ? ["Contact Form", "Support", "Location"] : sections.slice(0, 3),
+  }));
+}
 
 export default function ProductSection() {
   const [selectedCategory, setSelectedCategory] = useState<string>("All");
@@ -98,7 +225,7 @@ export default function ProductSection() {
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
   const [previewProduct, setPreviewProduct] = useState<Product | null>(null);
 
-  const categories = ["All", "SaaS", "Portfolio", "E-Commerce", "Domain"];
+  const categories = ["All", ...Array.from(new Set(productsData.map((product) => product.category)))];
 
   // Filter logic
   const filteredProducts = productsData.filter((product) => {
@@ -138,29 +265,31 @@ export default function ProductSection() {
           previewProduct.category === "Domain"
             ? `Launch ${previewProduct.title} with a premium brand system`
             : previewProduct.description.split(". ")[1] || previewProduct.title,
-        sections:
-          previewProduct.category === "E-Commerce"
-            ? ["Collections", "Featured Products", "Reviews", "Checkout"]
-            : previewProduct.category === "Portfolio"
-              ? ["Work", "Services", "Case Studies", "Contact"]
-              : previewProduct.category === "Domain"
-                ? ["Brand Story", "Traffic Signals", "Transfer Flow", "Escrow"]
-                : ["Features", "Analytics", "Pricing", "Integrations"],
+        sections: categoryPreviewSections[previewProduct.category],
+        pages: createProductPreviewPages(previewProduct),
+        pageCountLabel: previewProduct.category === "Landing Page" ? "1 Page" : "Full Site",
         themePrimary: "#E85D3B",
         themeSecondary: "#D94F2E",
         themeBg: "#FDF0E6",
         themeText: "#5C2E1F",
-        layout: previewProduct.category === "Portfolio" ? "minimal" : "modern",
-        extras: previewProduct.category === "SaaS" ? ["analytics"] : previewProduct.category === "Portfolio" ? ["3d"] : [],
+        layout: previewProduct.category === "Portfolio" ? "minimal" : previewProduct.category === "Dashboard" ? "dashboard" : "modern",
+        extras:
+          previewProduct.category === "SaaS"
+            ? ["analytics", "pricing"]
+            : previewProduct.category === "Portfolio"
+              ? ["3d", "contact"]
+              : previewProduct.category === "E-Commerce"
+                ? ["analytics", "pricing"]
+                : ["contact"],
         image: previewProduct.img,
       }
     : null;
 
   return (
-    <section className="max-w-6xl mx-auto w-full mb-12 px-4 md:px-0">
+    <section className="max-w-6xl mx-auto w-full mb-10 px-4 md:px-0">
       
       {/* Header section with category filters and search bar */}
-      <div className="flex flex-col md:flex-row md:items-end justify-between mb-5 gap-3 border-b border-black/5 pb-4">
+      <div className="flex flex-col md:flex-row md:items-end justify-between mb-4 gap-3 border-b border-black/5 pb-3">
         <div>
           <span className="font-mono text-[9px] uppercase tracking-[0.25em] text-cosmic-teal font-semibold block mb-1">
             REGISTRY PRODUCTS
@@ -184,7 +313,7 @@ export default function ProductSection() {
       </div>
 
       {/* Category Navigation Controls */}
-      <div className="flex flex-wrap gap-2 mb-4 text-[9px] uppercase tracking-wider">
+      <div className="flex flex-wrap gap-2 mb-3 text-[9px] uppercase tracking-wider">
         {categories.map((cat) => (
           <button
             key={cat}
@@ -206,7 +335,7 @@ export default function ProductSection() {
         initial="hidden"
         animate="visible"
         layout
-        className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3.5"
+        className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3"
       >
         <AnimatePresence mode="popLayout">
           {filteredProducts.map((product) => (
@@ -216,11 +345,11 @@ export default function ProductSection() {
               layout
               exit={{ opacity: 0, scale: 0.88, y: 12, transition: { duration: 0.35, ease: [0.4, 0, 1, 1] } }}
               onClick={() => setSelectedProduct(product)}
-              className="group relative bg-abyss-panel/30 border border-black/5 rounded-2xl overflow-hidden hover:border-black/15 transition-all duration-400 cursor-pointer flex flex-col justify-between min-h-[318px] shadow-sm hover:shadow-md"
+              className="group relative bg-abyss-panel/30 border border-black/5 rounded-2xl overflow-hidden hover:border-black/15 transition-all duration-400 cursor-pointer flex flex-col justify-between min-h-[300px] shadow-sm hover:shadow-md"
             >
               
               {/* Image box */}
-              <div className="relative h-36 w-full overflow-hidden">
+              <div className="relative h-32 w-full overflow-hidden">
                 <img
                   src={product.img}
                   alt={product.title}
@@ -236,7 +365,7 @@ export default function ProductSection() {
               </div>
 
               {/* Title & metadata content */}
-              <div className="p-4 flex-1 flex flex-col justify-between space-y-3">
+              <div className="p-3.5 flex-1 flex flex-col justify-between space-y-2.5">
                 <div className="space-y-1.5">
                   <span className="font-mono text-[9px] uppercase tracking-widest text-cosmic-teal">
                     {product.location}
@@ -250,7 +379,7 @@ export default function ProductSection() {
                 </div>
 
                 {/* Card Action Center footer */}
-                <div className="flex items-center justify-between border-t border-black/5 pt-3 gap-2">
+                <div className="flex items-center justify-between border-t border-black/5 pt-2.5 gap-2">
                   <div>
                     <span className="text-[8px] text-gray-500 block uppercase font-mono tracking-wider">Buy Price</span>
                     <span className="font-mono text-sm font-black text-sunset-coral">

@@ -5,12 +5,21 @@ import { motion, AnimatePresence } from "framer-motion";
 import { X, Monitor, Smartphone, Tablet } from "lucide-react";
 
 // ─── Types (mirrored from SoftbridgeStudio) ───────────────────────
+export interface PreviewPage {
+  id: string;
+  title: string;
+  description?: string;
+  sections: string[];
+}
+
 export interface PreviewConfig {
   typeId: string;
   typeName: string;
   brandName?: string;
   heroText: string;
   sections: string[];
+  pages?: PreviewPage[];
+  pageCountLabel?: string;
   themePrimary: string;
   themeSecondary: string;
   themeBg: string;
@@ -43,6 +52,16 @@ function FullSitePreview({ config, viewMode }: { config: PreviewConfig; viewMode
     sections,
     typeName,
   } = config;
+  const pages = React.useMemo<PreviewPage[]>(
+    () =>
+      config.pages?.length
+        ? config.pages
+        : [{ id: "home", title: "Home", description: heroText, sections }],
+    [config.pages, heroText, sections]
+  );
+  const [activePageId, setActivePageId] = React.useState(pages[0]?.id || "home");
+  const activePage = pages.find((page) => page.id === activePageId) || pages[0];
+  const activeSections = activePage?.sections?.length ? activePage.sections : sections;
   const hasDark      = extras.includes("darkmode");
   const hasAnalytics = extras.includes("analytics");
   const has3D        = extras.includes("3d");
@@ -53,12 +72,13 @@ function FullSitePreview({ config, viewMode }: { config: PreviewConfig; viewMode
   const border       = `${primary}20`;
 
   const headingStyle: React.CSSProperties =
-    layout === "bold"    ? { fontWeight: 850, textTransform: "uppercase" as const, letterSpacing: "0" } :
-    layout === "minimal" ? { fontWeight: 420, letterSpacing: "0" } :
-                           { fontWeight: 720, letterSpacing: "0" };
+    layout === "editorial" ? { fontWeight: 850, textTransform: "uppercase" as const, letterSpacing: "0" } :
+    layout === "minimal"   ? { fontWeight: 460, letterSpacing: "0" } :
+    layout === "dashboard" ? { fontWeight: 760, letterSpacing: "0" } :
+                             { fontWeight: 720, letterSpacing: "0" };
 
-  const cardRadius = layout === "minimal" ? "8px" : layout === "bold" ? "4px" : "12px";
-  const btnRadius  = layout === "minimal" ? "8px" : layout === "bold" ? "4px" : "12px";
+  const cardRadius = layout === "minimal" ? "8px" : layout === "editorial" ? "4px" : "12px";
+  const btnRadius  = layout === "minimal" ? "8px" : layout === "editorial" ? "4px" : "12px";
 
   return (
     <div
@@ -79,9 +99,20 @@ function FullSitePreview({ config, viewMode }: { config: PreviewConfig; viewMode
             {displayName}
           </span>
         </div>
-        <div className="hidden md:flex items-center gap-5 text-xs" style={{ color: resolvedText, opacity: 0.65 }}>
-          {sections.slice(0, 4).map((s) => (
-            <span key={s} className="hover:opacity-100 cursor-pointer transition-opacity">{s}</span>
+        <div className="hidden md:flex items-center gap-2 text-xs" style={{ color: resolvedText }}>
+          {pages.slice(0, 6).map((page) => (
+            <button
+              key={page.id}
+              onClick={() => setActivePageId(page.id)}
+              className="rounded-lg px-2.5 py-1 transition-all"
+              style={{
+                color: activePage?.id === page.id ? primary : resolvedText,
+                backgroundColor: activePage?.id === page.id ? `${primary}14` : "transparent",
+                opacity: activePage?.id === page.id ? 1 : 0.62,
+              }}
+            >
+              {page.title}
+            </button>
           ))}
         </div>
         <div
@@ -91,6 +122,26 @@ function FullSitePreview({ config, viewMode }: { config: PreviewConfig; viewMode
           Get Started
         </div>
       </nav>
+
+      <div
+        className="flex md:hidden gap-1.5 overflow-x-auto border-b px-3 py-2"
+        style={{ borderColor: border, backgroundColor: `${resolvedBg}F0` }}
+      >
+        {pages.map((page) => (
+          <button
+            key={page.id}
+            onClick={() => setActivePageId(page.id)}
+            className="shrink-0 rounded-lg px-2.5 py-1 text-[11px] font-semibold"
+            style={{
+              color: activePage?.id === page.id ? primary : resolvedText,
+              backgroundColor: activePage?.id === page.id ? `${primary}14` : "transparent",
+              opacity: activePage?.id === page.id ? 1 : 0.62,
+            }}
+          >
+            {page.title}
+          </button>
+        ))}
+      </div>
 
       {/* ── Hero ── */}
       <section
@@ -122,16 +173,16 @@ function FullSitePreview({ config, viewMode }: { config: PreviewConfig; viewMode
             style={{ backgroundColor: `${primary}15`, color: primary, border: `1px solid ${primary}30` }}
           >
             <span className="w-1.5 h-1.5 rounded-full" style={{ backgroundColor: primary }} />
-            {typeName}
+            {activePage?.title || "Home"} / {typeName}
           </div>
           <h1
             className="text-3xl md:text-5xl mb-3 leading-tight"
             style={{ ...headingStyle, color: resolvedText }}
           >
-            {heroText}
+            {activePage?.title === "Home" ? heroText : `${activePage?.title} for ${displayName}`}
           </h1>
           <p className="text-sm leading-relaxed mb-6" style={{ color: resolvedText, opacity: 0.62 }}>
-            Built with Softbridge — modular, scalable, and ready to ship in minutes. 
+            {activePage?.description || "Built with Softbridge, modular, scalable, and ready to ship in minutes."}
             {has3D ? " Enhanced with interactive 3D elements." : ""}
             {hasAnalytics ? " Analytics-ready from day one." : ""}
           </p>
@@ -156,7 +207,7 @@ function FullSitePreview({ config, viewMode }: { config: PreviewConfig; viewMode
       <section className="px-8 py-12">
         <div className="text-center mb-6">
           <h2 className="text-xl font-semibold mb-2" style={{ ...headingStyle, color: resolvedText }}>
-            {sections[0] || "Features"}
+            {activeSections[0] || "Features"}
           </h2>
           <p className="text-xs" style={{ color: resolvedText, opacity: 0.5 }}>Everything you need to launch fast</p>
         </div>
@@ -192,7 +243,7 @@ function FullSitePreview({ config, viewMode }: { config: PreviewConfig; viewMode
       </section>
 
       {/* ── Secondary section ── */}
-      {sections.length > 1 && (
+      {activeSections.length > 1 && (
         <section
           className="px-8 py-10 border-t"
           style={{ borderColor: border, backgroundColor: `${primary}05` }}
@@ -200,7 +251,7 @@ function FullSitePreview({ config, viewMode }: { config: PreviewConfig; viewMode
           <div className="flex flex-col md:flex-row gap-6 items-center">
             <div className="flex-1">
               <h2 className="text-xl font-semibold mb-3" style={{ ...headingStyle, color: resolvedText }}>
-                {sections[1] || "Why choose us"}
+                {activeSections[1] || "Why choose us"}
               </h2>
               <p className="text-xs leading-relaxed mb-6" style={{ color: resolvedText, opacity: 0.6 }}>
                 Trusted by thousands of developers and designers. Ship faster, scale smarter, and maintain with confidence.
@@ -351,7 +402,7 @@ export default function PreviewModal({ isOpen, onClose, config }: Props) {
 
               {/* Config summary pills */}
               <div className="hidden md:flex items-center gap-2">
-                {[config.typeName, config.layout].map((label) => (
+                {([config.typeName, config.pageCountLabel, config.layout].filter(Boolean) as string[]).map((label) => (
                   <span key={label} className="text-[9px] font-mono font-semibold uppercase tracking-wider px-2 py-0.5 rounded-md bg-[#E85D3B]/10 text-[#E85D3B] border border-[#E85D3B]/20">
                     {label}
                   </span>

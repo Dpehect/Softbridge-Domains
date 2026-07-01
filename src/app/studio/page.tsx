@@ -31,7 +31,7 @@ function StudioContent() {
     const foundTemplate = templatesData.find((t) => t.id === activeTemplateId) || templatesData[0];
     
     if (foundTemplate) {
-      loadTemplate(foundTemplate.id, foundTemplate.name, foundTemplate.defaultPages);
+      loadTemplate(foundTemplate.id, foundTemplate.name, foundTemplate.defaultPages, foundTemplate.theme);
     }
   }, [templateIdParam]);
 
@@ -55,13 +55,13 @@ function StudioContent() {
   };
 
   return (
-    <div className="w-full max-w-7xl mx-auto flex flex-col gap-5 relative z-10 flex-1">
+    <div className="w-full max-w-7xl mx-auto flex flex-col gap-4 relative z-10 flex-1">
       {/* Top Controls bar */}
-      <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-3 border-b border-white/5 pb-3">
+      <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-3 border-b border-black/5 pb-2.5">
         <div className="flex items-center gap-3">
           <Link
             href="/templates"
-            className="p-2.5 bg-white/5 hover:bg-white/10 text-star-white hover:text-electric-cyan rounded-full border border-white/5 transition-all cursor-pointer"
+            className="p-2.5 bg-black/[0.04] hover:bg-black/[0.07] text-star-white hover:text-electric-cyan rounded-full border border-black/5 transition-all cursor-pointer"
           >
             <ArrowLeft className="w-4 h-4" />
           </Link>
@@ -107,7 +107,7 @@ function StudioContent() {
       </div>
 
       {/* Editor Split Layout */}
-      <div className="flex-1 grid grid-cols-1 lg:grid-cols-12 gap-5 items-stretch min-h-[460px]">
+      <div className="flex-1 grid grid-cols-1 lg:grid-cols-12 gap-4 items-stretch min-h-[440px]">
         {/* Left Canlı Önizleme Viewport */}
         <div className="lg:col-span-7 xl:col-span-8 flex flex-col justify-stretch">
           <LivePreviewViewport />
@@ -129,7 +129,7 @@ function StudioContent() {
 
 export default function StudioPage() {
   return (
-    <main className="min-h-screen pt-24 pb-10 px-4 md:px-8 relative overflow-hidden mesh-bg flex flex-col">
+    <main className="min-h-screen pt-20 pb-8 px-4 md:px-8 relative overflow-hidden mesh-bg flex flex-col">
       <Suspense
         fallback={
           <div className="h-64 flex flex-col items-center justify-center">
