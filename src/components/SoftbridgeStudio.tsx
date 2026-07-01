@@ -1,38 +1,15 @@
 "use client";
 
 import React, { useState, useMemo } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence, Reorder } from "framer-motion";
 import {
-  Monitor,
-  Layers,
-  Palette,
-  Settings,
-  Check,
-  ArrowRight,
-  ArrowLeft,
-  Cpu,
-  Bookmark,
-  BarChart2,
-  Box,
-  Moon,
-  ShoppingBag,
-  Layout,
-  Briefcase,
-  LayoutDashboard,
-  Mail,
-  Table2,
-  Type,
-  Video,
-  Search,
-  Filter,
-  Star,
-  ChevronLeft
+  Monitor, Palette, Settings, Check, ArrowRight, ChevronLeft, Filter, Star, Layout, Plus, Trash2, Edit2, GripVertical, Type, Box, Image as ImageIcon, ChevronRight, X
 } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 import { useCartStore } from "@/store/useCartStore";
-import type { ConfiguredPage, PageSection } from "@/store/useConfiguratorStore";
-import PreviewModal, { PreviewConfig, PreviewPage, FullSitePreview } from "./PreviewModal";
+import PreviewModal, { PreviewConfig, FullSitePreview } from "./PreviewModal";
 import { TEMPLATES, Template } from "@/data/templates";
+import { CustomPage, CustomSection, CustomSectionType } from "@/types/builder";
 
 // ─── Constants & Types ───────────────────────────────────────────────────────
 
@@ -71,73 +48,74 @@ const ALL_FEATURES = [
 ];
 
 const categorySections: Record<string, string[]> = {
-  "SaaS": ["Features", "Integrations", "Pricing", "Customer Stories"],
-  "Portfolio": ["Selected Work", "Case Studies", "Services", "Contact"],
-  "E-Commerce": ["Collections", "Best Sellers", "Reviews", "Checkout"],
-  "Blog": ["Featured Articles", "Categories", "Author Notes", "Newsletter"],
-  "Agency": ["Services", "Process", "Results", "Book a Call"],
-  "Landing Page": ["Benefits", "Social Proof", "FAQ", "Signup"],
-  "Dashboard": ["Metrics", "Reports", "Activity", "Team Access"],
-  "Corporate": ["About Us", "Services", "Leadership", "Contact"],
+  "SaaS": ["Features", "Pricing", "Testimonials"],
+  "Portfolio": ["Gallery", "Features", "Contact"],
+  "E-Commerce": ["Gallery", "Features", "Pricing"],
+  "Blog": ["Blog", "Newsletter", "Contact"],
+  "Agency": ["Features", "Testimonials", "Contact"],
+  "Landing Page": ["Features", "Testimonials", "FAQ"],
+  "Dashboard": ["Features", "Pricing", "FAQ"],
+  "Corporate": ["Features", "Testimonials", "Contact"],
 };
 
 // ─── Helpers ─────────────────────────────────────────────────────────────────
 
 const slugify = (value: string) => value.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "");
 
-function buildPageSections(pageTitle: string, template: Template, extras: string[]) {
-  const tSections = categorySections[template.category] || ["Features", "Details"];
-  const baseSections: Record<string, string[]> = {
-    Home: ["Hero", ...tSections.slice(0, 3)],
-    About: ["Brand Story", "Values", "Team"],
-    Features: tSections.slice(0, 4),
-    Pricing: ["Plans", "Comparison", "FAQ"],
-    Blog: ["Featured Articles", "Latest Posts", "Newsletter"],
-    Dashboard: ["Metrics", "Reports", "Activity"],
-    Contact: ["Contact Form", "Support", "Location"],
-  };
-
-  const sections = baseSections[pageTitle] || [pageTitle, "Details", "CTA"];
-  const withExtras = [...sections];
-
-  if (pageTitle === "Home" && extras.includes("analytics")) withExtras.push("Live Metrics");
-  if (pageTitle === "Home" && extras.includes("3d")) withExtras.push("3D Showcase");
-  if (pageTitle !== "Blog" && extras.includes("blog")) withExtras.push("Insights");
-  if (pageTitle !== "Pricing" && extras.includes("pricing")) withExtras.push("Pricing Snapshot");
-
-  return Array.from(new Set(withExtras));
-}
-
-function buildPreviewPages(template: Template, pagesCount: number, extras: string[]): PreviewPage[] {
+function buildInitialCustomPages(template: Template): CustomPage[] {
+  const pagesCount = template.pages;
   const pageTitles = ["Home"];
   if (pagesCount >= 3) pageTitles.push("About", "Contact");
-  if (pagesCount >= 5) pageTitles.push("Features", "Pricing");
-  if (pagesCount > 5) pageTitles.push("Blog", "Dashboard");
+  if (pagesCount >= 5) pageTitles.push("Services", "Pricing");
+  if (pagesCount > 5) pageTitles.push("Blog", "FAQ");
 
-  return pageTitles.map((pageTitle) => ({
-    id: slugify(pageTitle),
-    title: pageTitle,
-    description: pageTitle === "Home" ? `Premium ${template.category} experience.` : `${pageTitle} page for ${template.name}.`,
-    sections: buildPageSections(pageTitle, template, extras),
-  }));
+  return pageTitles.map((title) => {
+    const isHome = title === "Home";
+    const sections: CustomSection[] = [];
+    
+    if (isHome) {
+      sections.push({
+        id: `sec-${Date.now()}-hero`,
+        type: "Hero",
+        content: { heading: template.name, description: template.description, buttonText: "Get Started" },
+        styles: { alignment: "center", padding: "py-24" }
+      });
+      const tSections = categorySections[template.category] || ["Features", "FAQ"];
+      tSections.forEach((s, i) => {
+        sections.push({
+          id: `sec-${Date.now()}-${i}`,
+          type: s as CustomSectionType,
+          content: { heading: s, description: "Detailed information goes here." },
+          styles: { alignment: "center", padding: "py-16" }
+        });
+      });
+    } else if (title === "Contact") {
+      sections.push({
+        id: `sec-${Date.now()}-contact`,
+        type: "Contact",
+        content: { heading: "Contact Us", description: "Reach out to our team." },
+        styles: { alignment: "center", padding: "py-16" }
+      });
+    } else {
+      sections.push({
+        id: `sec-${Date.now()}-generic`,
+        type: "Features",
+        content: { heading: title, description: `Welcome to the ${title} page.` },
+        styles: { alignment: "center", padding: "py-16" }
+      });
+    }
+
+    return { id: slugify(title), title, sections };
+  });
 }
 
-function sectionFor(pageSlug: string, sectionName: string, template: Template): PageSection {
-  const sectionId = `${pageSlug}-${slugify(sectionName)}`;
-  const lower = sectionName.toLowerCase();
-  if (lower.includes("hero")) return { id: sectionId, type: "hero", title: sectionName, content: { heading: template.name, subheading: template.description, buttonText: "Start Project" } };
-  if (lower.includes("contact") || lower.includes("support")) return { id: sectionId, type: "contact", title: sectionName, content: { heading: "Start the conversation", description: "Capture leads.", buttonText: "Send Request" } };
-  if (lower.includes("article") || lower.includes("blog") || lower.includes("work")) return { id: sectionId, type: "gallery", title: sectionName, content: { heading: sectionName, items: ["Story", "Proof", "Deep Dive"] } };
-  return { id: sectionId, type: "features", title: sectionName, content: { heading: sectionName, subheading: "Generated section.", items: ["Setup", "Responsive", "UI polish"] } };
-}
-
-function buildConfiguredPages(template: Template, pagesCount: number, extras: string[]): ConfiguredPage[] {
-  return buildPreviewPages(template, pagesCount, extras).map((page, index) => ({
-    id: page.id,
-    title: page.title,
-    path: index === 0 ? "/" : `/${page.id}`,
-    sections: page.sections.slice(0, 4).map((sectionName) => sectionFor(page.id, sectionName, template)),
-  }));
+function createEmptySection(type: CustomSectionType): CustomSection {
+  return {
+    id: `sec-${Date.now()}-${Math.random().toString(36).substr(2, 5)}`,
+    type,
+    content: { heading: `New ${type}`, description: `Describe your ${type.toLowerCase()} here.` },
+    styles: { alignment: "center", padding: "py-16" }
+  };
 }
 
 // ─── Main Component ──────────────────────────────────────────────────────────
@@ -153,12 +131,13 @@ export default function SoftbridgeStudio() {
   const [filterPopular, setFilterPopular] = useState<boolean>(false);
 
   // Configurator State
-  const [configTab, setConfigTab] = useState<"identity" | "aesthetics" | "layout" | "features">("identity");
+  const [configTab, setConfigTab] = useState<"identity" | "aesthetics" | "pages" | "features">("identity");
   
   // -- Identity
   const [siteName, setSiteName] = useState("");
   const [siteSlogan, setSiteSlogan] = useState("");
   const [siteLogo, setSiteLogo] = useState<string>("");
+  
   // -- Aesthetics
   const [selectedThemeId, setSelectedThemeId] = useState("clay");
   const [customColors, setCustomColors] = useState<{primary: string, bg: string, text: string}>({ primary: "#E85D3B", bg: "#FDF0E6", text: "#5C2E1F" });
@@ -166,10 +145,13 @@ export default function SoftbridgeStudio() {
   const [headingFont, setHeadingFont] = useState("inter");
   const [bodyFont, setBodyFont] = useState("inter");
   const [borderRadius, setBorderRadius] = useState("12px");
-  // -- Layout & Structure
-  const [pagesCount, setPagesCount] = useState<number>(3);
   const [navType, setNavType] = useState<"topbar" | "sidebar" | "minimal">("topbar");
-  const [heroStyle, setHeroStyle] = useState<"modern" | "centered" | "split">("modern");
+  
+  // -- Builder (Pages & Sections)
+  const [customPages, setCustomPages] = useState<CustomPage[]>([]);
+  const [activePageId, setActivePageId] = useState<string>("");
+  const [editingSection, setEditingSection] = useState<CustomSection | null>(null);
+
   // -- Features
   const [selectedExtras, setSelectedExtras] = useState<string[]>([]);
 
@@ -194,8 +176,14 @@ export default function SoftbridgeStudio() {
     setSiteName(t.name);
     setSiteSlogan(t.description);
     setSelectedExtras(t.features.map(f => ALL_FEATURES.find(af => af.name === f)?.id).filter(Boolean) as string[]);
-    setPagesCount(t.pages);
+    
+    const pages = buildInitialCustomPages(t);
+    setCustomPages(pages);
+    setActivePageId(pages[0].id);
+
     setPhase("configurator");
+    setConfigTab("identity");
+    setEditingSection(null);
   };
 
   const toggleCategory = (cat: string) => {
@@ -206,16 +194,50 @@ export default function SoftbridgeStudio() {
     setSelectedExtras(prev => prev.includes(id) ? prev.filter(x => x !== id) : [...prev, id]);
   };
 
+  // Builder Handlers
+  const handleAddPage = () => {
+    const title = prompt("Enter page name (e.g. Services):");
+    if (!title) return;
+    const newPage: CustomPage = { id: slugify(title), title, sections: [] };
+    setCustomPages([...customPages, newPage]);
+    setActivePageId(newPage.id);
+  };
+
+  const handleDeletePage = (id: string) => {
+    if (customPages.length <= 1) return alert("You must have at least one page.");
+    setCustomPages(customPages.filter(p => p.id !== id));
+    if (activePageId === id) setActivePageId(customPages[0].id);
+  };
+
+  const handleAddSection = (type: CustomSectionType) => {
+    const newSec = createEmptySection(type);
+    setCustomPages(customPages.map(p => p.id === activePageId ? { ...p, sections: [...p.sections, newSec] } : p));
+    setEditingSection(newSec);
+  };
+
+  const handleDeleteSection = (secId: string) => {
+    setCustomPages(customPages.map(p => p.id === activePageId ? { ...p, sections: p.sections.filter(s => s.id !== secId) } : p));
+    if (editingSection?.id === secId) setEditingSection(null);
+  };
+
+  const handleReorderSections = (newSections: CustomSection[]) => {
+    setCustomPages(customPages.map(p => p.id === activePageId ? { ...p, sections: newSections } : p));
+  };
+
+  const updateEditingSection = (changes: any) => {
+    if (!editingSection) return;
+    const updated = { ...editingSection, ...changes };
+    setEditingSection(updated);
+    setCustomPages(customPages.map(p => p.id === activePageId ? { ...p, sections: p.sections.map(s => s.id === updated.id ? updated : s) } : p));
+  };
+
   // Derived
   const activeTheme = isCustomColor ? { ...COLOR_THEMES[0], ...customColors } : (COLOR_THEMES.find(t => t.id === selectedThemeId) || COLOR_THEMES[0]);
   const activeHeadingFont = FONT_STYLES.find(f => f.id === headingFont)?.fontFamily || "var(--font-sans)";
   const activeBodyFont = FONT_STYLES.find(f => f.id === bodyFont)?.fontFamily || "var(--font-sans)";
 
-  const extrasPrice = selectedExtras.reduce((sum, id) => {
-    const f = ALL_FEATURES.find(af => af.id === id);
-    return sum + (f ? f.price : 0);
-  }, 0);
-  const pagesPrice = pagesCount > 3 ? (pagesCount - 3) * 30 : 0; // base 3 pages included, extra pages 30$ each
+  const extrasPrice = selectedExtras.reduce((sum, id) => sum + (ALL_FEATURES.find(af => af.id === id)?.price || 0), 0);
+  const pagesPrice = customPages.length > 3 ? (customPages.length - 3) * 30 : 0;
   const templatePrice = selectedTemplate?.price || 0;
   const totalPrice = templatePrice + extrasPrice + pagesPrice;
 
@@ -223,12 +245,8 @@ export default function SoftbridgeStudio() {
     typeId: selectedTemplate.id,
     typeName: selectedTemplate.category,
     brandName: siteName || selectedTemplate.name,
-    heroText: siteName || selectedTemplate.name,
     identitySlogan: siteSlogan || selectedTemplate.description,
     identityLogo: siteLogo,
-    sections: categorySections[selectedTemplate.category] || ["Hero", "Features"],
-    pages: buildPreviewPages(selectedTemplate, pagesCount, selectedExtras),
-    pageCountLabel: `${pagesCount} Pages`,
     themePrimary: activeTheme.primary,
     themeSecondary: activeTheme.secondary,
     themeBg: activeTheme.bg,
@@ -236,10 +254,12 @@ export default function SoftbridgeStudio() {
     themeFont: activeBodyFont,
     themeHeadingFont: activeHeadingFont,
     themeBorderRadius: borderRadius,
-    layout: heroStyle === "centered" ? "minimal" : "modern", // map to old layout system for safety
     navType,
-    heroStyle,
     extras: selectedExtras,
+    customPages: customPages, // Passes deeply customized pages directly to the preview
+    // Fallbacks to avoid breaking PreviewModal types
+    heroText: siteName || selectedTemplate.name,
+    sections: [],
   } : null;
 
   const handleAddToCart = () => {
@@ -260,7 +280,7 @@ export default function SoftbridgeStudio() {
           logo: siteLogo,
           theme: { primary: activeTheme.primary, secondary: activeTheme.secondary, bg: activeTheme.bg },
           typography: { headings: activeHeadingFont, body: activeBodyFont },
-          pages: buildConfiguredPages(selectedTemplate, pagesCount, selectedExtras),
+          pages: customPages.map(p => ({ id: p.id, title: p.title, path: `/${p.id}`, sections: p.sections.map(s => ({ id: s.id, type: s.type, title: s.content.heading || s.type, content: s.content, styles: s.styles })) })),
           animationProfile: selectedExtras.includes("framer") ? "smooth" : "fluid",
         },
       },
@@ -269,6 +289,8 @@ export default function SoftbridgeStudio() {
     setTimeout(() => setIsAddedToCart(false), 2000);
   };
 
+  const activePageObj = customPages.find(p => p.id === activePageId);
+
   return (
     <section className="relative mb-10 w-full overflow-hidden rounded-2xl border border-black/5 bg-[#FDF0E6] p-4 shadow-sm md:p-6 font-sans">
       
@@ -276,17 +298,14 @@ export default function SoftbridgeStudio() {
       <div className="mb-6 flex items-center justify-between border-b border-black/5 pb-4">
         <div>
           <span className="mb-1 block font-mono text-[10px] font-bold uppercase tracking-[0.2em] text-[#E85D3B]">
-            Softbridge Studio {phase === "configurator" ? "// Configurator" : "// Marketplace"}
+            Softbridge Studio {phase === "configurator" ? "// Builder" : "// Marketplace"}
           </span>
           <h2 className="text-2xl font-semibold text-[#5C2E1F] md:text-3xl tracking-tight">
             {phase === "configurator" ? siteName || "Configure Site" : "Pre-built Templates"}
           </h2>
         </div>
         {phase === "configurator" && (
-          <button
-            onClick={() => setPhase("marketplace")}
-            className="flex items-center gap-1 text-xs font-semibold text-[#5C2E1F]/60 hover:text-[#5C2E1F] transition-colors"
-          >
+          <button onClick={() => setPhase("marketplace")} className="flex items-center gap-1 text-xs font-semibold text-[#5C2E1F]/60 hover:text-[#5C2E1F] transition-colors">
             <ChevronLeft className="w-4 h-4" /> Back to Templates
           </button>
         )}
@@ -295,7 +314,6 @@ export default function SoftbridgeStudio() {
       {/* PHASE 1: MARKETPLACE */}
       {phase === "marketplace" && (
         <div className="flex flex-col md:flex-row gap-6">
-          {/* Filters Sidebar */}
           <div className="w-full md:w-56 shrink-0 flex flex-col gap-5">
             <div>
               <h3 className="text-xs font-bold uppercase tracking-wider text-[#5C2E1F] mb-3 flex items-center gap-1.5"><Filter className="w-3.5 h-3.5"/> Categories</h3>
@@ -310,11 +328,7 @@ export default function SoftbridgeStudio() {
             </div>
             <div>
               <h3 className="text-xs font-bold uppercase tracking-wider text-[#5C2E1F] mb-3">Difficulty</h3>
-              <select 
-                value={filterDifficulty} 
-                onChange={e => setFilterDifficulty(e.target.value)}
-                className="w-full text-sm bg-black/5 border border-black/10 rounded-lg px-2 py-1.5 text-[#5C2E1F] focus:outline-none focus:border-[#E85D3B]"
-              >
+              <select value={filterDifficulty} onChange={e => setFilterDifficulty(e.target.value)} className="w-full text-sm bg-black/5 border border-black/10 rounded-lg px-2 py-1.5 text-[#5C2E1F] focus:outline-none focus:border-[#E85D3B]">
                 <option value="">All Levels</option>
                 <option value="Beginner">Beginner</option>
                 <option value="Intermediate">Intermediate</option>
@@ -328,8 +342,6 @@ export default function SoftbridgeStudio() {
               </label>
             </div>
           </div>
-
-          {/* Templates Grid */}
           <div className="flex-1 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
             {filteredTemplates.map(t => (
               <div key={t.id} className="group relative flex flex-col overflow-hidden rounded-xl border border-black/10 bg-white shadow-sm hover:shadow-md transition-all">
@@ -345,56 +357,47 @@ export default function SoftbridgeStudio() {
                   </div>
                   <span className="text-[10px] uppercase font-bold tracking-wider text-[#5C2E1F]/50 mb-2">{t.category} • {t.difficultyLevel}</span>
                   <p className="text-xs text-[#5C2E1F]/70 line-clamp-2 mb-4 flex-1">{t.description}</p>
-                  <button 
-                    onClick={() => handleSelectTemplate(t)}
-                    className="w-full bg-[#E85D3B]/10 hover:bg-[#E85D3B] text-[#E85D3B] hover:text-white transition-colors py-2 rounded-lg text-xs font-semibold"
-                  >
+                  <button onClick={() => handleSelectTemplate(t)} className="w-full bg-[#E85D3B]/10 hover:bg-[#E85D3B] text-[#E85D3B] hover:text-white transition-colors py-2 rounded-lg text-xs font-semibold">
                     Configure Template
                   </button>
                 </div>
               </div>
             ))}
-            {filteredTemplates.length === 0 && (
-              <div className="col-span-full py-20 text-center text-[#5C2E1F]/50 text-sm">
-                No templates found matching your filters.
-              </div>
-            )}
           </div>
         </div>
       )}
 
-      {/* PHASE 2: CONFIGURATOR */}
+      {/* PHASE 2: BUILDER */}
       {phase === "configurator" && selectedTemplate && (
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
-          
           {/* Settings Panel */}
-          <div className="lg:col-span-5 flex flex-col h-[600px] overflow-hidden rounded-xl border border-black/10 bg-white">
+          <div className="lg:col-span-5 flex flex-col h-[650px] overflow-hidden rounded-xl border border-black/10 bg-white shadow-sm relative">
             <div className="flex overflow-x-auto border-b border-black/10 shrink-0">
               {([
                 { id: "identity", label: "Identity" },
                 { id: "aesthetics", label: "Aesthetics" },
-                { id: "layout", label: "Structure" },
+                { id: "pages", label: "Site Builder" },
                 { id: "features", label: "Features" }
               ] as const).map(tab => (
                 <button
                   key={tab.id}
                   onClick={() => setConfigTab(tab.id)}
-                  className={`flex-1 px-4 py-3 text-xs font-semibold text-center whitespace-nowrap transition-colors ${configTab === tab.id ? "bg-[#FDF0E6] text-[#E85D3B] border-b-2 border-[#E85D3B]" : "text-[#5C2E1F]/60 hover:text-[#5C2E1F] hover:bg-black/5"}`}
+                  className={`flex-1 px-3 py-3 text-xs font-semibold text-center whitespace-nowrap transition-colors ${configTab === tab.id ? "bg-[#FDF0E6] text-[#E85D3B] border-b-2 border-[#E85D3B]" : "text-[#5C2E1F]/60 hover:text-[#5C2E1F] hover:bg-black/5"}`}
                 >
                   {tab.label}
                 </button>
               ))}
             </div>
             
-            <div className="flex-1 overflow-y-auto p-5 custom-scrollbar">
+            <div className="flex-1 overflow-y-auto custom-scrollbar relative">
               {configTab === "identity" && (
-                <div className="space-y-4">
+                <div className="p-5 space-y-4">
                   <div>
                     <label className="block text-xs font-semibold text-[#5C2E1F] mb-1.5">Site Name</label>
                     <input type="text" value={siteName} onChange={e => setSiteName(e.target.value)} className="w-full text-sm bg-black/5 border border-black/10 rounded-lg px-3 py-2 text-[#5C2E1F] focus:outline-none focus:border-[#E85D3B]" />
                   </div>
                   <div>
-                    <label className="block text-xs font-semibold text-[#5C2E1F] mb-1.5">Slogan / Hero Text</label>
+                    <label className="block text-xs font-semibold text-[#5C2E1F] mb-1.5">Slogan / Default Hero Text</label>
                     <textarea value={siteSlogan} onChange={e => setSiteSlogan(e.target.value)} rows={3} className="w-full text-sm bg-black/5 border border-black/10 rounded-lg px-3 py-2 text-[#5C2E1F] focus:outline-none focus:border-[#E85D3B]" />
                   </div>
                   <div>
@@ -405,7 +408,7 @@ export default function SoftbridgeStudio() {
               )}
 
               {configTab === "aesthetics" && (
-                <div className="space-y-6">
+                <div className="p-5 space-y-6">
                   <div>
                     <label className="flex items-center justify-between text-xs font-semibold text-[#5C2E1F] mb-2">
                       <span>Color Palette</span>
@@ -460,23 +463,8 @@ export default function SoftbridgeStudio() {
                     </label>
                     <input type="range" min="0" max="32" step="4" value={parseInt(borderRadius)} onChange={e => setBorderRadius(`${e.target.value}px`)} className="w-full accent-[#E85D3B]" />
                   </div>
-                </div>
-              )}
-
-              {configTab === "layout" && (
-                <div className="space-y-6">
                   <div>
-                    <label className="block text-xs font-semibold text-[#5C2E1F] mb-2">Pages Configuration</label>
-                    <div className="flex bg-black/5 p-1 rounded-lg">
-                      {[1, 3, 5, 8].map(num => (
-                        <button key={num} onClick={() => setPagesCount(num)} className={`flex-1 py-1.5 text-xs font-semibold rounded-md transition-colors ${pagesCount === num ? "bg-white shadow-sm text-[#E85D3B]" : "text-[#5C2E1F]/60"}`}>
-                          {num} {num === 1 ? "Page" : "Pages"}
-                        </button>
-                      ))}
-                    </div>
-                  </div>
-                  <div>
-                    <label className="block text-xs font-semibold text-[#5C2E1F] mb-2">Navigation Style</label>
+                    <label className="block text-xs font-semibold text-[#5C2E1F] mb-1.5">Navigation Style</label>
                     <div className="grid grid-cols-3 gap-2">
                       {(["topbar", "sidebar", "minimal"] as const).map(type => (
                         <button key={type} onClick={() => setNavType(type)} className={`py-2 text-xs font-semibold rounded-lg border capitalize transition-colors ${navType === type ? "border-[#E85D3B] bg-[#E85D3B]/5 text-[#E85D3B]" : "border-black/10 text-[#5C2E1F]/70"}`}>
@@ -485,21 +473,132 @@ export default function SoftbridgeStudio() {
                       ))}
                     </div>
                   </div>
-                  <div>
-                    <label className="block text-xs font-semibold text-[#5C2E1F] mb-2">Hero Style</label>
-                    <div className="grid grid-cols-3 gap-2">
-                      {(["modern", "centered", "split"] as const).map(style => (
-                        <button key={style} onClick={() => setHeroStyle(style)} className={`py-2 text-xs font-semibold rounded-lg border capitalize transition-colors ${heroStyle === style ? "border-[#E85D3B] bg-[#E85D3B]/5 text-[#E85D3B]" : "border-black/10 text-[#5C2E1F]/70"}`}>
-                          {style}
-                        </button>
+                </div>
+              )}
+
+              {configTab === "pages" && (
+                <div className="flex h-full">
+                  {/* Pages Sidebar */}
+                  <div className="w-1/3 border-r border-black/10 bg-[#f9f9f9] flex flex-col">
+                    <div className="p-3 border-b border-black/10 flex items-center justify-between bg-white">
+                      <span className="text-[10px] uppercase font-bold tracking-wider text-[#5C2E1F]">Pages ({customPages.length})</span>
+                      <button onClick={handleAddPage} className="p-1 bg-black/5 hover:bg-black/10 rounded text-[#5C2E1F]"><Plus className="w-3.5 h-3.5" /></button>
+                    </div>
+                    <div className="flex-1 overflow-y-auto p-2 flex flex-col gap-1">
+                      {customPages.map(p => (
+                        <div key={p.id} className={`flex items-center justify-between p-2 rounded-lg cursor-pointer transition-colors ${activePageId === p.id ? "bg-white shadow-sm border border-black/10 text-[#E85D3B]" : "text-[#5C2E1F]/70 hover:bg-black/5"}`}>
+                          <span onClick={() => {setActivePageId(p.id); setEditingSection(null);}} className="text-xs font-semibold flex-1 truncate">{p.title}</span>
+                          <button onClick={() => handleDeletePage(p.id)} className="opacity-0 group-hover:opacity-100 hover:text-red-500 transition-opacity"><Trash2 className="w-3.5 h-3.5" /></button>
+                        </div>
                       ))}
                     </div>
+                  </div>
+                  {/* Sections List */}
+                  <div className="flex-1 flex flex-col bg-white relative">
+                    {!editingSection ? (
+                      <>
+                        <div className="p-3 border-b border-black/10 flex items-center justify-between bg-white z-10 shadow-sm">
+                          <span className="text-[10px] uppercase font-bold tracking-wider text-[#5C2E1F] truncate">{activePageObj?.title} Sections</span>
+                        </div>
+                        <div className="flex-1 overflow-y-auto p-3 bg-black/5">
+                          <Reorder.Group axis="y" values={activePageObj?.sections || []} onReorder={handleReorderSections} className="flex flex-col gap-2">
+                            {activePageObj?.sections.map(sec => (
+                              <Reorder.Item key={sec.id} value={sec} className="bg-white p-3 rounded-xl border border-black/10 shadow-sm flex items-center gap-3 cursor-grab active:cursor-grabbing group">
+                                <GripVertical className="w-4 h-4 text-black/20" />
+                                <div className="flex-1 min-w-0" onClick={() => setEditingSection(sec)}>
+                                  <div className="text-xs font-bold text-[#5C2E1F]">{sec.type}</div>
+                                  <div className="text-[10px] text-[#5C2E1F]/60 truncate">{sec.content.heading || "No heading"}</div>
+                                </div>
+                                <div className="flex gap-1">
+                                  <button onClick={() => setEditingSection(sec)} className="p-1.5 hover:bg-black/5 rounded text-blue-500"><Edit2 className="w-3.5 h-3.5" /></button>
+                                  <button onClick={() => handleDeleteSection(sec.id)} className="p-1.5 hover:bg-black/5 rounded text-red-500"><Trash2 className="w-3.5 h-3.5" /></button>
+                                </div>
+                              </Reorder.Item>
+                            ))}
+                          </Reorder.Group>
+                          <div className="mt-4 grid grid-cols-2 gap-2">
+                            {(["Hero", "Features", "Pricing", "Testimonials", "FAQ", "Contact", "Gallery", "Blog"] as CustomSectionType[]).map(type => (
+                              <button key={type} onClick={() => handleAddSection(type)} className="flex items-center gap-2 p-2 rounded-lg border border-dashed border-black/20 text-[10px] font-bold text-[#5C2E1F]/60 hover:text-[#E85D3B] hover:border-[#E85D3B] hover:bg-[#E85D3B]/5 transition-colors">
+                                <Plus className="w-3 h-3" /> {type}
+                              </button>
+                            ))}
+                          </div>
+                        </div>
+                      </>
+                    ) : (
+                      // Editing Section Slide-over
+                      <div className="absolute inset-0 bg-white flex flex-col z-20">
+                         <div className="p-3 border-b border-black/10 flex items-center gap-2 bg-[#f9f9f9]">
+                            <button onClick={() => setEditingSection(null)} className="p-1.5 hover:bg-black/10 rounded-md"><ChevronLeft className="w-4 h-4 text-[#5C2E1F]" /></button>
+                            <span className="text-xs font-bold text-[#5C2E1F]">Edit {editingSection.type}</span>
+                         </div>
+                         <div className="flex-1 overflow-y-auto p-4 space-y-5">
+                            {/* Content */}
+                            <div>
+                              <h4 className="text-[10px] font-bold uppercase tracking-wider text-[#5C2E1F]/50 mb-3">Content</h4>
+                              <div className="space-y-3">
+                                <div>
+                                  <label className="text-[10px] font-semibold text-[#5C2E1F] block mb-1">Heading</label>
+                                  <input type="text" value={editingSection.content.heading || ""} onChange={e => updateEditingSection({ content: { ...editingSection.content, heading: e.target.value } })} className="w-full text-xs bg-black/5 border border-black/10 rounded-md px-2 py-1.5" />
+                                </div>
+                                <div>
+                                  <label className="text-[10px] font-semibold text-[#5C2E1F] block mb-1">Subheading</label>
+                                  <input type="text" value={editingSection.content.subheading || ""} onChange={e => updateEditingSection({ content: { ...editingSection.content, subheading: e.target.value } })} className="w-full text-xs bg-black/5 border border-black/10 rounded-md px-2 py-1.5" />
+                                </div>
+                                <div>
+                                  <label className="text-[10px] font-semibold text-[#5C2E1F] block mb-1">Description</label>
+                                  <textarea value={editingSection.content.description || ""} onChange={e => updateEditingSection({ content: { ...editingSection.content, description: e.target.value } })} rows={3} className="w-full text-xs bg-black/5 border border-black/10 rounded-md px-2 py-1.5" />
+                                </div>
+                                <div>
+                                  <label className="text-[10px] font-semibold text-[#5C2E1F] block mb-1">Button Text</label>
+                                  <input type="text" value={editingSection.content.buttonText || ""} onChange={e => updateEditingSection({ content: { ...editingSection.content, buttonText: e.target.value } })} className="w-full text-xs bg-black/5 border border-black/10 rounded-md px-2 py-1.5" />
+                                </div>
+                              </div>
+                            </div>
+                            {/* Styles */}
+                            <div>
+                              <h4 className="text-[10px] font-bold uppercase tracking-wider text-[#5C2E1F]/50 mb-3">Styles</h4>
+                              <div className="space-y-3">
+                                <div className="grid grid-cols-2 gap-2">
+                                  <div>
+                                    <label className="text-[10px] font-semibold text-[#5C2E1F] block mb-1">Background (Hex)</label>
+                                    <input type="text" placeholder="Default" value={editingSection.styles.backgroundColor || ""} onChange={e => updateEditingSection({ styles: { ...editingSection.styles, backgroundColor: e.target.value } })} className="w-full text-xs bg-black/5 border border-black/10 rounded-md px-2 py-1.5" />
+                                  </div>
+                                  <div>
+                                    <label className="text-[10px] font-semibold text-[#5C2E1F] block mb-1">Text Color (Hex)</label>
+                                    <input type="text" placeholder="Default" value={editingSection.styles.textColor || ""} onChange={e => updateEditingSection({ styles: { ...editingSection.styles, textColor: e.target.value } })} className="w-full text-xs bg-black/5 border border-black/10 rounded-md px-2 py-1.5" />
+                                  </div>
+                                </div>
+                                <div>
+                                  <label className="text-[10px] font-semibold text-[#5C2E1F] block mb-1">Alignment</label>
+                                  <div className="flex bg-black/5 p-1 rounded-md">
+                                    {(["left", "center", "right"] as const).map(a => (
+                                      <button key={a} onClick={() => updateEditingSection({ styles: { ...editingSection.styles, alignment: a } })} className={`flex-1 py-1 text-[10px] font-semibold rounded capitalize ${editingSection.styles.alignment === a ? "bg-white shadow text-[#E85D3B]" : "text-[#5C2E1F]/60"}`}>
+                                        {a}
+                                      </button>
+                                    ))}
+                                  </div>
+                                </div>
+                                <div>
+                                  <label className="text-[10px] font-semibold text-[#5C2E1F] block mb-1">Padding</label>
+                                  <select value={editingSection.styles.padding || "py-16"} onChange={e => updateEditingSection({ styles: { ...editingSection.styles, padding: e.target.value } })} className="w-full text-xs bg-black/5 border border-black/10 rounded-md px-2 py-1.5 text-[#5C2E1F]">
+                                    <option value="py-8">Small (py-8)</option>
+                                    <option value="py-16">Medium (py-16)</option>
+                                    <option value="py-24">Large (py-24)</option>
+                                    <option value="py-32">Huge (py-32)</option>
+                                  </select>
+                                </div>
+                              </div>
+                            </div>
+                         </div>
+                      </div>
+                    )}
                   </div>
                 </div>
               )}
 
               {configTab === "features" && (
-                <div className="space-y-2">
+                <div className="p-5 space-y-2">
                   <p className="text-[10px] text-[#5C2E1F]/60 mb-3">Add production-ready modules to your site.</p>
                   {ALL_FEATURES.map(f => {
                     const isSelected = selectedExtras.includes(f.id);
@@ -520,7 +619,7 @@ export default function SoftbridgeStudio() {
             </div>
 
             {/* Price & Cart Footer */}
-            <div className="p-4 bg-[#F8E4D3] border-t border-black/10 shrink-0">
+            <div className="p-4 bg-[#F8E4D3] border-t border-black/10 shrink-0 z-30">
                <div className="flex justify-between items-center mb-3">
                  <span className="text-sm font-semibold text-[#5C2E1F]">Total Estimate</span>
                  <span className="text-xl font-bold font-mono text-[#E85D3B]">${totalPrice}</span>
@@ -539,19 +638,18 @@ export default function SoftbridgeStudio() {
 
           {/* Mini Preview Panel */}
           <div className="lg:col-span-7 flex flex-col gap-3">
-            <div className="flex items-center justify-between bg-white px-4 py-2 rounded-xl border border-black/10">
-               <span className="font-mono text-[10px] font-bold uppercase tracking-wider text-[#5C2E1F]/70">Live Mini Preview</span>
+            <div className="flex items-center justify-between bg-white px-4 py-2 rounded-xl border border-black/10 shadow-sm">
+               <span className="font-mono text-[10px] font-bold uppercase tracking-wider text-[#5C2E1F]/70">Live Preview: {activePageObj?.title}</span>
                <button onClick={() => setShowFullPreview(true)} className="text-xs font-bold bg-[#E85D3B]/10 text-[#E85D3B] px-3 py-1.5 rounded-lg hover:bg-[#E85D3B]/20 transition-colors flex items-center gap-1.5">
-                 <Monitor className="w-3.5 h-3.5" /> Open Full Preview
+                 <Monitor className="w-3.5 h-3.5" /> Full Preview
                </button>
             </div>
-            <div className="flex-1 bg-black/5 rounded-xl border border-black/10 overflow-hidden relative shadow-inner p-2 md:p-4 min-h-[400px]">
+            <div className="flex-1 bg-black/5 rounded-xl border border-black/10 overflow-hidden relative shadow-inner p-2 md:p-4 min-h-[500px]">
                {previewConfig && (
-                 <div className="w-[120%] h-[120%] -ml-[10%] -mt-[10%] rounded-lg overflow-hidden border border-black/10 pointer-events-none transform scale-[0.833] origin-center hover:scale-90 transition-all duration-500 bg-white">
-                   <FullSitePreview config={previewConfig} viewMode="desktop" />
+                 <div className="w-[120%] h-[120%] -ml-[10%] -mt-[10%] rounded-lg overflow-hidden border border-black/10 pointer-events-none transform scale-[0.833] origin-center bg-white shadow-xl">
+                   <FullSitePreview config={{ ...previewConfig, customPages: [activePageObj || customPages[0]] }} viewMode="desktop" />
                  </div>
                )}
-               {/* Note: The preview above is a scaled down static view. Full preview opens the modal */}
             </div>
           </div>
         </div>

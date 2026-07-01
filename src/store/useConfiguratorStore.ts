@@ -9,7 +9,15 @@ export interface PageSection {
     subheading?: string;
     description?: string;
     buttonText?: string;
+    buttonLink?: string;
+    image?: string;
     items?: string[];
+  };
+  styles?: {
+    backgroundColor?: string;
+    textColor?: string;
+    padding?: string;
+    alignment?: "left" | "center" | "right";
   };
 }
 

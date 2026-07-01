@@ -5,7 +5,8 @@ import { motion, AnimatePresence } from "framer-motion";
 import { ArrowRight, Eye, Search, ShieldCheck } from "lucide-react";
 import { CyberButton } from "./ui/CyberButton";
 import ProductDetailModal from "./ProductDetailModal";
-import PreviewModal, { PreviewConfig, PreviewPage } from "./PreviewModal";
+import PreviewModal, { PreviewConfig } from "./PreviewModal";
+import { CustomPage, CustomSectionType } from "@/types/builder";
 
 type ProductCategory =
   | "SaaS"
@@ -240,19 +241,27 @@ const categoryPreviewSections: Record<ProductCategory, string[]> = {
   Healthcare: ["Services", "Providers", "Patient FAQ", "Appointments"],
 };
 
-function createProductPreviewPages(product: Product): PreviewPage[] {
-  const sections = categoryPreviewSections[product.category];
+function createProductPreviewPages(product: Product): CustomPage[] {
+  const sections = categoryPreviewSections[product.category] || ["Features", "Details"];
   const pageTitles = product.category === "Landing Page" ? ["Home"] : ["Home", "About", "Features", "Pricing", "Contact"];
 
-  return pageTitles.map((title) => ({
-    id: title.toLowerCase().replace(/[^a-z0-9]+/g, "-"),
-    title,
-    description:
-      title === "Home"
-        ? product.description.split(". ")[1] || product.description
-        : `${title} page generated for the ${product.category.toLowerCase()} preview.`,
-    sections: title === "Home" ? sections : title === "Pricing" ? ["Plans", "Comparison", "FAQ"] : title === "Contact" ? ["Contact Form", "Support", "Location"] : sections.slice(0, 3),
-  }));
+  return pageTitles.map((title) => {
+    const sectionNames = title === "Home" ? sections : title === "Pricing" ? ["Plans", "Comparison", "FAQ"] : title === "Contact" ? ["Contact Form", "Support", "Location"] : sections.slice(0, 3);
+    
+    return {
+      id: title.toLowerCase().replace(/[^a-z0-9]+/g, "-"),
+      title,
+      sections: sectionNames.map((s, i) => ({
+        id: `sec-${i}`,
+        type: (s === "Hero" || s === "Features" || s === "Pricing" || s === "Testimonials" || s === "FAQ" || s === "Contact" || s === "Gallery" || s === "Blog") ? s as CustomSectionType : "Features",
+        content: {
+          heading: s,
+          description: title === "Home" ? (product.description.split(". ")[1] || product.description) : `${s} for ${title} page.`,
+        },
+        styles: { padding: "py-16", alignment: "center" }
+      }))
+    };
+  });
 }
 
 export default function ProductSection() {
@@ -302,7 +311,7 @@ export default function ProductSection() {
             ? `Launch ${previewProduct.title} with a premium brand system`
             : previewProduct.description.split(". ")[1] || previewProduct.title,
         sections: categoryPreviewSections[previewProduct.category],
-        pages: createProductPreviewPages(previewProduct),
+        customPages: createProductPreviewPages(previewProduct),
         pageCountLabel: previewProduct.category === "Landing Page" ? "1 Page" : "Full Site",
         themePrimary: "#E85D3B",
         themeSecondary: "#D94F2E",
