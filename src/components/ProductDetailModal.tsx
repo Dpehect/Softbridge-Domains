@@ -16,6 +16,8 @@ type Props = {
 };
 
 export default function ProductDetailModal({ isOpen, onClose, product }: Props) {
+  const [activeTab, setActiveTab] = React.useState<"features" | "details">("features");
+
   if (!product) return null;
 
   // Extract MRR, Traffic, and Buy Price details from the description string
@@ -24,8 +26,6 @@ export default function ProductDetailModal({ isOpen, onClose, product }: Props) 
   const mrr = descParts[1] || "MRR: N/A";
   const traffic = descParts[2] || "Traffic: N/A";
   const detailText = descParts.slice(3).join(" | ") || product.description;
-
-  const [activeTab, setActiveTab] = React.useState<"features" | "details">("features");
 
   // Framer Motion Animation Variants
   const backdropVariants = {
@@ -58,7 +58,7 @@ export default function ProductDetailModal({ isOpen, onClose, product }: Props) 
   return (
     <AnimatePresence>
       {isOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 md:p-10 font-sans">
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 md:p-6 font-sans">
           
           {/* Backdrop Overlay */}
           <motion.div
@@ -76,7 +76,7 @@ export default function ProductDetailModal({ isOpen, onClose, product }: Props) 
             initial="hidden"
             animate="visible"
             exit="exit"
-            className="relative w-full max-w-2xl overflow-hidden rounded-3xl border border-black/5 bg-midnight-void text-star-white shadow-2xl z-10 flex flex-col max-h-[85vh] md:max-h-[90vh]"
+            className="relative w-full max-w-2xl overflow-hidden rounded-2xl border border-black/5 bg-midnight-void text-star-white shadow-2xl z-10 flex flex-col max-h-[85vh] md:max-h-[90vh]"
           >
             
             {/* Close Button */}
@@ -88,7 +88,7 @@ export default function ProductDetailModal({ isOpen, onClose, product }: Props) 
             </button>
 
             {/* Banner/Header Image */}
-            <div className="relative h-44 sm:h-56 w-full shrink-0">
+            <div className="relative h-40 sm:h-48 w-full shrink-0">
               <img
                 src={product.img}
                 alt={product.title}
@@ -99,30 +99,30 @@ export default function ProductDetailModal({ isOpen, onClose, product }: Props) 
                 <span className="font-mono text-[9px] uppercase tracking-widest text-cosmic-teal bg-cosmic-teal/10 border border-cosmic-teal/20 px-2 py-0.5 rounded-lg font-bold">
                   {product.location}
                 </span>
-                <h2 className="text-2xl sm:text-3.5xl font-extrabold mt-1 tracking-tight text-star-white">{product.title}</h2>
+                <h2 className="text-2xl sm:text-3xl font-bold mt-1 text-star-white">{product.title}</h2>
               </div>
             </div>
 
             {/* Modal Body / Scrollable Content */}
-            <div className="flex-1 overflow-y-auto px-6 py-4 space-y-6">
+            <div className="flex-1 overflow-y-auto px-5 py-4 space-y-5">
               
               {/* Description Card */}
               <motion.div variants={itemVariants} className="space-y-2">
                 <h3 className="text-xs uppercase font-bold tracking-wider text-muted-steel font-mono">Project Summary</h3>
-                <p className="text-sm text-muted-steel leading-relaxed font-light">{detailText}</p>
+                <p className="text-sm text-muted-steel leading-relaxed font-normal">{detailText}</p>
               </motion.div>
 
               {/* Financial Metrics Cards */}
-              <motion.div variants={itemVariants} className="grid grid-cols-2 sm:grid-cols-3 gap-3">
-                <div className="p-3.5 bg-abyss-panel border border-black/5 rounded-xl text-center">
+              <motion.div variants={itemVariants} className="grid grid-cols-2 sm:grid-cols-3 gap-2.5">
+                <div className="p-3 bg-abyss-panel border border-black/5 rounded-xl text-center">
                   <span className="text-[10px] text-muted-steel uppercase block font-mono">Escrow Buy Price</span>
                   <span className="text-base font-black text-cosmic-teal mt-1 block">{buyPrice.replace("Buy Price: ", "")}</span>
                 </div>
-                <div className="p-3.5 bg-abyss-panel border border-black/5 rounded-xl text-center">
+                <div className="p-3 bg-abyss-panel border border-black/5 rounded-xl text-center">
                   <span className="text-[10px] text-muted-steel uppercase block font-mono">Monthly Revenue</span>
                   <span className="text-sm font-bold text-star-white mt-1.5 block">{mrr.replace("MRR: ", "")}</span>
                 </div>
-                <div className="p-3.5 col-span-2 sm:col-span-1 bg-abyss-panel border border-black/5 rounded-xl text-center">
+                <div className="p-3 col-span-2 sm:col-span-1 bg-abyss-panel border border-black/5 rounded-xl text-center">
                   <span className="text-[10px] text-muted-steel uppercase block font-mono">Traffic Metrics</span>
                   <span className="text-sm font-bold text-star-white mt-1.5 block">{traffic.replace("Traffic: ", "")}</span>
                 </div>
@@ -189,7 +189,7 @@ export default function ProductDetailModal({ isOpen, onClose, product }: Props) 
             </div>
 
             {/* Modal Footer / Action Center */}
-            <div className="p-6 bg-abyss-panel border-t border-black/5 shrink-0 flex flex-col sm:flex-row gap-3 justify-end">
+            <div className="p-4 bg-abyss-panel border-t border-black/5 shrink-0 flex flex-col sm:flex-row gap-3 justify-end">
               <button
                 onClick={onClose}
                 className="w-full sm:w-auto px-6 py-2.5 bg-black/5 hover:bg-black/10 text-star-white rounded-xl text-xs font-semibold uppercase tracking-wider transition-all duration-350 border border-black/5 cursor-pointer"

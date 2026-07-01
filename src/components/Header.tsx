@@ -22,17 +22,17 @@ export function Header() {
       initial={{ y: -10, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-      className="fixed top-0 left-0 right-0 z-50 p-2.5"
+      className="fixed top-0 left-0 right-0 z-50 p-2"
     >
-      <div className="max-w-6xl mx-auto bg-midnight-void/75 border border-black/5 rounded-2xl px-4 py-2 flex items-center justify-between backdrop-blur-md">
+      <div className="max-w-6xl mx-auto bg-midnight-void/78 border border-black/5 rounded-2xl px-3.5 py-2 flex items-center justify-between backdrop-blur-md">
         
         {/* Minimalist Premium Brand Logo */}
         <Link href="/" className="flex items-center gap-2 group">
           <div className="w-5 h-5 rounded-lg border border-black/10 flex items-center justify-center bg-black/[0.02] group-hover:border-cosmic-teal/40 transition-colors duration-400">
             <Layers className="w-3 h-3 text-cosmic-teal" />
           </div>
-          <span className="font-display font-black text-sm uppercase tracking-[0.18em] text-star-white">
-            SOFTBRIDGE<span className="text-cosmic-teal font-light">//</span>DOMAINS
+          <span className="font-display font-bold text-sm uppercase tracking-wider text-star-white">
+            SOFTBRIDGE<span className="text-cosmic-teal font-normal">{"//"}</span>DOMAINS
           </span>
         </Link>
 
@@ -44,7 +44,7 @@ export function Header() {
               <Link
                 key={link.name}
                 href={link.path}
-                className={`relative px-4 py-1.5 rounded-xl text-[10px] font-heading font-extrabold uppercase tracking-widest transition-colors duration-400 ${
+                className={`relative px-3.5 py-1.5 rounded-xl text-[10px] font-heading font-bold uppercase tracking-wider transition-colors duration-400 ${
                   isActive ? "text-midnight-void" : "text-muted-steel hover:text-cosmic-teal"
                 }`}
               >
@@ -66,7 +66,7 @@ export function Header() {
           {/* Cart Icon with count */}
           <Link
             href="/cart"
-            className="p-2.5 bg-black/[0.01] hover:bg-black/[0.04] text-star-white hover:text-cosmic-teal border border-black/5 rounded-xl transition-all duration-400 relative cursor-pointer"
+            className="p-2 bg-black/[0.01] hover:bg-black/[0.04] text-star-white hover:text-cosmic-teal border border-black/5 rounded-xl transition-all duration-400 relative cursor-pointer"
           >
             <ShoppingCart className="w-4 h-4" />
             {cartItems.length > 0 && (
@@ -79,7 +79,7 @@ export function Header() {
           {/* Minimalist outline CTA */}
           <Link
             href="/studio"
-            className="flex items-center gap-1.5 bg-transparent border border-black/10 text-star-white hover:border-cosmic-teal/50 hover:text-cosmic-teal px-4 py-2 rounded-xl text-[10px] font-heading font-bold uppercase tracking-widest transition-all duration-400"
+            className="flex items-center gap-1.5 bg-transparent border border-black/10 text-star-white hover:border-cosmic-teal/50 hover:text-cosmic-teal px-3.5 py-2 rounded-xl text-[10px] font-heading font-bold uppercase tracking-wider transition-all duration-400"
           >
             <Layout className="w-3 h-3 text-cosmic-teal" />
             Studio

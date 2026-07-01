@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import { useRouter } from "next/navigation";
-import { useCartStore, CartItem } from "@/store/useCartStore";
+import { useCartStore } from "@/store/useCartStore";
 import { CyberButton } from "@/components/ui/CyberButton";
 import { GlassInput } from "@/components/ui/GlassInput";
 import { DynamicCounter } from "@/components/ui/DynamicCounter";
@@ -60,7 +60,7 @@ export default function CartPage() {
   };
 
   return (
-    <main className="min-h-screen pt-32 pb-24 px-4 md:px-8 relative overflow-hidden mesh-bg flex items-center justify-center">
+    <main className="min-h-screen pt-24 pb-12 px-4 md:px-8 relative overflow-hidden mesh-bg flex items-center justify-center">
       <div className="w-full max-w-6xl mx-auto z-10">
         <AnimatePresence mode="wait">
           {success ? (
@@ -70,7 +70,7 @@ export default function CartPage() {
               initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0, scale: 0.9 }}
-              className="glass-panel p-16 rounded-[40px] text-center max-w-xl mx-auto space-y-6 border-emerald-500/30 shadow-[0_0_50px_rgba(16,185,129,0.2)] bg-emerald-500/5"
+              className="glass-panel p-10 rounded-2xl text-center max-w-xl mx-auto space-y-5 border-emerald-500/30 shadow-[0_0_50px_rgba(16,185,129,0.2)] bg-emerald-500/5"
             >
               <div className="w-20 h-20 rounded-full bg-emerald-500/15 border border-emerald-500/30 flex items-center justify-center mx-auto text-emerald-400">
                 <CheckCircle className="w-10 h-10 animate-bounce" />
@@ -97,21 +97,21 @@ export default function CartPage() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
-              className="flex flex-col lg:flex-row gap-8 items-stretch"
+              className="flex flex-col lg:flex-row gap-5 items-stretch"
             >
               {/* Left Side Cart list & Upgrades */}
-              <div className="flex-1 space-y-6">
-                <div className="glass-panel p-6 md:p-8 rounded-3xl space-y-6">
-                  <h2 className="text-2xl font-heading font-black text-star-white uppercase tracking-wider border-b border-white/5 pb-4 flex items-center gap-2">
+              <div className="flex-1 space-y-4">
+                <div className="glass-panel p-4 md:p-5 rounded-2xl space-y-4">
+                  <h2 className="text-xl font-heading font-bold text-star-white uppercase tracking-wider border-b border-white/5 pb-3 flex items-center gap-2">
                     <Layers className="w-6 h-6 text-electric-cyan" /> Secure Cargo Manifest
                   </h2>
 
                   {items.length > 0 ? (
-                    <div className="space-y-4">
+                    <div className="space-y-3">
                       {items.map((item) => (
                         <div
                           key={item.id}
-                          className="bg-white/5 border border-white/5 p-4 rounded-2xl flex flex-col md:flex-row md:items-center justify-between gap-4 transition-all duration-350"
+                          className="bg-white/5 border border-white/5 p-3.5 rounded-2xl flex flex-col md:flex-row md:items-center justify-between gap-3 transition-all duration-350"
                         >
                           <div>
                             <div className="flex items-center gap-2.5">
@@ -132,7 +132,7 @@ export default function CartPage() {
                                   Template: {item.websitePackage.templateName}
                                 </p>
                                 <p className="text-[10px]">
-                                  Branding Name: "{item.websitePackage.config.brandName}"
+                                  Branding Name: &quot;{item.websitePackage.config.brandName}&quot;
                                 </p>
                                 <div className="flex items-center gap-2 text-[9px] mt-1 font-mono">
                                   <span>Theme:</span>
@@ -163,7 +163,7 @@ export default function CartPage() {
                               className="p-3 bg-solar-pink/15 text-solar-pink hover:bg-solar-pink hover:text-white rounded-xl transition-all cursor-pointer"
                               title="Evict item"
                             >
-                              <Trash2 className="w-4.5 h-4.5" />
+                              <Trash2 className="w-4 h-4" />
                             </button>
                           </div>
                         </div>
@@ -177,12 +177,12 @@ export default function CartPage() {
                 </div>
 
                 {/* Cyber Upgrades/Optional Add-ons */}
-                <div className="glass-panel p-6 md:p-8 rounded-3xl space-y-6">
-                  <h3 className="text-sm font-heading font-black text-star-white uppercase tracking-wider border-b border-white/5 pb-4">
+                <div className="glass-panel p-4 md:p-5 rounded-2xl space-y-4">
+                  <h3 className="text-sm font-heading font-bold text-star-white uppercase tracking-wider border-b border-white/5 pb-3">
                     Upgrade Modules
                   </h3>
 
-                  <div className="space-y-4">
+                  <div className="space-y-3">
                     {[
                       {
                         title: "Quantum Cloud Hosting",
@@ -206,7 +206,7 @@ export default function CartPage() {
                       <div
                         key={idx}
                         onClick={upgrade.toggle}
-                        className={`flex gap-4 p-4 rounded-2xl border transition-all duration-350 cursor-pointer select-none ${
+                        className={`flex gap-3 p-3.5 rounded-2xl border transition-all duration-350 cursor-pointer select-none ${
                           upgrade.checked
                             ? "bg-electric-cyan/5 border-electric-cyan/30"
                             : "bg-white/5 border-transparent hover:border-white/10"
@@ -216,7 +216,7 @@ export default function CartPage() {
                           type="checkbox"
                           checked={upgrade.checked}
                           onChange={() => {}} // Controlled via container click
-                          className="mt-1 w-4.5 h-4.5 rounded bg-white/5 border border-white/10 text-electric-cyan shrink-0"
+                          className="mt-1 w-4 h-4 rounded bg-white/5 border border-white/10 text-electric-cyan shrink-0"
                         />
                         <div>
                           <h4 className="text-sm font-heading font-bold text-star-white uppercase tracking-wider">
@@ -234,14 +234,14 @@ export default function CartPage() {
 
               {/* Right Side Checkout Card Info */}
               <div className="w-full lg:w-96 shrink-0 flex flex-col justify-stretch">
-                <div className="glass-panel p-6 md:p-8 rounded-3xl space-y-6 flex-1 flex flex-col justify-between">
+                <div className="glass-panel p-4 md:p-5 rounded-2xl space-y-4 flex-1 flex flex-col justify-between">
                   <div>
-                    <h2 className="text-xl font-heading font-black text-star-white uppercase tracking-wider border-b border-white/5 pb-4">
+                    <h2 className="text-xl font-heading font-bold text-star-white uppercase tracking-wider border-b border-white/5 pb-3">
                       Deploy Checkout
                     </h2>
 
                     {/* Credit Card CSS Visualizer */}
-                    <div className="my-6 relative w-full h-44 cursor-pointer perspective-1000 group">
+                    <div className="my-4 relative w-full h-40 cursor-pointer perspective-1000 group">
                       <motion.div
                         animate={{ rotateY: isFlipped ? 180 : 0 }}
                         transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}

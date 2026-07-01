@@ -17,12 +17,12 @@ export function CyberButton({
   children,
   ...props
 }: CyberButtonProps) {
-  const baseStyles = "relative inline-flex items-center justify-center font-heading font-extrabold tracking-wider transition-all duration-300 active:scale-95 cursor-pointer select-none rounded-full shadow-sm hover:shadow-md";
+  const baseStyles = "relative inline-flex items-center justify-center font-heading font-bold transition-all duration-300 active:scale-95 cursor-pointer select-none rounded-xl shadow-sm hover:shadow-md";
 
   const sizeStyles = {
-    sm: "px-4.5 py-2 text-xs",
-    md: "px-6 py-3 text-xs md:text-sm",
-    lg: "px-8 py-4 text-sm md:text-base",
+    sm: "px-3.5 py-1.5 text-[11px]",
+    md: "px-5 py-2.5 text-xs",
+    lg: "px-6 py-3 text-sm",
   };
 
   const variantStyles = {

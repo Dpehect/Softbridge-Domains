@@ -1,16 +1,18 @@
 import type { Metadata } from "next";
-import { Inter, Space_Grotesk } from "next/font/google";
+import { Geist, Geist_Mono } from "next/font/google";
 import { Header } from "@/components/Header";
 import "./globals.css";
 
-const inter = Inter({
-  variable: "--font-inter",
+const geistSans = Geist({
+  variable: "--font-geist-sans",
   subsets: ["latin"],
+  display: "swap",
 });
 
-const spaceGrotesk = Space_Grotesk({
-  variable: "--font-space-grotesk",
+const geistMono = Geist_Mono({
+  variable: "--font-geist-mono",
   subsets: ["latin"],
+  display: "swap",
 });
 
 export const metadata: Metadata = {
@@ -24,12 +26,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`dark ${inter.variable} ${spaceGrotesk.variable} antialiased h-full`}>
-      <body className="min-h-full flex flex-col bg-deep-void text-white font-sans mesh-bg">
+    <html lang="en" className={`${geistSans.variable} ${geistMono.variable} antialiased h-full`}>
+      <body className="min-h-full flex flex-col bg-midnight-void text-star-white font-sans mesh-bg">
         <Header />
         {children}
       </body>
     </html>
   );
 }
-

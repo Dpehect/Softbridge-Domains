@@ -3,12 +3,9 @@
 import React, { Suspense, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
-import { CyberButton } from "@/components/ui/CyberButton";
 import { NeonBadge } from "@/components/ui/NeonBadge";
 import {
   Activity,
-  Layers,
-  Settings,
   Download,
   ShieldAlert,
   Globe,
@@ -25,7 +22,7 @@ interface OrbitProject {
   templateName: string;
   visitors: string;
   dnsRecords: { type: string; host: string; points: string }[];
-  configJson: any;
+  configJson: Record<string, unknown>;
   whoisLocked: boolean;
 }
 
@@ -107,14 +104,14 @@ function DashboardContent() {
   ];
 
   return (
-    <div className="w-full max-w-7xl mx-auto flex flex-col gap-8 relative z-10">
+    <div className="w-full max-w-7xl mx-auto flex flex-col gap-5 relative z-10">
       {/* Top Banner Dashboard header */}
-      <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4 border-b border-white/5 pb-6">
+      <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-3 border-b border-white/5 pb-4">
         <div>
           <span className="text-[10px] text-electric-cyan font-heading font-extrabold uppercase tracking-widest bg-electric-cyan/15 px-3.5 py-1 rounded-full border border-electric-cyan/25">
             Operational Control Deck
           </span>
-          <h1 className="text-3xl md:text-5xl font-heading font-black text-star-white mt-3">
+          <h1 className="text-3xl md:text-4xl font-heading font-bold text-star-white mt-2">
             YOUR DIGITAL <span className="text-neon-gradient">PLANETS</span>
           </h1>
           <p className="text-xs md:text-sm text-nebula-slate mt-1">
@@ -122,7 +119,7 @@ function DashboardContent() {
           </p>
         </div>
 
-        <div className="flex items-center gap-6 bg-white/5 border border-white/5 px-6 py-3.5 rounded-2xl">
+        <div className="flex items-center gap-5 bg-white/5 border border-white/5 px-4 py-3 rounded-2xl">
           <div className="text-center">
             <span className="text-[9px] text-nebula-slate/50 block font-semibold uppercase">Orbits</span>
             <span className="text-xl font-bold font-heading text-white">{projects.length}</span>
@@ -142,7 +139,7 @@ function DashboardContent() {
         <motion.div
           initial={{ opacity: 0, y: -15 }}
           animate={{ opacity: 1, y: 0 }}
-          className="glass-panel p-6 md:p-8 rounded-[30px] border-electric-cyan/30 bg-electric-cyan/5 space-y-6"
+          className="glass-panel p-4 md:p-5 rounded-2xl border-electric-cyan/30 bg-electric-cyan/5 space-y-4"
         >
           <div className="flex items-center gap-2">
             <Radio className="w-5 h-5 text-electric-cyan animate-ping" />
@@ -151,7 +148,7 @@ function DashboardContent() {
             </h3>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-6 relative">
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-4 relative">
             {pipelineSteps.map((step, idx) => (
               <div key={idx} className="relative space-y-2">
                 <div className="flex items-center gap-2">
@@ -188,12 +185,12 @@ function DashboardContent() {
       )}
 
       {/* Orbits List */}
-      <div className="space-y-6">
+      <div className="space-y-4">
         <h2 className="text-base font-heading font-black text-star-white uppercase tracking-wider">
           Registered Web Nodes
         </h2>
 
-        <div className="space-y-4">
+        <div className="space-y-3">
           {projects.map((project) => {
             const isExpanded = expandedProjectId === project.id;
             return (
@@ -206,7 +203,7 @@ function DashboardContent() {
                 {/* Expandable top summary card */}
                 <div
                   onClick={() => toggleExpand(project.id)}
-                  className="p-6 flex flex-col md:flex-row md:items-center justify-between gap-6 cursor-pointer select-none bg-black/10"
+                  className="p-4 flex flex-col md:flex-row md:items-center justify-between gap-4 cursor-pointer select-none bg-black/10"
                 >
                   <div className="flex items-center gap-4">
                     <div className="p-3 rounded-xl bg-white/5 text-electric-cyan border border-white/5">
@@ -262,7 +259,7 @@ function DashboardContent() {
                       transition={{ duration: 0.3 }}
                       className="border-t border-white/5 bg-black/20 overflow-hidden"
                     >
-                      <div className="p-6 grid grid-cols-1 md:grid-cols-2 gap-8">
+                      <div className="p-4 grid grid-cols-1 md:grid-cols-2 gap-5">
                         {/* DNS Records Table */}
                         <div className="space-y-4">
                           <h4 className="text-xs font-heading font-extrabold text-star-white uppercase tracking-wider flex items-center gap-1.5">
@@ -316,7 +313,7 @@ function DashboardContent() {
                                 type="checkbox"
                                 checked={project.whoisLocked}
                                 onChange={() => toggleWhoisLock(project.id)}
-                                className="w-4.5 h-4.5 rounded bg-white/5 border border-white/10 text-electric-cyan cursor-pointer"
+                                className="w-4 h-4 rounded bg-white/5 border border-white/10 text-electric-cyan cursor-pointer"
                               />
                             </div>
 
@@ -343,7 +340,7 @@ function DashboardContent() {
 
 export default function DashboardPage() {
   return (
-    <main className="min-h-screen pt-32 pb-24 px-4 md:px-8 relative overflow-hidden mesh-bg">
+    <main className="min-h-screen pt-24 pb-12 px-4 md:px-8 relative overflow-hidden mesh-bg">
       <Suspense
         fallback={
           <div className="h-64 flex flex-col items-center justify-center">

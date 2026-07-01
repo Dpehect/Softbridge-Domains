@@ -17,7 +17,7 @@ export default function Home() {
       <AnimatedSlider />
 
       {/* Main content sections */}
-      <div className="pt-24 pb-32 px-6 md:px-12 flex flex-col w-full relative z-10 max-w-6xl mx-auto space-y-24">
+      <div className="pt-10 pb-12 px-4 md:px-8 flex flex-col w-full relative z-10 max-w-6xl mx-auto space-y-10">
 
         {/* Featured product layouts grid */}
         <ProductSection />

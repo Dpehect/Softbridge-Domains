@@ -56,7 +56,7 @@ function Controls({
   };
 
   return (
-    <div className="flex items-center gap-4 px-0 py-3 md:px-1 md:py-5 w-full">
+    <div className="flex items-center gap-3 px-0 py-2 md:px-1 md:py-3 w-full">
       <SliderButton handleClick={handlePrev}>
         <ArrowLeft className="text-lg w-5 h-5" />
       </SliderButton>
@@ -79,7 +79,7 @@ const SliderButton = ({
 }) => {
   return (
     <button
-      className="flex h-12 w-12 items-center justify-center rounded-2xl border border-white/20 text-white transition-all duration-400 ease-in-out hover:bg-white/15 hover:border-white/40 cursor-pointer"
+      className="flex h-10 w-10 items-center justify-center rounded-xl border border-white/20 text-white transition-all duration-400 ease-in-out hover:bg-white/15 hover:border-white/40 cursor-pointer"
       onClick={handleClick}
     >
       {children}

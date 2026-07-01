@@ -15,7 +15,6 @@ import {
   ChevronDown,
   ChevronUp,
   Lock,
-  Shield,
   Clock,
   Eye,
   Server,
@@ -76,7 +75,7 @@ function DomainCard({ domain, idx }: { domain: DomainListing; idx: number }) {
       exit="exit"
       transition={{ delay: idx * 0.04 }}
       layout
-      className={`group relative bg-abyss-panel/60 border rounded-3xl p-5 flex flex-col gap-4 transition-all duration-400 ${
+      className={`group relative bg-abyss-panel/60 border rounded-2xl p-4 flex flex-col gap-3 transition-all duration-400 ${
         domain.available
           ? "border-black/6 hover:border-[#E85D3B]/20 hover:shadow-lg hover:shadow-[#E85D3B]/5 hover:-translate-y-0.5"
           : "border-black/4 opacity-70"
@@ -97,8 +96,8 @@ function DomainCard({ domain, idx }: { domain: DomainListing; idx: number }) {
           </div>
 
           {/* Domain name */}
-          <div className="mt-2 flex items-baseline gap-0.5">
-            <span className="font-display font-black text-2xl text-star-white tracking-tight leading-none group-hover:text-cosmic-teal transition-colors duration-400">
+          <div className="mt-1.5 flex items-baseline gap-0.5">
+            <span className="font-display font-bold text-xl text-star-white leading-none group-hover:text-cosmic-teal transition-colors duration-400">
               {domain.name}
             </span>
             <span className="font-mono font-bold text-sm text-cosmic-teal/80">
@@ -107,7 +106,7 @@ function DomainCard({ domain, idx }: { domain: DomainListing; idx: number }) {
           </div>
 
           {/* Description */}
-          <p className="mt-1.5 text-[11px] text-muted-steel leading-relaxed line-clamp-2 font-light">
+          <p className="mt-1.5 text-[11px] text-muted-steel leading-relaxed line-clamp-2 font-normal">
             {domain.description}
           </p>
         </div>
@@ -126,7 +125,7 @@ function DomainCard({ domain, idx }: { domain: DomainListing; idx: number }) {
       </div>
 
       {/* Domain metadata strip */}
-      <div className="grid grid-cols-2 gap-x-4 gap-y-1.5 bg-black/[0.03] border border-black/5 rounded-xl px-4 py-3">
+      <div className="grid grid-cols-2 gap-x-3 gap-y-1.5 bg-black/[0.03] border border-black/5 rounded-xl px-3 py-2.5">
         {[
           {
             icon: UserCheck,
@@ -286,20 +285,20 @@ export default function DomainSearch() {
     <div className="w-full">
 
       {/* ── Page Header ── */}
-      <div className="mb-10">
+      <div className="mb-6">
         <span className="font-mono text-[9px] uppercase tracking-[0.25em] text-cosmic-teal font-bold block mb-2">
           DOMAIN REGISTRY
         </span>
-        <h1 className="text-4xl md:text-6xl font-display font-black text-star-white tracking-tight mb-3">
+        <h1 className="text-3xl md:text-5xl font-display font-bold text-star-white mb-2">
           BROWSE DOMAINS
         </h1>
-        <p className="text-sm text-muted-steel font-light max-w-2xl leading-relaxed">
+        <p className="text-sm text-muted-steel font-normal max-w-2xl leading-relaxed">
           Explore {domainCatalog.length} premium domain names across all major extensions. Filter by category, price, and availability to find your perfect brand.
         </p>
       </div>
 
       {/* ── Search + Sort bar ── */}
-      <div className="flex flex-col sm:flex-row gap-3 mb-6">
+      <div className="flex flex-col sm:flex-row gap-2.5 mb-4">
         {/* Search input */}
         <div className="relative flex-1">
           <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-steel/60 pointer-events-none" />
@@ -308,7 +307,7 @@ export default function DomainSearch() {
             placeholder="Search by name, category, or keyword..."
             value={query}
             onChange={(e) => setQuery(e.target.value)}
-            className="w-full bg-abyss-panel/60 border border-black/8 text-star-white placeholder:text-muted-steel/50 text-sm font-sans py-3.5 pl-11 pr-10 rounded-2xl focus:outline-none focus:border-cosmic-teal/40 transition-all duration-350"
+            className="w-full bg-abyss-panel/60 border border-black/8 text-star-white placeholder:text-muted-steel/50 text-sm font-sans py-3 pl-10 pr-10 rounded-xl focus:outline-none focus:border-cosmic-teal/40 transition-all duration-350"
           />
           {query && (
             <button
@@ -324,7 +323,7 @@ export default function DomainSearch() {
         <select
           value={sortBy}
           onChange={(e) => setSortBy(e.target.value as typeof sortBy)}
-          className="bg-abyss-panel/60 border border-black/8 text-star-white text-xs font-mono py-3.5 px-4 rounded-2xl focus:outline-none focus:border-cosmic-teal/40 transition-colors duration-350 cursor-pointer appearance-none min-w-[160px]"
+          className="bg-abyss-panel/60 border border-black/8 text-star-white text-xs font-mono py-3 px-3.5 rounded-xl focus:outline-none focus:border-cosmic-teal/40 transition-colors duration-350 cursor-pointer appearance-none min-w-[160px]"
         >
           <option value="price-asc">Price: Low to High</option>
           <option value="price-desc">Price: High to Low</option>
@@ -334,7 +333,7 @@ export default function DomainSearch() {
         {/* Filter toggle */}
         <button
           onClick={() => setShowFilters((p) => !p)}
-          className={`flex items-center gap-2 px-5 py-3.5 rounded-2xl border text-xs font-mono font-bold uppercase tracking-wider transition-all duration-350 cursor-pointer ${
+          className={`flex items-center gap-2 px-4 py-3 rounded-xl border text-xs font-mono font-bold uppercase tracking-wider transition-all duration-350 cursor-pointer ${
             showFilters || activeFilterCount > 0
               ? "bg-cosmic-teal text-white border-cosmic-teal shadow-sm"
               : "bg-abyss-panel/60 text-muted-steel border-black/8 hover:border-[#E85D3B]/30 hover:text-star-white"
@@ -361,7 +360,7 @@ export default function DomainSearch() {
             transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
             className="overflow-hidden"
           >
-            <div className="bg-abyss-panel/40 border border-black/6 rounded-3xl p-6 mb-6 space-y-5">
+            <div className="bg-abyss-panel/40 border border-black/6 rounded-2xl p-4 mb-5 space-y-4">
               <div className="flex items-center justify-between mb-1">
                 <span className="text-[10px] font-mono text-muted-steel uppercase tracking-wider font-bold">Active Filters</span>
                 {activeFilterCount > 0 && (
@@ -375,7 +374,7 @@ export default function DomainSearch() {
               </div>
 
               {/* Grid of filter groups */}
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
 
                 {/* TLD filter */}
                 <div className="space-y-2">
@@ -448,7 +447,7 @@ export default function DomainSearch() {
       </AnimatePresence>
 
       {/* ── Results summary ── */}
-      <div className="flex items-center justify-between mb-6">
+      <div className="flex items-center justify-between mb-4">
         <div className="flex items-center gap-3">
           <span className="text-sm text-muted-steel font-mono">
             <span className="text-star-white font-bold">{results.length}</span> domains found
@@ -470,7 +469,7 @@ export default function DomainSearch() {
         {results.length > 0 ? (
           <motion.div
             layout
-            className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-5"
+            className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-3.5"
           >
             {results.map((domain, idx) => (
               <DomainCard key={domain.id} domain={domain} idx={idx} />
@@ -483,7 +482,7 @@ export default function DomainSearch() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.4 }}
-            className="text-center py-24 border border-dashed border-black/8 rounded-3xl"
+            className="text-center py-16 border border-dashed border-black/8 rounded-2xl"
           >
             <Globe className="w-10 h-10 text-muted-steel/40 mx-auto mb-4" />
             <p className="text-sm text-star-white font-bold uppercase tracking-wider">No domains found</p>

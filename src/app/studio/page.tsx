@@ -1,19 +1,21 @@
 "use client";
 
-import React, { Suspense, useEffect } from "react";
+import React, { Suspense, useEffect, useState } from "react";
 import { useSearchParams, useRouter } from "next/navigation";
 import { LivePreviewViewport } from "@/components/studio/LivePreviewViewport";
 import { ConfigSidebar } from "@/components/studio/ConfigSidebar";
+import { StudioLivePreviewModal } from "@/components/studio/StudioLivePreviewModal";
 import { useConfiguratorStore } from "@/store/useConfiguratorStore";
 import { useCartStore } from "@/store/useCartStore";
 import { templatesData } from "@/data/templatesData";
 import { CyberButton } from "@/components/ui/CyberButton";
-import { ArrowLeft, ShoppingCart, Sliders } from "lucide-react";
+import { ArrowLeft, Eye, ShoppingCart, Sliders } from "lucide-react";
 import Link from "next/link";
 
 function StudioContent() {
   const searchParams = useSearchParams();
   const router = useRouter();
+  const [isPreviewOpen, setIsPreviewOpen] = useState(false);
 
   // Search parameters for loading templates & bundles
   const templateIdParam = searchParams.get("template");
@@ -53,9 +55,9 @@ function StudioContent() {
   };
 
   return (
-    <div className="w-full max-w-7xl mx-auto flex flex-col gap-6 relative z-10 flex-1">
+    <div className="w-full max-w-7xl mx-auto flex flex-col gap-5 relative z-10 flex-1">
       {/* Top Controls bar */}
-      <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4 border-b border-white/5 pb-4">
+      <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-3 border-b border-white/5 pb-3">
         <div className="flex items-center gap-3">
           <Link
             href="/templates"
@@ -67,14 +69,14 @@ function StudioContent() {
             <span className="text-[9px] text-nebula-slate uppercase tracking-wider font-extrabold flex items-center gap-1.5">
               <Sliders className="w-3 h-3 text-electric-cyan" /> Customizable Orbit Module
             </span>
-            <h1 className="text-xl md:text-2xl font-heading font-black text-star-white tracking-tight">
+            <h1 className="text-xl md:text-2xl font-heading font-bold text-star-white">
               STUDIO: <span className="text-electric-cyan">{config.templateName || "Loading..."}</span>
             </h1>
           </div>
         </div>
 
         {/* Deploy & Cart Action */}
-        <div className="flex items-center gap-3 w-full md:w-auto">
+        <div className="flex items-center gap-2.5 w-full md:w-auto">
           {domainName && (
             <div className="hidden lg:block text-right">
               <span className="text-[9px] text-nebula-slate/50 block font-semibold uppercase tracking-wider">
@@ -85,6 +87,14 @@ function StudioContent() {
               </span>
             </div>
           )}
+          <CyberButton
+            onClick={() => setIsPreviewOpen(true)}
+            variant="glass"
+            className="gap-2 w-full md:w-auto"
+          >
+            <Eye className="w-4 h-4" />
+            Live Preview
+          </CyberButton>
           <CyberButton
             onClick={handleDeployToCart}
             variant="teal"
@@ -97,7 +107,7 @@ function StudioContent() {
       </div>
 
       {/* Editor Split Layout */}
-      <div className="flex-1 grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch min-h-[500px]">
+      <div className="flex-1 grid grid-cols-1 lg:grid-cols-12 gap-5 items-stretch min-h-[460px]">
         {/* Left Canlı Önizleme Viewport */}
         <div className="lg:col-span-7 xl:col-span-8 flex flex-col justify-stretch">
           <LivePreviewViewport />
@@ -108,13 +118,18 @@ function StudioContent() {
           <ConfigSidebar />
         </div>
       </div>
+
+      <StudioLivePreviewModal
+        isOpen={isPreviewOpen}
+        onClose={() => setIsPreviewOpen(false)}
+      />
     </div>
   );
 }
 
 export default function StudioPage() {
   return (
-    <main className="min-h-screen pt-32 pb-16 px-4 md:px-8 relative overflow-hidden mesh-bg flex flex-col">
+    <main className="min-h-screen pt-24 pb-10 px-4 md:px-8 relative overflow-hidden mesh-bg flex flex-col">
       <Suspense
         fallback={
           <div className="h-64 flex flex-col items-center justify-center">

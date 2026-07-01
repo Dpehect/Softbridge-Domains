@@ -6,7 +6,7 @@ import { Globe, ArrowLeft, ShoppingCart, Sparkles, Shield, Award } from "lucide-
 import { CyberButton } from "@/components/ui/CyberButton";
 import { NeonBadge } from "@/components/ui/NeonBadge";
 import { useCartStore } from "@/store/useCartStore";
-import { mockDomainsSearch, DomainInfo } from "@/data/mockDomains";
+import { mockDomainsSearch } from "@/data/mockDomains";
 import { templatesData } from "@/data/templatesData";
 import Link from "next/link";
 import { motion } from "framer-motion";
@@ -53,57 +53,51 @@ export default function DomainDetailPage({ params }: { params: Promise<{ name: s
   const recommendedTemplates = templatesData.slice(0, 2);
 
   return (
-    <main className="min-h-screen pt-32 pb-24 px-4 md:px-8 relative overflow-hidden thin-wireframe-grid">
+    <main className="min-h-screen pt-24 pb-12 px-4 md:px-8 relative overflow-hidden thin-wireframe-grid">
       {/* Custom Awwwards Cursor */}
       <CustomCursor />
 
-      {/* Visual background lights */}
-      <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] rounded-full bg-restraint-purple/20 blur-[135px] -z-10 animate-pulse" />
-
-      <div className="w-full max-w-6xl mx-auto space-y-12 relative z-10">
+      <div className="w-full max-w-6xl mx-auto space-y-7 relative z-10">
         {/* Back Link */}
         <div>
           <Link
             href="/"
-            className="inline-flex items-center gap-2 text-xs font-heading font-bold uppercase tracking-wider text-muted-steel hover:text-white transition-colors"
+            className="inline-flex items-center gap-2 text-xs font-heading font-bold uppercase tracking-wider text-muted-steel hover:text-cosmic-teal transition-colors"
           >
             <ArrowLeft className="w-4 h-4" /> Back to registers
           </Link>
         </div>
 
         {/* Split Details & Visual Core */}
-        <div className="flex flex-col lg:flex-row gap-12 items-center">
+        <div className="flex flex-col lg:flex-row gap-6 items-center">
           {/* Left Side Holographic display */}
-          <div className="w-full lg:w-1/2 flex flex-col items-center justify-center relative min-h-[300px]">
-            <div className="relative w-80 h-80 rounded-full border border-white/5 flex items-center justify-center">
+          <div className="w-full lg:w-1/2 flex flex-col items-center justify-center relative min-h-[240px]">
+            <div className="relative w-64 h-64 rounded-full border border-black/5 flex items-center justify-center">
               {/* Pulsing glow ring */}
               <div className="absolute inset-0 border border-dashed border-cosmic-teal/15 rounded-full animate-[spin_40s_linear_infinite]" />
-              <div className="absolute inset-8 border border-dashed border-restraint-purple/20 rounded-full animate-[spin_20s_linear_infinite_reverse]" />
+              <div className="absolute inset-8 border border-dashed border-sunset-coral/20 rounded-full animate-[spin_20s_linear_infinite_reverse]" />
               
               <motion.div
                 animate={{ rotate: 360 }}
                 transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
-                className="w-48 h-48 rounded-full border border-white/10 flex items-center justify-center bg-black/35 shadow-[0_0_40px_rgba(0,245,230,0.1)] relative"
+                className="w-40 h-40 rounded-full border border-black/10 flex items-center justify-center bg-abyss-panel/70 shadow-sm relative"
               >
-                <Globe className="w-20 h-20 text-cosmic-teal opacity-80" />
-                {/* Visual orbital satellites */}
-                <div className="absolute w-3.5 h-3.5 rounded-full bg-restraint-purple top-2 left-6 shadow-[0_0_10px_rgba(42,14,102,0.8)]" />
-                <div className="absolute w-2.5 h-2.5 rounded-full bg-sunset-coral bottom-8 right-4 shadow-[0_0_10px_rgba(255,107,53,0.8)]" />
+                <Globe className="w-16 h-16 text-cosmic-teal opacity-80" />
               </motion.div>
             </div>
           </div>
 
           {/* Right Side Pricing & Actions */}
-          <div className="flex-1 space-y-6">
+          <div className="flex-1 space-y-4">
             <div>
               <span className="text-[10px] text-cosmic-teal font-heading font-extrabold uppercase tracking-widest bg-cosmic-teal/15 px-3.5 py-1 rounded-full border border-cosmic-teal/25 mb-4 inline-block">
                 Registry Details
               </span>
-              <h1 className="text-4xl md:text-6xl font-heading font-black text-white tracking-tight leading-none">
+              <h1 className="text-3xl md:text-5xl font-heading font-bold text-star-white leading-none">
                 {domainDetail.name}
                 <span className="text-cosmic-gradient">{domainDetail.tld}</span>
               </h1>
-              <div className="flex items-center gap-2 mt-4">
+              <div className="flex items-center gap-2 mt-3">
                 {domainDetail.premium && (
                   <NeonBadge variant="premium">Premium Class</NeonBadge>
                 )}
@@ -120,15 +114,15 @@ export default function DomainDetailPage({ params }: { params: Promise<{ name: s
             </p>
 
             {domainDetail.available ? (
-              <div className="glass-panel p-6 rounded-2xl border-white/5 space-y-6">
+              <div className="glass-panel p-4 rounded-2xl border-white/5 space-y-4">
                 <div className="flex items-baseline gap-2">
-                  <span className="text-3xl font-heading font-black text-white">
+                  <span className="text-2xl font-heading font-bold text-star-white">
                     ${domainDetail.price}
                   </span>
                   <span className="text-xs text-muted-steel/60">/ year registration fee</span>
                 </div>
 
-                <div className="flex flex-col sm:flex-row gap-4">
+                <div className="flex flex-col sm:flex-row gap-3">
                   <CyberButton
                     onClick={handleBuyBundle}
                     variant="teal"
@@ -148,7 +142,7 @@ export default function DomainDetailPage({ params }: { params: Promise<{ name: s
                 </div>
               </div>
             ) : (
-              <div className="glass-panel p-6 rounded-2xl border-white/5 space-y-4">
+              <div className="glass-panel p-4 rounded-2xl border-white/5 space-y-3">
                 <p className="text-xs text-sunset-coral font-bold flex items-center gap-1.5">
                   <Award className="w-4 h-4" /> REGISTRY ACQUIRED BY OTHER PARTY
                 </p>
@@ -158,7 +152,7 @@ export default function DomainDetailPage({ params }: { params: Promise<{ name: s
               </div>
             )}
 
-            <div className="grid grid-cols-2 gap-4 text-xs text-muted-steel pt-4">
+            <div className="grid grid-cols-2 gap-3 text-xs text-muted-steel pt-2">
               <div className="flex items-center gap-2">
                 <Shield className="w-4 h-4 text-cosmic-teal shrink-0" />
                 Complete DNSSEC security locks
@@ -174,10 +168,10 @@ export default function DomainDetailPage({ params }: { params: Promise<{ name: s
         <div className="h-[1px] bg-white/5" />
 
         {/* Alternatives & Recommended templates */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
           {/* Alternatives list */}
           <div className="space-y-4">
-            <h3 className="text-sm font-heading font-bold text-white uppercase tracking-wider">
+            <h3 className="text-sm font-heading font-bold text-star-white uppercase tracking-wider">
               Alternative Orbits Suggested
             </h3>
             <div className="space-y-3">
@@ -185,7 +179,7 @@ export default function DomainDetailPage({ params }: { params: Promise<{ name: s
                 <div
                   key={alt.tld}
                   onClick={() => router.push(`/domain/${alt.name}${alt.tld}`)}
-                  className="glass-panel px-5 py-3 rounded-xl flex items-center justify-between hover:border-white/10 hover:scale-[1.01] transition-all cursor-pointer border-white/5"
+                  className="glass-panel px-4 py-2.5 rounded-xl flex items-center justify-between hover:border-white/10 hover:scale-[1.01] transition-all cursor-pointer border-white/5"
                 >
                   <span className="text-sm font-bold font-display text-star-white">
                     {alt.name}
@@ -206,7 +200,7 @@ export default function DomainDetailPage({ params }: { params: Promise<{ name: s
 
           {/* Suggested templates */}
           <div className="space-y-4">
-            <h3 className="text-sm font-heading font-bold text-white uppercase tracking-wider">
+            <h3 className="text-sm font-heading font-bold text-star-white uppercase tracking-wider">
               Best Design Templates for this Domain
             </h3>
             <div className="space-y-3">
@@ -214,7 +208,7 @@ export default function DomainDetailPage({ params }: { params: Promise<{ name: s
                 <div
                   key={tpl.id}
                   onClick={() => router.push(`/studio?template=${tpl.id}&domain=${domainDetail.name}${domainDetail.tld}&price=${domainDetail.price}`)}
-                  className="glass-panel p-4 rounded-xl flex items-center justify-between border-white/5 hover:border-white/10 hover:scale-[1.01] transition-all cursor-pointer"
+                  className="glass-panel p-3.5 rounded-xl flex items-center justify-between border-white/5 hover:border-white/10 hover:scale-[1.01] transition-all cursor-pointer"
                 >
                   <div className="flex items-center gap-3">
                     <img

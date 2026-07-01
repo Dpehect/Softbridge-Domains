@@ -18,19 +18,17 @@ import {
   Moon,
   ShoppingBag,
   Layout,
-  FileText,
-  Zap,
-  Globe,
-  Shield,
 } from "lucide-react";
+import type { LucideIcon } from "lucide-react";
 import { useCartStore } from "@/store/useCartStore";
 import { CyberButton } from "./ui/CyberButton";
+import PreviewModal, { PreviewConfig } from "./PreviewModal";
 
 // ─── Types ────────────────────────────────────────────────────────
-type SiteType   = { id: string; name: string; price: number; description: string; icon: any; hero: string; sections: string[] };
+type SiteType   = { id: string; name: string; price: number; description: string; icon: LucideIcon; hero: string; sections: string[] };
 type ColorTheme = { id: string; name: string; primary: string; secondary: string; bg: string; text: string; accent: string };
 type LayoutStyle = { id: string; name: string; description: string };
-type ExtraFeature = { id: string; name: string; price: number; description: string; icon: any };
+type ExtraFeature = { id: string; name: string; price: number; description: string; icon: LucideIcon };
 
 // ─── Data ─────────────────────────────────────────────────────────
 const SITE_TYPES: SiteType[] = [
@@ -101,10 +99,10 @@ function LivePreview({
   const border   = `${primary}20`;
 
   // Font weight / layout style modifiers
-  const headingClass = layout === "bold" ? "font-black text-lg uppercase tracking-tighter" :
-                       layout === "minimal" ? "font-light text-sm tracking-[0.18em] uppercase" :
-                       "font-extrabold text-base tracking-tight";
-  const cardRadius   = layout === "minimal" ? "4px" : layout === "bold" ? "2px" : "12px";
+  const headingClass = layout === "bold" ? "font-black text-lg uppercase" :
+                       layout === "minimal" ? "font-normal text-sm uppercase" :
+                       "font-bold text-base";
+  const cardRadius   = layout === "minimal" ? "6px" : layout === "bold" ? "4px" : "10px";
 
   return (
     <AnimatePresence mode="wait">
@@ -115,7 +113,7 @@ function LivePreview({
         exit={{ opacity: 0, scale: 0.97 }}
         transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
         className="w-full h-full flex flex-col"
-        style={{ backgroundColor: bg, color: text, fontFamily: "Inter, sans-serif" }}
+        style={{ backgroundColor: bg, color: text, fontFamily: "var(--font-sans)" }}
       >
         {/* Simulated Navbar */}
         <div
@@ -268,6 +266,7 @@ export default function SoftbridgeStudio() {
   const [selectedLayout, setSelectedLayout] = useState<string>("modern");
   const [selectedExtras, setSelectedExtras] = useState<string[]>([]);
   const [isAddedToCart, setIsAddedToCart] = useState<boolean>(false);
+  const [showFullPreview, setShowFullPreview] = useState<boolean>(false);
 
   const addItem = useCartStore((state) => state.addItem);
 
@@ -277,6 +276,21 @@ export default function SoftbridgeStudio() {
 
   const currentThemeObj = COLOR_THEMES.find((t) => t.id === selectedTheme) || COLOR_THEMES[0];
   const currentTypeObj  = SITE_TYPES.find((t) => t.id === selectedType) || SITE_TYPES[0];
+
+  // Build preview config for the modal
+  const previewConfig: PreviewConfig = {
+    typeId:         currentTypeObj.id,
+    typeName:       currentTypeObj.name,
+    brandName:      "Softbridge Custom Web",
+    heroText:       currentTypeObj.hero,
+    sections:       currentTypeObj.sections,
+    themePrimary:   currentThemeObj.primary,
+    themeSecondary: currentThemeObj.secondary,
+    themeBg:        currentThemeObj.bg,
+    themeText:      currentThemeObj.text,
+    layout:         selectedLayout,
+    extras:         selectedExtras,
+  };
 
   const handleToggleExtra = (extraId: string) =>
     setSelectedExtras((prev) => prev.includes(extraId) ? prev.filter((id) => id !== extraId) : [...prev, extraId]);
@@ -297,7 +311,7 @@ export default function SoftbridgeStudio() {
           slogan: "Assembled dynamically inside Softbridge Studio",
           logo: "",
           theme: { primary: currentThemeObj.primary, secondary: currentThemeObj.secondary, bg: currentThemeObj.bg },
-          typography: { headings: "Outfit", body: "Inter" },
+          typography: { headings: "Geist", body: "Geist" },
           pages: [],
           animationProfile: "smooth",
         },
@@ -318,17 +332,17 @@ export default function SoftbridgeStudio() {
   ];
 
   return (
-    <section className="w-full mb-32 bg-abyss-panel/30 border border-black/5 rounded-3xl p-6 md:p-10 relative overflow-hidden shadow-sm">
+    <section className="w-full mb-14 bg-abyss-panel/30 border border-black/5 rounded-2xl p-4 md:p-7 relative overflow-hidden shadow-sm">
 
       {/* Ambient glow */}
       <div className="absolute -top-12 -right-12 w-64 h-64 rounded-full bg-cosmic-teal/5 blur-3xl pointer-events-none" />
 
       {/* Section header */}
-      <div className="mb-10 border-b border-black/5 pb-6">
+      <div className="mb-7 border-b border-black/5 pb-4">
         <span className="font-mono text-[9px] uppercase tracking-[0.25em] text-cosmic-teal font-bold block mb-2">
           SOFTBRIDGE // ENGINE STUDIO
         </span>
-        <h2 className="text-3xl md:text-5xl font-display font-extrabold text-star-white tracking-tight">
+        <h2 className="text-3xl md:text-4xl font-display font-bold text-star-white">
           SOFTBRIDGE STUDIO
         </h2>
         <p className="text-xs text-muted-steel mt-2 font-light max-w-lg">
@@ -336,13 +350,13 @@ export default function SoftbridgeStudio() {
         </p>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-5 items-stretch">
 
         {/* ── Left: Step Configurations ── */}
-        <div className="lg:col-span-6 flex flex-col justify-between min-h-[520px]">
+        <div className="lg:col-span-6 flex flex-col justify-between min-h-[460px]">
 
           {/* Step progress tabs */}
-          <div className="flex justify-between items-center mb-8 gap-1 font-mono text-[9px] uppercase tracking-wider text-muted-steel overflow-x-auto">
+          <div className="flex justify-between items-center mb-5 gap-1 font-mono text-[9px] uppercase tracking-wider text-muted-steel overflow-x-auto">
             {stepTitles.map((step, idx) => (
               <button
                 key={idx}
@@ -360,7 +374,7 @@ export default function SoftbridgeStudio() {
           </div>
 
           {/* Step banner */}
-          <div className="mb-5">
+          <div className="mb-4">
             <span className="text-[10px] uppercase font-mono tracking-widest text-muted-steel">
               Step 0{currentStep + 1} / {stepTitles[currentStep].name}
             </span>
@@ -368,7 +382,7 @@ export default function SoftbridgeStudio() {
           </div>
 
           {/* Configuration area */}
-          <div className="flex-1 mb-6">
+          <div className="flex-1 mb-4">
             <AnimatePresence mode="wait">
               <motion.div
                 key={currentStep}
@@ -380,7 +394,7 @@ export default function SoftbridgeStudio() {
               >
                 {/* Step 1: Site Type */}
                 {currentStep === 0 && (
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
                     {SITE_TYPES.map((type) => {
                       const Icon = type.icon;
                       const isSelected = selectedType === type.id;
@@ -388,7 +402,7 @@ export default function SoftbridgeStudio() {
                         <button
                           key={type.id}
                           onClick={() => setSelectedType(type.id)}
-                          className={`p-4 rounded-2xl border text-left transition-all duration-350 cursor-pointer flex flex-col justify-between h-36 ${
+                          className={`p-3.5 rounded-2xl border text-left transition-all duration-350 cursor-pointer flex flex-col justify-between h-32 ${
                             isSelected
                               ? "bg-cosmic-teal/10 border-cosmic-teal/40"
                               : "bg-abyss-panel/50 border-black/5 hover:border-black/15"
@@ -412,20 +426,20 @@ export default function SoftbridgeStudio() {
 
                 {/* Step 2: Theme */}
                 {currentStep === 1 && (
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
                     {COLOR_THEMES.map((theme) => {
                       const isSelected = selectedTheme === theme.id;
                       return (
                         <button
                           key={theme.id}
                           onClick={() => setSelectedTheme(theme.id)}
-                          className={`p-4 rounded-2xl border text-left transition-all duration-350 cursor-pointer ${
+                          className={`p-3.5 rounded-2xl border text-left transition-all duration-350 cursor-pointer ${
                             isSelected
                               ? "bg-cosmic-teal/10 border-cosmic-teal/40"
                               : "bg-abyss-panel/50 border-black/5 hover:border-black/15"
                           }`}
                         >
-                          <div className="flex justify-between items-center mb-3.5">
+                          <div className="flex justify-between items-center mb-2.5">
                             <span className="text-xs font-bold text-star-white">{theme.name}</span>
                             <div className="flex gap-1.5">
                               {[theme.primary, theme.secondary, theme.bg].map((c) => (
@@ -434,7 +448,7 @@ export default function SoftbridgeStudio() {
                             </div>
                           </div>
                           <div
-                            className="p-3 rounded-xl border text-center font-mono text-[8px] font-bold uppercase tracking-widest"
+                            className="p-2.5 rounded-xl border text-center font-mono text-[8px] font-bold uppercase tracking-widest"
                             style={{ backgroundColor: theme.bg, color: theme.text, borderColor: `${theme.primary}25` }}
                           >
                             {theme.name} preview
@@ -447,14 +461,14 @@ export default function SoftbridgeStudio() {
 
                 {/* Step 3: Layout */}
                 {currentStep === 2 && (
-                  <div className="space-y-3">
+                  <div className="space-y-2.5">
                     {LAYOUT_STYLES.map((style) => {
                       const isSelected = selectedLayout === style.id;
                       return (
                         <button
                           key={style.id}
                           onClick={() => setSelectedLayout(style.id)}
-                          className={`w-full p-4 rounded-2xl border text-left transition-all duration-350 cursor-pointer flex justify-between items-center ${
+                          className={`w-full p-3.5 rounded-2xl border text-left transition-all duration-350 cursor-pointer flex justify-between items-center ${
                             isSelected
                               ? "bg-cosmic-teal/10 border-cosmic-teal/40"
                               : "bg-abyss-panel/50 border-black/5 hover:border-black/15"
@@ -477,7 +491,7 @@ export default function SoftbridgeStudio() {
 
                 {/* Step 4: Extra Features */}
                 {currentStep === 3 && (
-                  <div className="space-y-3">
+                  <div className="space-y-2.5">
                     {EXTRA_FEATURES.map((extra) => {
                       const isSelected = selectedExtras.includes(extra.id);
                       const Icon = extra.icon;
@@ -485,7 +499,7 @@ export default function SoftbridgeStudio() {
                         <button
                           key={extra.id}
                           onClick={() => handleToggleExtra(extra.id)}
-                          className={`w-full p-4 rounded-2xl border text-left transition-all duration-350 cursor-pointer flex items-center justify-between ${
+                          className={`w-full p-3.5 rounded-2xl border text-left transition-all duration-350 cursor-pointer flex items-center justify-between ${
                             isSelected
                               ? "bg-cosmic-teal/10 border-cosmic-teal/40"
                               : "bg-abyss-panel/50 border-black/5 hover:border-black/15"
@@ -518,7 +532,7 @@ export default function SoftbridgeStudio() {
           </div>
 
           {/* Navigation */}
-          <div className="flex justify-between items-center border-t border-black/5 pt-5 shrink-0 gap-3">
+          <div className="flex justify-between items-center border-t border-black/5 pt-4 shrink-0 gap-3">
             <button
               onClick={prevStep}
               disabled={currentStep === 0}
@@ -542,23 +556,31 @@ export default function SoftbridgeStudio() {
         </div>
 
         {/* ── Right: Live Preview ── */}
-        <div className="lg:col-span-6 flex flex-col gap-4">
+        <div className="lg:col-span-6 flex flex-col gap-3">
 
           {/* Preview label */}
           <div className="flex items-center justify-between">
             <span className="text-[9px] font-mono text-muted-steel uppercase tracking-widest font-bold">
               Live Preview
             </span>
-            <div className="flex items-center gap-1.5 text-[8px] font-mono text-emerald-500 uppercase tracking-wider">
-              <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
-              Auto-updating
+            <div className="flex items-center gap-2">
+              <div className="flex items-center gap-1.5 text-[8px] font-mono text-emerald-500 uppercase tracking-wider">
+                <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+                Auto-updating
+              </div>
+              <button
+                onClick={() => setShowFullPreview(true)}
+                className="flex items-center gap-1 px-3 py-1 rounded-lg bg-cosmic-teal/10 border border-cosmic-teal/25 text-cosmic-teal text-[9px] font-mono font-bold uppercase tracking-wider hover:bg-cosmic-teal/20 transition-colors duration-300 cursor-pointer"
+              >
+                Live Preview
+              </button>
             </div>
           </div>
 
           {/* Browser frame */}
-          <div className="flex-1 bg-midnight-void border border-black/8 rounded-2xl overflow-hidden shadow-inner flex flex-col min-h-[420px]">
+          <div className="flex-1 bg-midnight-void border border-black/8 rounded-2xl overflow-hidden shadow-inner flex flex-col min-h-[360px]">
             {/* Browser chrome */}
-            <div className="flex items-center justify-between border-b border-black/8 px-4 py-2.5 shrink-0">
+            <div className="flex items-center justify-between border-b border-black/8 px-4 py-2 shrink-0">
               <div className="flex gap-1.5">
                 <div className="w-2.5 h-2.5 rounded-full bg-red-400/70" />
                 <div className="w-2.5 h-2.5 rounded-full bg-amber-400/70" />
@@ -585,7 +607,7 @@ export default function SoftbridgeStudio() {
           </div>
 
           {/* Config summary + cart CTA */}
-          <div className="bg-abyss-panel/40 border border-black/5 rounded-2xl p-4 space-y-4">
+          <div className="bg-abyss-panel/40 border border-black/5 rounded-2xl p-3.5 space-y-3">
             {/* Selected options summary */}
             <div className="grid grid-cols-2 gap-2 text-[9px] font-mono">
               {[
@@ -623,6 +645,14 @@ export default function SoftbridgeStudio() {
         </div>
 
       </div>
+
+      {/* Full Preview Modal */}
+      <PreviewModal
+        isOpen={showFullPreview}
+        onClose={() => setShowFullPreview(false)}
+        config={previewConfig}
+      />
+
     </section>
   );
 }

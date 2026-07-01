@@ -64,8 +64,8 @@ const DEFAULT_CONFIG: WebTemplateConfig = {
     bg: "#090912",
   },
   typography: {
-    headings: "Outfit",
-    body: "Inter",
+    headings: "Geist",
+    body: "Geist",
   },
   pages: [],
   animationProfile: "smooth",

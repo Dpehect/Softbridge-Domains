@@ -9,7 +9,7 @@ type Props = {
 function SliderCard({ data }: Props) {
   return (
     <motion.div
-      className="relative h-48 min-w-[210px] rounded-2xl shadow-md border border-white/5 overflow-hidden group/card md:h-72 md:min-w-[190px]"
+      className="relative h-40 min-w-[190px] rounded-2xl shadow-md border border-white/5 overflow-hidden group/card md:h-60 md:min-w-[176px]"
       layout
       initial={{ scale: 0.85, opacity: 0 }}
       animate={{
@@ -35,7 +35,7 @@ function SliderCard({ data }: Props) {
       />
       <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/20 to-transparent" />
       
-      <motion.div className="absolute z-10 flex h-full items-end p-4">
+      <motion.div className="absolute z-10 flex h-full items-end p-3.5">
         <motion.div>
           <motion.div
             layout
@@ -46,7 +46,7 @@ function SliderCard({ data }: Props) {
           </motion.p>
           <motion.h1
             layoutId={data.title}
-            className="text-lg font-bold tracking-tight text-white leading-tight mt-0.5"
+            className="text-base font-bold text-white leading-tight mt-0.5"
           >
             {data.title}
           </motion.h1>

@@ -23,7 +23,7 @@ export function TemplatePreviewCard({
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-100px" }}
       transition={{ duration: 0.6 }}
-      className="glass-panel rounded-3xl overflow-hidden flex flex-col group relative border-white/5 hover:border-white/10 transition-all duration-300"
+      className="glass-panel rounded-2xl overflow-hidden flex flex-col group relative border-white/5 hover:border-white/10 transition-all duration-300"
     >
       {/* Background ambient glow matching template theme */}
       <div
@@ -34,7 +34,7 @@ export function TemplatePreviewCard({
       />
 
       {/* Auto-scroll Image Container */}
-      <div className="h-56 relative overflow-hidden bg-abyss-black border-b border-white/5">
+      <div className="h-44 relative overflow-hidden bg-abyss-black border-b border-white/5">
         <div className="absolute inset-0 z-10 bg-gradient-to-t from-abyss-black via-transparent to-transparent pointer-events-none" />
         
         {/* Scrolling image mockup */}
@@ -48,7 +48,7 @@ export function TemplatePreviewCard({
         </div>
 
         {/* Floating Category Badge */}
-        <div className="absolute top-4 left-4 z-20 bg-abyss-black/75 backdrop-blur-md px-3.5 py-1.5 rounded-full text-xs font-heading font-semibold border border-white/10 tracking-wide text-star-white">
+        <div className="absolute top-3 left-3 z-20 bg-abyss-black/75 backdrop-blur-md px-3 py-1 rounded-xl text-xs font-heading font-semibold border border-white/10 tracking-wide text-star-white">
           {template.category}
         </div>
 
@@ -65,9 +65,9 @@ export function TemplatePreviewCard({
       </div>
 
       {/* Body Info */}
-      <div className="p-6 flex flex-col flex-1 relative z-10 bg-abyss-black/30">
-        <div className="flex items-start justify-between mb-3">
-          <h3 className="text-xl font-heading font-bold tracking-tight text-star-white">
+      <div className="p-4 flex flex-col flex-1 relative z-10 bg-abyss-black/30">
+        <div className="flex items-start justify-between mb-2.5">
+          <h3 className="text-lg font-heading font-bold text-star-white">
             {template.name}
           </h3>
           <div className="flex items-center gap-1.5">
@@ -84,12 +84,12 @@ export function TemplatePreviewCard({
           </div>
         </div>
 
-        <p className="text-xs text-nebula-slate/80 line-clamp-2 mb-4 leading-relaxed">
+        <p className="text-xs text-nebula-slate/80 line-clamp-2 mb-3 leading-relaxed">
           {template.description}
         </p>
 
         {/* Feature Tags */}
-        <div className="flex flex-wrap gap-2 mb-6 flex-1 items-start">
+        <div className="flex flex-wrap gap-1.5 mb-4 flex-1 items-start">
           {template.features.slice(0, 3).map((f) => (
             <span
               key={f}
@@ -102,9 +102,9 @@ export function TemplatePreviewCard({
         </div>
 
         {/* Bottom Panel */}
-        <div className="flex items-center justify-between mt-auto pt-4 border-t border-white/5">
+        <div className="flex items-center justify-between mt-auto pt-3 border-t border-white/5">
           <div>
-            <div className="text-2xl font-bold font-heading text-star-white">
+            <div className="text-xl font-bold font-heading text-star-white">
               ${template.price}
             </div>
             <span className="text-[10px] text-nebula-slate/50 block font-semibold tracking-wide">

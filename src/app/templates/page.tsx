@@ -6,7 +6,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { templatesData, TemplateInfo } from "@/data/templatesData";
 import { TemplatePreviewCard } from "@/components/ui/TemplatePreviewCard";
 import { CyberButton } from "@/components/ui/CyberButton";
-import { X, Sparkles, AlertCircle, Eye, Sliders } from "lucide-react";
+import { X, Sparkles, AlertCircle, Sliders } from "lucide-react";
 
 function TemplatesGalleryContent() {
   const searchParams = useSearchParams();
@@ -49,13 +49,13 @@ function TemplatesGalleryContent() {
   });
 
   return (
-    <div className="w-full max-w-7xl mx-auto flex flex-col gap-8 relative z-10">
+    <div className="w-full max-w-7xl mx-auto flex flex-col gap-5 relative z-10">
       {/* Banner / Info if Bundle flow is active */}
       {domainName && (
         <motion.div
           initial={{ opacity: 0, scale: 0.95 }}
           animate={{ opacity: 1, scale: 1 }}
-          className="glass-panel p-6 rounded-2xl border-electric-cyan/30 bg-electric-cyan/5 flex flex-col md:flex-row items-center justify-between gap-4"
+          className="glass-panel p-4 rounded-2xl border-electric-cyan/30 bg-electric-cyan/5 flex flex-col md:flex-row items-center justify-between gap-3"
         >
           <div className="flex items-center gap-3">
             <div className="w-10 h-10 rounded-full bg-electric-cyan/15 flex items-center justify-center text-electric-cyan">
@@ -80,20 +80,20 @@ function TemplatesGalleryContent() {
       )}
 
       {/* Main Header */}
-      <div className="text-center space-y-4 mb-4">
+      <div className="text-center space-y-3 mb-2">
         <span className="text-[10px] text-cosmic-purple font-heading font-extrabold uppercase tracking-widest bg-cosmic-purple/15 px-3.5 py-1 rounded-full border border-cosmic-purple/25">
           Aether Collection
         </span>
-        <h1 className="text-3xl md:text-5xl font-heading font-black text-star-white">
+        <h1 className="text-3xl md:text-4xl font-heading font-bold text-star-white">
           THE TEMPLATE <span className="text-neon-gradient">UNIVERSE</span>
         </h1>
-        <p className="text-sm md:text-base text-nebula-slate max-w-xl mx-auto leading-relaxed">
+        <p className="text-sm text-nebula-slate max-w-xl mx-auto leading-relaxed">
           Unlock high-fidelity interfaces engineered with advanced scroll kinetics, glassmorphic layout decks, and full responsive coverage.
         </p>
       </div>
 
       {/* Tabs / Filters Bar */}
-      <div className="flex flex-col gap-4 border-b border-white/5 pb-8 mb-4">
+      <div className="flex flex-col gap-3 border-b border-white/5 pb-5 mb-2">
         {/* Categories */}
         <div className="flex items-center gap-3">
           <span className="text-[10px] text-nebula-slate uppercase tracking-wider font-extrabold shrink-0 w-24">
@@ -106,7 +106,7 @@ function TemplatesGalleryContent() {
                 onClick={() => setActiveCategory(cat)}
                 className={`text-[10px] font-heading font-bold uppercase tracking-wider px-4 py-2 rounded-full border transition-all cursor-pointer ${
                   activeCategory === cat
-                    ? "bg-electric-cyan text-deep-void border-electric-cyan shadow-[0_0_15px_rgba(0,242,254,0.3)]"
+                    ? "bg-electric-cyan text-deep-void border-electric-cyan shadow-sm"
                     : "bg-white/5 border-white/5 text-nebula-slate hover:text-white"
                 }`}
               >
@@ -128,7 +128,7 @@ function TemplatesGalleryContent() {
                 onClick={() => setActiveStyle(style)}
                 className={`text-[10px] font-heading font-bold uppercase tracking-wider px-4 py-2 rounded-full border transition-all cursor-pointer ${
                   activeStyle === style
-                    ? "bg-cosmic-purple text-star-white border-cosmic-purple shadow-[0_0_15px_rgba(127,0,255,0.3)]"
+                    ? "bg-cosmic-purple text-star-white border-cosmic-purple shadow-sm"
                     : "bg-white/5 border-white/5 text-nebula-slate hover:text-white"
                 }`}
               >
@@ -141,7 +141,7 @@ function TemplatesGalleryContent() {
 
       {/* Templates Grid list */}
       {filteredTemplates.length > 0 ? (
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
           {filteredTemplates.map((tpl) => (
             <TemplatePreviewCard
               key={tpl.id}
@@ -152,11 +152,11 @@ function TemplatesGalleryContent() {
           ))}
         </div>
       ) : (
-        <div className="glass-panel p-16 rounded-3xl text-center max-w-md mx-auto space-y-4">
+        <div className="glass-panel p-10 rounded-2xl text-center max-w-md mx-auto space-y-3">
           <AlertCircle className="w-12 h-12 text-solar-pink mx-auto" />
           <h3 className="text-base font-heading font-bold text-white uppercase tracking-wider">No matches found</h3>
           <p className="text-xs text-nebula-slate">
-            We couldn't locate configurations mapping your specific aesthetic filter. Try selecting different options.
+            We could not locate configurations mapping your specific aesthetic filter. Try selecting different options.
           </p>
         </div>
       )}
@@ -174,7 +174,7 @@ function TemplatesGalleryContent() {
               initial={{ scale: 0.95, y: 15 }}
               animate={{ scale: 1, y: 0 }}
               exit={{ scale: 0.95, y: 15 }}
-              className="glass-panel rounded-3xl w-full max-w-4xl max-h-[90vh] overflow-y-auto border-white/10 shadow-[0_0_50px_rgba(0,0,0,0.9)] relative flex flex-col md:flex-row"
+              className="glass-panel rounded-2xl w-full max-w-4xl max-h-[90vh] overflow-y-auto border-white/10 shadow-2xl relative flex flex-col md:flex-row"
             >
               {/* Close Button */}
               <button
@@ -200,10 +200,10 @@ function TemplatesGalleryContent() {
               </div>
 
               {/* Right Specs View */}
-              <div className="p-8 flex-1 flex flex-col justify-between">
-                <div className="space-y-6">
+              <div className="p-6 flex-1 flex flex-col justify-between">
+                <div className="space-y-5">
                   <div>
-                    <h2 className="text-3xl font-heading font-black text-star-white">
+                    <h2 className="text-2xl font-heading font-bold text-star-white">
                       {selectedPreviewTemplate.name}
                     </h2>
                     <p className="text-xs text-nebula-slate/85 mt-2 leading-relaxed">
@@ -251,7 +251,7 @@ function TemplatesGalleryContent() {
                   </div>
                 </div>
 
-                <div className="flex items-center justify-between border-t border-white/5 pt-6 mt-8">
+                <div className="flex items-center justify-between border-t border-white/5 pt-5 mt-6">
                   <div>
                     <span className="text-[9px] text-nebula-slate/50 block font-semibold tracking-wider">
                       SETUP TARIFF
@@ -284,7 +284,7 @@ function TemplatesGalleryContent() {
 
 export default function TemplatesPage() {
   return (
-    <main className="min-h-screen pt-32 pb-24 px-4 md:px-8 relative overflow-hidden mesh-bg">
+    <main className="min-h-screen pt-24 pb-12 px-4 md:px-8 relative overflow-hidden mesh-bg">
       <Suspense
         fallback={
           <div className="h-64 flex flex-col items-center justify-center">

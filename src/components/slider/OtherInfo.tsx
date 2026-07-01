@@ -1,8 +1,9 @@
 import React from "react";
 import { motion } from "framer-motion";
+import { SlideData } from "./BackgroundImage";
 
 type Props = {
-  data: any;
+  data?: SlideData;
 };
 const item = {
   hidden: {
@@ -23,11 +24,11 @@ function OtherInfo({ data }: Props) {
         data={data?.location}
       />
       <AnimatedText
-        className="my-2 text-4xl sm:text-6xl md:text-7.5xl font-extrabold tracking-tighter leading-none text-star-white font-display uppercase"
+        className="my-1.5 text-4xl sm:text-5xl md:text-6xl font-bold leading-none text-star-white font-display uppercase"
         data={data?.title}
       />
       <AnimatedText
-        className="text-xs sm:text-sm text-star-white/70 max-w-md font-light leading-relaxed"
+        className="text-xs sm:text-sm text-star-white/70 max-w-md font-normal leading-relaxed"
         data={data?.description}
       />
     </motion.div>

@@ -94,24 +94,25 @@ export default function AnimatedSlider() {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   return (
-    <div className="relative h-[85vh] lg:h-screen w-full select-none overflow-hidden text-star-white antialiased border-b border-black/5">
+    <div className="relative h-[76vh] min-h-[620px] lg:h-[88vh] w-full select-none overflow-hidden text-star-white antialiased border-b border-black/5">
       <AnimatePresence>
         
         {/* Background slide renderer */}
         <BackgroundImage
+          key="background-images"
           transitionData={transitionData}
           currentSlideData={currentSlideData}
         />
 
         {/* Warm and dark overlay katmanı */}
-        <div className="absolute inset-0 z-15 bg-[#2E1810]/65 pointer-events-none" />
+        <div key="warm-overlay" className="absolute inset-0 z-15 bg-[#2E1810]/65 pointer-events-none" />
 
         {/* Contents grid over background */}
-        <div className="absolute inset-0 z-20 flex flex-col justify-end pb-12 pt-28 px-6 md:px-12">
-          <div className="max-w-6xl mx-auto w-full grid grid-cols-1 lg:grid-cols-12 gap-8 items-end h-full">
+        <div key="slider-content" className="absolute inset-0 z-20 flex flex-col justify-end pb-8 pt-24 px-4 md:px-10">
+          <div className="max-w-6xl mx-auto w-full grid grid-cols-1 lg:grid-cols-12 gap-5 items-end h-full">
             
             {/* Left Column: Active details label info */}
-            <div className="lg:col-span-5 flex flex-col justify-end h-full pb-4">
+            <div className="lg:col-span-5 flex flex-col justify-end h-full pb-2">
               <SlideInfo
                 transitionData={transitionData}
                 currentSlideData={currentSlideData}
@@ -120,7 +121,7 @@ export default function AnimatedSlider() {
             </div>
 
             {/* Right Column: Slide stack listing and controls */}
-            <div className="lg:col-span-7 flex flex-col justify-end space-y-4">
+            <div className="lg:col-span-7 flex flex-col justify-end space-y-3">
               <Slides data={data} />
               <Controls
                 currentSlideData={currentSlideData}
