@@ -10,7 +10,7 @@
       "name": "oakridge-diner",
       "tld": ".com",
       "fullDomain": "oakridgediner.com",
-      "price": 450,
+      "price": 85,
       "category": "Premium",
       "length": "Medium",
       "available": true,
@@ -29,7 +29,7 @@
       "name": "cedar-hollow-cafe",
       "tld": ".com",
       "fullDomain": "cedarhollowcafe.com",
-      "price": 420,
+      "price": 55,
       "category": "Premium",
       "length": "Long",
       "available": true,
@@ -48,7 +48,7 @@
       "name": "maple-grove-bakery",
       "tld": ".com",
       "fullDomain": "maplegrovebakery.com",
-      "price": 500,
+      "price": 225,
       "category": "Premium",
       "length": "Long",
       "available": true,
@@ -67,7 +67,7 @@
       "name": "willow-creek-market",
       "tld": ".com",
       "fullDomain": "willowcreekmarket.com",
-      "price": 500,
+      "price": 260,
       "category": "Premium",
       "length": "Long",
       "available": true,
@@ -86,7 +86,7 @@
       "name": "riverbend-supply",
       "tld": ".com",
       "fullDomain": "riverbendsupply.com",
-      "price": 480,
+      "price": 369,
       "category": "Premium",
       "length": "Medium",
       "available": true,
@@ -105,7 +105,7 @@
       "name": "cedar-and-main",
       "tld": ".com",
       "fullDomain": "cedarandmain.com",
-      "price": 500,
+      "price": 175,
       "category": "Premium",
       "length": "Medium",
       "available": true,
@@ -124,7 +124,7 @@
       "name": "redbarn",
       "tld": ".store",
       "fullDomain": "redbarn.store",
-      "price": 196,
+      "price": 69,
       "category": "Short",
       "length": "Short",
       "available": true,
@@ -142,7 +142,7 @@
       "name": "porchlight",
       "tld": ".co",
       "fullDomain": "porchlight.co",
-      "price": 250,
+      "price": 160,
       "category": "Short",
       "length": "Medium",
       "available": true,
@@ -161,7 +161,7 @@
       "name": "pineview",
       "tld": ".app",
       "fullDomain": "pineview.app",
-      "price": 290,
+      "price": 395,
       "category": "Short",
       "length": "Medium",
       "available": true,
@@ -180,7 +180,7 @@
       "name": "brookside",
       "tld": ".co",
       "fullDomain": "brookside.co",
-      "price": 310,
+      "price": 169,
       "category": "Short",
       "length": "Medium",
       "available": true,
@@ -199,7 +199,7 @@
       "name": "cloverfield",
       "tld": ".books",
       "fullDomain": "cloverfield.books",
-      "price": 230,
+      "price": 129,
       "category": "Short",
       "length": "Medium",
       "available": true,
@@ -218,7 +218,7 @@
       "name": "barnlight",
       "tld": ".dev",
       "fullDomain": "barnlight.dev",
-      "price": 270,
+      "price": 275,
       "category": "Short",
       "length": "Medium",
       "available": true,
@@ -237,7 +237,7 @@
       "name": "cedar-desk",
       "tld": ".app",
       "fullDomain": "cedardesk.app",
-      "price": 480,
+      "price": 329,
       "category": "Tech",
       "length": "Medium",
       "available": true,
@@ -256,7 +256,7 @@
       "name": "millhouse-scheduler",
       "tld": ".com",
       "fullDomain": "millhousescheduler.com",
-      "price": 360,
+      "price": 190,
       "category": "Tech",
       "length": "Long",
       "available": true,
@@ -275,7 +275,7 @@
       "name": "pineview-ledger",
       "tld": ".com",
       "fullDomain": "pineviewledger.com",
-      "price": 420,
+      "price": 280,
       "category": "Tech",
       "length": "Medium",
       "available": true,
@@ -294,7 +294,7 @@
       "name": "riverbend-reports",
       "tld": ".com",
       "fullDomain": "riverbendreports.com",
-      "price": 500,
+      "price": 449,
       "category": "Tech",
       "length": "Medium",
       "available": true,
@@ -313,7 +313,7 @@
       "name": "harbor-shift",
       "tld": ".app",
       "fullDomain": "harborshift.app",
-      "price": 350,
+      "price": 130,
       "category": "Tech",
       "length": "Medium",
       "available": true,
@@ -332,7 +332,7 @@
       "name": "brookside-ops",
       "tld": ".com",
       "fullDomain": "brooksideops.com",
-      "price": 390,
+      "price": 230,
       "category": "Tech",
       "length": "Medium",
       "available": true,
@@ -351,7 +351,7 @@
       "name": "red-barn-collective",
       "tld": ".store",
       "fullDomain": "redbarncollective.store",
-      "price": 380,
+      "price": 305,
       "category": "Commerce",
       "length": "Long",
       "available": true,
@@ -370,7 +370,7 @@
       "name": "cedar-hollow-pantry",
       "tld": ".store",
       "fullDomain": "cedarhollowpantry.store",
-      "price": 320,
+      "price": 170,
       "category": "Commerce",
       "length": "Long",
       "available": true,
@@ -389,7 +389,7 @@
       "name": "maple-lane-repair",
       "tld": ".com",
       "fullDomain": "maplelanerepair.com",
-      "price": 190,
+      "price": 279,
       "category": "Commerce",
       "length": "Medium",
       "available": true,
@@ -408,7 +408,7 @@
       "name": "stonebridge-print-co",
       "tld": ".com",
       "fullDomain": "stonebridgeprintco.com",
-      "price": 370,
+      "price": 155,
       "category": "Commerce",
       "length": "Long",
       "available": true,
@@ -427,7 +427,7 @@
       "name": "north-fork-signs",
       "tld": ".com",
       "fullDomain": "northforksigns.com",
-      "price": 320,
+      "price": 165,
       "category": "Commerce",
       "length": "Medium",
       "available": true,
@@ -446,7 +446,7 @@
       "name": "maple-grove-tutors",
       "tld": ".com",
       "fullDomain": "maplegrovetutors.com",
-      "price": 330,
+      "price": 90,
       "category": "Commerce",
       "length": "Long",
       "available": true,
@@ -465,7 +465,7 @@
       "name": "elm-street-studio",
       "tld": ".com",
       "fullDomain": "elmstreetstudio.com",
-      "price": 340,
+      "price": 325,
       "category": "Creative",
       "length": "Long",
       "available": true,
@@ -484,7 +484,7 @@
       "name": "willow-frame",
       "tld": ".co",
       "fullDomain": "willowframe.co",
-      "price": 270,
+      "price": 50,
       "category": "Creative",
       "length": "Medium",
       "available": true,
@@ -503,7 +503,7 @@
       "name": "red-porch-works",
       "tld": ".com",
       "fullDomain": "redporchworks.com",
-      "price": 240,
+      "price": 100,
       "category": "Creative",
       "length": "Medium",
       "available": true,
@@ -522,7 +522,7 @@
       "name": "railtown-design",
       "tld": ".design",
       "fullDomain": "railtown.design",
-      "price": 350,
+      "price": 290,
       "category": "Creative",
       "length": "Medium",
       "available": true,
@@ -541,7 +541,7 @@
       "name": "nora-lane-studio",
       "tld": ".studio",
       "fullDomain": "noralane.studio",
-      "price": 290,
+      "price": 245,
       "category": "Brandable",
       "length": "Medium",
       "available": true,
@@ -560,7 +560,7 @@
       "name": "little-lantern",
       "tld": ".learning",
       "fullDomain": "littlelantern.learning",
-      "price": 280,
+      "price": 375,
       "category": "Brandable",
       "length": "Medium",
       "available": true,
@@ -579,7 +579,7 @@
       "name": "main-street-pizza",
       "tld": ".com",
       "fullDomain": "mainstreetpizza.com",
-      "price": 0,
+      "price": 360,
       "category": "Commerce",
       "length": "Long",
       "available": false,
@@ -597,7 +597,7 @@
       "name": "cedar-creek-clinic",
       "tld": ".com",
       "fullDomain": "cedarcreekclinic.com",
-      "price": 0,
+      "price": 195,
       "category": "Premium",
       "length": "Long",
       "available": false,
@@ -615,7 +615,7 @@
       "name": "oak-county-services",
       "tld": ".com",
       "fullDomain": "oakcountyservices.com",
-      "price": 0,
+      "price": 205,
       "category": "Brandable",
       "length": "Long",
       "available": false,
@@ -633,7 +633,7 @@
       "name": "pine-hill-school",
       "tld": ".com",
       "fullDomain": "pinehillschool.com",
-      "price": 0,
+      "price": 249,
       "category": "Creative",
       "length": "Long",
       "available": false,
@@ -654,7 +654,7 @@
       "category": "SaaS",
       "type": "Template",
       "description": "Premium SaaS template with carefully crafted distinct layouts.",
-      "price": 19.8,
+      "price": 159,
       "features": [
         "Framer Motion",
         "Dark Mode",
@@ -738,7 +738,7 @@
       "category": "SaaS",
       "type": "Template",
       "description": "Premium SaaS template with carefully crafted distinct layouts.",
-      "price": 23.8,
+      "price": 235,
       "features": [
         "Framer Motion",
         "Dark Mode",
@@ -822,7 +822,7 @@
       "category": "SaaS",
       "type": "Template",
       "description": "Premium SaaS template with carefully crafted distinct layouts.",
-      "price": 27.8,
+      "price": 385,
       "features": [
         "Framer Motion",
         "Dark Mode",
@@ -906,7 +906,7 @@
       "category": "SaaS",
       "type": "Template",
       "description": "Premium SaaS template with carefully crafted distinct layouts.",
-      "price": 31.8,
+      "price": 440,
       "features": [
         "Framer Motion",
         "Dark Mode",
@@ -990,7 +990,7 @@
       "category": "SaaS",
       "type": "Template",
       "description": "Premium SaaS template with carefully crafted distinct layouts.",
-      "price": 35.8,
+      "price": 239,
       "features": [
         "Framer Motion",
         "Dark Mode",
@@ -1074,7 +1074,7 @@
       "category": "SaaS",
       "type": "Template",
       "description": "Premium SaaS template with carefully crafted distinct layouts.",
-      "price": 39.8,
+      "price": 250,
       "features": [
         "Framer Motion",
         "Dark Mode",
@@ -1158,7 +1158,7 @@
       "category": "E-Commerce",
       "type": "Template",
       "description": "Premium E-Commerce template with carefully crafted distinct layouts.",
-      "price": 19.8,
+      "price": 345,
       "features": [
         "Newsletter",
         "Testimonial Section",
@@ -1230,7 +1230,7 @@
       "category": "E-Commerce",
       "type": "Template",
       "description": "Premium E-Commerce template with carefully crafted distinct layouts.",
-      "price": 23.8,
+      "price": 340,
       "features": [
         "Newsletter",
         "Testimonial Section",
@@ -1302,7 +1302,7 @@
       "category": "E-Commerce",
       "type": "Template",
       "description": "Premium E-Commerce template with carefully crafted distinct layouts.",
-      "price": 27.8,
+      "price": 300,
       "features": [
         "Newsletter",
         "Testimonial Section",
@@ -1374,7 +1374,7 @@
       "category": "E-Commerce",
       "type": "Template",
       "description": "Premium E-Commerce template with carefully crafted distinct layouts.",
-      "price": 31.8,
+      "price": 185,
       "features": [
         "Newsletter",
         "Testimonial Section",
@@ -1446,7 +1446,7 @@
       "category": "E-Commerce",
       "type": "Template",
       "description": "Premium E-Commerce template with carefully crafted distinct layouts.",
-      "price": 35.8,
+      "price": 435,
       "features": [
         "Newsletter",
         "Testimonial Section",
@@ -1518,7 +1518,7 @@
       "category": "E-Commerce",
       "type": "Template",
       "description": "Premium E-Commerce template with carefully crafted distinct layouts.",
-      "price": 39.8,
+      "price": 319,
       "features": [
         "Newsletter",
         "Testimonial Section",
@@ -1590,7 +1590,7 @@
       "category": "Portfolio",
       "type": "Template",
       "description": "Premium Portfolio template with carefully crafted distinct layouts.",
-      "price": 19.8,
+      "price": 139,
       "features": [
         "WebGL",
         "3D Elements",
@@ -1648,7 +1648,7 @@
       "category": "Portfolio",
       "type": "Template",
       "description": "Premium Portfolio template with carefully crafted distinct layouts.",
-      "price": 23.8,
+      "price": 429,
       "features": [
         "WebGL",
         "3D Elements",
@@ -1706,7 +1706,7 @@
       "category": "Portfolio",
       "type": "Template",
       "description": "Premium Portfolio template with carefully crafted distinct layouts.",
-      "price": 27.8,
+      "price": 60,
       "features": [
         "WebGL",
         "3D Elements",
@@ -1764,7 +1764,7 @@
       "category": "Portfolio",
       "type": "Template",
       "description": "Premium Portfolio template with carefully crafted distinct layouts.",
-      "price": 31.8,
+      "price": 255,
       "features": [
         "WebGL",
         "3D Elements",
@@ -1822,7 +1822,7 @@
       "category": "Portfolio",
       "type": "Template",
       "description": "Premium Portfolio template with carefully crafted distinct layouts.",
-      "price": 35.8,
+      "price": 125,
       "features": [
         "WebGL",
         "3D Elements",
@@ -1880,7 +1880,7 @@
       "category": "Portfolio",
       "type": "Template",
       "description": "Premium Portfolio template with carefully crafted distinct layouts.",
-      "price": 39.8,
+      "price": 210,
       "features": [
         "WebGL",
         "3D Elements",
@@ -1938,7 +1938,7 @@
       "category": "Agency",
       "type": "Template",
       "description": "Premium Agency template with carefully crafted distinct layouts.",
-      "price": 19.8,
+      "price": 199,
       "features": [
         "Contact Form",
         "Newsletter"
@@ -1995,7 +1995,7 @@
       "category": "Agency",
       "type": "Template",
       "description": "Premium Agency template with carefully crafted distinct layouts.",
-      "price": 23.8,
+      "price": 365,
       "features": [
         "Contact Form",
         "Newsletter"
@@ -2052,7 +2052,7 @@
       "category": "Agency",
       "type": "Template",
       "description": "Premium Agency template with carefully crafted distinct layouts.",
-      "price": 27.8,
+      "price": 219,
       "features": [
         "Contact Form",
         "Newsletter"
@@ -2109,7 +2109,7 @@
       "category": "Agency",
       "type": "Template",
       "description": "Premium Agency template with carefully crafted distinct layouts.",
-      "price": 31.8,
+      "price": 240,
       "features": [
         "Contact Form",
         "Newsletter"
@@ -2166,7 +2166,7 @@
       "category": "Agency",
       "type": "Template",
       "description": "Premium Agency template with carefully crafted distinct layouts.",
-      "price": 35.8,
+      "price": 309,
       "features": [
         "Contact Form",
         "Newsletter"
@@ -2223,7 +2223,7 @@
       "category": "Agency",
       "type": "Template",
       "description": "Premium Agency template with carefully crafted distinct layouts.",
-      "price": 39.8,
+      "price": 310,
       "features": [
         "Contact Form",
         "Newsletter"
@@ -2280,7 +2280,7 @@
       "category": "Landing Page",
       "type": "Template",
       "description": "Premium Landing Page template with carefully crafted distinct layouts.",
-      "price": 19.8,
+      "price": 229,
       "features": [
         "Contact Form",
         "Newsletter"
@@ -2337,7 +2337,7 @@
       "category": "Landing Page",
       "type": "Template",
       "description": "Premium Landing Page template with carefully crafted distinct layouts.",
-      "price": 23.8,
+      "price": 265,
       "features": [
         "Contact Form",
         "Newsletter"
@@ -2394,7 +2394,7 @@
       "category": "Landing Page",
       "type": "Template",
       "description": "Premium Landing Page template with carefully crafted distinct layouts.",
-      "price": 27.8,
+      "price": 140,
       "features": [
         "Contact Form",
         "Newsletter"
@@ -2451,7 +2451,7 @@
       "category": "Landing Page",
       "type": "Template",
       "description": "Premium Landing Page template with carefully crafted distinct layouts.",
-      "price": 31.8,
+      "price": 439,
       "features": [
         "Contact Form",
         "Newsletter"
@@ -2508,7 +2508,7 @@
       "category": "Landing Page",
       "type": "Template",
       "description": "Premium Landing Page template with carefully crafted distinct layouts.",
-      "price": 35.8,
+      "price": 415,
       "features": [
         "Contact Form",
         "Newsletter"
@@ -2565,7 +2565,7 @@
       "category": "Landing Page",
       "type": "Template",
       "description": "Premium Landing Page template with carefully crafted distinct layouts.",
-      "price": 39.8,
+      "price": 200,
       "features": [
         "Contact Form",
         "Newsletter"
@@ -2622,7 +2622,7 @@
       "category": "Blog",
       "type": "Template",
       "description": "Premium Blog template with carefully crafted distinct layouts.",
-      "price": 19.8,
+      "price": 215,
       "features": [
         "Contact Form",
         "Newsletter"
@@ -2679,7 +2679,7 @@
       "category": "Blog",
       "type": "Template",
       "description": "Premium Blog template with carefully crafted distinct layouts.",
-      "price": 23.8,
+      "price": 150,
       "features": [
         "Contact Form",
         "Newsletter"
@@ -2736,7 +2736,7 @@
       "category": "Blog",
       "type": "Template",
       "description": "Premium Blog template with carefully crafted distinct layouts.",
-      "price": 27.8,
+      "price": 350,
       "features": [
         "Contact Form",
         "Newsletter"
@@ -2793,7 +2793,7 @@
       "category": "Blog",
       "type": "Template",
       "description": "Premium Blog template with carefully crafted distinct layouts.",
-      "price": 31.8,
+      "price": 110,
       "features": [
         "Contact Form",
         "Newsletter"
@@ -2850,7 +2850,7 @@
       "category": "Blog",
       "type": "Template",
       "description": "Premium Blog template with carefully crafted distinct layouts.",
-      "price": 35.8,
+      "price": 189,
       "features": [
         "Contact Form",
         "Newsletter"
@@ -2907,7 +2907,7 @@
       "category": "Blog",
       "type": "Template",
       "description": "Premium Blog template with carefully crafted distinct layouts.",
-      "price": 39.8,
+      "price": 89,
       "features": [
         "Contact Form",
         "Newsletter"
@@ -2964,7 +2964,7 @@
       "category": "Dashboard",
       "type": "Template",
       "description": "Premium Dashboard template with carefully crafted distinct layouts.",
-      "price": 19.8,
+      "price": 390,
       "features": [
         "Contact Form",
         "Newsletter"
@@ -3021,7 +3021,7 @@
       "category": "Dashboard",
       "type": "Template",
       "description": "Premium Dashboard template with carefully crafted distinct layouts.",
-      "price": 23.8,
+      "price": 115,
       "features": [
         "Contact Form",
         "Newsletter"
@@ -3078,7 +3078,7 @@
       "category": "Dashboard",
       "type": "Template",
       "description": "Premium Dashboard template with carefully crafted distinct layouts.",
-      "price": 27.8,
+      "price": 145,
       "features": [
         "Contact Form",
         "Newsletter"
@@ -3135,7 +3135,7 @@
       "category": "Dashboard",
       "type": "Template",
       "description": "Premium Dashboard template with carefully crafted distinct layouts.",
-      "price": 31.8,
+      "price": 270,
       "features": [
         "Contact Form",
         "Newsletter"
@@ -3192,7 +3192,7 @@
       "category": "Dashboard",
       "type": "Template",
       "description": "Premium Dashboard template with carefully crafted distinct layouts.",
-      "price": 35.8,
+      "price": 349,
       "features": [
         "Contact Form",
         "Newsletter"
@@ -3249,7 +3249,7 @@
       "category": "Dashboard",
       "type": "Template",
       "description": "Premium Dashboard template with carefully crafted distinct layouts.",
-      "price": 39.8,
+      "price": 220,
       "features": [
         "Contact Form",
         "Newsletter"
@@ -3306,7 +3306,7 @@
       "category": "Corporate",
       "type": "Template",
       "description": "Premium Corporate template with carefully crafted distinct layouts.",
-      "price": 19.8,
+      "price": 339,
       "features": [
         "Contact Form",
         "Newsletter"
@@ -3363,7 +3363,7 @@
       "category": "Corporate",
       "type": "Template",
       "description": "Premium Corporate template with carefully crafted distinct layouts.",
-      "price": 23.8,
+      "price": 65,
       "features": [
         "Contact Form",
         "Newsletter"
@@ -3420,7 +3420,7 @@
       "category": "Corporate",
       "type": "Template",
       "description": "Premium Corporate template with carefully crafted distinct layouts.",
-      "price": 27.8,
+      "price": 285,
       "features": [
         "Contact Form",
         "Newsletter"
@@ -3477,7 +3477,7 @@
       "category": "Corporate",
       "type": "Template",
       "description": "Premium Corporate template with carefully crafted distinct layouts.",
-      "price": 31.8,
+      "price": 410,
       "features": [
         "Contact Form",
         "Newsletter"
@@ -3534,7 +3534,7 @@
       "category": "Corporate",
       "type": "Template",
       "description": "Premium Corporate template with carefully crafted distinct layouts.",
-      "price": 35.8,
+      "price": 400,
       "features": [
         "Contact Form",
         "Newsletter"
@@ -3591,7 +3591,7 @@
       "category": "Corporate",
       "type": "Template",
       "description": "Premium Corporate template with carefully crafted distinct layouts.",
-      "price": 39.8,
+      "price": 430,
       "features": [
         "Contact Form",
         "Newsletter"
