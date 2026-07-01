@@ -51,6 +51,13 @@ function DynamicSection({ section, theme, isFirst }: { section: CustomSection, t
   const alignSelf = styles.alignment === "center" ? "mx-auto" : styles.alignment === "right" ? "ml-auto" : "mr-auto";
   const justify = styles.alignment === "center" ? "justify-center" : styles.alignment === "right" ? "justify-end" : "justify-start";
 
+  // Parse layout
+  let gridCols = "grid-cols-1 md:grid-cols-3"; // default
+  if (styles.layout === "1-col") gridCols = "grid-cols-1";
+  else if (styles.layout === "2-col") gridCols = "grid-cols-1 md:grid-cols-2";
+  else if (styles.layout === "3-col") gridCols = "grid-cols-1 md:grid-cols-3";
+  else if (styles.layout === "4-col") gridCols = "grid-cols-1 sm:grid-cols-2 lg:grid-cols-4";
+
   if (type === "Hero") {
     return (
       <section className={`relative flex flex-col ${align} px-5 md:px-8 ${py} overflow-hidden`} style={{ background: bgStyle }}>
@@ -79,6 +86,37 @@ function DynamicSection({ section, theme, isFirst }: { section: CustomSection, t
     );
   }
 
+  if (type === "Slider") {
+    const items = content.sliderItems && content.sliderItems.length > 0 ? content.sliderItems : [
+      { image: "", title: "Slide 1", subtitle: "A beautiful placeholder slide." },
+      { image: "", title: "Slide 2", subtitle: "Another great slide." }
+    ];
+    return (
+      <section className={`relative px-5 md:px-8 ${py} overflow-hidden`} style={{ background: bgStyle }}>
+         <div className={`max-w-5xl mx-auto flex flex-col ${align} mb-8`}>
+            {content.heading && <h2 className="text-3xl font-bold mb-4" style={{ color: textColor }}>{content.heading}</h2>}
+            {content.description && <p className="text-sm max-w-xl" style={{ color: textColor, opacity: 0.7 }}>{content.description}</p>}
+         </div>
+         <div className="w-full flex gap-4 overflow-x-auto pb-4 snap-x custom-scrollbar">
+            {items.map((slide, i) => (
+              <div key={i} className="min-w-[280px] md:min-w-[400px] aspect-[4/3] bg-black/5 flex flex-col justify-end p-6 relative overflow-hidden shrink-0 snap-center group" style={{ borderRadius: radius }}>
+                {slide.image ? (
+                   <img src={slide.image} alt={slide.title} className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                ) : (
+                   <div className="absolute inset-0 bg-gradient-to-br from-[#000000] to-[#333333] opacity-10"></div>
+                )}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
+                <div className="relative z-10 text-white text-left">
+                  <h3 className="text-xl font-bold mb-1">{slide.title || `Slide ${i+1}`}</h3>
+                  {slide.subtitle && <p className="text-xs opacity-80">{slide.subtitle}</p>}
+                </div>
+              </div>
+            ))}
+         </div>
+      </section>
+    );
+  }
+
   if (type === "Features") {
     return (
       <section className={`relative px-5 md:px-8 ${py}`} style={{ background: bgStyle }}>
@@ -86,7 +124,7 @@ function DynamicSection({ section, theme, isFirst }: { section: CustomSection, t
             {content.heading && <h2 className="text-3xl font-bold mb-4" style={{ color: textColor }}>{content.heading}</h2>}
             {content.description && <p className="text-sm mb-12 max-w-xl" style={{ color: textColor, opacity: 0.7 }}>{content.description}</p>}
             
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 w-full">
+            <div className={`grid ${gridCols} gap-6 w-full`}>
               {(content.items && content.items.length > 0 ? content.items : ["Feature 1", "Feature 2", "Feature 3"]).map((item, i) => (
                 <div key={i} className="p-6 bg-black/5 border border-black/5 shadow-sm text-left" style={{ borderRadius: radius }}>
                   <div className="w-10 h-10 rounded-lg mb-4 flex items-center justify-center" style={{ backgroundColor: `${primary}15` }}>
@@ -105,19 +143,19 @@ function DynamicSection({ section, theme, isFirst }: { section: CustomSection, t
   if (type === "Pricing") {
     return (
       <section className={`relative px-5 md:px-8 ${py}`} style={{ background: bgStyle }}>
-         <div className={`max-w-4xl mx-auto flex flex-col ${align}`}>
+         <div className={`max-w-5xl mx-auto flex flex-col ${align}`}>
             {content.heading && <h2 className="text-3xl font-bold mb-4" style={{ color: textColor }}>{content.heading}</h2>}
             {content.description && <p className="text-sm mb-12 max-w-xl" style={{ color: textColor, opacity: 0.7 }}>{content.description}</p>}
             
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 w-full">
-              {["Starter", "Pro"].map((plan, i) => (
-                <div key={i} className={`p-8 border ${i === 1 ? 'shadow-xl' : 'shadow-sm'} bg-white text-left`} style={{ borderRadius: radius, borderColor: i === 1 ? primary : 'rgba(0,0,0,0.1)' }}>
+            <div className={`grid ${gridCols} gap-6 w-full`}>
+              {["Starter", "Pro", "Enterprise"].slice(0, styles.layout === "1-col" ? 1 : styles.layout === "2-col" ? 2 : 3).map((plan, i) => (
+                <div key={i} className={`p-8 border ${i === 1 ? 'shadow-xl' : 'shadow-sm'} bg-white text-left flex flex-col`} style={{ borderRadius: radius, borderColor: i === 1 ? primary : 'rgba(0,0,0,0.1)' }}>
                   <h3 className="text-xl font-bold text-gray-900 mb-2">{plan}</h3>
-                  <div className="text-3xl font-bold text-gray-900 mb-6">{i === 0 ? "$0" : "$49"}<span className="text-sm font-normal text-gray-500">/mo</span></div>
-                  <ul className="space-y-3 mb-8">
+                  <div className="text-3xl font-bold text-gray-900 mb-6">{i === 0 ? "$0" : i === 1 ? "$49" : "$199"}<span className="text-sm font-normal text-gray-500">/mo</span></div>
+                  <ul className="space-y-3 mb-8 flex-1">
                     {[1, 2, 3].map(j => <li key={j} className="text-sm text-gray-600 flex items-center gap-2"><span className="w-1.5 h-1.5 rounded-full" style={{ backgroundColor: primary }}></span> Feature {j}</li>)}
                   </ul>
-                  <div className="w-full text-center py-2 text-sm font-bold cursor-pointer" style={{ backgroundColor: i === 1 ? primary : '#f3f4f6', color: i === 1 ? '#fff' : '#111827', borderRadius: radius }}>
+                  <div className="w-full text-center py-2 text-sm font-bold cursor-pointer transition-colors" style={{ backgroundColor: i === 1 ? primary : '#f3f4f6', color: i === 1 ? '#fff' : '#111827', borderRadius: radius }}>
                     {content.buttonText || "Choose Plan"}
                   </div>
                 </div>
@@ -133,7 +171,7 @@ function DynamicSection({ section, theme, isFirst }: { section: CustomSection, t
       <section className={`relative px-5 md:px-8 ${py}`} style={{ background: bgStyle }}>
          <div className={`max-w-5xl mx-auto flex flex-col ${align}`}>
             {content.heading && <h2 className="text-3xl font-bold mb-8" style={{ color: textColor }}>{content.heading}</h2>}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 w-full text-left">
+            <div className={`grid ${gridCols} gap-6 w-full text-left`}>
               {(content.items && content.items.length > 0 ? content.items : ["Amazing experience!"]).map((item, i) => (
                 <div key={i} className="p-6 bg-white/50 border border-black/5 shadow-sm" style={{ borderRadius: radius }}>
                   <p className="italic text-sm mb-4" style={{ color: textColor, opacity: 0.8 }}>"{item}"</p>
