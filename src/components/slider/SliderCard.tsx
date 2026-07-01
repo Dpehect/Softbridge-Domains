@@ -12,7 +12,7 @@ type Props = {
 function SliderCard({ data }: Props) {
   return (
     <motion.div
-      className="relative h-40 min-w-[190px] rounded-2xl shadow-md border border-white/5 overflow-hidden group/card md:h-60 md:min-w-[176px]"
+      className="relative h-40 min-w-[190px] rounded-2xl shadow-md border border-white/5 overflow-hidden group/card md:h-60 md:min-w-[176px] snap-center shrink-0"
       layout
       initial={{ scale: 0.85, opacity: 0 }}
       animate={{

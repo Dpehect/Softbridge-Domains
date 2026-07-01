@@ -56,7 +56,7 @@ function Controls({
   };
 
   return (
-    <div className="flex items-center gap-3 px-0 py-2 md:px-1 md:py-3 w-full">
+    <div className="flex items-center gap-3 pl-0 py-2 md:pl-1 md:py-3 w-full pr-4 md:pr-8 lg:pr-12">
       <SliderButton handleClick={handlePrev}>
         <ArrowLeft className="text-lg w-5 h-5" />
       </SliderButton>
