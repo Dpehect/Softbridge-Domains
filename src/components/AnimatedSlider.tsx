@@ -7,79 +7,25 @@ import SlideInfo from "./slider/SlideInfo";
 import Slides from "./slider/Slides";
 import Controls from "./slider/Controls";
 import ProductDetailModal from "./ProductDetailModal";
+import siteData from "@/data/siteData.json";
 
-const sliderData: SlideData[] = [
-  {
-    img: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1920&q=80",
-    location: "cedardesk.app",
-    description:
-      "Buy Price: $2,400 | MRR: $120/mo | Traffic: 2,400 PV/mo. Scheduling and job tracking name for a small service shop.",
-    title: "Cedar Desk",
-  },
-  {
-    img: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1920&q=80",
-    title: "Oakridge Diner",
-    description:
-      "Buy Price: $2,250 | MRR: $95/mo | Traffic: 2,600 PV/mo. Classic diner domain with a warm local business fit.",
-    location: "oakridgediner.com",
-  },
-  {
-    img: "https://images.unsplash.com/photo-1531403009284-440f080d1e12?auto=format&fit=crop&w=1920&q=80",
-    title: "Elm Street Studio",
-    description:
-      "Buy Price: $1,700 | MRR: $60/mo | Traffic: 1,500 PV/mo. Portfolio identity for a local designer, maker, or print studio.",
-    location: "elmstreetstudio.com",
-  },
-  {
-    img: "https://images.unsplash.com/photo-1581291518633-83b4ebd1d83e?auto=format&fit=crop&w=1200&q=80",
-    title: "Stonebridge Print Co.",
-    description:
-      "Buy Price: $1,850 | MRR: $65/mo | Traffic: 1,400 PV/mo. Print shop and local studio domain with clear service intent.",
-    location: "stonebridgeprintco.com",
-  },
-  {
-    img: "https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?auto=format&fit=crop&w=1920&q=80",
-    title: "Cedar Hollow Cafe",
-    description:
-      "Buy Price: $2,100 | MRR: $80/mo | Traffic: 2,200 PV/mo. Cafe and bakery name that feels established but approachable.",
-    location: "cedarhollowcafe.com",
-  },
-  {
-    img: "https://images.unsplash.com/photo-1504868584819-f8e8b4b6d7e3?auto=format&fit=crop&w=1920&q=80",
-    title: "Riverbend Reports",
-    description:
-      "Buy Price: $2,600 | MRR: $135/mo | Traffic: 3,100 PV/mo. Reporting dashboard brand for regional operations.",
-    location: "riverbendreports.com",
-  },
-  {
-    img: "https://images.unsplash.com/photo-1526304640581-d334cdbbf45e?auto=format&fit=crop&w=1920&q=80",
-    title: "Willow Creek Market",
-    description:
-      "Buy Price: $3,200 | MRR: $160/mo | Traffic: 5,100 PV/mo. General store brand for groceries, gifts, and local goods.",
-    location: "willowcreekmarket.com",
-  },
-  {
-    img: "https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=1200&q=80",
-    title: "Porchlight Journal",
-    description:
-      "Buy Price: $1,200 | MRR: $45/mo | Traffic: 1,800 PV/mo. Local essay and community writing brand with newsletter potential.",
-    location: "porchlightjournal.com",
-  },
-  {
-    img: "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?auto=format&fit=crop&w=1200&q=80",
-    title: "Barnlight Labs",
-    description:
-      "Buy Price: $2,400 | MRR: $120/mo | Traffic: 2,600 PV/mo. Small product team name with a quiet workshop feel.",
-    location: "barnlightlabs.com",
-  },
-  {
-    img: "https://images.unsplash.com/photo-1626785774573-4b799315345d?auto=format&fit=crop&w=1920&q=80",
-    title: "Maple Grove Bakery",
-    description:
-      "Buy Price: $2,800 | MRR: $145/mo | Traffic: 4,200 PV/mo. Local bakery storefront with catalog and pickup potential.",
-    location: "maplegrovebakery.com",
-  },
-];
+// Extract one domain per category to ensure a diverse set of images
+const uniqueCategories = new Set<string>();
+const sliderData: SlideData[] = [];
+
+for (const domain of siteData.domains) {
+  if (sliderData.length >= 7) break; // Limit to 7 slides for optimal UX
+  if (!uniqueCategories.has(domain.category) && domain.image) {
+    uniqueCategories.add(domain.category);
+    sliderData.push({
+      img: domain.image,
+      location: domain.fullDomain,
+      title: domain.name.split("-").map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(" "),
+      description: `Buy Price: $${domain.price} | MRR: $${domain.mrr || 0}/mo | Traffic: ${domain.monthlyTraffic || 0} PV/mo. ${domain.description}`,
+    });
+  }
+}
+
 
 const initData = sliderData[0];
 
