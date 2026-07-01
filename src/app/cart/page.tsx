@@ -185,20 +185,20 @@ export default function CartPage() {
                   <div className="space-y-3">
                     {[
                       {
-                        title: "Quantum Cloud Hosting",
-                        desc: "High-performance CDN caching, serverless cloud storage and SSL deployment. ($19/mo)",
+                        title: "Cedar Cloud Hosting",
+                        desc: "Fast CDN caching, SSL deployment, and simple hosting for local business sites. ($19/mo)",
                         checked: hostingSelected,
                         toggle: toggleHosting,
                       },
                       {
                         title: "Professional Support & SLA Maintenance",
-                        desc: "Immediate emergency access, weekly backups, monthly content injections and fixes. ($29/mo)",
+                        desc: "Priority support, weekly backups, monthly content updates and fixes. ($29/mo)",
                         checked: maintenanceSelected,
                         toggle: toggleMaintenance,
                       },
                       {
-                        title: "Advanced SEO & Meta Indexing Index",
-                        desc: "Complete Google Sitemap routing, structured schema tags, and keyword placement. ($99 one-time)",
+                        title: "Local SEO & Meta Setup",
+                        desc: "Sitemap setup, structured local schema tags, and keyword placement. ($99 one-time)",
                         checked: seoSelected,
                         toggle: toggleSeo,
                       },

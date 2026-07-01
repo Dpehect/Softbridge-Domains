@@ -22,6 +22,8 @@ import {
   LayoutDashboard,
   Mail,
   Table2,
+  Type,
+  Video,
 } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 import { useCartStore } from "@/store/useCartStore";
@@ -47,6 +49,13 @@ type ColorTheme = {
   bg: string;
   text: string;
   accent: string;
+};
+
+type FontStyle = {
+  id: string;
+  name: string;
+  fontFamily: string;
+  description: string;
 };
 
 type LayoutStyle = {
@@ -138,20 +147,28 @@ const SITE_TYPES: SiteType[] = [
 ];
 
 const COLOR_THEMES: ColorTheme[] = [
-  { id: "clay", name: "Sunset Clay", primary: "#E85D3B", secondary: "#D94F2E", bg: "#FDF0E6", text: "#5C2E1F", accent: "#F4A26190" },
+  { id: "clay", name: "Sunset Clay", primary: "#E85D3B", secondary: "#D94F2E", bg: "#FDF0E6", text: "#3F2E2A", accent: "#F4A26190" },
   { id: "graphite", name: "Graphite Ivory", primary: "#2F3437", secondary: "#8C6A55", bg: "#F7F3EC", text: "#30251F", accent: "#2F343716" },
   { id: "emerald", name: "Emerald Mint", primary: "#0F9F6E", secondary: "#0B6B52", bg: "#F0F8F2", text: "#123D31", accent: "#0F9F6E1D" },
   { id: "navy", name: "Navy Steel", primary: "#315C7C", secondary: "#7096A5", bg: "#F3F7F8", text: "#23333F", accent: "#315C7C1C" },
   { id: "rose", name: "Rose Sand", primary: "#B84D57", secondary: "#D28A6D", bg: "#FFF1EC", text: "#4B2D2A", accent: "#B84D571C" },
   { id: "olive", name: "Olive Studio", primary: "#687A3F", secondary: "#A58A55", bg: "#F7F5EA", text: "#3F3A28", accent: "#687A3F1F" },
+  { id: "lavender", name: "Lavender Mute", primary: "#7C689C", secondary: "#5D4978", bg: "#F4F0F9", text: "#312842", accent: "#7C689C1F" },
+  { id: "amber", name: "Amber Glow", primary: "#D97706", secondary: "#B45309", bg: "#FFFBEB", text: "#452403", accent: "#D977061F" },
+];
+
+const FONT_STYLES: FontStyle[] = [
+  { id: "inter", name: "Inter (Apple Style)", fontFamily: "var(--font-sans)", description: "Clean, geometric sans-serif for modern interfaces." },
+  { id: "georgia", name: "Classic Serif", fontFamily: "Georgia, serif", description: "Elegant reading experience with high legibility." },
+  { id: "mono", name: "Developer Mono", fontFamily: "var(--font-mono)", description: "Technical and structured monospace aesthetic." },
+  { id: "system", name: "System UI", fontFamily: "system-ui, -apple-system, sans-serif", description: "Native feel matching the user's OS." }
 ];
 
 const LAYOUT_STYLES: LayoutStyle[] = [
   { id: "modern", name: "Modern Grid", description: "Compact cards, clear hierarchy, and balanced landing sections." },
   { id: "minimal", name: "Minimal Premium", description: "Thin borders, quiet typography, and restrained section rhythm." },
-  { id: "editorial", name: "Editorial Split", description: "Strong headings, narrative blocks, and content-first layouts." },
-  { id: "product", name: "Product Bento", description: "Dense product modules with feature clusters and proof points." },
-  { id: "dashboard", name: "Dashboard Dense", description: "Metric-first screens with tighter panels and table-ready areas." },
+  { id: "bold", name: "Bold Editorial", description: "Strong headings, narrative blocks, and content-first layouts." },
+  { id: "clean", name: "Clean & Soft", description: "Soft radii, minimal lines, and airy padding for a friendly feel." },
 ];
 
 const PAGE_PACKS: PagePack[] = [
@@ -162,14 +179,14 @@ const PAGE_PACKS: PagePack[] = [
 ];
 
 const EXTRA_FEATURES: ExtraFeature[] = [
-  { id: "analytics", name: "Analytics", price: 15, icon: BarChart2, description: "Tracking events, conversion goals, and reporting hooks." },
+  { id: "webgl", name: "WebGL", price: 40, icon: Monitor, description: "Advanced WebGL shaders and canvas rendering." },
+  { id: "framer", name: "Framer Motion Animations", price: 25, icon: Video, description: "Smooth spring-based page transitions and micro-interactions." },
   { id: "darkmode", name: "Dark Mode", price: 20, icon: Moon, description: "Theme variables and polished dark surfaces." },
-  { id: "3d", name: "3D Elements", price: 35, icon: Box, description: "Interactive 3D hero or product detail scene." },
+  { id: "analytics", name: "Analytics", price: 15, icon: BarChart2, description: "Tracking events, conversion goals, and reporting hooks." },
   { id: "contact", name: "Contact Form", price: 25, icon: Mail, description: "Validated lead form with success and error states." },
-  { id: "blog", name: "Blog Module", price: 45, icon: Bookmark, description: "Post listing, article detail, and newsletter capture." },
+  { id: "blog", name: "Blog Section", price: 45, icon: Bookmark, description: "Post listing, article detail, and newsletter capture." },
   { id: "pricing", name: "Pricing Table", price: 30, icon: Table2, description: "Plan cards, comparison rows, and FAQ area." },
-  { id: "cms", name: "CMS Ready", price: 55, icon: Layers, description: "Content model prepared for team publishing." },
-  { id: "seo", name: "SEO Setup", price: 20, icon: Settings, description: "Metadata, Open Graph defaults, and sitemap structure." },
+  { id: "3d", name: "3D Elements", price: 35, icon: Box, description: "Interactive 3D hero or product detail scene." },
 ];
 
 const slugify = (value: string) =>
@@ -443,6 +460,7 @@ export default function SoftbridgeStudio() {
   const [currentStep, setCurrentStep] = useState(0);
   const [selectedType, setSelectedType] = useState("saas");
   const [selectedTheme, setSelectedTheme] = useState("clay");
+  const [selectedFont, setSelectedFont] = useState("inter");
   const [selectedLayout, setSelectedLayout] = useState("modern");
   const [selectedPagePack, setSelectedPagePack] = useState("five");
   const [selectedExtras, setSelectedExtras] = useState<string[]>([]);
@@ -452,6 +470,7 @@ export default function SoftbridgeStudio() {
   const addItem = useCartStore((state) => state.addItem);
 
   const currentThemeObj = COLOR_THEMES.find((theme) => theme.id === selectedTheme) || COLOR_THEMES[0];
+  const currentFontObj = FONT_STYLES.find((font) => font.id === selectedFont) || FONT_STYLES[0];
   const currentTypeObj = SITE_TYPES.find((type) => type.id === selectedType) || SITE_TYPES[0];
   const currentPagePack = PAGE_PACKS.find((pack) => pack.id === selectedPagePack) || PAGE_PACKS[0];
   const currentLayoutObj = LAYOUT_STYLES.find((style) => style.id === selectedLayout) || LAYOUT_STYLES[0];
@@ -476,6 +495,7 @@ export default function SoftbridgeStudio() {
     themeSecondary: currentThemeObj.secondary,
     themeBg: currentThemeObj.bg,
     themeText: currentThemeObj.text,
+    themeFont: currentFontObj.fontFamily,
     layout: selectedLayout,
     extras: selectedExtras,
   };
@@ -499,7 +519,7 @@ export default function SoftbridgeStudio() {
           slogan: `${currentPagePack.name} ${currentTypeObj.name.toLowerCase()} assembled in Softbridge Studio`,
           logo: "",
           theme: { primary: currentThemeObj.primary, secondary: currentThemeObj.secondary, bg: currentThemeObj.bg },
-          typography: { headings: "Geist", body: "Geist" },
+          typography: { headings: currentFontObj.name, body: currentFontObj.name },
           pages: buildConfiguredPages(currentTypeObj, currentPagePack, selectedExtras),
           animationProfile: "smooth",
         },
@@ -512,6 +532,7 @@ export default function SoftbridgeStudio() {
   const stepTitles = [
     { name: "Site Type", desc: "Choose the project category and base structure", icon: Layout },
     { name: "Theme", desc: "Pick a refined color system", icon: Palette },
+    { name: "Typography", desc: "Select a core font family", icon: Type },
     { name: "Layout", desc: "Set spacing, rhythm, and presentation style", icon: Layers },
     { name: "Pages", desc: "Generate a one-page or full multi-page site", icon: Monitor },
     { name: "Features", desc: "Add production-ready modules", icon: Settings },
@@ -640,6 +661,35 @@ export default function SoftbridgeStudio() {
                 )}
 
                 {currentStep === 2 && (
+                  <div className="grid grid-cols-1 gap-2 sm:grid-cols-2">
+                    {FONT_STYLES.map((font) => {
+                      const isSelected = selectedFont === font.id;
+                      return (
+                        <button
+                          key={font.id}
+                          onClick={() => setSelectedFont(font.id)}
+                          className={`flex min-h-[94px] cursor-pointer flex-col justify-between rounded-xl border p-3 text-left transition-all duration-300 ${
+                            isSelected
+                              ? "border-cosmic-teal/45 bg-cosmic-teal/10"
+                              : "border-black/5 bg-abyss-panel/50 hover:border-black/15"
+                          }`}
+                        >
+                          <div className="flex items-start justify-between gap-3">
+                            <h4 className="text-sm font-semibold text-star-white" style={{ fontFamily: font.fontFamily }}>{font.name}</h4>
+                            {isSelected && (
+                              <div className="flex h-4 w-4 shrink-0 items-center justify-center rounded bg-cosmic-teal text-white">
+                                <Check className="h-3 w-3" />
+                              </div>
+                            )}
+                          </div>
+                          <p className="mt-1.5 text-[10px] font-normal leading-relaxed text-muted-steel">{font.description}</p>
+                        </button>
+                      );
+                    })}
+                  </div>
+                )}
+
+                {currentStep === 3 && (
                   <div className="space-y-2">
                     {LAYOUT_STYLES.map((style) => {
                       const isSelected = selectedLayout === style.id;
@@ -668,7 +718,7 @@ export default function SoftbridgeStudio() {
                   </div>
                 )}
 
-                {currentStep === 3 && (
+                {currentStep === 4 && (
                   <div className="grid grid-cols-1 gap-2 sm:grid-cols-2">
                     {PAGE_PACKS.map((pack) => {
                       const isSelected = selectedPagePack === pack.id;
@@ -702,7 +752,7 @@ export default function SoftbridgeStudio() {
                   </div>
                 )}
 
-                {currentStep === 4 && (
+                {currentStep === 5 && (
                   <div className="grid grid-cols-1 gap-2 sm:grid-cols-2">
                     {EXTRA_FEATURES.map((extra) => {
                       const isSelected = selectedExtras.includes(extra.id);

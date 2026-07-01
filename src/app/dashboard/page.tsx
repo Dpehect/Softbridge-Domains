@@ -29,37 +29,37 @@ interface OrbitProject {
 const INITIAL_PROJECTS: OrbitProject[] = [
   {
     id: "orb-1",
-    domain: "aetherfront.io",
+    domain: "cedardesk.app",
     status: "Active",
-    templateName: "Aether SaaS",
-    visitors: "14,822",
+    templateName: "Cedar Desk",
+    visitors: "2,418",
     whoisLocked: true,
     dnsRecords: [
       { type: "A", host: "@", points: "76.76.21.21" },
       { type: "CNAME", host: "www", points: "cname.vercel-dns.com" },
-      { type: "TXT", host: "_verification", points: "aether-dns-lock-491" },
+      { type: "TXT", host: "_verification", points: "cedar-dns-lock-491" },
     ],
     configJson: {
-      brandName: "Aether SaaS",
-      theme: { primary: "#00F2FE", secondary: "#7F00FF", bg: "#05050A" },
+      brandName: "Cedar Desk",
+      theme: { primary: "#E85D3B", secondary: "#D94F2E", bg: "#FDF0E6" },
       pages: ["Home", "Features", "Contact"],
     },
   },
   {
     id: "orb-2",
-    domain: "novatoolkit.design",
+    domain: "elmstreetstudio.com",
     status: "Active",
-    templateName: "Nova Portfolio",
-    visitors: "2,490",
+    templateName: "Elm Street Studio",
+    visitors: "1,126",
     whoisLocked: true,
     dnsRecords: [
       { type: "A", host: "@", points: "76.76.21.21" },
       { type: "CNAME", host: "www", points: "cname.vercel-dns.com" },
     ],
     configJson: {
-      brandName: "Nova Bio",
-      theme: { primary: "#FF007F", secondary: "#7F00FF", bg: "#030307" },
-      pages: ["Showcase", "Bio"],
+      brandName: "Elm Street Studio",
+      theme: { primary: "#B84D57", secondary: "#D28A6D", bg: "#FFF1EC" },
+      pages: ["Work", "About"],
     },
   },
 ];
@@ -97,7 +97,7 @@ function DashboardContent() {
 
   // Pipeline state indicators for new orders
   const pipelineSteps = [
-    { title: "Invoice Confirmed", status: "complete", desc: "Payment authorized via Aether secure gateway." },
+    { title: "Invoice Confirmed", status: "complete", desc: "Payment authorized via Cedar secure gateway." },
     { title: "Configuration Extracted", status: "complete", desc: "Styling properties and JSON files generated." },
     { title: "Content Infusion", status: "active", desc: "Injecting brand assets and custom sitemap sections." },
     { title: "Gateway Deployment", status: "pending", desc: "Deploying code structure to target DNS name." },

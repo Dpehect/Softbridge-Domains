@@ -18,7 +18,7 @@ export interface DomainResult {
 export const templates: Template[] = [
   {
     id: "tpl-1",
-    name: "Cosmic Store",
+    name: "Maple Grove Bakery",
     category: "E-commerce",
     price: 199,
     image: "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&q=80&w=800",
@@ -26,7 +26,7 @@ export const templates: Template[] = [
   },
   {
     id: "tpl-2",
-    name: "Nebula Portfolio",
+    name: "Elm Street Studio",
     category: "Portfolio",
     price: 99,
     image: "https://images.unsplash.com/photo-1513530534585-c7b1394c6d51?auto=format&fit=crop&q=80&w=800",
@@ -34,7 +34,7 @@ export const templates: Template[] = [
   },
   {
     id: "tpl-3",
-    name: "Gravity Bites",
+    name: "Oakridge Diner",
     category: "Restaurant",
     price: 149,
     image: "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&q=80&w=800",
@@ -42,7 +42,7 @@ export const templates: Template[] = [
   },
   {
     id: "tpl-4",
-    name: "Aero Consult",
+    name: "Stonebridge Print Co.",
     category: "Consulting",
     price: 129,
     image: "https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&q=80&w=800",

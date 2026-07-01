@@ -32,167 +32,203 @@ type Product = {
   category: ProductCategory;
 };
 
-const productsData: Product[] = [
+type ProductSeed = {
+  name: string;
+  domain: string;
+  price: number;
+  mrr: number;
+  traffic: number;
+  note: string;
+};
+
+type ProductGroup = {
+  category: ProductCategory;
+  location: string;
+  img: string;
+  items: ProductSeed[];
+};
+
+const formatMoney = (value: number) => `$${value.toLocaleString("en-US")}`;
+
+const slugifyProduct = (value: string) =>
+  value.toLowerCase().replace(/&/g, "and").replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "");
+
+const productGroups: ProductGroup[] = [
   {
-    id: "quantum-ai",
-    title: "QUANTUM.AI",
-    location: "AI Compiler Node",
-    description: "Buy Price: $12,500 | MRR: $480/mo | Traffic: 15,000 PV/mo. Automated neural layout compiler with vector nodes.",
+    category: "SaaS",
+    location: "Local SaaS Domain",
     img: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=600&q=80",
-    price: "$12,500",
-    category: "SaaS"
+    items: [
+      { name: "Cedar Desk", domain: "cedardesk.app", price: 2400, mrr: 120, traffic: 2400, note: "Scheduling and job tracking name for small service shops." },
+      { name: "Millhouse Scheduler", domain: "millhousescheduler.com", price: 1800, mrr: 90, traffic: 1600, note: "Appointment software brand with a practical neighborhood feel." },
+      { name: "Pineview Ledger", domain: "pineviewledger.com", price: 2100, mrr: 105, traffic: 1900, note: "Simple finance and invoice platform name for local teams." },
+      { name: "Oak County Forms", domain: "oakcountyforms.com", price: 1450, mrr: 70, traffic: 1300, note: "Form builder identity suited to contractors and small offices." },
+      { name: "Riverbend Reports", domain: "riverbendreports.com", price: 2600, mrr: 135, traffic: 3100, note: "Reporting dashboard brand for regional operations." },
+    ],
   },
   {
-    id: "vortex-io",
-    title: "VORTEX.IO",
-    location: "DNS Router",
-    description: "Buy Price: $8,900 | MRR: $310/mo | Traffic: 8,400 PV/mo. Nameserver router with secure registry propagation gates.",
-    img: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=600&q=80",
-    price: "$8,900",
-    category: "Domain"
-  },
-  {
-    id: "matrix-space",
-    title: "MATRIX.SPACE",
-    location: "WebGL Gallery",
-    description: "Buy Price: $5,200 | MRR: $120/mo | Traffic: 4,100 PV/mo. Three-dimensional rendering display with custom camera pathways.",
+    category: "Portfolio",
+    location: "Maker Portfolio Domain",
     img: "https://images.unsplash.com/photo-1531403009284-440f080d1e12?auto=format&fit=crop&w=600&q=80",
-    price: "$5,200",
-    category: "Portfolio"
+    items: [
+      { name: "Elm Street Studio", domain: "elmstreetstudio.com", price: 1700, mrr: 60, traffic: 1500, note: "Warm portfolio identity for a local designer or craft studio." },
+      { name: "Willow Frame Co.", domain: "willowframe.co", price: 1350, mrr: 45, traffic: 980, note: "Photography and visual work name with a small-town tone." },
+      { name: "Red Porch Works", domain: "redporchworks.com", price: 1200, mrr: 40, traffic: 860, note: "Personal work showcase for makers, writers, or builders." },
+      { name: "Stone Alley Maker", domain: "stonealleymaker.com", price: 1550, mrr: 55, traffic: 1250, note: "Handmade, design, and case-study friendly brand." },
+      { name: "Creekside Folio", domain: "creeksidefolio.com", price: 1100, mrr: 35, traffic: 740, note: "Short portfolio domain for independent creative work." },
+    ],
   },
   {
-    id: "figma-collab",
-    title: "FIGMA.COM",
-    location: "Design Studio Node",
-    description: "Buy Price: $450,000 | MRR: $18,400/mo | Traffic: 250,000 PV/mo. Premier design dashboard enabling live team components edits.",
-    img: "https://images.unsplash.com/photo-1581291518633-83b4ebd1d83e?auto=format&fit=crop&w=1200&q=80",
-    price: "$450,000",
-    category: "Portfolio"
+    category: "E-Commerce",
+    location: "Shopfront Domain",
+    img: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=600&q=80",
+    items: [
+      { name: "Maple Grove Bakery", domain: "maplegrovebakery.com", price: 2800, mrr: 145, traffic: 4200, note: "Local bakery storefront with catalog and pickup potential." },
+      { name: "Willow Creek Market", domain: "willowcreekmarket.com", price: 3200, mrr: 160, traffic: 5100, note: "General store brand for groceries, gifts, and local goods." },
+      { name: "Red Barn Collective", domain: "redbarncollective.store", price: 1900, mrr: 85, traffic: 2100, note: "Handmade market identity with a regional craft feel." },
+      { name: "Riverbend Supply", domain: "riverbendsupply.com", price: 2400, mrr: 115, traffic: 3400, note: "Hardware, outdoor, or farm supply storefront name." },
+      { name: "Cloverfield Books", domain: "cloverfieldbooks.com", price: 1750, mrr: 75, traffic: 1800, note: "Bookshop and subscription storefront with a friendly tone." },
+    ],
   },
   {
-    id: "escrowspace",
-    title: "ESCROWSPACE.NET",
-    location: "Transactional Broker",
-    description: "Buy Price: $9,500 | MRR: $380/mo | Traffic: 9,000 PV/mo. Secure escrow registry routing system with verification nodes.",
+    category: "Domain",
+    location: "Local Domain Bundle",
     img: "https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?auto=format&fit=crop&w=1920&q=80",
-    price: "$9,500",
-    category: "Domain"
+    items: [
+      { name: "Oakridge Diner", domain: "oakridgediner.com", price: 2250, mrr: 95, traffic: 2600, note: "Classic diner domain with immediate local business fit." },
+      { name: "Cedar Hollow Cafe", domain: "cedarhollowcafe.com", price: 2100, mrr: 80, traffic: 2200, note: "Cafe and bakery name that feels established but approachable." },
+      { name: "Pineview Station", domain: "pineviewstation.com", price: 2600, mrr: 110, traffic: 3000, note: "Flexible name for a depot, market, or neighborhood service hub." },
+      { name: "Stonebridge Print Co.", domain: "stonebridgeprintco.com", price: 1850, mrr: 65, traffic: 1400, note: "Print shop and local studio domain with clear service intent." },
+      { name: "Maple Lane Repair", domain: "maplelanerepair.com", price: 950, mrr: 35, traffic: 620, note: "Small repair business name ready for a practical website." },
+    ],
   },
   {
-    id: "vercel-static",
-    title: "VERCEL.COM",
-    location: "Deploy Node Gateway",
-    description: "Buy Price: $380,000 | MRR: $14,200/mo | Traffic: 180,000 PV/mo. Ultra fast page speed compilation with serverless edge handlers.",
-    img: "https://images.unsplash.com/photo-1504868584819-f8e8b4b6d7e3?auto=format&fit=crop&w=600&q=80",
-    price: "$380,000",
-    category: "SaaS"
-  },
-  {
-    id: "stripe-api",
-    title: "STRIPE.COM",
-    location: "Payment Engine API",
-    description: "Buy Price: $520,000 | MRR: $24,100/mo | Traffic: 390,000 PV/mo. Universal currency gateways with direct billing modules.",
-    img: "https://images.unsplash.com/photo-1526304640581-d334cdbbf45e?auto=format&fit=crop&w=600&q=80",
-    price: "$520,000",
-    category: "E-Commerce"
-  },
-  {
-    id: "canva-layout",
-    title: "CANVA.COM",
-    location: "Vector Assembler",
-    description: "Buy Price: $290,000 | MRR: $9,800/mo | Traffic: 140,000 PV/mo. Drag-and-drop workspace layout rendering graphic assets.",
-    img: "https://images.unsplash.com/photo-1626785774573-4b799315345d?auto=format&fit=crop&w=600&q=80",
-    price: "$290,000",
-    category: "E-Commerce"
-  },
-  {
-    id: "prism-studio",
-    title: "PRISM.STUDIO",
-    location: "Agency System",
-    description: "Buy Price: $1,800 | Setup: $249 | Traffic: 2,200 PV/mo. Creative agency layout with services, proof, and lead capture.",
+    category: "Agency",
+    location: "Neighborhood Agency Domain",
     img: "https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=600&q=80",
-    price: "$1,800",
-    category: "Agency"
+    items: [
+      { name: "North Fork Signs", domain: "northforksigns.com", price: 1600, mrr: 70, traffic: 1250, note: "Signage and local marketing agency name with service clarity." },
+      { name: "Main Street Media", domain: "mainstreetmedia.co", price: 2100, mrr: 100, traffic: 2300, note: "Friendly media studio brand for small business campaigns." },
+      { name: "Railtown Design", domain: "railtowndesign.com", price: 1750, mrr: 80, traffic: 1500, note: "Design agency name with a modest regional voice." },
+      { name: "Cloverfield Creative", domain: "cloverfieldcreative.com", price: 1950, mrr: 90, traffic: 1800, note: "Creative studio identity for local brand and web work." },
+      { name: "Maple Lane Agency", domain: "maplelaneagency.com", price: 1450, mrr: 65, traffic: 980, note: "Approachable agency name for service packages and retainers." },
+    ],
   },
   {
-    id: "daily-index",
-    title: "DAILY.INDEX",
-    location: "Editorial Blog",
-    description: "Buy Price: $3,200 | Setup: $119 | Traffic: 6,700 PV/mo. Editorial publishing system with categories and newsletter capture.",
+    category: "Blog",
+    location: "Editorial Domain",
     img: "https://images.unsplash.com/photo-1499750310107-5fef28a66643?auto=format&fit=crop&w=600&q=80",
-    price: "$3,200",
-    category: "Blog"
+    items: [
+      { name: "Porchlight Journal", domain: "porchlightjournal.com", price: 1200, mrr: 45, traffic: 1800, note: "Local essay and community writing brand." },
+      { name: "Riverbend Review", domain: "riverbendreview.com", price: 1550, mrr: 60, traffic: 2400, note: "Town newsletter or local review site identity." },
+      { name: "Cedar Hollow Notes", domain: "cedarhollownotes.com", price: 980, mrr: 35, traffic: 920, note: "Small editorial brand for personal or community publishing." },
+      { name: "Westfield Dispatch", domain: "westfielddispatch.com", price: 1800, mrr: 75, traffic: 3100, note: "Regional blog or small newspaper name." },
+      { name: "Little Acre Letter", domain: "littleacreletter.com", price: 850, mrr: 30, traffic: 700, note: "Newsletter-first name for lifestyle and local updates." },
+    ],
   },
   {
-    id: "metric-app",
-    title: "METRIC.APP",
-    location: "Dashboard Console",
-    description: "Buy Price: $6,400 | Setup: $249 | Traffic: 5,900 PV/mo. Operational dashboard shell with metrics, reports, and team access.",
+    category: "Dashboard",
+    location: "Operations Dashboard Domain",
     img: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=600&q=80",
-    price: "$6,400",
-    category: "Dashboard"
+    items: [
+      { name: "Pineview Station", domain: "pineviewstation.app", price: 2200, mrr: 115, traffic: 2700, note: "Operational dashboard name for schedules and location status." },
+      { name: "Mill Creek Ledger", domain: "millcreekledger.com", price: 2100, mrr: 105, traffic: 2400, note: "Simple reporting and accounting dashboard brand." },
+      { name: "Ashford Board", domain: "ashfordboard.com", price: 1500, mrr: 65, traffic: 1100, note: "Internal board name for teams, jobs, and office tasks." },
+      { name: "Harbor Shift", domain: "harborshift.app", price: 1750, mrr: 80, traffic: 1650, note: "Shift planning identity for cafes, shops, and crews." },
+      { name: "Brookside Ops", domain: "brooksideops.com", price: 1950, mrr: 95, traffic: 2050, note: "Operations dashboard brand with a grounded local tone." },
+    ],
   },
   {
-    id: "launch-page",
-    title: "LAUNCH.PAGE",
-    location: "Campaign Landing",
-    description: "Buy Price: $1,200 | Setup: $69 | Traffic: 3,400 PV/mo. Focused one-page launch system for waitlists, offers, and campaigns.",
+    category: "Landing Page",
+    location: "One Page Launch Domain",
     img: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=600&q=80",
-    price: "$1,200",
-    category: "Landing Page"
+    items: [
+      { name: "Oakridge Supper Club", domain: "oakridgesupperclub.com", price: 750, mrr: 25, traffic: 620, note: "Simple one-page launch for a local restaurant or event." },
+      { name: "Cedar Hollow Roast", domain: "cedarhollowroast.com", price: 690, mrr: 20, traffic: 540, note: "Coffee popup or small batch product landing page." },
+      { name: "Maple Grove Cakes", domain: "maplegrovecakes.com", price: 820, mrr: 30, traffic: 760, note: "Focused landing page for orders, menus, and calls." },
+      { name: "Red Barn Weekend", domain: "redbarnweekend.com", price: 580, mrr: 18, traffic: 430, note: "Event and seasonal campaign name with local charm." },
+      { name: "Willow Creek Opening", domain: "willowcreekopening.com", price: 520, mrr: 15, traffic: 360, note: "Grand opening landing page for a neighborhood shop." },
+    ],
   },
   {
-    id: "seed-ai",
-    title: "SEED.AI",
-    location: "Startup Launch",
-    description: "Buy Price: $7,900 | Setup: $249 | Traffic: 8,200 PV/mo. Startup website bundle with product story, pricing, and investor proof.",
+    category: "Startup",
+    location: "Small Team Startup Domain",
     img: "https://images.unsplash.com/photo-1559136555-9303baea8ebd?auto=format&fit=crop&w=600&q=80",
-    price: "$7,900",
-    category: "Startup"
+    items: [
+      { name: "Barnlight Labs", domain: "barnlightlabs.com", price: 2400, mrr: 120, traffic: 2600, note: "Small product team name with a quiet workshop feel." },
+      { name: "Ridgepost Tools", domain: "ridgeposttools.com", price: 1950, mrr: 90, traffic: 1800, note: "Useful software and utility brand for early teams." },
+      { name: "Hollow Creek Works", domain: "hollowcreekworks.com", price: 1650, mrr: 75, traffic: 1250, note: "Startup name that feels practical and handmade." },
+      { name: "Lantern Lane Apps", domain: "lanternlaneapps.com", price: 1450, mrr: 65, traffic: 1050, note: "Friendly app studio identity for a modest launch." },
+      { name: "Stone Mill Systems", domain: "stonemillsystems.com", price: 2800, mrr: 140, traffic: 3100, note: "Small systems company name with durable appeal." },
+    ],
   },
   {
-    id: "nexusgroup",
-    title: "NEXUSGROUP.COM",
-    location: "Corporate Presence",
-    description: "Buy Price: $24,000 | Setup: $349 | Traffic: 42,000 PV/mo. Corporate website system with solutions, resources, and contact routing.",
+    category: "Corporate",
+    location: "Regional Business Domain",
     img: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=600&q=80",
-    price: "$24,000",
-    category: "Corporate"
+    items: [
+      { name: "Brookstone Works", domain: "brookstoneworks.com", price: 3100, mrr: 140, traffic: 3600, note: "Regional services company with a steady, local profile." },
+      { name: "Cedar & Main Co.", domain: "cedarandmain.com", price: 3400, mrr: 150, traffic: 4200, note: "Professional but approachable company identity." },
+      { name: "Harbor Plain Group", domain: "harborplaingroup.com", price: 2600, mrr: 115, traffic: 2400, note: "Small holding or services group name for local markets." },
+      { name: "Oak County Services", domain: "oakcountyservices.com", price: 2250, mrr: 95, traffic: 1900, note: "Clear domain for a practical regional services firm." },
+      { name: "Redfield Office", domain: "redfieldoffice.com", price: 1750, mrr: 70, traffic: 1300, note: "Office services or consultancy name with a modest footprint." },
+    ],
   },
   {
-    id: "aura-me",
-    title: "AURA.ME",
-    location: "Personal Brand",
-    description: "Buy Price: $2,100 | Setup: $199 | Traffic: 2,900 PV/mo. Personal brand website for founders, consultants, and creators.",
+    category: "Personal Brand",
+    location: "Founder Website Domain",
     img: "https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&w=600&q=80",
-    price: "$2,100",
-    category: "Personal Brand"
+    items: [
+      { name: "Ella Reed Studio", domain: "ellareedstudio.com", price: 1200, mrr: 40, traffic: 900, note: "Personal studio name for consulting, writing, or design." },
+      { name: "Mason Hale Works", domain: "masonhaleworks.com", price: 980, mrr: 32, traffic: 650, note: "Approachable founder site identity." },
+      { name: "Clara Finch Notes", domain: "clarafinchnotes.com", price: 850, mrr: 28, traffic: 540, note: "Personal writing and newsletter domain." },
+      { name: "Jonah Brooks Co.", domain: "jonahbrooksco.com", price: 1100, mrr: 38, traffic: 760, note: "Independent consultant brand with local feel." },
+      { name: "Nora Lane Studio", domain: "noralane.studio", price: 1450, mrr: 50, traffic: 980, note: "Premium but small-scale personal brand domain." },
+    ],
   },
   {
-    id: "learnhub-io",
-    title: "LEARNHUB.IO",
-    location: "Education Platform",
-    description: "Buy Price: $5,600 | Setup: $199 | Traffic: 7,100 PV/mo. Course and academy website with programs, pricing, and enrollment flows.",
+    category: "Education",
+    location: "Learning Website Domain",
     img: "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=600&q=80",
-    price: "$5,600",
-    category: "Education"
+    items: [
+      { name: "Pine Hill School", domain: "pinehillschool.com", price: 2200, mrr: 90, traffic: 2100, note: "Local school or program website name." },
+      { name: "Maple Grove Tutors", domain: "maplegrovetutors.com", price: 1650, mrr: 65, traffic: 1350, note: "Tutoring center domain with direct community appeal." },
+      { name: "Cedar Creek Academy", domain: "cedarcreekacademy.com", price: 2600, mrr: 110, traffic: 2800, note: "Education brand for courses, cohorts, or workshops." },
+      { name: "Little Lantern Learning", domain: "littlelanternlearning.com", price: 1400, mrr: 55, traffic: 980, note: "Friendly name for children, workshops, or tutoring." },
+      { name: "Oakridge Workshops", domain: "oakridgeworkshops.com", price: 1250, mrr: 45, traffic: 840, note: "Community learning and workshop domain." },
+    ],
   },
   {
-    id: "caregrid",
-    title: "CAREGRID.COM",
-    location: "Healthcare Practice",
-    description: "Buy Price: $8,800 | Setup: $249 | Traffic: 9,400 PV/mo. Healthcare website with service pages, provider profiles, and request forms.",
+    category: "Healthcare",
+    location: "Local Care Domain",
     img: "https://images.unsplash.com/photo-1576091160550-2173dba999ef?auto=format&fit=crop&w=600&q=80",
-    price: "$8,800",
-    category: "Healthcare"
-  }
+    items: [
+      { name: "Willow Creek Clinic", domain: "willowcreekclinic.com", price: 3200, mrr: 140, traffic: 3600, note: "Primary care website name with a calm local tone." },
+      { name: "Cedar Hollow Care", domain: "cedarhollowcare.com", price: 2400, mrr: 100, traffic: 2300, note: "Healthcare and wellness brand with neighborhood trust." },
+      { name: "Maple Street Wellness", domain: "maplestreetwellness.com", price: 2100, mrr: 90, traffic: 1900, note: "Wellness practice domain for local providers." },
+      { name: "Oakridge Family Health", domain: "oakridgefamilyhealth.com", price: 2800, mrr: 120, traffic: 3100, note: "Family clinic identity with clear service positioning." },
+      { name: "Riverbend Therapy", domain: "riverbendtherapy.com", price: 1900, mrr: 75, traffic: 1500, note: "Therapy practice name with warm regional character." },
+    ],
+  },
 ];
+
+const productsData: Product[] = productGroups.flatMap((group) =>
+  group.items.map((item) => ({
+    id: slugifyProduct(`${group.category}-${item.name}`),
+    title: item.name,
+    location: item.domain,
+    description: `Buy Price: ${formatMoney(item.price)} | MRR: $${item.mrr}/mo | Traffic: ${item.traffic.toLocaleString("en-US")} PV/mo. ${item.note}`,
+    img: group.img,
+    price: formatMoney(item.price),
+    category: group.category,
+  }))
+);
 
 const categoryPreviewSections: Record<ProductCategory, string[]> = {
   SaaS: ["Features", "Analytics", "Pricing", "Integrations"],
   Portfolio: ["Work", "Services", "Case Studies", "Contact"],
   "E-Commerce": ["Collections", "Featured Products", "Reviews", "Checkout"],
-  Domain: ["Brand Story", "Traffic Signals", "Transfer Flow", "Escrow"],
+  Domain: ["Brand Story", "Traffic Signals", "Transfer Steps", "Launch Plan"],
   Agency: ["Services", "Process", "Results", "Book a Call"],
   Blog: ["Featured Articles", "Categories", "Author", "Newsletter"],
   Dashboard: ["Metrics", "Reports", "Activity", "Team Access"],
@@ -272,6 +308,7 @@ export default function ProductSection() {
         themeSecondary: "#D94F2E",
         themeBg: "#FDF0E6",
         themeText: "#5C2E1F",
+        themeFont: "var(--font-sans)",
         layout: previewProduct.category === "Portfolio" ? "minimal" : previewProduct.category === "Dashboard" ? "dashboard" : "modern",
         extras:
           previewProduct.category === "SaaS"

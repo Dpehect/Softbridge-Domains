@@ -24,6 +24,7 @@ export interface PreviewConfig {
   themeSecondary: string;
   themeBg: string;
   themeText: string;
+  themeFont: string;
   layout: string;
   extras: string[];
   image?: string;
@@ -46,6 +47,7 @@ function FullSitePreview({ config, viewMode }: { config: PreviewConfig; viewMode
     themeSecondary: secondary,
     themeBg: bg,
     themeText: text,
+    themeFont: font,
     layout,
     extras,
     heroText,
@@ -83,7 +85,7 @@ function FullSitePreview({ config, viewMode }: { config: PreviewConfig; viewMode
   return (
     <div
       className="w-full h-full flex flex-col overflow-y-auto text-sm"
-      style={{ backgroundColor: resolvedBg, color: resolvedText, fontFamily: "var(--font-sans)" }}
+      style={{ backgroundColor: resolvedBg, color: resolvedText, fontFamily: font || "var(--font-sans)" }}
     >
       {/* ── Nav ── */}
       <nav

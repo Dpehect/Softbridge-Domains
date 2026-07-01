@@ -56,7 +56,7 @@ export default function DomainTeaser() {
           <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-steel/60 pointer-events-none" />
           <input
             type="text"
-            placeholder="Search domain names — e.g. flux, nova, orbit..."
+            placeholder="Search domain names - e.g. oakridge diner, cedar cafe..."
             value={query}
             onChange={(e) => setQuery(e.target.value)}
             className="w-full bg-abyss-panel/60 border border-black/8 text-star-white placeholder:text-muted-steel/50 text-sm font-sans py-3 pl-10 pr-32 rounded-xl focus:outline-none focus:border-cosmic-teal/40 transition-all duration-350"

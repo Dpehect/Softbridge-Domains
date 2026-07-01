@@ -11,73 +11,73 @@ import ProductDetailModal from "./ProductDetailModal";
 const sliderData: SlideData[] = [
   {
     img: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1920&q=80",
-    location: "AI Cognitive Compiler Node",
+    location: "cedardesk.app",
     description:
-      "Buy Price: $12,500 | MRR: $480/mo | Traffic: 15,000 PV/mo. Fully automated visual assembler layout routing coordinates.",
-    title: "QUANTUM.AI",
+      "Buy Price: $2,400 | MRR: $120/mo | Traffic: 2,400 PV/mo. Scheduling and job tracking name for a small service shop.",
+    title: "Cedar Desk",
   },
   {
     img: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1920&q=80",
-    title: "VORTEX.IO",
+    title: "Oakridge Diner",
     description:
-      "Buy Price: $8,900 | MRR: $310/mo | Traffic: 8,400 PV/mo. High-speed DNS routing pipeline resolving globally under 15 seconds.",
-    location: "Decentralized Nameserver Route",
+      "Buy Price: $2,250 | MRR: $95/mo | Traffic: 2,600 PV/mo. Classic diner domain with a warm local business fit.",
+    location: "oakridgediner.com",
   },
   {
     img: "https://images.unsplash.com/photo-1531403009284-440f080d1e12?auto=format&fit=crop&w=1920&q=80",
-    title: "MATRIX.SPACE",
+    title: "Elm Street Studio",
     description:
-      "Buy Price: $5,200 | MRR: $120/mo | Traffic: 4,100 PV/mo. Immersive three-dimensional gallery model linking custom registry maps.",
-    location: "WebGL Node Showcase Gallery",
+      "Buy Price: $1,700 | MRR: $60/mo | Traffic: 1,500 PV/mo. Portfolio identity for a local designer, maker, or print studio.",
+    location: "elmstreetstudio.com",
   },
   {
     img: "https://images.unsplash.com/photo-1581291518633-83b4ebd1d83e?auto=format&fit=crop&w=1200&q=80",
-    title: "FIGMA.COM",
+    title: "Stonebridge Print Co.",
     description:
-      "Buy Price: $450,000 | MRR: $18,400/mo | Traffic: 250,000 PV/mo. Premier visual editor enabling layout mockups and developer transitions.",
-    location: "Visual Design Collaboration Tool",
+      "Buy Price: $1,850 | MRR: $65/mo | Traffic: 1,400 PV/mo. Print shop and local studio domain with clear service intent.",
+    location: "stonebridgeprintco.com",
   },
   {
     img: "https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?auto=format&fit=crop&w=1920&q=80",
-    title: "ESCROWSPACE.NET",
+    title: "Cedar Hollow Cafe",
     description:
-      "Buy Price: $9,500 | MRR: $380/mo | Traffic: 9,000 PV/mo. Secure transactional escrow broker resolving names automatically.",
-    location: "Automated DNS Transaction Route",
+      "Buy Price: $2,100 | MRR: $80/mo | Traffic: 2,200 PV/mo. Cafe and bakery name that feels established but approachable.",
+    location: "cedarhollowcafe.com",
   },
   {
     img: "https://images.unsplash.com/photo-1504868584819-f8e8b4b6d7e3?auto=format&fit=crop&w=1920&q=80",
-    title: "VERCEL.COM",
+    title: "Riverbend Reports",
     description:
-      "Buy Price: $380,000 | MRR: $14,200/mo | Traffic: 180,000 PV/mo. Highly optimized hosting platform with serverless functions.",
-    location: "Static App Deployments Platform",
+      "Buy Price: $2,600 | MRR: $135/mo | Traffic: 3,100 PV/mo. Reporting dashboard brand for regional operations.",
+    location: "riverbendreports.com",
   },
   {
     img: "https://images.unsplash.com/photo-1526304640581-d334cdbbf45e?auto=format&fit=crop&w=1920&q=80",
-    title: "STRIPE.COM",
+    title: "Willow Creek Market",
     description:
-      "Buy Price: $520,000 | MRR: $24,100/mo | Traffic: 390,000 PV/mo. Universal API integrations managing credit payouts and secure escrows.",
-    location: "Financial Payment Gateway API",
+      "Buy Price: $3,200 | MRR: $160/mo | Traffic: 5,100 PV/mo. General store brand for groceries, gifts, and local goods.",
+    location: "willowcreekmarket.com",
   },
   {
     img: "https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=1200&q=80",
-    title: "DRIBBBLE.COM",
+    title: "Porchlight Journal",
     description:
-      "Buy Price: $85,000 | MRR: $3,400/mo | Traffic: 65,000 PV/mo. Designer showroom index listing layout presets and visual portfolios.",
-    location: "Design Portfolio Registry Niche",
+      "Buy Price: $1,200 | MRR: $45/mo | Traffic: 1,800 PV/mo. Local essay and community writing brand with newsletter potential.",
+    location: "porchlightjournal.com",
   },
   {
     img: "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?auto=format&fit=crop&w=1200&q=80",
-    title: "GITHUB.COM",
+    title: "Barnlight Labs",
     description:
-      "Buy Price: $620,000 | MRR: $28,900/mo | Traffic: 410,000 PV/mo. Collaborative platform holding repositories, issues, and packaging gates.",
-    location: "Code Version Registry Node",
+      "Buy Price: $2,400 | MRR: $120/mo | Traffic: 2,600 PV/mo. Small product team name with a quiet workshop feel.",
+    location: "barnlightlabs.com",
   },
   {
     img: "https://images.unsplash.com/photo-1626785774573-4b799315345d?auto=format&fit=crop&w=1920&q=80",
-    title: "CANVA.COM",
+    title: "Maple Grove Bakery",
     description:
-      "Buy Price: $290,000 | MRR: $9,800/mo | Traffic: 140,000 PV/mo. Visual template builder offering drag-and-drop graphics rendering.",
-    location: "Simplified Layout Assembler",
+      "Buy Price: $2,800 | MRR: $145/mo | Traffic: 4,200 PV/mo. Local bakery storefront with catalog and pickup potential.",
+    location: "maplegrovebakery.com",
   },
 ];
 

@@ -121,12 +121,12 @@ export function InteractiveOrb({ onSelectDomain, searchQuery = "" }: Interactive
 
       // Suggest a random premium domain coordinate
       const curatedSuggestions = [
-        "quantum.io",
-        "softbridge.ai",
-        "novacore.design",
-        "vortex.tech",
-        "plasma.store",
-        "matrix.space",
+        "oakridgediner.com",
+        "cedarhollowcafe.com",
+        "maplegrovebakery.com",
+        "elmstreetstudio.com",
+        "riverbendsupply.com",
+        "cloverfieldbooks.com",
       ];
       const randomSuggest = curatedSuggestions[Math.floor(Math.random() * curatedSuggestions.length)];
       onSelectDomain(randomSuggest);

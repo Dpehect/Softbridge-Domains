@@ -82,7 +82,7 @@ function TemplatesGalleryContent() {
       {/* Main Header */}
       <div className="text-center space-y-3 mb-2">
         <span className="text-[10px] text-cosmic-purple font-heading font-extrabold uppercase tracking-widest bg-cosmic-purple/15 px-3.5 py-1 rounded-full border border-cosmic-purple/25">
-          Aether Collection
+          Local Business Collection
         </span>
         <h1 className="text-3xl md:text-4xl font-heading font-bold text-star-white">
           THE TEMPLATE <span className="text-neon-gradient">UNIVERSE</span>

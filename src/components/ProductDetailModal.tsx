@@ -171,15 +171,15 @@ export default function ProductDetailModal({ isOpen, onClose, product }: Props) 
                     <div className="flex items-start gap-3 p-3 bg-abyss-panel rounded-xl border border-black/5">
                       <Lock className="text-cosmic-teal text-lg shrink-0 mt-0.5" />
                       <div>
-                        <h4 className="font-bold text-star-white text-xs uppercase tracking-wider">Escrow Protected Route</h4>
-                        <p className="text-xs text-muted-steel mt-1 leading-relaxed">Payments are held securely in escrow and only released once the name servers and asset packages are fully verified in your control panel.</p>
+                        <h4 className="font-bold text-star-white text-xs uppercase tracking-wider">Protected Transfer Route</h4>
+                        <p className="text-xs text-muted-steel mt-1 leading-relaxed">Payments are held securely and only released once the domain and site package are verified in your control panel.</p>
                       </div>
                     </div>
                     <div className="flex items-start gap-3 p-3 bg-abyss-panel rounded-xl border border-black/5">
                       <TrendingUp className="text-sunset-coral text-lg shrink-0 mt-0.5" />
                       <div>
-                        <h4 className="font-bold text-star-white text-xs uppercase tracking-wider">DNS Record Propagation</h4>
-                        <p className="text-xs text-muted-steel mt-1 leading-relaxed">Routes propagation resolves globally in less than 2 hours under verified automated registries.</p>
+                        <h4 className="font-bold text-star-white text-xs uppercase tracking-wider">DNS Record Setup</h4>
+                        <p className="text-xs text-muted-steel mt-1 leading-relaxed">Records are prepared for a clean launch with standard verification and simple handoff notes.</p>
                       </div>
                     </div>
                   </div>
@@ -199,7 +199,7 @@ export default function ProductDetailModal({ isOpen, onClose, product }: Props) 
               <button
                 className="w-full sm:w-auto px-8 py-2.5 bg-cosmic-teal hover:opacity-90 text-white rounded-xl text-xs font-extrabold uppercase tracking-wider transition-all duration-350 shadow-md shadow-cosmic-teal/10 cursor-pointer"
               >
-                Acquire coordinates
+                Reserve listing
               </button>
             </div>
 

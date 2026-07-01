@@ -15,10 +15,10 @@ export function ConfigSidebar() {
 
   // Style Presets
   const presets = [
-    { name: "Cyan Void", primary: "#00F2FE", secondary: "#7F00FF", bg: "#05050A" },
-    { name: "Nebula Pink", primary: "#FF007F", secondary: "#7F00FF", bg: "#030307" },
-    { name: "Matrix Lime", primary: "#39FF14", secondary: "#008F11", bg: "#020204" },
-    { name: "Cyber Sunset", primary: "#FF4500", secondary: "#FFD700", bg: "#0B0600" },
+    { name: "Cedar Clay", primary: "#E85D3B", secondary: "#D94F2E", bg: "#FDF0E6" },
+    { name: "Harbor Blue", primary: "#315C7C", secondary: "#7096A5", bg: "#F3F7F8" },
+    { name: "Willow Green", primary: "#0F9F6E", secondary: "#0B6B52", bg: "#F0F8F2" },
+    { name: "Main Street", primary: "#2F3437", secondary: "#8C6A55", bg: "#F7F3EC" },
   ];
 
   // Font choices
@@ -48,7 +48,7 @@ export function ConfigSidebar() {
     const newId = `page-${Date.now()}`;
     const newPage: ConfiguredPage = {
       id: newId,
-      title: "New Sub-Orbit",
+      title: "New Local Page",
       path: `/${newId}`,
       sections: [
         {
@@ -56,9 +56,9 @@ export function ConfigSidebar() {
           type: "hero",
           title: "Hero Banner",
           content: {
-            heading: "Cosmic Destination",
-            subheading: "Define your digital parameters here.",
-            buttonText: "Engage",
+            heading: "Local Destination",
+            subheading: "Define your new page content here.",
+            buttonText: "Continue",
           },
         },
       ],
@@ -75,9 +75,9 @@ export function ConfigSidebar() {
   const effectivePageId = activePage?.id || "";
   const effectiveSectionId = activeSection?.id || "";
   const colorControls: Array<{ label: string; key: ThemeColorKey }> = [
-    { label: "Aether Primary", key: "primary" },
-    { label: "Cosmic Secondary", key: "secondary" },
-    { label: "Deep Background", key: "bg" },
+    { label: "Primary Accent", key: "primary" },
+    { label: "Secondary Accent", key: "secondary" },
+    { label: "Page Background", key: "bg" },
   ];
   const tabs: Array<{ id: ConfigTab; icon: React.ReactNode; label: string }> = [
     { id: "brand", icon: <Sliders className="w-4 h-4" />, label: "Identity" },
@@ -122,7 +122,7 @@ export function ConfigSidebar() {
                 <GlassInput
                   value={config.brandName}
                   onChange={(e) => updateBrandInfo(e.target.value, config.slogan, config.logo)}
-                  placeholder="e.g. Aether Corp"
+                  placeholder="e.g. Oakridge Diner"
                 />
               </div>
 
@@ -132,7 +132,7 @@ export function ConfigSidebar() {
                 <GlassInput
                   value={config.slogan}
                   onChange={(e) => updateBrandInfo(config.brandName, e.target.value, config.logo)}
-                  placeholder="e.g. Next-gen computational storage"
+                  placeholder="e.g. Fresh pies and coffee on Main Street"
                 />
               </div>
 
