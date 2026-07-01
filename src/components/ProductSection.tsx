@@ -59,7 +59,7 @@ const productGroups: ProductGroup[] = [
   {
     category: "SaaS",
     location: "Local SaaS Domain",
-    img: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=600&q=80",
+    img: "/images/cat_saas.jpg",
     items: [
       { name: "Cedar Desk", domain: "cedardesk.app", price: 500, mrr: 120, traffic: 2400, note: "Scheduling and job tracking name for small service shops." },
       { name: "Millhouse Scheduler", domain: "millhousescheduler.com", price: 500, mrr: 90, traffic: 1600, note: "Appointment software brand with a practical neighborhood feel." },
@@ -71,7 +71,7 @@ const productGroups: ProductGroup[] = [
   {
     category: "Portfolio",
     location: "Maker Portfolio Domain",
-    img: "https://images.unsplash.com/photo-1531403009284-440f080d1e12?auto=format&fit=crop&w=600&q=80",
+    img: "/images/cat_portfolio.jpg",
     items: [
       { name: "Elm Street Studio", domain: "elmstreetstudio.com", price: 500, mrr: 60, traffic: 1500, note: "Warm portfolio identity for a local designer or craft studio." },
       { name: "Willow Frame Co.", domain: "willowframe.co", price: 500, mrr: 45, traffic: 980, note: "Photography and visual work name with a small-town tone." },
@@ -83,7 +83,7 @@ const productGroups: ProductGroup[] = [
   {
     category: "E-Commerce",
     location: "Shopfront Domain",
-    img: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=600&q=80",
+    img: "/images/cat_ecommerce.jpg",
     items: [
       { name: "Maple Grove Bakery", domain: "maplegrovebakery.com", price: 500, mrr: 145, traffic: 4200, note: "Local bakery storefront with catalog and pickup potential." },
       { name: "Willow Creek Market", domain: "willowcreekmarket.com", price: 500, mrr: 160, traffic: 5100, note: "General store brand for groceries, gifts, and local goods." },
@@ -107,7 +107,7 @@ const productGroups: ProductGroup[] = [
   {
     category: "Agency",
     location: "Neighborhood Agency Domain",
-    img: "https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=600&q=80",
+    img: "/images/cat_agency.jpg",
     items: [
       { name: "North Fork Signs", domain: "northforksigns.com", price: 500, mrr: 70, traffic: 1250, note: "Signage and local marketing agency name with service clarity." },
       { name: "Main Street Media", domain: "mainstreetmedia.co", price: 500, mrr: 100, traffic: 2300, note: "Friendly media studio brand for small business campaigns." },
@@ -119,7 +119,7 @@ const productGroups: ProductGroup[] = [
   {
     category: "Blog",
     location: "Editorial Domain",
-    img: "https://images.unsplash.com/photo-1499750310107-5fef28a66643?auto=format&fit=crop&w=600&q=80",
+    img: "/images/cat_blog.jpg",
     items: [
       { name: "Porchlight Journal", domain: "porchlightjournal.com", price: 500, mrr: 45, traffic: 1800, note: "Local essay and community writing brand." },
       { name: "Riverbend Review", domain: "riverbendreview.com", price: 500, mrr: 60, traffic: 2400, note: "Town newsletter or local review site identity." },
@@ -131,7 +131,7 @@ const productGroups: ProductGroup[] = [
   {
     category: "Dashboard",
     location: "Operations Dashboard Domain",
-    img: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=600&q=80",
+    img: "/images/cat_dashboard.jpg",
     items: [
       { name: "Pineview Station", domain: "pineviewstation.app", price: 500, mrr: 115, traffic: 2700, note: "Operational dashboard name for schedules and location status." },
       { name: "Mill Creek Ledger", domain: "millcreekledger.com", price: 500, mrr: 105, traffic: 2400, note: "Simple reporting and accounting dashboard brand." },
@@ -155,7 +155,7 @@ const productGroups: ProductGroup[] = [
   {
     category: "Startup",
     location: "Small Team Startup Domain",
-    img: "https://images.unsplash.com/photo-1559136555-9303baea8ebd?auto=format&fit=crop&w=600&q=80",
+    img: "/images/cat_startup.jpg",
     items: [
       { name: "Barnlight Labs", domain: "barnlightlabs.com", price: 500, mrr: 120, traffic: 2600, note: "Small product team name with a quiet workshop feel." },
       { name: "Ridgepost Tools", domain: "ridgeposttools.com", price: 500, mrr: 90, traffic: 1800, note: "Useful software and utility brand for early teams." },
@@ -167,7 +167,7 @@ const productGroups: ProductGroup[] = [
   {
     category: "Corporate",
     location: "Regional Business Domain",
-    img: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=600&q=80",
+    img: "/images/cat_corporate.jpg",
     items: [
       { name: "Brookstone Works", domain: "brookstoneworks.com", price: 500, mrr: 140, traffic: 3600, note: "Regional services company with a steady, local profile." },
       { name: "Cedar & Main Co.", domain: "cedarandmain.com", price: 500, mrr: 150, traffic: 4200, note: "Professional but approachable company identity." },
@@ -179,7 +179,7 @@ const productGroups: ProductGroup[] = [
   {
     category: "Personal Brand",
     location: "Founder Website Domain",
-    img: "https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&w=600&q=80",
+    img: "/images/cat_personal.jpg",
     items: [
       { name: "Ella Reed Studio", domain: "ellareedstudio.com", price: 500, mrr: 40, traffic: 900, note: "Personal studio name for consulting, writing, or design." },
       { name: "Mason Hale Works", domain: "masonhaleworks.com", price: 500, mrr: 32, traffic: 650, note: "Approachable founder site identity." },
@@ -191,7 +191,7 @@ const productGroups: ProductGroup[] = [
   {
     category: "Education",
     location: "Learning Website Domain",
-    img: "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=600&q=80",
+    img: "/images/cat_education.jpg",
     items: [
       { name: "Pine Hill School", domain: "pinehillschool.com", price: 500, mrr: 90, traffic: 2100, note: "Local school or program website name." },
       { name: "Maple Grove Tutors", domain: "maplegrovetutors.com", price: 500, mrr: 65, traffic: 1350, note: "Tutoring center domain with direct community appeal." },
@@ -203,7 +203,7 @@ const productGroups: ProductGroup[] = [
   {
     category: "Healthcare",
     location: "Local Care Domain",
-    img: "https://images.unsplash.com/photo-1576091160550-2173dba999ef?auto=format&fit=crop&w=600&q=80",
+    img: "/images/cat_healthcare.jpg",
     items: [
       { name: "Willow Creek Clinic", domain: "willowcreekclinic.com", price: 500, mrr: 140, traffic: 3600, note: "Primary care website name with a calm local tone." },
       { name: "Cedar Hollow Care", domain: "cedarhollowcare.com", price: 500, mrr: 100, traffic: 2300, note: "Healthcare and wellness brand with neighborhood trust." },
