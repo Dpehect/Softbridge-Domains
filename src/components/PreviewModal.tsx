@@ -28,6 +28,13 @@ export interface PreviewConfig {
   layout: string;
   extras: string[];
   image?: string;
+  
+  identitySlogan?: string;
+  identityLogo?: string;
+  themeHeadingFont?: string;
+  themeBorderRadius?: string;
+  navType?: string;
+  heroStyle?: string;
 }
 
 interface Props {
@@ -39,7 +46,7 @@ interface Props {
 type ViewMode = "desktop" | "tablet" | "mobile";
 
 // ─── Full Site Preview Renderer ───────────────────────────────────
-function FullSitePreview({ config, viewMode }: { config: PreviewConfig; viewMode: ViewMode }) {
+export function FullSitePreview({ config, viewMode }: { config: PreviewConfig; viewMode: ViewMode }) {
   const {
     brandName,
     image,
@@ -53,6 +60,12 @@ function FullSitePreview({ config, viewMode }: { config: PreviewConfig; viewMode
     heroText,
     sections,
     typeName,
+    identitySlogan,
+    identityLogo,
+    themeHeadingFont,
+    themeBorderRadius,
+    navType = "topbar",
+    heroStyle = "modern",
   } = config;
   const pages = React.useMemo<PreviewPage[]>(
     () =>
@@ -73,40 +86,52 @@ function FullSitePreview({ config, viewMode }: { config: PreviewConfig; viewMode
   const resolvedText = hasDark && bg !== "#070B14" ? "#F5F5F5" : text;
   const border       = `${primary}20`;
 
-  const headingStyle: React.CSSProperties =
-    layout === "editorial" ? { fontWeight: 850, textTransform: "uppercase" as const, letterSpacing: "0" } :
-    layout === "minimal"   ? { fontWeight: 460, letterSpacing: "0" } :
-    layout === "dashboard" ? { fontWeight: 760, letterSpacing: "0" } :
-                             { fontWeight: 720, letterSpacing: "0" };
+  const headingStyle: React.CSSProperties = {
+    fontFamily: themeHeadingFont || font || "var(--font-sans)",
+    ...(layout === "editorial" ? { fontWeight: 850, textTransform: "uppercase" as const, letterSpacing: "0" } :
+        layout === "minimal"   ? { fontWeight: 460, letterSpacing: "0" } :
+        layout === "dashboard" ? { fontWeight: 760, letterSpacing: "0" } :
+                                 { fontWeight: 720, letterSpacing: "0" })
+  };
 
-  const cardRadius = layout === "minimal" ? "8px" : layout === "editorial" ? "4px" : "12px";
-  const btnRadius  = layout === "minimal" ? "8px" : layout === "editorial" ? "4px" : "12px";
+  const cardRadius = themeBorderRadius || (layout === "minimal" ? "8px" : layout === "editorial" ? "4px" : "12px");
+  const btnRadius  = themeBorderRadius || (layout === "minimal" ? "8px" : layout === "editorial" ? "4px" : "12px");
 
   return (
     <div
-      className="w-full h-full flex flex-col overflow-y-auto text-sm"
+      className={`w-full h-full flex ${navType === "sidebar" ? "flex-row" : "flex-col"} overflow-hidden text-sm`}
       style={{ backgroundColor: resolvedBg, color: resolvedText, fontFamily: font || "var(--font-sans)" }}
     >
       {/* ── Nav ── */}
       <nav
-        className="sticky top-0 z-10 flex items-center justify-between px-5 md:px-7 py-3 border-b"
+        className={
+          navType === "sidebar"
+            ? "hidden md:flex w-48 shrink-0 h-full border-r flex-col items-start px-5 py-6"
+            : "sticky top-0 z-20 flex items-center justify-between px-5 md:px-7 py-3 border-b"
+        }
         style={{ borderColor: border, backgroundColor: `${resolvedBg}F0`, backdropFilter: "blur(12px)" }}
       >
-        <div className="flex items-center gap-2">
-          <div
-            className="w-5 h-5 rounded-lg"
-            style={{ background: `linear-gradient(135deg, ${primary}, ${secondary})` }}
-          />
-          <span className="font-semibold text-sm truncate max-w-[180px]" style={{ color: resolvedText }}>
-            {displayName}
-          </span>
+        <div className={`flex items-center gap-2 ${navType === "sidebar" ? "mb-8 w-full" : ""}`}>
+          {identityLogo ? (
+            <img src={identityLogo} alt="Logo" className="h-6 w-auto object-contain" />
+          ) : (
+            <>
+              <div
+                className="w-5 h-5 rounded-lg shrink-0"
+                style={{ background: `linear-gradient(135deg, ${primary}, ${secondary})` }}
+              />
+              <span className="font-semibold text-sm truncate max-w-[180px]" style={{ color: resolvedText }}>
+                {displayName}
+              </span>
+            </>
+          )}
         </div>
-        <div className="hidden md:flex items-center gap-2 text-xs" style={{ color: resolvedText }}>
+        <div className={`flex ${navType === "sidebar" ? "flex-col w-full gap-1.5" : "hidden md:flex items-center gap-2"} text-xs`} style={{ color: resolvedText }}>
           {pages.slice(0, 6).map((page) => (
             <button
               key={page.id}
               onClick={() => setActivePageId(page.id)}
-              className="rounded-lg px-2.5 py-1 transition-all"
+              className={`rounded-lg transition-all text-left ${navType === "sidebar" ? "px-3 py-2 w-full" : "px-2.5 py-1"}`}
               style={{
                 color: activePage?.id === page.id ? primary : resolvedText,
                 backgroundColor: activePage?.id === page.id ? `${primary}14` : "transparent",
@@ -118,36 +143,16 @@ function FullSitePreview({ config, viewMode }: { config: PreviewConfig; viewMode
           ))}
         </div>
         <div
-          className="px-4 py-1.5 text-xs font-semibold text-white"
+          className={`px-4 py-1.5 text-xs font-semibold text-white ${navType === "sidebar" ? "mt-auto w-full text-center" : ""}`}
           style={{ backgroundColor: primary, borderRadius: btnRadius }}
         >
           Get Started
         </div>
       </nav>
 
-      <div
-        className="flex md:hidden gap-1.5 overflow-x-auto border-b px-3 py-2"
-        style={{ borderColor: border, backgroundColor: `${resolvedBg}F0` }}
-      >
-        {pages.map((page) => (
-          <button
-            key={page.id}
-            onClick={() => setActivePageId(page.id)}
-            className="shrink-0 rounded-lg px-2.5 py-1 text-[11px] font-semibold"
-            style={{
-              color: activePage?.id === page.id ? primary : resolvedText,
-              backgroundColor: activePage?.id === page.id ? `${primary}14` : "transparent",
-              opacity: activePage?.id === page.id ? 1 : 0.62,
-            }}
-          >
-            {page.title}
-          </button>
-        ))}
-      </div>
-
       {/* ── Hero ── */}
       <section
-        className="relative flex flex-col items-center justify-center text-center px-5 md:px-8 overflow-hidden"
+        className={`relative flex ${heroStyle === "split" ? "flex-col md:flex-row text-left" : "flex-col text-center"} items-center justify-center px-5 md:px-8 overflow-hidden`}
         style={{
           minHeight: viewMode === "mobile" ? "280px" : "340px",
           background: `linear-gradient(160deg, ${primary}16 0%, ${resolvedBg} 66%)`,
@@ -168,10 +173,10 @@ function FullSitePreview({ config, viewMode }: { config: PreviewConfig; viewMode
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-          className="relative z-10 max-w-2xl"
+          className={`relative z-10 max-w-2xl ${heroStyle === "split" ? "w-full md:w-1/2 pr-0 md:pr-8" : ""}`}
         >
           <div
-            className="inline-flex items-center gap-2 text-xs font-medium px-3 py-1 rounded-xl mb-4"
+            className={`inline-flex items-center gap-2 text-xs font-medium px-3 py-1 rounded-xl mb-4 ${heroStyle === "split" ? "" : "mx-auto"}`}
             style={{ backgroundColor: `${primary}15`, color: primary, border: `1px solid ${primary}30` }}
           >
             <span className="w-1.5 h-1.5 rounded-full" style={{ backgroundColor: primary }} />
@@ -184,11 +189,11 @@ function FullSitePreview({ config, viewMode }: { config: PreviewConfig; viewMode
             {activePage?.title === "Home" ? heroText : `${activePage?.title} for ${displayName}`}
           </h1>
           <p className="text-sm leading-relaxed mb-6" style={{ color: resolvedText, opacity: 0.62 }}>
-            {activePage?.description || "Built with Softbridge, modular, scalable, and ready to ship in minutes."}
+            {identitySlogan || activePage?.description || "Built with Softbridge, modular, scalable, and ready to ship in minutes."}
             {has3D ? " Enhanced with interactive 3D elements." : ""}
             {hasAnalytics ? " Analytics-ready from day one." : ""}
           </p>
-          <div className="flex items-center justify-center gap-3 flex-wrap">
+          <div className={`flex items-center ${heroStyle === "split" ? "justify-start" : "justify-center"} gap-3 flex-wrap`}>
             <div
               className="px-6 py-2.5 text-sm font-semibold text-white"
               style={{ backgroundColor: primary, borderRadius: btnRadius }}
@@ -203,6 +208,13 @@ function FullSitePreview({ config, viewMode }: { config: PreviewConfig; viewMode
             </div>
           </div>
         </motion.div>
+        {heroStyle === "split" && (
+          <div className="hidden md:flex w-1/2 h-full items-center justify-center p-8 relative z-10">
+            <div className="w-full aspect-square rounded-2xl bg-black/5" style={{ borderRadius: cardRadius, border: `1px solid ${primary}20` }}>
+              {image ? <img src={image} className="w-full h-full object-cover rounded-2xl" /> : <div className="w-full h-full flex items-center justify-center opacity-30">Image Placeholder</div>}
+            </div>
+          </div>
+        )}
       </section>
 
       {/* ── Feature cards ── */}
