@@ -2,6 +2,7 @@
 
 import React from "react";
 import { Laptop, Tablet, Smartphone, Sparkles, Send } from "lucide-react";
+import Image from "next/image";
 import { useConfiguratorStore, WebTemplateConfig, PageSection } from "@/store/useConfiguratorStore";
 import { motion } from "framer-motion";
 
@@ -111,7 +112,7 @@ export function LivePreviewViewport() {
               <nav className="px-5 py-2.5 flex items-center justify-between gap-3 border-b border-white/5 bg-black/10 backdrop-blur-sm">
                 <div className="flex items-center gap-2 font-heading font-black text-sm" style={{ color: "var(--preview-text)" }}>
                   {config.logo ? (
-                    <img src={config.logo} alt="Logo" className="w-5 h-5 object-contain rounded" />
+                    <Image src={config.logo} alt="Logo" width={20} height={20} className="w-5 h-5 object-contain rounded" />
                   ) : (
                     <div
                       className="w-4 h-4 rounded-full"

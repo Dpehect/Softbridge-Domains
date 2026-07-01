@@ -2,6 +2,7 @@
 
 import React, { Suspense, useState } from "react";
 import { useSearchParams, useRouter } from "next/navigation";
+import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import { templatesData, templateCategories, TemplateInfo } from "@/data/templatesData";
 import { TemplatePreviewCard } from "@/components/ui/TemplatePreviewCard";
@@ -186,9 +187,10 @@ function TemplatesGalleryContent() {
 
               {/* Left Mockup View */}
               <div className="w-full md:w-1/2 h-72 md:h-auto min-h-[300px] relative overflow-hidden bg-abyss-black border-r border-white/5">
-                <img
+                <Image
                   src={selectedPreviewTemplate.image}
                   alt={selectedPreviewTemplate.name}
+                  fill
                   className="w-full h-full object-cover"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-deep-void via-transparent to-transparent pointer-events-none" />

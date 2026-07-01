@@ -1,6 +1,7 @@
 import React from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { X, CheckCircle2, TrendingUp, Lock } from "lucide-react";
+import Image from "next/image";
 
 export type ProductData = {
   img: string;
@@ -89,9 +90,10 @@ export default function ProductDetailModal({ isOpen, onClose, product }: Props) 
 
             {/* Banner/Header Image */}
             <div className="relative h-40 sm:h-48 w-full shrink-0">
-              <img
+              <Image
                 src={product.img}
                 alt={product.title}
+                fill
                 className="h-full w-full object-cover brightness-[0.85]"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-midnight-void to-transparent" />

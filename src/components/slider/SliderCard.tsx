@@ -1,6 +1,9 @@
 import React from "react";
 import { motion } from "framer-motion";
+import Image from "next/image";
 import { SlideData } from "./BackgroundImage";
+
+const MotionImage = motion.create(Image);
 
 type Props = {
   data: SlideData;
@@ -27,10 +30,11 @@ function SliderCard({ data }: Props) {
         stiffness: 160,
       }}
     >
-      <motion.img
+      <MotionImage
         layoutId={data.img}
         alt="Transition Image"
         src={data.img}
+        fill
         className="absolute h-full w-full object-cover brightness-[0.70] group-hover/card:scale-105 transition-transform duration-700"
       />
       <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/20 to-transparent" />

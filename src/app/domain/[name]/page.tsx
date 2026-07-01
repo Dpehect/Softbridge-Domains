@@ -10,6 +10,7 @@ import { mockDomainsSearch, DomainInfo } from "@/utils/domain";
 import { templatesData } from "@/data/templatesData";
 import Link from "next/link";
 import { motion } from "framer-motion";
+import Image from "next/image";
 import { CustomCursor } from "@/components/ui/CustomCursor";
 
 export default function DomainDetailPage({ params }: { params: Promise<{ name: string }> }) {
@@ -211,9 +212,11 @@ export default function DomainDetailPage({ params }: { params: Promise<{ name: s
                   className="glass-panel p-3.5 rounded-xl flex items-center justify-between border-white/5 hover:border-white/10 hover:scale-[1.01] transition-all cursor-pointer"
                 >
                   <div className="flex items-center gap-3">
-                    <img
+                    <Image
                       src={tpl.image}
                       alt={tpl.name}
+                      width={48}
+                      height={48}
                       className="w-12 h-12 object-cover rounded-lg border border-white/10"
                     />
                     <div>

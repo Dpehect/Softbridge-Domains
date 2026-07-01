@@ -3,6 +3,7 @@
 import React from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { X, Monitor, Smartphone, Tablet } from "lucide-react";
+import Image from "next/image";
 import { CustomPage, CustomSection } from "../types/builder";
 
 export interface PreviewConfig {
@@ -101,7 +102,7 @@ function DynamicSection({ section, theme, isFirst }: { section: CustomSection, t
             {items.map((slide, i) => (
               <div key={i} className="min-w-[280px] md:min-w-[400px] aspect-[4/3] bg-black/5 flex flex-col justify-end p-6 relative overflow-hidden shrink-0 snap-center group" style={{ borderRadius: radius }}>
                 {slide.image ? (
-                   <img src={slide.image} alt={slide.title} className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                   <Image src={slide.image} alt={slide.title} fill className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
                 ) : (
                    <div className="absolute inset-0 bg-gradient-to-br from-[#000000] to-[#333333] opacity-10"></div>
                 )}
@@ -238,7 +239,7 @@ export function FullSitePreview({ config, viewMode }: { config: PreviewConfig; v
       <nav className={navType === "sidebar" ? "hidden md:flex w-48 shrink-0 h-full border-r flex-col items-start px-5 py-6" : "sticky top-0 z-20 flex items-center justify-between px-5 md:px-7 py-3 border-b"} style={{ borderColor: border, backgroundColor: `${resolvedBg}F0`, backdropFilter: "blur(12px)" }}>
         <div className={`flex items-center gap-2 ${navType === "sidebar" ? "mb-8 w-full" : ""}`}>
           {identityLogo ? (
-            <img src={identityLogo} alt="Logo" className="h-6 w-auto object-contain" />
+            <Image src={identityLogo} alt="Logo" width={96} height={24} className="h-6 w-auto object-contain" />
           ) : (
             <><div className="w-5 h-5 rounded-lg shrink-0" style={{ background: `linear-gradient(135deg, ${primary}, ${secondary})` }} /><span className="font-semibold text-sm truncate max-w-[180px]" style={{ color: resolvedText }}>{displayName}</span></>
           )}

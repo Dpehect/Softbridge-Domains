@@ -2,6 +2,7 @@
 
 import React from "react";
 import { motion } from "framer-motion";
+import Image from "next/image";
 import { Zap, Eye, Sliders } from "lucide-react";
 import { TemplateInfo } from "@/data/templatesData";
 import { CyberButton } from "./CyberButton";
@@ -38,12 +39,12 @@ export function TemplatePreviewCard({
         <div className="absolute inset-0 z-10 bg-gradient-to-t from-abyss-black via-transparent to-transparent pointer-events-none" />
         
         {/* Scrolling image mockup */}
-        <div className="w-full h-full overflow-hidden relative">
-          <img
+        <div className="w-full absolute top-0 transition-transform duration-[4000ms] ease-in-out group-hover:translate-y-[-30%]" style={{ height: "135%" }}>
+          <Image
             src={template.image}
             alt={template.name}
-            className="w-full object-cover origin-top absolute top-0 transition-transform duration-[4000ms] ease-in-out group-hover:translate-y-[-30%]"
-            style={{ minHeight: "135%" }}
+            fill
+            className="object-cover object-top"
           />
         </div>
 
